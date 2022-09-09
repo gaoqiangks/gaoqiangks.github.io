@@ -1,15 +1,15 @@
 # Fdb version 3
-["biber minisurf"] 1662735176 "minisurf.bcf" "minisurf.bbl" "minisurf" 1662735480
+["biber minisurf"] 1662735795 "minisurf.bcf" "minisurf.bbl" "minisurf" 1662735810
   "PDE.bib" 0 -1 0 ""
-  "minisurf.bcf" 1662735478 107005 8767c6b08e7b1e78782b5fad3fd8e758 "xelatex"
+  "minisurf.bcf" 1662735807 107005 8767c6b08e7b1e78782b5fad3fd8e758 "xelatex"
   (generated)
-  "minisurf.bbl"
   "minisurf.blg"
-["xdvipdfmx"] 1662735479 "minisurf.xdv" "minisurf.pdf" "minisurf" 1662735480
-  "minisurf.xdv" 1662735478 114324 adb28b25df74885c535bbb38025a97d3 "xelatex"
+  "minisurf.bbl"
+["xdvipdfmx"] 1662735808 "minisurf.xdv" "minisurf.pdf" "minisurf" 1662735810
+  "minisurf.xdv" 1662735807 114496 0d13a09cd66056af8c9a643370bcffc5 "xelatex"
   (generated)
   "minisurf.pdf"
-["xelatex"] 1662735474 "minisurf.tex" "minisurf.xdv" "minisurf" 1662735480
+["xelatex"] 1662735804 "minisurf.tex" "minisurf.xdv" "minisurf" 1662735810
   "c:/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1645432054 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2021/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1645433353 1528 7e12f4c0fcf5a072cebdcfbfc610f54c ""
   "c:/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1645431550 1004 54797486969f23fa377b128694d548df ""
@@ -134,21 +134,21 @@
   "c:/texlive/2021/texmf-dist/web2c/texmf.cnf" 1645432307 39972 3d6bb4d9d719e93193fa020b58adf5d4 ""
   "c:/texlive/2021/texmf-var/web2c/xetex/xelatex.fmt" 1645433504 5093727 d9162edcec75ac45e4b44ff40dbad77f ""
   "c:/texlive/2021/texmf.cnf" 1645433362 713 e69b156964470283e0530f5060668171 ""
-  "chapter01.tex" 1662735469 24888 812954180f7255a1f333a10ef2065318 ""
+  "chapter01.tex" 1662735800 24925 a1d38f49cfb14fb14a05baa0832ae9bd ""
   "images/reflection1.png" 1662575018 41231 20333615a0480d2b05da3defe588bb9a ""
   "images/reflection2.png" 1662575100 14568 3334218da71a2b3f81895059f873992e ""
   "images/variation.png" 1662574964 17948 65fe81d34f2808dd2c5c856457263ece ""
-  "minisurf.aux" 1662735478 3711 b121ea8e740b4f92083092ed0420da9e "xelatex"
-  "minisurf.bbl" 1662735178 0 d41d8cd98f00b204e9800998ecf8427e "biber minisurf"
-  "minisurf.out" 1662735478 665 07c8d8e2a0e8be6c8e946c0529650273 "xelatex"
-  "minisurf.run.xml" 1662735478 2361 0890a73c86cbd9ccbfd0f78bd482f1f5 "xelatex"
+  "minisurf.aux" 1662735807 3711 b121ea8e740b4f92083092ed0420da9e "xelatex"
+  "minisurf.bbl" 1662735797 0 d41d8cd98f00b204e9800998ecf8427e "biber minisurf"
+  "minisurf.out" 1662735807 665 07c8d8e2a0e8be6c8e946c0529650273 "xelatex"
+  "minisurf.run.xml" 1662735807 2361 0890a73c86cbd9ccbfd0f78bd482f1f5 "xelatex"
   "minisurf.tex" 1662732357 5227 48735dae1e6cc5a7e12ad05192bf593a ""
-  "minisurf.toc" 1662735478 818 707301730875a1c34d400ee3043ee77b "xelatex"
+  "minisurf.toc" 1662735807 818 707301730875a1c34d400ee3043ee77b "xelatex"
   (generated)
+  "minisurf.out"
   "minisurf.bcf"
+  "minisurf.run.xml"
   "minisurf.xdv"
+  "minisurf.log"
   "minisurf.aux"
   "minisurf.toc"
-  "minisurf.out"
-  "minisurf.log"
-  "minisurf.run.xml"
