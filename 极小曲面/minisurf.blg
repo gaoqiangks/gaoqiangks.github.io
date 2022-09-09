@@ -1,0 +1,9 @@
+[0] Config.pm:311> INFO - This is Biber 2.16
+[0] Config.pm:314> INFO - Logfile is 'minisurf.blg'
+[88] biber-MSWIN32:340> INFO - === 
+[126] Biber.pm:415> INFO - Reading 'minisurf.bcf'
+[219] Biber.pm:949> INFO - Using all citekeys in bib section 0
+[230] Biber.pm:4340> INFO - Processing section 0
+[239] Biber.pm:4531> INFO - Looking for bibtex format file 'PDE.bib' for section 0
+[1145] Utils.pm:411> ERROR - Cannot find 'PDE.bib'!
+[1145] Biber.pm:132> INFO - ERRORS: 1

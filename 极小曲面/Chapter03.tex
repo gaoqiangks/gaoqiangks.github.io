@@ -1,0 +1,1400 @@
+\chapter{粘性解}
+\section{粘性解与非线性方程}
+在本章中, 如无特殊说明, 我们考虑的是单位球$B_1$中方程
+\begin{equation}\label{vis_eq}
+    \L u=\aij(x)\dij u(x)= f(x)
+\end{equation}
+这是, 我们假设$\aij$满足$(\lambda, \Lambda)$一致椭圆条件且$\aij, f \in C(B_1)$.  
+%粘性解是一种非常弱意义下的解, 它的提出基于最大值原理, 并且适用于完全非线性方程.  
+\begin{theorem}[最大值原理]
+    设$u \in C^2$, $\Delta u \ge 0$, 则 $\max_\O u=\max _{\partial \O} u$.  
+\end{theorem}
+从另一个角度来看最大值原理:设$u \in C^2$, $\Delta u \ge 0$.  设$ \phi \in C^\infty $使得在$x_0$处, $\phi(x_0)=u(x_0)$.  在$B_\epsilon(x_0)$中, $u(x) \le \phi(x)$.  则 $\Delta \phi(x_0) \ge 0$.  因为显然, $u-\phi$在$x_0$处取到局部最大值.  若$\Delta \phi <0$, 则$\Delta(u-\phi) >0$, 这意叶着$x_0$处$u-\phi$不可能是局部最大值.  
+\par 从这个角度来看, $u \in C^2$的条件是不需要的.  另外算子$\Delta$所起到的作用也只是算子 $\Delta$具有最大值原理.  
+\begin{definition} \label{def_viscosity}
+    称$u \in C(\O)$是方程$\L u=f$的粘性上解, 如果$\forall x_0 \in \O$及 $\phi \in C^2(\O)$, 假如$u-\phi$在$x_0$处取到局部最小值, 则$\L \phi(x_0) \le f(x_0)$.  
+\end{definition}
+若$u-\phi$在$x_0$处取到局部最小值, 记为$a$.  则在$x_0$的邻域中, $u\ge \phi+a$.  因此, $\L(\phi+a)(x_0)=\L (\phi)(x_0) \le f(x_0)$.  因此, 上解的一个等价定义是: 
+\begin{definition}
+若对于任意可以从下侧在$x_0$处接触$u$的函数$\phi \in C^2$, 都有$\L\phi (x_0) \le f(x_0)$, 则称$u$是方程$\L u=f$的粘性上解.  
+\end{definition}
+    类似地, 可以定义粘性下解.  若$u$同时是粘性上解与粘性下解, 则称$u$是粘性解.  
+\begin{remark}
+    上面的定义中, 我们没有用到任何关于$L$的线性性质.  由于非线性椭圆方程也具有最大值原来, 因此粘性解的定义可以方便地推广到非线性方程.  
+\end{remark}
+\begin{definition}
+    设$\S$是实对称矩阵的集合.  设$F: S\times \O \to \R$连续.  称$F$是一致椭圆的, 如果存在$\lambda, \Lambda>0$使得 $\forall M \in \S$及半正定矩阵$N$, $\forall x \in \O$, 成立
+    \begin{equation}
+        \lambda \norm{N}\le F(M+N, x)-F(M, x) \le \Lambda\norm{N}
+    \end{equation}
+\end{definition}
+与定义\eqref{def_viscosity}完全相同的方法, 我们可以定义完全非线性方程 
+\begin{equation*}\label{vis_nonlinear_eq}
+    F(D^2u, x)=f
+\end{equation*}
+的粘性解.  
+\begin{remark}
+    根据一致椭圆的定义, 
+    \begin{equation*}
+        \lambda \norm{N} \le F(M+N, x) -F(M, x) < \Lambda \norm{N}, \s \forall N \ge 0.  
+    \end{equation*}
+    而如果$N$只是对称矩阵, 记 $N=N^+-N^-$.  其中, $N^+, N^-$都是半正定矩阵.  由谱定理可知, 这样的分解是存在的且是唯一的.  则
+    \begin{equation}
+        \begin{split}
+            F(M+N, x)= & F(M+N^+-N^-, x)  \\
+            \le &F(F+N^+, x)-\lambda \norm{N^-} \\
+            \le &F(M, x)+\Lambda \norm{N^+}-\lambda\norm{N^-}
+        \end{split}
+    \end{equation}
+    如果上面的不等式成立, 显然$F$是一致椭圆的.  
+\end{remark}
+\begin{proposition}
+    下面的叙述是等价的.  
+    \begin{enumerate}
+        \item \label{t1} $u$是方程$F(D^2u, x)=f$的粘性上解.  
+        \item \label{t2} 对于任意$C^2$函数$\phi$, 如果$\phi$在$x_0$处从下方接触$u$, 则
+        \begin{equation*}
+            F(D^2\phi(x_0), x_0)\le f(x_0).  
+        \end{equation*}
+        \item \label{t3} 对于任意二次多项式$\phi$, 如果$\phi$在$x_0$处从下方接触$u$, 则
+        \begin{equation*}
+            F(D^2\phi(x_0), x_0)\le f(x_0).  
+        \end{equation*}
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \eqref{t1} $\iff$ \eqref{t2} $\implies$ \eqref{t3}是显然的.  \\
+    \eqref{t3} $\implies$ \eqref{t2}: 设$\phi \in C^2(\O)$, 且在$x_0$处从下方接触$u$.  记
+    \begin{equation}
+        p_\epsilon(x)=\phi(x_0)+D\phi(x_0)(x-x_0)+D^2\phi(x_0)(x-x_0)^2 -\epsilon\abs{x-x_0}^2
+    \end{equation}
+    显然, $p_\epsilon$在$x_0$处从下方接触$u$.  因此 
+    \begin{equation}
+        F(D^2p_\epsilon(x_0), x_0)=F(D^2\phi(x_0)-2\epsilon I, x_0) \le f(x_0).  
+    \end{equation}
+    令$\epsilon \to 0$即可.  
+\end{proof}
+\begin{proposition}
+    若$u \in C^2(\O)$.  则$u$是方程\eqref{vis_nonlinear_eq}的粘性上解, 当且仅当$u$是方程\eqref{vis_nonlinear_eq}的经典上解, 即$F(D^2u, x) \le f(x)$逐点成立.  
+\end{proposition}
+\begin{proof}
+    设$u$是粘性上解.  固定$x_0\in \O$.  记
+    \begin{equation}
+        p_\epsilon(x)=u(x_0)+Du(x_0)(x-x_0))+D^2u(x_0)(x-x_0)^2-\epsilon\abs{x-x_0}^2.  
+    \end{equation}
+    显然, $p_\epsilon(x)$在$x_0$处从下方接触$u$.  因此有
+    \begin{equation}
+        F(D^2p_\epsilon(x_0), x_0)=F(D^2u(x_0)-2\epsilon I, x_0) \le f(x_0).  
+    \end{equation}
+    令$\epsilon\to 0$即可.  
+    \par 反之, 设$u$是经典解.  若$\phi$在 $x_0$处从下方接触$u$, 则$u - \phi$在$x_0$处取到局部最小值.  因此, $D^2(u-\phi)(x_0) \ge 0$.  则由$F$的一致椭圆性质, 
+    \begin{equation}
+        F(D^2\phi, x_0) \le F(D^2\phi+D^2(u-\phi), x_0)=F(D^2u, x_0) \le f(x_0)
+    \end{equation}
+\end{proof}
+\begin{proposition}
+    若$u, v$是$F(D^2u, x)=f(x)$的粘性上解, 则$\min(u, v)$也是粘性上解.  
+\end{proposition}
+\begin{proof}
+    由定义可知.  
+\end{proof}
+\begin{theorem}[粘性解的稳定性]
+    设$F_k: \S \times \O \to \R$是$(\lambda, \Lambda)$一致椭圆的.  设$u_k$是方程$F_k(D^2u, x)=f(x)$的粘性上解.  设 $F_k \to F$内闭一致, 且$u_k \to u$内闭一致.  则 $u$是方程$F(D^2u, x)=f(x)$的粘性上解.  
+\end{theorem}
+\begin{proof}
+    在$x_0$处, 设$\phi$是从下方接触$u$的抛物面.  设在$\overline{B}_r(x_0)$中, $\phi(x) \le u(x)$.  则当$\epsilon>0$足够小时, $\phi_\epsilon=\phi-\epsilon\abs{x-x_0}^2$从下方接触$u$, 且在$\overline{B}_r(x_0)-\{x_0\}$上, $\phi_\epsilon < u(x)$.  $\forall k\in N^+$, 设$a_k = \min_{\overline{B}_r(x_0)}(u_k-\phi_\epsilon)$, 且最小值在$x_k$点处取到.  显然, 
+    \begin{equation}
+        \phi_\epsilon + a_k \le u_k
+    \end{equation}
+    另外, 由于$u_k \to u$内闭一致, 则 
+    \begin{equation}
+        a_k \to \min_{\overline{B}_r(x_0)}(u-\phi_\epsilon)=0.  
+    \end{equation}
+    另外, 若$x_k \to \tilde{x}_0$, 则
+    \begin{equation}
+        (u_k-\phi_\epsilon)(x_k) \to (u-\phi_\epsilon)(\tilde{x}_0)
+    \end{equation}
+    而由于$u-\phi_\epsilon$在$B_r(x_0)$中只在$x_0$处取到最小值, 则$x_0=\tilde{x}_0$.  选取一个子列后, $\phi_\epsilon+a_k$在$x_k$处从下方接触$u_k$.  于是
+    \begin{equation}
+        F(D^2(\phi_\epsilon), x_k) \le f(x_k)
+    \end{equation}
+    令$k \to \infty$, 则$F(D^2\phi_\epsilon, x_0) \le f(x_0)$.  令$\epsilon \to 0$, 则$f(D^2\phi, x_0) \le f(x_0)$.  证毕.  
+\end{proof}
+\section{椭圆方程解的集合:\texorpdfstring{$\S$}{S}类}
+设$u \in C^2(\O)$是方程$\aij D_{ij}u=f$的上解, 则有
+\begin{equation}
+    \begin{split}
+        \tr (AD^2u) \le f \implies& tr(OAO^T, diag(\lambda_i)) \le f \\
+        \implies & \Sigma \tilde{a}^{ii}\lambda_i \le f \\
+        \implies & \lambda \Sigma_{\lambda_i >0} \lambda_i + \Lambda \Sigma_{\lambda_i <0} \lambda_i \le f
+    \end{split}
+\end{equation}
+其中, $\tilde{a}^{ij}=(OAO^T)^{ij}$, $O$是将$D^2u$对角化的标准正交矩阵, $\lambda_i$是$D^2u$的特征值.  同样的, 若$u$是$\aij D_{ij}u=f$的下解, 则
+\begin{equation}
+     \Lambda \Sigma_{\lambda_i >0} \lambda_i + \lambda \Sigma_{\lambda_i <0} \lambda_i \ge f
+\end{equation}
+\begin{definition}
+    设$S_{\lambda, \Lambda}$是所有特征值在$(\lambda, \Lambda)$之间的正定矩阵的集合.  $\forall M \in \S$, 设$\{\lambda_i\}$是$M$的特征值.  定义算子
+    \begin{equation}
+        \begin{split}
+            \mathcal{M}^+(M)= \MP{M} = &\Lambda \Sigma_{\lambda_i>0}\lambda_i+\lambda\Sigma_{\lambda_i<0}\lambda_i  \\
+            = &\sup_{A\in \S_{\lambda, \Lambda}}\tr(AM)
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            \mathcal{M}^-(M)= \MN{M} = &\lambda \Sigma_{\lambda_i>0}\lambda_i+\Lambda\Sigma_{\lambda_i<0}\lambda_i  \\
+            = &\inf_{A\in \S_{\lambda, \Lambda}}\tr(AM)
+        \end{split}
+    \end{equation}
+\end{definition}
+显然, 由定义可知
+\begin{proposition} \label{property_m}
+    $\forall M, N \in \S$, 成立
+    \begin{equation}
+        \MN{M}+\MN{N}\le \MN{M+N}
+    \end{equation}
+    \begin{equation}
+        \MP{M+N} \le \MP{M} + \MN{N}
+    \end{equation}
+\end{proposition}
+现在, 我们定义“所有上解的集合”与“所有下解的集合”.  
+\begin{definition}
+    设$f$连续, $\O$有界, $0< \lambda < \Lambda$.  称$u \in \SSP{f}$, 如果$\forall  x_0 \in \O$及任意从下方接触$u$的$C^2$函数$\phi$, 成立
+    \begin{equation}
+        \lambda \Sigma_{\lambda_i >0} \lambda_i + \Lambda \Sigma_{\lambda_i <0} \lambda_i \le f(x_0)
+    \end{equation}
+    其中, $\lambda_i$是$D^2\phi(x_0)$的特征值.  \\
+    称$u \in \SSN{f}$, 如果$\forall  x_0 \in \O$及任意从上方接触$u$的$C^2$函数$\phi$, 成立
+    \begin{equation}
+        \Lambda \Sigma_{\lambda_i >0} \lambda_i + \lambda \Sigma_{\lambda_i <0} \lambda_i \ge f(x_0)
+    \end{equation}
+\end{definition}
+记$\SS{f}=\SSP{f} \cap \SSN{f}$.  
+\begin{proposition}
+    若$u \in C^2(\O)$.  则$u \in \SSP{f}$当且仅当 $\forall x \in \O$, 存在正定矩阵$\aij$使得 $\aij$的特征值在$[\lambda, \Lambda]$之间且$\aij D_{ij}u(x) \le f(x)$.  
+\end{proposition}
+\begin{proof}
+    略.  
+\end{proof}
+\begin{remark}
+    上面的命题中得到的$\aij$关于$x$当然不一定是连续的.  
+\end{remark}
+\begin{proposition} \label{ppp1}
+    设$u$是方程$F(D^2u, x) = f(x)$的粘性上解, $F$满足$(\lambda, \Lambda)$一致椭圆条件.  则$u \in \S^+(\frac{\lambda}{n}, \Lambda, f(x)-F(0, x))$.  并且$\forall \psi \in C^2(\O)$, 成立 
+    \begin{equation}
+        u-\psi \in \S^+(\frac{\lambda}{n}, \Lambda, f(x)-F(D^2\psi, x))
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    设$\psi \in C^2(\O)$.  设$\phi \in C^2(\O)$在点$x_0$处从下方接触$u-\psi$.  则$\phi+\psi$在$x_0$处从下方接触$u$.  于是
+    \begin{equation}
+        F(D^2\phi+D^2\psi, x_0) \le f(x_0)
+    \end{equation}
+    另外, 由一致椭圆性, 有
+    \begin{equation}
+        F(D^2\psi, x_0) + \lambda\norm{D^2\phi^+}-\Lambda\norm{D^2\psi^-} \le f(x_0)
+    \end{equation}
+    又因$\norm{D^2\psi^+}=\max\lambda(D^2\phi)$, $\norm{D^2\psi^-}=\max(-\min\lambda(D^2\phi), 0)$, 则有
+    \begin{equation}
+        \frac{\lambda}{n}\Sigma_{\lambda_i>0}\lambda_i(D^2\phi)-\Lambda\Sigma_{\lambda_i<0}\lambda_i(D^2\phi) \le f(x_0) - F(D^2\psi, x_0)
+    \end{equation}
+    因此, $u-\psi \in S^+(\frac{\lambda}{n}, \Lambda, f(x)-F(D^2\psi, x))$.  取$\psi=0$, 则有 
+    \begin{equation}
+        u\in \S^+(\frac{\lambda}{n}, \Lambda, f(x)-F(0, x))
+    \end{equation}
+\end{proof}
+\section{Alexandroff最大值原理}
+%\subsection{法映射与接触集}
+这一节我们介绍Alexandroff最大值原理, 也称Alexandroff-Bakelman-Pucci估计, 简称ABP估计.  
+\subsection{经典ABP估计}
+\begin{definition}
+    设$\O\subset \R^n$是有界区域.  设$u \in C(\O)$, $y \in \O$.  记
+    \begin{equation}
+        \chi(y)=\{p \in \R^n\mid u(x) \le u(y)+\inner{p}{x-y} \s \forall x\in \O\}
+    \end{equation}
+    称$\chi: \O \to 2^{\R^n}$为$u$所确定的(上)法映射.  
+\end{definition}
+法映射的几何含义:固定$y \in \O$, 记$z(x)=u(y)+\inner{p}{x-y}$, 那么$z(x)$表示通过点$(y, u(y))$并且“斜率”为$p$的平面(法向量为$(-p, 1)$).  因此, $\chi(y)$表示在$y$点处, 从上方接触$u$的平面的“斜率”.  记
+\begin{equation}
+    \O_u^+=\{y\in \O \mid \chi(y) \ne \emptyset\}.  
+\end{equation}
+称$\O_u^+$为$u$的\textit{上接触集}.  显然地, $\O^+_u=\O$当且仅当$u$是凹函数.  另外, 易知若$u \in C^1$, 则$\chi(y)=\emptyset$ 或$\chi(y)=\{Du(y)\}$.  若$u \in C^2$, 则$ \forall y_0 \in \O_u^+$, $D^2u(y_0)\le 0$.  因为此时, 存在仿射映射$L$使得 $u \le L$且$u-L$在$y_0$处取到局部最大值.  因此, $D^2(u-L)(y_0) \le 0$.  \par
+同样的方式可以定义$u$的\textit{下接触集}$\O^-_u$.  \par
+下面的引理是Alexandroff极大值原理的核心, 它本身与方程无关.  
+\begin{lemma}\label{abp_c11}
+    设$g \in L^1_{loc}$且$g \ge 0$.  则 $\forall u \in C(\O)\cap C^{1, 1}(\O)$, 有
+    \begin{equation}
+        \int_{B_{\tilde{M}(0)}}g \le \int_{\O^+_u}g(Du)\abs{\det D^2u}
+    \end{equation}
+    其中, $\tilde{M}=(\sup_\O u - \sup_{\partial \O}u^+)/d$, $d=diam(\O)$.  
+\end{lemma}
+\begin{remark}
+    若$u$在边界上不连续, 只需将$\sup_{\partial \O}u^+$换为$\limsup_{x \to \partial \O}u^+$即可.  
+\end{remark}
+\begin{proof}
+    不失一般性, 假设$u|_{\partial \O} \le 0$.  此时, $\sup_{\partial \O}u^+=0$.  记$\O^+=\{u >0\}$, 则由面积公式
+    \begin{equation}
+        \int_{Du(\O_u^+ \cap \O^+)}g \le \int_{\O_u^+\cap \O^+} g(Du) \abs{\det D^2u}
+    \end{equation}
+    现在, 我们证明下面的断言.  
+    \begin{claim*}
+        \begin{equation}
+            B_{\tilde{M}(0)} \subset Du(\O^+\cap \O^+_u)
+        \end{equation}
+        即, $\forall \abs{a} \le \tilde{M}, \s \exists  y \in \O^+ \cap \O^+_u$ 使得$a=Du(y)$.  
+    \end{claim*}
+    设$u$在$x_0$处取到最大值$m$, 即有
+    \begin{equation}
+        u(x_0)=m=\sup u 
+    \end{equation}
+    显然, $Du(x_0)=0$.  设$\abs{a} < \tilde{M} = \frac{m}{d}$ 考虑平面$L(x)=m+\inner{a}{x-x_0}$.  由于$\abs{a} < \frac{m}{d}$, 则$L(x)$与$\R^n \times \{0\}$的交集位于$\O$外部, 即 
+    \begin{equation}
+        \{L(x)=0\} \subset \R^n -\O
+    \end{equation}
+    将$L(x)$向上平移至恰好与$u$相切, 这个切点记为$y$, 则$Du(y)=a$.  显然, $y \in \O^+_u$且$u(y) \ge 0$.  证毕.  
+\end{proof}
+\begin{remark}
+    根据证明过程, 我们可以用$\O^+_u \cap \{u > \max_{\partial \O}u^+\}$替换结论右侧的$\O^+_u$.  
+\end{remark}
+\begin{corollary}
+    设$u \in C^{1, 1}(\O) \cap C(\overline{\O})$, 有
+    \begin{equation}
+        \sup_\O u \le \sup_{\P \O} + \frac{d}{\omega_n^{\rec{n}}}(\int_{\O^+_u}\abs{\det D^2u})^\rec{n}
+    \end{equation}
+    其中, $d=\diam \O$.  
+\end{corollary}
+\begin{corollary} \label{abp_cor1}
+    记$D=\det(\aij)$, $D^*=D^\rec{n}$, 则
+    \begin{equation}
+        \int_{B_{\tilde{M}(0)}}g \le \int_{\O^+_u}g(Du)(-\frac{\aij D_{ij}u}{D^*})^n
+    \end{equation}
+\end{corollary}
+\begin{proof}
+    对于半正定矩阵$A, B$, 有不等式$(\det A \det B)^\rec{n} \le \frac{\tr{AB}}{n}$.  取$A=[\aij], B=-D^2u$, 只需注意到在$\O^+_u$上, $D^2u$是半负定的, 应用引理\eqref{abp_c11}即可.  
+\end{proof}
+\begin{corollary} \label{abp_cor2}
+    设$u \in C^2(\O) \cap C(\overline{\O})$, $\aij D_{ij}u \ge f$.  则
+    \begin{equation}
+        \sup_\O u \le \sup_{\P \O} u^+ + C\norm{\frac{f^-}{D^*}}_{L^n(\O^+_u)}
+    \end{equation}
+    其中, $C=C(n, \diam(\O))$.  
+\end{corollary}
+\begin{proof}
+    在$\O^+_u$上, $0 \le -\aij D_{ij}u \le -f \le f^-$, 取$g \eq 1$, 应用推论\eqref{abp_cor1}即可.  
+\end{proof}
+\begin{theorem}\label{classical_abp}
+    设$u \in C(\overline{\O}) \cap C^2(\O)$满足 $Lu= \aij \dij u + b^iD_iu +cu  \ge f$.  设$\aij$可测且满足一致椭圆条件.  记$D=\det \aij$, $D^*=D^\rec{n}$.  假设$L$的系数满足
+    \begin{equation}
+        \frac{\abs{b}}{D^*}, \frac{f}{D^*} \in L^n(\O), \s c\le 0
+    \end{equation}
+    则存在常数$C=C(n, \diam(\O), \norm{\frac{b}{D^*}})$ 使得
+    \begin{equation}
+        \sup_\O u \le \sup_{\O}u^+ + C\norm{\frac{f^-}{D^*}}_{L^n(\O)}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    在推论\eqref{abp_cor1}中, 取 $g(x)=\rec{\abs{x}^n+\mu^n}$, $\mu >0$待定.  在$\O^+_u \cap \O^+$上$(\text{注}\O^+=\{u>0\})$, 
+    \begin{equation}
+        \begin{split}
+            -\aij \dij u \le & b^iD_iu + cu -f \\
+            \le & b^iD_iu +f^-\\
+            \le &\abs{b}\abs{Du} + \frac{f^-}{\mu}\mu \s (\Holder\text{不等式})\\
+            \le &(\abs{b}^n + (\frac{f^-}{\mu})^n)^\rec{n}(\abs{Du}^n+\mu^n)^\rec{n}2^{\frac{n-2}{n}}
+        \end{split}
+    \end{equation}
+    将$g(x)=\rec{\abs{x}^n+\mu^n}$代入并应用推论\eqref{abp_cor1}, 
+    \begin{equation}
+        \begin{split}
+            \int_{B_{\tilde{M}(0)}} \frac{1}{\abs{x}^n+\mu^n} \le & \int_{\O^+_u \cap \O^+} \rec{\abs{Du}^n + \mu^n} \rec{D} (\frac{-\aij \dij u}{n})^n \\
+            & \le C(n) \int_{\O^+_u \cap \O^+} \rec{D}(\abs{b}^n \abs{\frac{f^-}{\mu}}^n) \\
+            & = C(n)\int_{\O^+_u\O^+}(\abs{\frac{b}{D^*}}^n+\abs{\frac{f^-}{\mu D^*}}^n)
+        \end{split}
+    \end{equation}
+    左侧可以直接用极坐标来计算.  
+    \begin{equation}
+        \begin{split}
+            \int_{B_{\tilde{M}(0)}} \rec{\abs{x}^n+\mu^n} =& \int^{\tilde{M}}_0 \int_{\mathbb{S}^{n-1}}\rec{r^n+\mu^n}r^{n-1}d\mathbb{S}^{n-1}dr \\
+            =& \frac{w_n}n\log(\frac{\tilde{M}^n}{\mu^n}+1)
+        \end{split}
+    \end{equation}
+    取$\mu = \norm{\frac{f^-}{D^*}}_{L^n(\O^+_u \cap \O^+)}$, 则有
+    \begin{equation}
+        \log(\frac{\tilde{M}^n}{\mu^n}+1) \le C(n)(\norm{\frac{b}{D^*}}^n+1).  
+    \end{equation}
+    因此, 
+    \begin{equation}
+        \tilde{M}^n \le (\exp (C(n)(\norm{\frac{b}{D^*}}^n_{L^n})+1)-1)\norm{\frac{f^-}{D^*}}^n_{L^n}
+    \end{equation}
+    则有
+    \begin{equation}
+        \sup_\O u \le \sup_{\partial \O} u^+ + C(n, d, \norm{\frac{b}{D^*}}_{L^n})\norm{\frac{f^-}{D^*}}_{L^n}
+    \end{equation}
+\end{proof}
+\begin{corollary}
+    对于任意$u \in C(\overline{\O})\cap W^{2, n}(\O)$, 定理 \eqref{classical_abp}成立.  
+\end{corollary}
+\begin{proof}
+    记$\O_\delta = \{x \in \O \mid d(x, \partial \O ) > \delta\}$, 记$u_\epsilon$为$u$的标准磨光.  则当$\epsilon  < \delta$时, $u_\epsilon $在$\O_\delta$中是良好定义的, 且$\epsilon \to 0$时, $u_\epsilon \tto{\text{内闭一致且$W^{2, n}$收敛}} u$.  另外, 通过给$u_\epsilon$加上一个常数, 可以假设$u_\epsilon \le u$.  $u_\epsilon$满足
+    \begin{equation}
+        \begin{split}
+            &\aij \dij u_\epsilon + b^iD_iu_\epsilon+cu_\epsilon  \\
+            \ge& \aij \dij (u_\epsilon-u)+b^iD_i(u_\epsilon-u)+c(u_\epsilon-u)+f \\
+            \ge & \aij \dij(u_\epsilon-u)+b^iD_i(u_\epsilon-u)-f^- \eq F
+        \end{split}
+    \end{equation}
+    则有：
+    \begin{equation}
+        \sup_{\O_\delta} u_\epsilon\le \sup _{\P \O_\delta} u^+_\epsilon+C\norm{\frac{F^-}{D^*}}_{L^n}
+    \end{equation}
+    考虑到$\lambda \le D^* \le \Lambda$ 及$u_\epsilon \tto{\text{$W^{2, n}$}} u$, 则有
+    \begin{equation}
+        \norm{\frac{F^-}{D^*}}_{L^n} \to \norm{\frac{f^-}{D^*}}_{L^n}
+    \end{equation}
+    因此, 对于任意$\delta >0$, 
+    \begin{equation}
+        \sup_{\O_\delta} u \le \sup _{\P \O_\delta}u^+ +C\norm{\frac{f^-}{D^*}}_{L^n(\O_\delta)}
+    \end{equation}
+    令$\delta \to 0$即可.  
+\end{proof}
+\subsection{粘性解的ABP估计}
+\begin{definition}
+    称二次多项式$p(x)$是开口为 $M$抛物面, 如果$$p(x)=L(x)\pm\frac{M}{2}\abs{x}^2.  $$  其中, $L(x)$为仿射.  
+    \par 给定有界区域$\O \subset \R^n$及 $u \in C(\O)$, 设$A \subset \O$为开集, $x_0\in A$.  定义
+    \begin{equation}
+        \begin{split}
+            \theta^+(u, A)(x_0)= \inf \{
+                &M>0 \mid \text{存在抛物面} p(x)=L(x)+\frac{M}{2}\abs{x-x_0}^2 \\
+                &\text{使得在$A$中}, p(x) \ge u \text{且} p(x_0)=u(x_0)
+                \}
+            \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            \theta^+(u, A)(x_0)= \inf \{
+                &M>0 \mid \text{存在抛物面} p(x)=L(x)-\frac{M}{2}\abs{x-x_0}^2 \\
+                &\text{使得在$A$中}, p(x) \le u \text{且} p(x_0)=u(x_0)
+                \}
+            \end{split}
+    \end{equation}
+    如果右侧的集合为空, 则定义$\theta^+(u, A)(x_0)(\theta^-(u, A)(x_0))=+\infty$.  \\
+    定义 $\theta(u, A)(x_0)=\max(\theta^+(u, A)(x_0), \theta^-(u, A)(x_0)) \in [0, +\infty]$.  
+\end{definition}
+\begin{remark}
+    $\theta^+, \theta^-$表示了一种“单侧可微性”, 例如如果$\theta(u, A)(x_0) < +\infty$, 则 $u$夹在两个相切的抛物面之间, 因此 $u$在$x_0$处是可微的.  
+\end{remark}
+\begin{lemma}\label{d2u_theta}
+    设$p \in (1, +\infty]$, $u \in C(\O)$.  设$\epsilon>0$是固定的常数.  记
+    \begin{equation}
+        \theta(u, \epsilon)(x)=\theta(u, B_\epsilon(x) \cap \O)(x)
+    \end{equation}
+    若$\theta(u, \epsilon) \in L^p(\O)$, 则$D^2u$存在且
+    \begin{equation}
+        \norm{D^2u}_{L^p} \le C(n) \norm{\theta(u, \epsilon)}_{L^p}
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    只需证明$\forall \phi \in C^\infty_0$, 
+    \begin{equation*}
+        \abs{\int_\O u \dij \phi} \le \norm{\theta(u, \epsilon)}_{L^p}\norm{\phi}_{L^{p'}} \s \rec{p}+\rec{p'}=1.  
+    \end{equation*}
+    记$v=\frac{\sqrt{2}}{2}(e_i+e_j)$, 则$\dij \phi= \rec{2}(2D_{vv}\phi-D_{ii}\phi-D_{jj}\phi)$.  因此, 只需考虑 $i=j$的情况即可.  设$\phi\in C^\infty_0$.  则
+    \begin{equation}
+        \int_\O u D_{ii} \phi = \lim_{\delta \to 0} \int_\O u \Delta_{\delta e_i} \phi = \lim_{\delta \to 0} \int_\O \Delta^2_{\delta e_i}u \phi
+    \end{equation}
+    其中, $\Delta^2$是二阶差商
+    \begin{equation}
+        \Delta^2_hu(x)=\frac{u(x+h)+u(x-h)-2u(x)}{\abs{h}^2}
+    \end{equation}
+    $\forall x \in \{\theta(u, \epsilon) < +\infty\}$, 存在$p_1(x) = L_1(x)+\frac{M}{2}\abs{x}^2$及$p_2(x)=L_2(x)-\frac{M}{2}\abs{x}^2$使得在$\O \cap B_\epsilon(x)$中, $p_2(x) \le u(x) \le p_1(x)$.  $M > \theta(u, \epsilon)$任意.  因此, 
+    \begin{equation}
+        \Delta^2_hp_2(x) \le \Delta^2_h u(x) \le \Delta^2_hp_1(x)
+    \end{equation}
+    则有
+    \begin{equation}
+        -M \le \Delta^2_hu(x) \le M
+    \end{equation}
+    于是, 
+    \begin{equation}
+        \abs{\Delta^2_hu(x)} \le \theta(u, \epsilon)(x)
+    \end{equation}
+    综上, 有 
+    \begin{equation}
+        \abs{\int_\O u D_{ii} \phi} \le \norm{\theta(u, \epsilon)}_{L^p} \norm{\phi}_{L^{p'}}
+    \end{equation}
+\end{proof}
+\begin{lemma}\label{c_11}
+    设$u \in C(\overline{\O})$且$\O \subset \R^n$是有界区域.  设$\theta(u, \epsilon) \le K$, 则 $\abs{Du(x)-Du(y)} \le C(n)K\abs{x-y}$.  即有$u \in C^{1, 1}(\overline{\O})$.  
+\end{lemma}
+\begin{proof}
+    由于$\theta(u, \epsilon) \le K < +\infty$, 则$u$是处处可微的.  又由引理\eqref{d2u_theta}可知, $\norm{D^2u}_{L^\infty} \le C(n)K$, 则$Du \in W^{1, \infty}$.  则 $Du$连续 .  于是有
+    \begin{equation}
+        \begin{split}
+            \abs{D_iu(x)-D_iu(y)} =& \abs{\int^1_0 \frac{d}{dt} D_iu(tx+(1-t)y)dt} \\
+            =&\abs{\int^1_0\inner{DD_iu(tx+(1-t)y}{x-y}dt} \\
+            \le& K\abs{x-y}
+        \end{split}
+    \end{equation}
+\end{proof}
+%\begin{lemma}\label{l57}
+%    设$u \in C(\overline{B}\cap C^{1, 1}(B))$且在$\partial B$上, $u \ge 0$, 则有
+%    \begin{equation}
+%        \sup_B{u^-} \le C(n, d)(\int_{\O^+_u}{\det D^2u})^\rec{n}
+%    \end{equation}
+%    其中, $u^-=-min(u, 0)$.  
+%\end{lemma}
+%\begin{proof}
+%    只需要对$u^-$应用引理\eqref{abp_c11}即可.  
+%\end{proof}
+我们只考虑单位球$B_1$.  设$u \in C(\overline{B_1})$ 且$u|_{\P B_1}  \ge 0$.  将$u$连续延拓到$B_2$上使得在$B_2-B_1$上, $u \ge 0$.  记
+\begin{equation}
+    \Gamma_u(x)= \sup_L \{L(x)  \mid \text{在$B_2$中}, L\le \min\{u, 0\}  \text{ 且} L\text{是仿射}\}
+\end{equation}
+下面关于$\Gamma_u$的性质是显然的.  
+\begin{enumerate}
+    \item $\Gamma_u \le \min(u, 0)$.  
+    \item 在$\P B_2$上, $\Gamma_u=0$.  在$B_2$内部, $\Gamma_u <0$.  
+    \item $\{\Gamma_u=-u^-\}=\{\Gamma_u=u\}\subset B_1$.  
+\end{enumerate}
+%显然, $\{\Gamma_u = -u^-\} = \{\Gamma_u=u\}$, 因为 $\Gamma_u \le 0$.  
+\par 现在, 我们将证明$\Gamma_u \in C^{1, 1}(B_1)$并将引理\eqref{abp_c11}应用到 $\Gamma_u$上来得到粘性解的ABP估计.  在这之前, 我们首先介绍一个关于凸集的定理.  
+\begin{theorem}[Caratheodory定理]
+    设$E \subset \R^n$有界, $\Hull(E)$是集合$E$的凸包.  则$\forall x \in \Hull(E)$, 存在$x_1, x_2\cdots x_{n+1} \in E$及$0 \le \alpha_i \le 1, \Sigma^{n+1}\alpha_i=1$使得$x=\Sigma^{n+1}\alpha_i x_i$.  
+\end{theorem}
+\begin{proof}
+    简单计算可知, $\Hull(E)$可以表示为, $E$中所有点的凸线性组合的集合.  即是
+    \begin{equation}
+        \Hull(E)= \{ \Sigma \alpha_i x_i \mid \alpha_i >0, x_i \in E \text{ 且 } \Sigma \alpha=1\}
+    \end{equation}
+    因此, 只需证明 $ \forall x \in \Hull(E)$, 存在$p \le n+1$ 使得 $x= \Sigma^p_1 \alpha_i x_i$即可.  不失一般性, 可假设$p$是满足此条件的最小的整数.  设$p \ge n+2$.  则存在$\beta_i$使得$\Sigma^p_i \beta_i x_i=0$.  另外, 可设 $\Sigma^p_i \beta_i =0$.  设$\frac{\beta_p}{\alpha_p}$在所有 $\{\frac{\beta_i}{\alpha_i} \mid \beta_i >0\}$中最小.  记
+    \begin{equation}
+        \gamma_i= \alpha_i-(\frac{\alpha_p}{\beta_p})\beta_i, 1 \le i \le p-1
+    \end{equation}
+    则$\gamma_i \ge 0$且 $\Sigma \gamma_i=1$.  而直接计算可知, $\Sigma^{p-1}_1 \gamma_i x_i=x$.  证毕.  
+\end{proof}
+
+\begin{theorem}\label{vis_abp}
+    在$B_1$中, 设$u \in \SSP{f}$ 且$u|_{\P B_1} \ge 0$.  设 $f \in C(\O)$且$\abs{f} \le M_0$.  则成立
+    \begin{equation}
+        \sup_{B_1} u^- \le C(n, \lambda, \Lambda)(\int_{B_1 \cap \{u=\Gamma_u\}}(f^+)^n)^\rec{n}
+    \end{equation}
+\end{theorem}
+我们首先证明下面的几个引理, 然后对$\Gamma_u$应用Alexandroff最大值原理.  
+\begin{lemma}\label{vis_abp_l1}
+    在$\{-u^-=\Gamma_u\}$上, $f(x) \ge 0$.  
+\end{lemma}
+\begin{proof}
+    设$u(x_0)=\Gamma_u(x_0) <0$.  设$L(x)$是$x_0$处的支撑平面.  即
+    \begin{equation}
+        L(x_0)=u(x_0)\text{ 且 }L(x) \le u(x)
+    \end{equation}
+    记$\bar{u}=u-L$.  则$\bar{u} \ge 0$且$\bar{u} \in \SSP{f}$.  记$h=-\frac{\epsilon}{2}\abs{x-x_0}^2$.  显然, $\bar{u}-h$在$x_0$处取到局部最小值, 而$D^2h$的特征值是$-\epsilon$.  则有$-n\Lambda \epsilon \le f(x_0)$.  令$\epsilon \to 0$, 则有$f(x_0) \ge 0$.  
+\end{proof}
+\begin{lemma} \label{vis_abp_l2}
+    在$\{-u^-=\Gamma_u\}$上, $\theta^+(\Gamma_u, \epsilon)(x) \le C(n,\lambda,\Lambda)f^+(x)$.  其中, $\epsilon  =\epsilon(n,\lambda,\Lambda)$.
+\end{lemma}
+\begin{proof}
+    \textit{在后面的证明中,我们记$x=(x^1,x^2\cdots x^n)$}
+    \par 为了估计$\theta(\Gamma_u)(x_0)$, 我们需要知道$x_0$处从上方接触$\Gamma_u$的抛物面的开口大小.  设$x_0$处的支撑平面是 $L(x)$.  记
+    \begin{equation}
+        C_r=\rec{r^2}\max_{B_r}(\Gamma_u(x)-L), r=\abs{x-x_0}
+    \end{equation}
+    由于$\Gamma_u$是凸的, 则$\Gamma_u-L$在$\P B_r$上取到最大值.  不失一般性, 设这个点为$\tilde{x}=x_0+(0, 0\cdots r)$.  显然, $\{x \in B_1 | \Gamma_u(x) - L({x}) \le \Gamma_u(\tilde{x}-L(\tilde{x}))\}$是凸集.  由凸函数的性质, $\forall x=(x', \tilde{x}^n) \in B_1$, 
+    \begin{equation}
+        \Gamma_u(x)-L(x) \ge \Gamma_u(\tilde{x})-L(\tilde{x})
+    \end{equation}
+    现在, 我们在$x_0$的矩形邻域中$R_r$中构造从下方接触$u$的二次多项式.  记
+    \begin{equation}
+        R_r=\{x \mid (\Sigma^{n-1}(x^i-x_0^i)^2)^\rec{2} < Nr, \abs{x^n-x_0^n} <r\}
+    \end{equation}
+    其中, $N$是待定常数.  
+    定义$h(x)=(x^n-x_0^n+r)^2-b(x'-x'_0)^2$, $b=\frac{4}{N^2}$.  则 在$\{x=(x', x^n)\mid x^n=\tilde{x}^n+r\}$上, 
+    \begin{equation}
+        \Gamma_u(x)-L(x) \ge \Gamma_u(\tilde{x})-L(\tilde{x})=C_rr^2
+    \end{equation}
+    因此, 若记$\tilde{h}(x)=\frac{C_r}{4}h(x)$, 直接计算可验证, 在$\P R_r$上
+    \begin{equation}
+        \tilde{h}(x) \le C_rr^2 \le \Gamma_u(x)-L(x) \le u(x)-L(x)
+    \end{equation}
+    另外, $\tilde{h}(x_0)=\rec{4}C_rr^2 >0 = \Gamma_u(x_0)-L(x_0)=u(x_0)-L(x_0)$.  
+    则$u-L-\tilde{h}$在$R_r$的某个内点处取到局部最小值.  而$D^2(L+\tilde{h})$的特征值是$(\frac{C_r}{2}, -\frac{2C_r}{N^2}\cdot -\frac{2C_r}{N^2})$.  再由$u \in S^+$, 则
+    \begin{equation}
+        \lambda\frac{C_r}{2}-2(n-1)\Lambda \frac{C_r}{N^2} \le \max_{B_r}f
+    \end{equation}
+    取$N=N(n,\lambda,\Lambda)$足够大, 则有
+    \begin{equation}
+        C_r \le C\max_{R_r}\max f
+    \end{equation}
+    即有: 
+    \begin{equation} \label{eqstar}
+        \Gamma_u-L(x) \le Cr^2\max_{R_r}f
+    \end{equation}
+    令$r \to 0$即可.
+%    由定义知, 在$B_2$中, $-u^-=min(u, 0) \in S^+(\lambda, \Lambda, f^+\chi_{B_1})$.  
+%    将不等式\eqref{eqstar}在$B_2$中应用到$u^-$上, 则 $\forall x_0 \in \{\Gamma_u = -u^-\}$及小够小的$r\s(R_r \subset  B_2)$, 成立
+%    \begin{equation}
+%        \Gamma_u(x) \le L(x) +C(n, \lambda, \Lambda) \max_{R_r}f^+\chi_{B_1}\abs{x-x_0}^2
+%    \end{equation}
+%    而右侧是在$x_0$处从上方接触$\Gamma_u$的抛物面, 且开口有上界.  令$r \to 0$, 则有
+%    \begin{equation}
+%        \theta^+(\Gamma_u, B_r(x))(x) \le C(n, \lambda, \Lambda)f^+(x_0), \s x_0 \in B_1 \cap \{\Gamma_u = -u^-\}.  
+%    \end{equation}
+\end{proof}
+\begin{lemma}\label{vis_abp_l3}
+    \s 
+    \begin{enumerate}
+        \item 在$\{-u^- \ne \Gamma_u\}$上, 存在$K$使得 $\theta^+(\Gamma_u, B_\epsilon) \le K$.  
+        \item $\forall x \in \{\Gamma_u \ne -u^-\}$, 存在开线段$I$使得$x \in I$且$\Gamma_u$在$I$上是仿射.  
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    设$x_0 \in B_1 \cap \{-u^- \ne \Gamma_u\}$.  设$L$是$x_0$处的支撑平面(指的是:$\Gamma_u(x_0)=L(x_0)$且$L(x) \le -u^-(x)$在$B_2$中成立).  记$E=\overline{B}_2 \cap \{L(x) =-u^-(x)\}$.  显然, $E \ne \emptyset$.  现在我们断言
+    \begin{claim}
+        存在$x_1, x_2 \cdots x_{n+1}$使得在$\Hull(\{x_1, x_2\cdots x_{n+1}\})$上, $L(x)=\Gamma_u(x)$且$x_i \in \P B_2 \cup \{\Gamma_u = -u^-\}$, 且至多有一个点在$\P B_2$上, 且有$x_0 \in \Hull(\{x_0, x_1\cdots x_{n+1}\})$.  
+    \end{claim}
+    \begin{claim}
+        记$x_0=\Sigma_1^{n+1}\lambda_i x_i(\lambda_i\ge 0, \Sigma \lambda_i=1)$.  则存在$i$使得$ x_i \in \{\Gamma_u=-u^-\}$且$\lambda_i \ge \rec{3n}$.  
+    \end{claim}
+    我们首先证明$x_0 \in \Hull(E)$.  若非如此, 则存在仿射函数$A(x)$使得$A(x_0)>0$且$\forall x\in (\Hull(E))^\epsilon$(表示$\Hull(E)$的$\epsilon$邻域), $A(x) <0$.  
+    $\left\{ \begin{aligned}
+        &L(x) < -u^-(x) \s x \in \overline{B}_2-(\Hull(E))^\epsilon \\
+        &A(x) < 0 \s  x \in (\Hull(E))^\epsilon
+    \end{aligned}
+    \right\}\implies$ 当$\delta$足够小时, $L(x)+\delta A(x) \le -u^-$.  而这意叶着$L(x)+\delta A(x)$是在$-u^-$下方, 且比$L(x)$ 更靠上的仿射, 这与$L$的选取矛盾.  因此, $x_0 \in \Hull(E)$.  \\
+    由Caratheodory定理可知, 存在$\{x_1, x_2 \cdots x_{n+1}\} \subset \Hull(E)$及 $\lambda_i$使得 $x_0= \Sigma_1^{n+1}\lambda_i x_i$, 并且至多有一个点 $x_i$使得$\abs{x_i}=2$.  在$\Hull(\{x_i\})$上, $L(x)=\Gamma_u(x)$是显然的.  \\
+    现在我们证明第二个断言.  注意到$x_i$不可能都包含在$B_2-B_1$中, 除非$u^- \eq 0$.  
+    \par 若所有的$x_i$都在$B_1$中, 则$\max \abs{\lambda_i} \ge \rec{n+1} > \rec{3n}$.  
+    \par 若存在$x_i \in \P B_2$, 设为$x_{n+1}$, 若$\forall 1\le i \le n$, $\lambda_i < \rec{3n}$, 则$\lambda_{n+1} > \frac{2}{3}$.  因此, 有
+    \begin{equation}
+        \begin{split}
+            \abs{x_0} \ge&  \abs{\lambda_{n+1}x_{n+1}} - \abs{\Sigma^n \lambda_i x_i} \\
+            \ge & \frac{4}{3}-\rec{3} =1
+        \end{split}
+    \end{equation}
+    显然这是不可能的.  因此第二个断言证毕.  
+    \par 现在, 我们构造$\Gamma_u$上方的抛物面来估计$\theta^+(\Gamma_u)$.  设$x_0 =\Sigma^{n+1}\lambda_i x_i$且$\lambda_1 \ge \rec{3n}$.  $x_i, \lambda_i$如上面的断言中所陈述.  则
+    \begin{equation}
+        x_0+h=\lambda_1(x_1+\frac{h}{\lambda_1}) + \lambda_2 x_2 \cdots \lambda_{n+1}x_{n+1}
+    \end{equation}
+    则由$\Gamma_u$凸性, 
+    \begin{equation} \label{tttstar}
+        \begin{split}
+            &L(x_0+h)  \\
+            \le & \Gamma_u(x_0+h) \\
+            \le & \lambda_1\Gamma_u(x_1+\frac{h}{\lambda_1}+\lambda_2\Gamma_u(x_2)+\cdots+\lambda_{n+1}\Gamma_u(x_{n+1}))
+        \end{split}
+    \end{equation}
+    取$\abs{h} \le \frac{\epsilon}{3n}$, 则$\abs{\frac{h}{\lambda_1}} \le \epsilon$.  而我们已经证明了对于$x_1$, 存在$x_1$的邻域$B_\epsilon(x_1)$及抛物面$p(x)=L'(x)+M\abs{x-x_1}^2$使得在$B_\epsilon$中, 
+    \begin{equation}
+        L'(x) \le \Gamma_u(x) \le p(x)
+    \end{equation}
+    并且, 显然由$\Gamma_u$在$x_1$处的可微性, 我们有 
+    \begin{equation}
+        L'(x)=L(x)=\Gamma_u(x_1)+D\Gamma_u(x_1)(x-x_1)
+    \end{equation}
+    代入到不等式\eqref{tttstar}中, 则有
+    \begin{equation}
+        \begin{split}
+            &L(x_0+h) \le \Gamma_u(x_0+h)  \\
+            \le & \lambda_1(L(x_1+\frac{h}{\lambda_1}))+\lambda_2\Gamma_u(x_2)+\cdots \lambda_{n+1}\Gamma_u(x_{n+1}) \\ 
+            \le & \lambda_1(L(x_1+\frac{h}{\lambda_1})+M\abs{\frac{h}{\lambda_1}})+\lambda_2L(x_2)+\cdots \lambda_{n+1}\Gamma_u(x_{n+1}) \\
+            =& L(x_0+h+M\abs{\frac{h}{\lambda_1}})
+        \end{split}
+    \end{equation}
+    因此, $\theta^+(\Gamma_u, B_{\frac{\epsilon}{3n}}(x))(x) \le 3nM$.  
+\end{proof}
+\begin{corollary} \label{d2gammau_0}
+    在$B_2-\{\Gamma_u=u\}$中, $\det D^2\Gamma_u=0$.  
+\end{corollary}
+\begin{corollary}\label{det_theta}
+    $\forall \epsilon>0$, 几乎处处成立$\abs{\det D^2\Gamma_u} \le \abs{\theta(\Gamma_u,\epsilon)}^n$.
+\end{corollary}
+\begin{proof}
+    引理\eqref{c_11}及引理\eqref{vis_abp_l2}, \eqref{vis_abp_l3}可知, $\Gamma_u\in C^{1, 1}(B_2)$.  因此$D^2\Gamma_u$几乎处处存在.  固定$x_0$, 可设$D^2\Gamma_u(x_0)$是对角矩阵.  若$P(x)=L(x) + \rec{2}M\abs{x}^2$, 且从上方在$x_0$处接触$\Gamma_u$, 则$P-\Gamma_u$取到局部最小值. 因此 $D^2(P-\Gamma_u)(x_0)$为半正定矩阵. 对于下侧接触同理.  于是有$\abs{\det D^2\Gamma_u} \le M^n$.
+\end{proof}
+\begin{proof}[定理\eqref{vis_abp}的证明]
+    $\Gamma_u \in C^{1,1}$. 由引理 \eqref{abp_c11}, 推论\eqref{d2gammau_0}及推论 \eqref{det_theta}可知, 
+    \begin{equation}
+        \begin{split}
+            \sup_{B_1}u^- \le \sup_{B_2}\Gamma_u^- \le & C(n)(\int_{B_2}\abs{\det D^2\Gamma_u})^\rec{n} \\
+            \le & C(n)(\int_{B_1 \cap \{u=\Gamma_u\}}\abs{\det D^2\Gamma_u})^\rec{n} \\
+            %\le & C(n)(\int_{B_1 \cap \{u=\Gamma_u\}}\abs{D^2\Gamma_u}^n(x))^\rec{n} \\
+            \le & C(n)(\int_{B_1\cap \{u=\Gamma_u\}}\abs{\theta}^n)^\rec{n} \\
+            \le & C(n, \lambda, \Lambda)(\int_{B_1\cap \{u=\Gamma_u\}}\abs{f^+}^n)^\rec{n}
+        \end{split}
+    \end{equation}
+\end{proof}
+\begin{remark}
+    通过考虑$B_{1-\epsilon}$并令$\epsilon\to 0$, 显然定理\eqref{vis_abp}中$f$有界的条件可以去掉.  
+\end{remark}
+\begin{corollary}
+    设$u \in C(\overline{\O})$.  则
+    \begin{enumerate}
+        \item 若$u \in \SSP{0}$且在 $\P \O$上, $u \ge 0$ , 则$ u \ge 0$.  
+        \item 若$u \in \SSN{0}$且在 $\P \O$上, $u \le 0$ , 则$ u \le 0$.  
+    \end{enumerate}
+\end{corollary}
+\section{Harnack不等式及\texorpdfstring{\Holder}{Holder}连续性}
+下面的引理会经常用到.  
+\begin{lemma} \label{cz}
+    对于任意二进制立方体$Q$, 记$\tilde{Q}$为$Q$的前驱立方体.  记$Q_1$为单位立方体.  设$A \subset B \subset Q_1$满足
+    \begin{enumerate}
+        \item $\abs{A} < \sigma < 1$.  
+        \item 对于任意二进制立方体$Q$, 如果$\abs{A \cap Q} \ge \sigma \abs{Q}$, 则$\tilde{Q} \subset B$.  
+    \end{enumerate}
+    那么, $\abs{A} \le \sigma \abs{B}$.  
+\end{lemma}
+\begin{proof}
+    取集合$A$在$\sigma$处的的Calderon-Zygmund分解.  $A \subset \cup Q_i$.  显然也有$A \subset  \cup \tilde{Q}_i$.  选取$\{\tilde{Q}_i\}$的子集使得它们之间互不相交并且仍然有$A \subset \cup \tilde{Q}_i$.  则有
+    \begin{equation}
+        \abs{A} \le \Sigma\abs{A \cap \tilde{Q}_i} \le \Sigma \sigma \abs{\tilde{Q}_i} \le \sigma\abs{B}
+    \end{equation}
+\end{proof}
+\begin{theorem}\label{vis_harnack}
+    在$B_1$中, 设$f \in C(B_1)$, $u \ge 0$ 且 $u \in \SS{f}$.  则存在$C=C(n, \lambda, \Lambda)$使得
+    \begin{equation}
+        \sup_{B_\rec{2}} \le C(\inf_{B_\rec{2}} u + \norm{f}_{L^n(B_1)})
+    \end{equation}
+\end{theorem}
+\begin{remark}
+    在后面的证明中, 为了方便我们会在有的地方用立方体来代替球.  
+\end{remark}
+通过令$u_\delta= \frac{u}{\inf Q_\rec{4} + \delta + \frac{1}{\epsilon_0}\norm{f}_{L^n(Q_{4\sqrt{n}})}}$ 及$ \delta \to 0$, 我们证明定理\eqref{cz}的如下等价命题:
+\begin{lemma} \label{lcz}
+    在$Q_{4\sqrt{n}}$中, 设$f \in C(Q_{4\sqrt{n}})$, $u \ge 0$且$u \in \SS{f}$.  设$\inf_{Q_\rec{4}}u \le 1$, 则存在只依赖于$n, \lambda, \Lambda$的常数$\epsilon, C$使得如果$\norm{f}_{L^n(Q_{4\sqrt{n}})} \le \epsilon_0$, 则$\sup_{Q_\rec{4}}u \le C$.  
+\end{lemma}
+\begin{lemma} \label{lemma513}
+    在$B_{2\sqrt{n}}$中, 设$f \in C(B_{2\sqrt{n}}), u \in \SSP{f}$.  则存在只依赖于$n, \lambda, \Lambda$的常数$ \epsilon_0, \mu \in (0, 1)$及 $M>1$使得如果
+    \begin{equation}
+        u|_{B_{2\sqrt{n}}} \ge 0, \inf_{Q_3}u \le 1 \text{ 及 } \norm{f}_{L^n(B_{2\sqrt{n}})} \le \epsilon_0
+    \end{equation}
+    则成立
+    \begin{equation}
+        \abs{\{u \le M \} \cap Q_1} > \mu
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    取$g=M(1-\frac{\abs{x}^2}{4n})^\beta$.  其中, $\beta$待定.  固定$\beta$后, 选择$M$使得在$Q_3$中, $g \ge 2$.  记$w=u-g$.  现在, 我们证明可以取合适的$\beta$使得$w \in \SSP{f+\eta}$, 其中, $\eta \in C^\infty_0(B_{\rec{2}})$且$0 \le \eta \le C(n, \lambda, \Lambda)$.  \par
+    固定$x_0 \in B_{2\sqrt{n}}$及$\phi \in C^2$使得$\phi$在$x_0$处从下方接触$w$.  显然, $\phi+g$在$x_0$处从下方接触$u$.  因此, $$\MN{D^2(\phi-g)(x_0)} \le f(x_0).  $$  则根据命题 \eqref{property_m}有:
+    \begin{equation}
+        \begin{split}
+            &\MN{D^2\phi(x_0)} \\
+            \le & \MN{D^2(\phi+g)(x_0)}-\MN{D^2g(x_0)}\\
+            \le & f(x_0) - \MN{D^2g(x_0)}
+        \end{split}
+    \end{equation}
+    而直接计算可知
+    \begin{equation}
+        \dij g=-\frac{M}{2n}\beta(1-\frac{\abs{x}^2}{4n})^{\beta-2}((1-\frac{\abs{x}^2}{4n})\delta_{ij}-\frac{\beta-1}{2n}x_ix_j)
+    \end{equation}
+    则$\dij g$的特征值为
+    \begin{equation}
+        \lambda_1=\frac{M}{2n}\beta(1-\frac{\abs{x}^2}{4n})^{\beta-2}(\frac{\abs{x}^2}{4n}(2\beta-1)-1)
+    \end{equation}
+    \begin{equation}
+        \lambda_2=\cdots=\lambda_n=-\frac{M}{2n}\beta(1-\frac{\abs{x}^2}{4n})^\beta
+    \end{equation}
+    于是选取$\beta$足够大, 使得当$\abs{x} \ge \rec{4}$时, 
+    \begin{equation}
+        \lambda_1 >0, \lambda_2=\cdots=\lambda_n <0
+    \end{equation}
+    于是当$\abs{x} \ge \rec{4}$时, 有
+    \begin{equation}
+        \begin{split}
+            &\MN{D^2g(x_0)} \\
+            =& \frac{M}{2n}\beta(1-\frac{\abs{x}^2}{4n})^{\beta-2}(\lambda(2\beta-1)\frac{\abs{x}^2}{4n}-\lambda-\Lambda(n-1)(1-\frac{\abs{x}^2}{4n}))\\
+            \ge & 0
+        \end{split}
+    \end{equation}
+    因此, 存在$\eta \in C^\infty_0(B_\rec{2})$使得$0 \le \eta \le C(n, \lambda, \Lambda)$使得
+    \begin{equation}
+        -\MN{D^2g} \le \eta
+    \end{equation}
+%    \begin{equation}
+%        \MN{D^2\phi(x_0)} \le f(x_0)
+%    \end{equation}
+    则$w=u-g \in \SSP{f+\eta}$.  显然, 只要$\beta$选取得足够大, $\supp \eta$可以任意小.  
+    \par 现在, 对$w$应用定理\eqref{vis_abp}, 则有
+    \begin{equation}
+        \begin{split}
+        1 \le \sup_{B_{2\sqrt{n}}}w^- \le & C(\int_{B_{2\sqrt{n}} \cap \{w=\Gamma_w\}} \abs{f+\eta}^n)^\rec{n} \\
+         \le & C(\norm{f}_{L^n}+\abs{Q_1 \cap \{w=\Gamma_w\}}^\rec{n})
+        \end{split}
+    \end{equation}
+    而在$w=\Gamma_w$上, $w \le 0$.  因此, 
+    \begin{equation}
+        Q_1 \cap \{w=\Gamma_w\} \subset Q_1 \cap \{ u-g \le 0\} \subset Q_1 \cap \{u \le M\}
+    \end{equation}
+    于是有
+    \begin{equation}
+        1 \le C\norm{f}_{L^n} + C\abs{Q_1\cap \{u \le M\}}
+    \end{equation}
+    因此若$\norm{f}_{L^n} \le \rec{2C}$, 则
+    \begin{equation}
+        \abs{ Q_1 \cap \{u \le M\}} \ge \rec{2C}
+    \end{equation}
+    引理证毕.  
+\end{proof}
+\begin{remark}
+    上面引理的证明中, $D^2g$是形如$I-aa^T$形式的矩阵, 这里$a$为列向量.  对于这样的矩阵, $(I-aa^T)a=a-aa^Ta=a(1-\abs{a}^2)$.  因此, $a$是特征值$1-\abs{a}^2$所对应的特征向量.  另外, 对于任意满足 $\inner{a}{b}=0$的向量$b \in \R^n$, $(I-aa^T)b=b-aa^Tb=b$.  因此, $b$是特征值$1$所对应的特征向量.  并且显然, 特征值$1$的特征空间是$\dim(a^{\perp})=n-1$维的.  
+\end{remark}
+\begin{lemma} \label{lemma514}
+    设$u , f, \epsilon_0, \mu, M$如引理\eqref{lemma513}中所定义.  则$\forall k \in N^+$, 成立
+    \begin{equation}
+        \abs{\{u > M^k\} \cap Q_1} \le (1-\mu)^k
+    \end{equation}
+    特别地, 对存在$\epsilon >0$及$C>0$使得$\forall t>0$, 成立
+    \begin{equation}
+        \abs{\{u>t\} \cap Q_1} \le C\rec{t^\epsilon}
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    显然, $k=1$时即是引理\eqref{lemma513}的结论.  我们用数学归纳法证明对于任意$k$, 结论是正确的.  记
+    \begin{equation}
+        A=\{u > M^k\} \cap Q_1, B=\{u > M^{k-1}\} \cap Q_1.  
+    \end{equation}
+    只需说明$\abs{A} \le (1-\mu)\abs{B}$即可.  
+    \par 根据引理\eqref{cz}, 我们只需要证明, 若立方体$Q=Q_r(x_0)$满足$\abs{A \cap Q} > (1-\mu)\abs{Q}$, 则$Q_{3r}(x_0) \subset B$即可.  因为这意味着当$Q$是二进制立方体时, $Q$的前驱$\tilde{Q} \subset Q_{3r}(x_0) \subset B$.  
+    \par \textit{反证法}.  设存在$Q=Q_r(x_0)$满足 $\abs{A \cap Q} > (1-\mu)\abs{Q}$且存在$\tilde{x} \in Q_{3r}(x_0)-B$.  令$x=x_0+ry$ .  则 $x \in Q_{3r}(x_0) \iff y \in Q_3$.  
+    记 
+    \begin{equation}
+        \tilde{u}(y)=\rec{M^{k-1}}u(x)=\rec{M^{k-1}}u(x_0+ry)
+    \end{equation}
+    则
+    \begin{equation}
+        \inf_{Q_3} \tilde{{u}} \le 1, \tilde{u} \ge 0 , \tilde{u} \in \SSP{\tilde{f}}
+    \end{equation}
+    其中, $\tilde{f}(y)=\frac{r^2}{M^{k-1}}f(x_0+ry)$.  显然有 $\norm{\tilde{f}}_{L^n(Q_{4\sqrt{n}})} = \frac{r}{M^{k-1}}\norm{f}_{L^q(Q_{4\sqrt{n}r})} \le  \epsilon$.  因此, 可以对$\tilde{u}$应用引理\eqref{lemma513}.  则有
+    \begin{equation} \label{eeeee2}
+        \begin{split}
+            \mu \le & \abs{\{\tilde{u} \le M\} \cap Q_1} \\
+            =& \abs{\{y \mid u(x_0+ry) \le M^k\} \cap Q_1} \\
+            =& r^n \abs{\{x \mid u(x) \le M^k\} \cap Q_r(x_0)} \\
+            =& r^n \abs{A^c \cap Q}
+        \end{split}
+    \end{equation}
+    而根据假设, $\abs{A\cap Q} > (1-\mu)\abs{Q}$.  即有$\abs{A^c \cap Q} \le \mu\abs{Q}$.  这与\eqref{eeeee2}矛盾.  \\
+    于是, 由引理\eqref{cz}, $\abs{A} \le (1-\mu)\abs{B}$.  则$\abs{A} \le (1-\mu)^k$.  $\forall t >0$, 取$k$使得 $M^k \le t < M^{k+1}$.  则 $\abs{\{u>t\} \cap Q_1} \le \abs{\{u>M^k\} \cap Q_1} \le (1-\mu)^k$.  而$k=\lfloor \frac{\ln t}{\ln M} \rfloor$.  代入即可.  
+\end{proof}
+\begin{proof}[引理\ref{lcz}的证明]
+    我们证明下面的断言: 
+    \begin{claim*}
+        存在$M_0=M_0(n, \lambda, \Lambda)$使得如果$\exists x_0 \in B_\rec{4}$满足$u(x_0)=P > M_0$, 则存在$\theta=\theta(n, \lambda, \Lambda) >1$, 以及$ \forall k \in N^+$, 存在$x_k \in B_{\rec{2}}$使得$u(x_k) \ge \theta^k P$.  
+    \end{claim*}
+    如果上面的断言成立, 必有 $ \sup_{B_\rec{4}}u \le M_0$.  否则, $u(x_k) \to \infty$, 这与$u$的连续性矛盾.  \par
+    设$M_0>0$待定.  设$x_0 \in B_\rec{4}$ 且$u(x_0) = P > M_0$.  我们将递推寻找序列$\{x_k\}$.  选 取$x_0$邻域$Q_r(x_0)$使得
+    \begin{equation}\label{c_rrr}
+        \abs{\{u > \frac{P}{2}\} \cap Q_r} \le \rec{2}\abs{Q_r}
+    \end{equation}
+    这样的邻域的存在性由引理 \eqref{lemma514}可知是存在的.  因为由引理\eqref{lemma514}, 
+    \begin{equation}
+        \abs{\{u > \frac{P}{2}\} \cap Q_1} \le C(\frac{2}{P})^\epsilon
+    \end{equation}
+    只需要取$r$使得
+    \begin{equation}\label{c_r}
+        \rec{2}\abs{{Q_r}} = \rec{2}r^n=C(\frac{2}{M_0})^\epsilon>C(\frac{2}{P})^\epsilon
+    \end{equation}
+    即可(当然, 这里的$M_0$还是待确定的数, 在后面选取$M_0$时, 需要保证$M_0$的选取与$r$无关, 否则会形成循环论证).  现在, 我们说明存在$x_1 \in Q_{4\sqrt{n}r}(x_0)$及$\theta >1$使得$u(x_1)\ge \theta P$.  这里, $\theta$只依赖于$n, \lambda, \Lambda$.  
+    \par \textit{反证法}.  若在$Q_{4\sqrt{n}r}(x_0)$, $u(x) \le \theta P$.  我们将$u|_{Q_{4\sqrt{n}r}}$转换为 $Q_{4\sqrt{n}}$上的函数.  记$x=x_0+ry$.  则
+    \begin{equation}
+        x \in Q_{4\sqrt{n}r}(x_0) \iff  y \in Q_{4\sqrt{n}}
+    \end{equation}
+    记 
+    \begin{equation}
+        \tilde{u}(y)=\frac{\theta P-u(x)}{(\theta-1)P} .  
+    \end{equation}
+    在$Q_{4\sqrt{n}}$中, $\tilde{u} \ge 0$.  由于$\tilde{u}(0)=1$, 则$\inf_{Q_3}u \le 1$.  另外, $\tilde{u} \in \SS{\tilde{f}}$.  其中, $\tilde{f}= -\frac{r^2f}{(\theta-1)P}$.  而$\norm{\tilde{f}}_{L^n(Q_{4\sqrt{n}})}=\frac{r}{(\theta-1)P}\norm{f}_{L^n(Q_{4\sqrt{n}r})}$.  根据不等式\eqref{c_r}, 可以选取适当的$r$及$M_0$, 使得$\norm{\tilde{f}}_{L^n(Q_{4\sqrt{n}})}$任意小.  于是我们可以对函数$\tilde{u}$应用引理\eqref{lemma514}.  另外注意到
+    \begin{equation} \label{aaaa1}
+        x \in \{x\mid u(x) \le \frac{p}{2}\} \iff y=\frac{x-x_0}{r} \in \{y \mid \tilde{u}(y) \ge \frac{\theta-\rec{2}}{\theta-1} \}
+    \end{equation}
+    根据\eqref{aaaa1}及引理\eqref{lemma514}可知
+    \begin{equation} \label{aaaaa2}
+        \begin{split}
+            \abs{\{u \le \frac{P}{2}\} \cap Q_r(x_0)} =& r^n\abs{\tilde{u} \ge \frac{\theta-\rec{2}}{\theta-1} \cap Q_1} \\
+            \le& Cr^n(\frac{\theta-\rec{2}}{\theta-1})^{-\epsilon} \\
+            <& \rec{2}r^n \text{ 当$\theta$ 取得足够小时成立 }
+        \end{split}
+    \end{equation}
+    \par 固定$\theta$使得\eqref{aaaaa2}成立.  这样的$\theta$的选取只依赖于$n, \lambda, \Lambda$.  而不等式\eqref{aaaaa2}与$r$的选取, 即不等式\eqref{c_rrr}矛盾.  因此, 存在$x_1 \in Q_{4\sqrt{n}r}$使得$u(x_1) \ge \theta P$.  
+    \par 我们对$x_1$重复上面的过程.  现在, $u(x_1) \ge \theta P$.  我们选取$Q_{r_2}(x_1)$(这里的$r_2$不是对$x_0$选取的$r$)使得
+    \begin{equation}
+        \abs{\{u > \frac{\theta P}{2}\} \cap Q_{r_2}} \le \rec{2}\abs{Q_{r_2}}
+    \end{equation}
+    那么不等式\eqref{c_r}应该变为
+    \begin{equation}\label{c_rr}
+        \rec{2}\abs{{Q_{r_2}}} = \rec{2}{r_2}^n=C(\frac{2}{\theta M_0})^\epsilon>C(\frac{2}{\theta P})^\epsilon
+    \end{equation}
+    重复上面的套路, 我们得到$x_2 \in Q_{4\sqrt{n}r_2}(x_1)$使得$u(x_2) \ge \theta u(x_1) \ge \theta^2 P$.  \\
+    $\cdots$ 
+    \par 最终, 我们得到$x_{k} \in Q_{4\sqrt{n}r_{k}}(x_{k-1}) \subset B_{4nr_k}(x_{k-1})$并且$u(x_k) \ge \theta^{k-1}P$.  这里, $r_k$应该满足
+    \begin{equation}\label{c_rrrk}
+        \rec{2}\abs{Q_{r_k}} = \rec{2}{r_k}^n=C(\frac{2}{\theta^{k-1} M_0})^\epsilon>C(\frac{2}{\theta^{k-1} P})^\epsilon
+    \end{equation}
+    \par 现在, 为了使得$x_i \in B_\rec{2}$, 我们只需要选取适当的$M_0$使得$\Sigma^\infty 4n r_k < \rec{4}$即可.  
+    \begin{equation}
+        \Sigma^\infty 4nr_k = CM_0^{-\frac{\epsilon}{n}} \Sigma^\infty (\frac{1}{\theta^{\frac{\epsilon}{n}}})^{k-1}
+    \end{equation}
+    由于$\theta >0$, 上式右侧的级数收敛.  所以当$M_0$选取足够大时, 可以使得上式任意小.  证毕.  
+\end{proof}
+\begin{corollary}
+    设$f \in C(B_1)$, $u \in \SS{f}$, 则$\exists \alpha \in (0, 1)$使得$u \in C^\alpha(B_1)$且其{\Holder}范数估计满足$ \forall x, y \in B_{\rec{2}}$
+    \begin{equation}
+        \abs{u(x)-u(y)} \le C\abs{x-y}^\alpha\{\sup_{B_1}\abs{u} + \norm{f}_{L^n(B_1)}\}
+    \end{equation}
+    其中, $C=C(n, \lambda, \Lambda)$.  
+\end{corollary}
+\section{\texorpdfstring{$W^{2, p}$}{w2p}估计}
+\begin{definition}
+    下面定义的集合是这一节的主要研究对象.  \\
+    $G^+_M(u, \O)=\{\theta^+(u, \Omega) \le M\}= \{ x \mid$ 存在开口为$M$的凸抛物面$p(y)$使得在$\O$中, $p(y) \ge u(y)$且$p(x)=u(x)\}$.  \\
+    $G^-_M(u, \O)=\{\theta^-(u, \Omega) \le M\}= \{ x \mid$ 存在开口为$M$的凹抛物面$p(y)$使得在$\O$中, $p(y) \le u(y)$且$p(x)=u(x)\}$.  \\
+    $G_M(u, \O)=\{\theta \le M\} = G^+_M \cap G^-_M$.  \\
+    $A^+_M(u, \O)=\O-G^+_M$.  $A^-_M(u, \O)=\O-G^-_M$.  $A_M=\O - G_M$.  
+\end{definition}
+\begin{lemma} \label{lemma516}
+    设$\O\subset \R^n$是有界区域且$B_{6\sqrt{n}} \subset \O$.  $f \in C(B_{6\sqrt{n}})$且在$B_{6\sqrt{n}}$中, $u \in \SSP{f}$.  则存在只依赖于$n, \lambda, \Lambda$的常数$\sigma \in (0, 1), \delta_0 >0$及$M>1$使得如果$\norm{f}_{L^n(B_{6\sqrt{n}})} \le \delta_0$且$G^-_1(u, \O) \cap Q_3 \ne \emptyset$, 则 
+    \begin{equation}
+        \abs{G^-_M(u, \O) \cap Q_1} \ge 1-\sigma
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    取$x_0 \in G^-_1(u, \O) \cap Q_3$.  则存在$p(x)=L(x)-\rec{2}\abs{x}^2$使得$p(x_0)=u(x_0)$ 且 $p(x) \le u(x)$.  在引理\eqref{lemma513}中我们构造过辅助函数$g$满足
+    \begin{equation}
+        g|_{Q_3} \ge 2, g|_{\P B_{2\sqrt{n}}}=0
+    \end{equation}
+    并且如果$v \in \SSP{f}$满足$v|_{B_2\sqrt{n}} \ge 0, \inf_{Q_3}v \le 1, \norm{f}_{L^n} \le \epsilon_0$, 则$v-g \in \SS{f+\eta}$.  
+    \par 现在, 重新记$p(x)=2n(1-\frac{\abs{x}^2}{4n})-2nL_1(x)$, 记$v(x)=\frac{u(x)}{2n}+L_1(x)$.  则根据$p(x)$的选取, 
+    \begin{equation}
+        p_1(x)=1-\frac{\abs{x}^2}{4n} \le v(x) \text{ 且在$x_0$处等号成立}
+    \end{equation}
+    显然, 在$B_{2\sqrt{n}}$上, $v(x) \ge 0, \inf_{Q_3}v \le v(x_0)=0$ 且 $v \in \SS{\frac{f}{2n}}$.  对$w=v-g$应用Alexandroff最大值原理, 则有
+    \begin{equation}
+        \begin{split}
+            1 \le \sup_{B_{2\sqrt{n}}}(w^-) \le & C(\int_{B_{2\sqrt{n}}}\abs{f+\eta}^n)^\rec{n}  \\
+            \le & C(\norm{f}_{L^n}+\abs{\supp \eta \cap \{w=\Gamma_w\}}^\rec{n})
+        \end{split}
+    \end{equation}
+    因此, 只要$\norm{f}_{L^n} \le \epsilon_0$足够小, 就有
+    \begin{equation}
+        \abs{\{w=\Gamma_w\} \cap Q_1} \ge 1-\sigma\s \sigma \in (0, 1)
+    \end{equation}
+    \par 现在, 只需要证明$G^-_M(u, \O) \cap Q_1 \supset \{w=\Gamma_w\} \cap Q_1$即可.  设$x_1 \in \{w=\Gamma_w\}\cap Q_1$.  取仿射$L_2$使得在$B_{4\sqrt{n}}$中, $L_2(x)\le \Gamma_w(x) \le w(x) = v-g$且在$x_1$处等号成立.  $L_2$的存在性由$\Gamma_w$ 的定义可知.  由于$g$光滑, 则存在抛物面$p_2(x)$使得
+    \begin{equation}
+        p_2(x) \le L_2(x)+g(x) \le v \text{ 且在$x_1$处等号成立}
+    \end{equation}
+    需要注意的是, 上面的不等式只在$B_{4\sqrt{n}}$中成立, 我们还需要说明在$\O-B_{4\sqrt{n}}$中, 有$p_2(x) \le v(x)$.  我们注意到, 在$\partial B_{2\sqrt{n}}$上, 有
+    \begin{equation}
+        p_2(x)\le w+g < 0 =p_1
+    \end{equation}
+    现在, 我们取$p_2=L'(x)-\frac{N}{2}\abs{x-x^1}^2$, $N$足够大使得 $p_2-p_1$凹函数.  则 $\{p_2-p_1 \ge 0\}$是凸集(凸集至少是连通的).  而$x_1 \subset \{p_2-p_1 \ge 0\} \cap Q_1$且 $\P B_{2\sqrt{n}} \nsubseteq \{p_2-p_1 \ge 0\}$, 则在$B_{2\sqrt{n}}$外部, 有$p_2 \le p_1$.  证毕.  
+\end{proof}
+\begin{lemma}\label{lemma515}
+    设$\O$是有界区域且$B_{6\sqrt{n}} \subset \O$.  设$f \in C(B_{6\sqrt{n}})$且在$B_{6\sqrt{n}}$中, $u \in \SS{f}$.  设在$\O$中, $\abs{u} \le 1$.  则存在只依赖于$n, \lambda, \Lambda$的常数$\delta_0, \mu, C>0$使得如果 $\norm{f}_{L^n{B_{6\sqrt{n}}}} \le \delta_0$, 则有
+    \begin{equation} \label{bbbb1}
+        \abs{A^-_t(u, \O) \cap Q_1} \le Ct^{-\mu}
+    \end{equation}
+    如果$u \in \SS{f}$, 则
+    \begin{equation}
+        \abs{A_t(u, \O) \cap Q_1} \le Ct^{-\mu}
+    \end{equation}
+\end{lemma}
+\begin{remark}
+    不等式\eqref{bbbb1}等价于存在$\sigma\in (0, 1)$使得$\forall k \in N^+$, 
+    \begin{equation*}
+        \abs{A^-_{M^k}(u, \O) \cap Q_1} \le \sigma^k
+    \end{equation*}
+    $k=1$时显然就是引理\eqref{lemma516}.  
+\end{remark}
+\begin{proof}
+    我们首先说明, 若$\abs{u} \le 1$, 则存在常数$M_0$使得$G_{M_0}(u, \O)\cap Q_3 \ne \emptyset$.  于是我们可以引用\eqref{lemma516}中的结论.  
+    \par 记$p_t(x)=-\frac{M_0}{2}\abs{x}^2+t$.  取$M_0$足够大, 使得当$t \in [-1, 1]$及$\abs{x}>\rec{2}$时, $p(x) <1$.  此时, $p(x)$与$u(x)$在$B_\rec{2}$外部没有交点.  当$t$从$-1$连续变化到$1$的过程中, 一定存在某个$t$使得$p_t(x) \le u(x)$且在某个点$x_0 \in B_\rec{2}$时, 等号成立.  这也就意味着$x_0\in  G^-+_{M_0}$.  所以根据引理\eqref{lemma516}, 存在$M>1$及$\sigma (0, 1)$使得
+    \begin{equation*}
+        \abs{G^-_M(u, \O) \cap Q_1} \ge 1-\sigma
+    \end{equation*}
+    等价于
+    \begin{equation*}
+        \abs{A^-_M(u, \O) \cap Q_1} \le \sigma
+    \end{equation*}
+    现在, 我们只需证明下面两个断言.  
+    \begin{claim} \label{c1}
+        存在$\gamma\in [\sigma, 1)$使得 $\forall k \in N^+$, 
+        \begin{equation*}
+            \abs{A^-{M^k} \cap Q_1} \le \gamma^k
+        \end{equation*}
+    \end{claim}
+    \begin{claim} \label{c2}
+    记
+    \begin{equation*}
+        \begin{split}
+            &A=A^-_{M+1}(u, \O)\cap Q_1 \\
+            &B=A^-_{M}(u, \O)\cap Q_1) \cup \{m(f^n) \ge (c_1M^k)^n\}.  
+        \end{split}
+    \end{equation*}
+    这里, $m$为Hardy-Littlewood极大函数.  则有
+    \begin{equation*}
+        \abs{A} \le \sigma \abs{B}
+    \end{equation*}
+    \end{claim}
+    我们首先证明第二个断言.  像之前的引理xx一样, 我们也只需要证明若$Q=Q_r(x_0)\subset Q_1$, 且$\abs{Q \cap A} > \sigma \abs{B}$.  则$Q_{3r}(x_0) \cap Q_1 \subset B$即可.  这样我们可以应用引理\eqref{cz}.  
+    \par \textit{反证法.  }设$Q=Q_r(x_0)$, $\abs{\cap A} \cap Q_1> \sigma\abs{A}$并且存在$\tilde{x} \in Q_{4r}(x_0)$使得$\tilde{x} \notin B$, 即
+    \begin{equation}
+        \tilde{x} \in G^-_{M^k}(u, \O)
+    \end{equation}
+    且
+    \begin{equation} \label{notinb}
+        m(f^n)(\tilde{x}) < (c_1M^k)^n
+    \end{equation}
+    记$x=x_0+ry$.  则
+    \begin{equation*}
+        x \in Q_{3r}{x_0} \iff y \in Q_3
+    \end{equation*}
+    记$\tilde{u}(y)=\frac{u(x)}{M^kr^2}$, 则$\tilde{u}\in \SSP{\frac{f}{M^k}}$.  记$\tilde{f}=\frac{f}{M^k}$, $\tilde{x}=x_0+r\tilde{y}$.  设$p(x)=L(x)-\frac{M^k}{2}\abs{x}^2$满足 
+    \begin{equation*}
+        p(x) \le u(x) \text{ 且 } p(\tilde{x}) \le u(\tilde{x})
+    \end{equation*}
+    记$q(y)=p(x)$, 显然有$\frac{q(y)}{m^ky^2} \le \tilde{u}(y)$且在$\tilde{y}$处, 等号成立.  则$\tilde{y} \in G^-_1(\tilde{u}, \tilde{\O}) \ne \emptyset$.  另外, 由于$\tilde{x} \in Q_{3r}(x_0) \subset B_{2\sqrt{n}r}$, 则$B_{6\sqrt{n}r} \subset B_{8\sqrt{n}} \subset Q_{8nr}(\tilde{x})$, 于是
+    \begin{equation*}
+        \begin{split}
+            \norm{f}_{L^n{B_{6\sqrt{n}}}} \le & \rec{rM^k}\norm{f}_{L^n(Q_{8nr}(\tilde{x}))} \\
+            = & \rec{rM^k}(\int_{Q_{8n}}\abs{f}^n))^n \text{因为不等式\eqref{notinb}}\\
+            \le &\rec{rM^k}C(n)c_1M^kr=C(n)c_1 \le \delta_0
+        \end{split}
+    \end{equation*}
+    于是$\tilde{u}$满足引理\eqref{lemma516}的条件.  则
+    \begin{equation}
+        \abs{G^-_M(\tilde{u}, \tilde{\O}) \cap Q_1} \ge 1-\sigma
+    \end{equation}
+    而这等价于
+    \begin{equation}
+        \abs{G^-_{M^{k+1}}(u, \O)\cap Q_r} \ge (1-\sigma)\abs{Q_r}
+    \end{equation}
+    即有
+    \begin{equation}
+        \abs{A^-_{M^{k+1}}(u, \O) \cap Q_r} < \sigma \abs{Q_r}
+    \end{equation}
+    而这与假设$\abs{A\cap Q_r} > \sigma\abs{Q_r}$矛盾.  因此, 第二个断言证毕.  
+    记$\alpha_k=\abs{A^-_{M^k}(u, \O) \cap Q_1}$, $\beta_k=\abs{\{m(f^n) \ge (c_1M^k)^n\} \cap Q_1}$.  断言\eqref{c2}意味着
+    \begin{equation}
+        \alpha_{k+1} \le \sigma(\alpha_k+\beta_k)
+    \end{equation}
+    迭代后, 有 
+    \begin{equation}
+        \alpha_k \le \sigma^k + \sum^{k-1}_0\sigma^{k-i}\beta_i
+    \end{equation}
+    由于极大函数是弱(1, 1)型的, 即存在$C=C(n)$使得对于任意$g \in L^1$, 成立
+    \begin{equation}
+        \abs{m(g) \ge \lambda} \le \frac{C}{\lambda}\norm{g}_{L^1}
+    \end{equation}
+    则
+    \begin{equation}
+        \beta_i \le C(n)(\rec{c_1M^k})^n\norm{f}^n_{L^n} \le C(n, \lambda, \Lambda)M^{-kn}
+    \end{equation}
+    现在, 取$\gamma_0=\max(\sigma, \rec{M^n})$, 则有
+    \begin{equation}
+        \begin{split}
+            \alpha_k \le & \sigma^k+C\Sigma^{k-1}_0\sigma^{k-i}M^{-in} \\
+            \le & \sigma^k+C\Sigma^{k-1}_0\gamma_0^k\\
+            \le & (1+Ck)\gamma_0^k \le \gamma^k \s \gamma \in (\gamma_0, 1)
+        \end{split}
+    \end{equation}
+    最后一个不等式在$k>k_0$ 足够大时成立.  再取$\gamma=\max(\max_{1\le i \le k_0}(\alpha_k), \gamma)$即可.  断言\eqref{c1}证毕.  
+\end{proof}
+\begin{corollary}
+    存在$q=q(n, \lambda, \Lambda)$使得 $\forall f \in C(B_1)$及$u \in \SS{f}$, 有$u \in W^{2, q}(Q_1)$.  
+\end{corollary}
+\begin{proof}
+    记$\theta=\theta(u, \O)$.  取$q=\frac{\mu}{2}$, $\mu$由引理\eqref{lemma515}得到.  再由引理\eqref{d2u_theta}及公式
+    \begin{equation}
+        \int_{Q_1}\theta^q = q\int^\infty_0t^{q-1}\abs{\{\theta>t\} \cap Q_1} dt
+    \end{equation}
+    可证.  细节略.  
+\end{proof}
+\subsubsection{粘性解与调和函数的比较}
+\begin{lemma} \label{comp_with_h}
+    设$u$是方程$\aij \dij u=f$在$B_1$中的粘性解.  $\aij, f \in C(B_1)$.  设
+    \begin{equation}
+        \abs{u} \le 1, \s \norm{\aij-\aij(0)}_{L^n(B_\frac{3}{4})} \le \epsilon \le \rec{16}.  
+    \end{equation}
+    设$h$是方程$\left\{ \begin{aligned}
+        &\aij(0)\dij h(x)=0 \s x \in B_\frac{3}{4} \\
+        & h(x)=u(x) \s x \in \P B_{\frac{3}{4}}
+    \end{aligned}
+    \right.  $
+    的解.  则
+    \begin{enumerate}
+        \item $\abs{h} \le 1$
+        \item 存在只依赖于$n, \lambda, \Lambda$的常数$C>0, \gamma \in (0, 1)$使得
+        \begin{equation}
+            \norm{u-h}_{L^\infty(B_\rec{2})} \le C \{ \epsilon^\gamma +\norm{f}_{L^n}\}
+        \end{equation}
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    $\abs{h} \le 1$是显然的.  另外, 由于$h \in C^\infty$, 则在粘性解意义下, 有
+    \begin{equation}
+        \aij\dij(u-h) = f-(\aij-\aij(0))\dij h \eq F
+    \end{equation}
+    对$u-h$应用Alexandroff最大值原理, 则有
+    \begin{equation}
+        \begin{split}
+            &\norm{u-h}_{L^\infty(B_{\frac{3}{4}-\delta})}  \\
+            \le &\norm{u-h}_{L^\infty(\P B_{\frac{3 }{4}-\delta})} + C\norm{F}_{L^n} \\
+            \le &\norm{u-h}_{L^\infty(\P B_{\frac{3 }{4}-\delta})} + C\norm{f}_{L^n}+C\norm{D^2h}_{L^\infty(B_{\frac{3 }{4}-\delta})}\norm{\aij-\aij(0)}_{L^\infty}
+        \end{split}
+    \end{equation}
+    现在, 需要分别估计$\norm{u-h}_{L^\infty(\partial B_{{\frac{3 }{4}-\delta}})}$及$\norm{D^2h}_{L^\infty}(B_\frac{3 }{4}-\delta)$.  我们需要用到下面调和函数的两个性质, 它们都可以由调和函数的Poission积分来得到.  
+    \begin{enumerate}
+        \item  \label{hp1} 设$u$在$\O$中调和, $\O' \subsub \O$, $d=d(\P\O, \O')$.  则
+        \begin{equation}
+            \sup_{\O'}\abs{D^\alpha u} \le (\frac{n\abs{\alpha}}{d})^{\abs{\alpha}} \sup_\O u.  
+        \end{equation}
+        \item \label{hp2} 设 $u \in C(\overline(B)_1)$在$B_1$中调和, 且$u|_{\P B_1} \in C^\alpha(\P B_1)$.  则 $u \in C^{\frac{\alpha}{2}}(B_1)$且
+        \begin{equation}
+            \norm{u}_{C^\frac{\alpha}{2}(B_1)} \le C\norm{u|_{\P B_1}}_{C^\alpha(\P B_1)}
+        \end{equation}
+    \end{enumerate}
+    由粘性解的{\Holder}正则性及性质\eqref{hp2}, 首先有
+    \begin{equation}
+        \norm{h}_{C^\frac{\alpha}{2}}(B_\frac{3 }{4}) \le C\norm{u}_{C^\alpha(B_\frac{3 }{4})} \le C(\sup\abs{u}+\norm{f}_{L^n}) \le C(1+\norm{f}_{L^n})
+    \end{equation}
+    另外, 由于$\abs{u-h}|_{\P B_{\frac{3}{4}}}=0$, 则有
+    \begin{equation}
+        \norm{u-h}_{L^\infty(\P B_{\frac{3 }{4}-\delta)}} \le C\delta^{\frac{\alpha}{2}}(1+\norm{f}_{L^n})
+    \end{equation}
+    设$x_0 \in B_{\frac{3 }{4}-\delta}$及$x_1 \in \P B_\delta(x_0) \subset B_\frac{3}{4}$, 对$h-h(x_1)$应用$C^2$内估计, 即性质\eqref{hp1}, 则有
+    \begin{equation}
+        \begin{split}
+            \abs{D^2h(x_0)} \le & \sup_{B_\delta(x_0)\cap B_{\frac{3}{4}-\delta}}\abs{h-h(x_1)} \\
+            \le & C\rec{\delta^2} \sup_{B_\delta(x_0)}\abs{h-h(x_1)} \\
+            \le &C\delta^{\frac{\alpha}{2}-2}(1+\norm{f}_{L^n})  \s d(B_\delta(x_0)\cap B_{\frac{3 }{4}-\delta}, \P B_\frac{3 }{4})=\delta
+        \end{split}
+    \end{equation}
+    于是有取$\delta$使得$\delta^2=\epsilon \le \rec{16}$, 取$\gamma=\frac{\alpha}{4})$, 则有
+    \begin{equation}
+        \begin{split}
+            &\norm{u-h}_{L^\infty(B_{\frac{3 }{4}-\delta})}  \\
+            \le & C\delta^\frac{\alpha}{2}(1+\norm{f}_{L^n})+C\norm{f}_{L^n}+C\delta^{\frac{\alpha}{2}-2}(1+\norm{f}_{L^n})\epsilon \\
+            = &(\delta^\frac{\alpha}{2}+\delta^{\frac{\alpha}{2}-2}\epsilon)(1+\norm{f}_{L^n})+C\norm{f}_{L^n} \\
+            = &C(\epsilon^\gamma+\norm{f}_{L^n})
+        \end{split}
+    \end{equation}
+\end{proof}
+为了证明$\theta(u, \O) \in L^p$, 我们需要下面的引理.  
+\begin{lemma} \label{lp_integrable}
+    设$g \ge 0$.  $\mu_g(t) = \abs{\{g>t\}}$.  设$ \eta >0$, $M>1$.  则$\forall p >0$, 
+    \begin{equation}
+        g \in L^p(\O) \iff \sum^\infty_1 M^{pk}\mu_g(\eta M^k) =S< \infty
+    \end{equation}
+    且存在$C=C(\eta, M, p)$使得
+    \begin{equation}
+        \rec{C}S \le \norm{g}_{L^p}^p \le C(\abs{\O}+S)
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    这是下面的公式的简单推论, 细节略.  
+    \begin{equation}
+        \norm{g}_{L^p}^p =p \int^\infty_0 t^{p-1}\mu_g(t)dt
+    \end{equation}
+\end{proof}
+\begin{theorem}
+    设$\aij, f \in C(B_1)$.  $\aij$满足 $(\lambda, \Lambda)$一致椭圆条件.  设$U \in C(B_1)$是下列方程在$B_1$中的粘性解.  
+    \begin{equation} \label{meq}
+        \aij \dij u =f
+    \end{equation}
+    则$\forall p \in (n, +\infty)$, 存在$\epsilon =\epsilon(n, \lambda, \Lambda, p)$使得如果
+    \begin{equation}
+        (\rec{\abs{B_r(x_0)}}\int_{B_r(x_0)}\abs{\aij -\aij(x_0)}^n)^\rec{n} < \epsilon \s \forall B_r \subset B_1
+    \end{equation}
+    则$u \in W^{2, p}_\loc$且存在常数$C=C(n, \lambda, \Lambda, p)$ 使得
+    \begin{equation}
+        \norm{u}_{W^{2, p}(B_\rec{2})} \le C(\norm{u}_{L^\infty(B_1)}+\norm{f}_{L^p(B_1)})
+    \end{equation}
+\end{theorem}
+\begin{remark}
+    若$f \notin L^p(B_1)$, 将右侧的$B_1$换为$B_{\frac{3}{4}}$即可.  
+\end{remark}
+与定理\eqref{vis_harnack}类似, 我们将证明下面的等价命题:
+\begin{theorem}
+    在$B_{8\sqrt{n}}$中, 设$u \in C(B_{8\sqrt{n}})$是方程\eqref{meq}的粘性解.  则$\forall p \in (n, \infty)$, 存在只依赖于$n, \lambda, \Lambda, p$的常数$\epsilon, C$使得如果
+    \begin{equation}
+        \norm{u}_{L^\infty(B_{8\sqrt{n}})} \le 1, \s \norm{f}_{L^p(B_{8\sqrt{n}})} \le \epsilon
+    \end{equation}
+    且
+    \begin{equation}
+        (\rec{\abs{B_r(x_0)}}\int_{B_r(x_0)}\abs{\aij -\aij(x_0)}^n)^\rec{n} < \epsilon \s \forall B_r \subset B_1
+    \end{equation}
+    则$u \in W^{2, p}(B_1)$且$\norm{u}_{W^{2, p}(B_1)} \le C$.  
+\end{theorem}
+在前面的引理\eqref{lemma515}中, 我们证明过存在$M>1$及$\sigma\in (0, 1)$使得$\abs{A_{M^k}(u, \O)\cap Q_1} \le \sigma^k$.  这个结论可以用来得到存在$q$使得$u \in W^{2, q}_{loc}$.  现在, 我们要证明$u\in W^{2, p}$, 由于前面的结论无法知道$\sigma, M$与$p$的关系, 这里我们需要加强引理\eqref{lemma515}/\eqref{lemma516}中的结论.  
+\begin{lemma} \label{lemma524}
+    设$\O$是有界区域且$B_{8\sqrt{n}}\subset \O$.  设$u \in C(\O)$, 且在 $B_{8\sqrt{n}}$中, $u$是方程\eqref{meq}的粘性解.  则$\forall \epsilon_0 \in (0, 1)$, 存在只依赖于$n, \lambda, \Lambda$的常数$M>1$及$\epsilon \in (0, 1)$使得如果 
+    \begin{equation}
+        \norm{f}_{L^n(B_{8\sqrt{n}})} < \epsilon, \s \norm{\aij-\aij(0)}_{L^n(B_{7\sqrt{n}})} < \epsilon
+    \end{equation}
+    且
+    \begin{equation}
+        G_1(u, \O) \cap Q_3 \ne \emptyset
+    \end{equation}
+    则有
+    \begin{equation}
+        \abs{G_M(u, \O) \cap Q_1} \ge 1-\epsilon_0
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    取$x_0 \in G_1(u, \O) \cap Q_3$.  根据定义, 存在开口为$1$的凹抛物面$p_1(x)$及凸抛物面$p_x(x)$使得在$\O$中, 
+    \begin{equation}
+        p_1(x) \le u(x) \le p_2(x) \text{ 且$x_0$处等号成立}
+    \end{equation}
+    由于$p_1(x), p_2(x)$只有一个交点, 因此它们相切.  则存在仿射$L(x)$使得$p_1(x)=L(x)-\rec{2}\abs{x-x_0}^2$, $p_2(x)=L(x)+\rec{2}{\abs{x-x_0}^2}$.  显然有
+    \begin{equation} \label{ffff1}
+        -\rec{2}\abs{x-x_0}^2 \le u-L \le \rec{2}\abs{x-x_0}^2
+    \end{equation}
+    由于$u-L$也是方程\eqref{meq}的粘性解, 不失一般性, 我们可以假设$L(x)=0$.  另外, 由于$x_0 \in Q_3$及不等式\eqref{ffff1} , 显然有$\norm{u}_{L^\infty{B_{8\sqrt{n}}}} \le C(n)$.  不失一般性, 设$\norm{u}_{L^\infty(B_{8\sqrt{n}})} \le 1$.  \par
+    设$h$是下列方程的解$$\left\{ \begin{aligned}
+        & \aij(0)\dij h=0  \s x \in B_{7\sqrt{n}}\\
+        & h=u \s x \in \P B_{7\sqrt{n}}
+    \end{aligned}
+    \right.  $$
+    根据引理\eqref{comp_with_h}, 有
+    \begin{equation}\label{dddd2}
+        \norm{u-h}_{L^\infty(B_{6\sqrt{n}})} \le N(\epsilon^\gamma + \norm{f}_{L^n(B_{8\sqrt{n}})})
+    \end{equation}
+    且
+    \begin{equation} \label{dddd1}
+        \norm{h}_{C^2(B_{6\sqrt{n}})} \le N\norm{h}_{L^\infty} \le N
+    \end{equation}
+    这里, $N, \gamma$是只依赖于$n, \lambda, \Lambda$的常数且$\gamma \in (0, 1)$.  现在, 在$\O - B_{7\sqrt{n}}$上, 令$h=u$.  显然, $h \in C(\O)$且$\norm{h}_{L^\infty} \le 1$.  \par
+ %   对于任意$x_0 \in Q_1$, 取
+ %   \begin{equation}
+ %       p_1(x)=-N\abs{x-x_0}^2+h(x_0), \s p_2(x)=N\abs{x-x_0}^2+h(x_0).  
+ %   \end{equation}
+ %   则有
+ %   \begin{equation}
+ %       \Delta (p_1-h) \le 0 \le \Delta(p_2-h)
+ %   \end{equation}
+ %   因此, 在$B_{6\sqrt{n}}$中, 有
+ %   \begin{equation}\label{jjjjj1}
+ %       p_1(x) \le h \le p_2(x) 
+ %   \end{equation}
+ %   显然, 通过取更大的$N$, 可以使不等式\eqref{jjjjj1}在$\O$中成立.  于是有
+    只要$N$选取足够大, 比如选取$N>\norm{D^2h}_{L^\infty}$使得 $\forall x_0 \in Q_1, \s h-\frac{N}{2}\abs{x_0}^2$为凹函数, $h+\frac{N}{2}\abs{x-x_0}^2$为凸函数, 此时有.  
+    \begin{equation}
+        Q_1 \subset G_N(h, \O)
+    \end{equation}
+    由于$\{\theta(u, \O) \le 2N\} \supset \{\theta(u, \O)\le N\} \cap \{\theta(u-h, \O) \le N\}$, 则有
+    \begin{equation}
+        \abs{G_{2N}(h, \O)} \ge \abs{G_N(u-h, \O)} + \abs{G_N(u, \O)}
+    \end{equation}
+    现在只需要估计$G_N(u-h, \O)$即可.  现在, 我们证明如下断言: 
+    \begin{claim}
+        \begin{equation}
+            u-h \in S^+(\frac{\lambda}{n}, \Lambda, \phi)
+        \end{equation}
+        这里, $\phi \in C(B_{7\sqrt{n}})$并且$\phi$满足
+        \begin{equation}
+            \norm{\phi} \le N(\epsilon^\gamma+\norm{f}_{L^n(B_{8\sqrt{n}})})
+        \end{equation}
+        这里, $N$及$\gamma$如方程\eqref{dddd2}所定义.  
+    \end{claim}
+    根据命题\eqref{ppp1}, 
+    \begin{equation}
+        u-h \in S^+(\frac{\lambda}{n}, \Lambda, f(x)-\aij(x)\dij h(x))
+    \end{equation}
+    因此, 只需证明$\norm{f(x)-\aij(x)h(x)}_{L^n(B_{6\sqrt{n}})} \le N(\epsilon^\gamma+\norm{f}_{L^n(B_{8\sqrt{n}})})$即可.  
+    \begin{equation}
+        \begin{split}
+            &\norm{f-\aij\dij h}_{L^n(B_{6\sqrt{n}})}  \\
+            \le &\norm{f}_{L^n(B_{8\sqrt{n}})}+\norm{(\aij(x)-\aij(0))\dij h}_{L^n(B_{6\sqrt{n}})}\\
+            \le &\norm{f}_{L^n(B_{8\sqrt{n}})}+N\norm{D^2h}\norm{\aij(x)-\aij(0)}_{L^n(B_{6\sqrt{n}})}\\
+            \le &N(\norm{f}_{L^n(B_{8\sqrt{n}})}+\epsilon^\gamma)
+        \end{split}
+    \end{equation}
+    于是, 断言得证.  现在, 我们可以对$w=\frac{\min\{1, \delta_0\}}{2N\epsilon^\gamma}$应用引理\eqref{lemma515}.  则有
+    \begin{equation}
+        \abs{A_N(u-h, \O)} \le C\epsilon^{\gamma \mu}N^{-\mu}
+    \end{equation}
+    所以, 只有$\epsilon$取得足够小, 就有
+    \begin{equation}
+        \abs{G_{2N}(u, \O)} \ge 1-C\epsilon^{\gamma\mu}N^{-\mu} \ge 1-\epsilon_0
+    \end{equation}
+    即有
+    \begin{equation}
+        \abs{A_{2N}(u, \O)} \le \epsilon_0
+    \end{equation}
+\end{proof}
+\begin{proof}
+    $\abs{u} \le 1$意叶着存在$M_0=M_0(n)$使得$G_{M_0}(u, \O) \cap Q_3 \ne \emptyset$.  因此, 可以应用引理\eqref{lemma524}得到: 存在$M=M(n, \lambda, \Lambda)$及$\epsilon=\epsilon(n, \lambda, \Lambda, \epsilon_0)$使得
+    \begin{equation}
+        \abs{G_M(u, B_{8\sqrt{n}})\cap Q_1} \ge 1-\epsilon_0
+    \end{equation}
+    记
+    \begin{align}
+        &A=A_{M^{k+1}}(u, B_{8\sqrt{n}}) \cap Q_1 \\
+        &B=\{A_{M^{k}}(u, B_{8\sqrt{n}}) \cap Q_1\} \cup \{x\in Q_1 \mid m(f^n) \ge (c_1M^k)^n\}
+    \end{align}
+    这里, $c_1$是待定的常数.  与引理 \eqref{lemma515}中完全相同的方式, 我们可以证明, 只要$\norm{f}_{L^p} \le \epsilon$足够小, 就有
+    \begin{equation}
+        \abs{A} \le \epsilon_0\abs{B}
+    \end{equation}
+    记
+    \begin{align}
+        &\alpha_k=\abs{A_{M^{k}}(u, B_{8\sqrt{n}}) \cap Q_1} \\
+        &\beta_k=\abs{\{m(f^n) \ge (c_1M^k)^n\} \cap Q_1}
+    \end{align}
+    则 
+    \begin{equation}
+        \alpha_{k+1} \le \epsilon_0(\alpha_k + \beta_k)
+    \end{equation}
+    迭代后, 有
+    \begin{equation} \label{aabb1}
+        \alpha_k \le \epsilon_0^k + \Sigma^{k-1}_{1} \epsilon_0^{k-1}\beta_i
+    \end{equation}
+    由于极大函数是强$(p, p)$型的, 即$\forall g \in L^p$, $\norm{m(g)}_{L^p} \le C(n, p)\norm{g}_{L^p}$.  再由引理 \eqref{lp_integrable}可知
+    \begin{equation}\label{aabb2}
+        f \in L^p \iff f^n \in L^{\frac{p }{n}} \iff \Sigma M^{pk}\beta_k < +\infty
+    \end{equation}
+    为了证明$u \in W^{2, p}$, 只需要说明$\theta(u, \O) \in L^p$即可.  由引理\eqref{lp_integrable}, 只需要证明
+    \begin{equation}
+        \Sigma \alpha_k M^{pk} < \infty
+    \end{equation}
+    取$\epsilon_0$使得 $\epsilon_0M^p=\rec{2}$.  则由 \eqref{aabb1}及 \eqref{aabb2}可知 
+    \begin{equation}
+        \begin{split}
+            \Sigma^\infty_{k=1}\alpha_k M^{pk} \le & \Sigma(\epsilon_0^k + \Sigma^{k-1}_{i=1}\epsilon_0^{k-i}\beta_i)M^{pk}\\
+            \le & \Sigma (\rec{2})^k+\Sigma_{k=1}^{\infty}\Sigma_{i=1}^{k-1}\epsilon_0^{k-i}\beta_iM^{pk} \\
+            \le & \Sigma(\rec{2})^k + \Sigma_{k=1}^{\infty}\Sigma_{i=1}^{k-1}\epsilon_0^{k-i}M^{p(k-i))}(\beta_iM^{pi}) \\
+            =& (\rec{2})^k+\Sigma^{\infty}_{k=1}\Sigma^{k-1}_{i=1}(\rec{2})^{k-i}(\beta_i M^{pi}) < \infty
+        \end{split}
+    \end{equation}
+\end{proof}
+
+\section{Schauder估计}
+%\begin{lemma} \label{comp_with_hcc}
+%    设$u$是方程$\aij \dij u=f$在$B_r$中的粘性解.  $\aij, f \in C(B_r)$.  设
+%    \begin{equation}
+%        \abs{u} \le M, \s \norm{\aij-\aij(0)}_{L^n(B_\frac{3}{4})} \le \epsilon \le \rec{16}.  
+%    \end{equation}
+%    设$h$是方程$\left\{ \begin{aligned}
+%        &\aij(0)\dij h(x)=0 \s x \in B_{\frac{3}{4}r} \\
+%        & h(x)=u(x) \s x \in \P B_{\frac{3}{4}r}
+%    \end{aligned}
+%    \right.  $
+%    的解.  则
+%    \begin{enumerate}
+%        \item $\abs{h} \le M$
+%        \item 存在只依赖于$n, \lambda, \Lambda$的常数$C>0, \gamma \in (0, 1)$使得
+%        \begin{equation}
+%            \norm{u-h}_{L^\infty(B_{\rec{2}r})} \le C \{ \epsilon^\gamma +\norm{f}_{L^n}\}
+%        \end{equation}
+%    \end{enumerate}
+%\end{lemma}
+%\begin{proof}
+%    即是引理\eqref{comp_with_h}的rescaled版本.  做一个伸缩变换即可.  
+%\end{proof}
+\begin{definition}
+    称函数$g \in L^1_{\loc}$在$0$点处是$L^n$可积意义下的$\alpha-\Holder$连续的, 如果$g$满足
+    \begin{equation}
+        \semiholder{g}_{C^\alpha_n}(0) = \sup_{0<r<1}\rec{r^\alpha}(\rec{\abs{B_r}}\int_{B_r}\abs{g-g(0)}^n)^\rec{n} < +\infty
+    \end{equation}
+\end{definition}
+显然, 若$g$在$0$点处是$\alpha-\Holder$连续的, 则一定是$L^n-\alpha-\Holder$连续的.  
+\begin{theorem}
+    设$u \in C(B_1)$是方程$\aij \dij u=f$在 $B_1$中的粘性解.  设$\alpha \in (0, 1)$.  设$\aij, f $在$0$处是$L^n-\alpha-\Holder$连续的.  则$u$在$x_0$处是$C^{2, \alpha}$连续的.  确切地说, 存在常数$C=C(n, \lambda, \Lambda, \semiholder{\aij}_{C^\alpha_{L^n}}(0))$, 二次多项式$P$及不依赖于$r$的常数$C^*$使得
+    \begin{enumerate}
+        \item $\norm{u-P}_{L^\infty(B_r)} \le C^*r^{2+\alpha} \s \forall B_r\subset B_1$.  
+        \item $\abs{P(0)}+\abs{DP(0)}+\abs{D^2P(0)} \le C^*$.  
+        \item $C^*\le C(\norm{u}_{L^\infty(B_1)}+\abs{f(x_0)}+\semiholder{f}_{C^\alpha_{L^n}(0)})$.  
+    \end{enumerate}
+\end{theorem}
+\begin{remark}
+    要用二次多项式逼近一个函数$u$, 最佳方式就是它的泰勒展开.  然而这里$u$不一定是可微的, 因此我们需要寻找与$u$密切相关的一个光滑函数$h$, 用$h$的泰勒展开来逼近$u$.  显然, 方程
+    \begin{equation}
+        \left\{
+            \begin{aligned}
+                &\aij(0) \dij h(x) =0 \s x \in B_r \\
+                &h(x)=u(x) \s x \in \P B_r
+            \end{aligned}
+        \right.  
+    \end{equation}
+    的解是很好的选择.  并且当$r$取得越小时, 所得到的近似也越来越准确.  
+\end{remark}
+\begin{proof}
+    取矩阵$b_{ij}$使得$\aij(0)b_{ij}=0$.  则$v=u-b_{ij} x^ix^jf(0)$是方程$\aij \dij v=f-\aij b_{ij}f(0)\eq F$的粘性解.  显然, $F(0)=0$.  因此, 不失一般性, 假设$f(0)=0$.  另外通过考虑函数$v=\frac{u}{\norm{u}_{L^\infty(B_1)}+\rec{\delta}\semiholder{f}_{C^\alpha_{L^n}(0)}}$, 可以假设$\norm{u}_{L^\infty(B_1)} \le 1$, $\semiholder{f}_{C^\alpha_{L^n}(0)} \le \delta$, $\semiholder{\aij}_{C^\alpha_{L^n}(0)} \le \delta$.  现在, 我们证明存在$\delta=\delta(\alpha, n, \lambda, \Lambda)$使得, 如果
+    \begin{equation}
+        \norm{u}_{{L^\infty}(B_1)} \le 1, \semiholder{\aij}_{C^\alpha_{L^n}(0)} \le \delta, \semiholder{f}_{C^\alpha_{L^n}(0)} \le \delta
+    \end{equation}
+    则存在常数$C=C(n, \lambda, \Lambda, \alpha)$及二次多项式使得
+    \begin{enumerate}
+        \item $\norm{u-P}_{L^\infty(B_r(0))} \le Cr^{2+\alpha} \s \forall B_r(0) \subset B_1$.  
+        \item $\abs{P(0)}+\abs{DP(0)}+\abs{D^2P(0)} \le C$
+    \end{enumerate}
+    \begin{claim}
+        存在$\mu \in (0, 1), \mu=\mu(n, \lambda, \Lambda, \alpha)$及二次多项式的序列$P_k(x)=a_k+\inner{b_k}{x}+\inner{C_kx}{x}$使得
+        \begin{enumerate}
+            \item $\aij(0)C_k^{ij}=0$
+            \item $\norm{u-P_k}_{L^\infty(B_{\mu^k})} \le (\mu^k)^{2+\alpha}$
+            \item \label{lconver}$\abs{a_k-a_{k-1}}+\mu^{k-1}\abs{b_k-b_{k-1}}+(\mu^{k-1})^2\abs{C_k-C_{k-1}} \le C(\mu^{k-1})^{2+\alpha}$.  
+        \end{enumerate}
+    \end{claim}
+    其中, $C=C(n, \lambda, \Lambda, \alpha)$.  $P_0=P_{-1}=0$.  
+    \par 假如断言成立, 由\eqref{lconver}可知, 
+    \begin{align}
+        &\abs{a_k-a_{k-1}} \le C(\mu^{2+\alpha})^{k-1} \\
+        &\abs{b_k-a_{k-1}} \le C(\mu^{1+\alpha})^{k-1} \\
+        &\abs{C_k-a_{k-1}} \le C(\mu^{\alpha})^{k-1} \\
+    \end{align}
+    易知$a_k, b_k, C_k$均收敛.  记$P(x)=\lim_{k\to \infty}P_k(x)$.  若$x \in \mu^k$, 则有
+    \begin{equation}
+        \begin{split}
+            \abs{P(x)-P_k(x)} \le& \Sigma^{+\infty}_{i=k}\abs{P_i(x)-P_{i+1}(x)} \\
+            \le & \Sigma_{i=k}^{+\infty} (\abs{a_i-a_{i+1}}+\abs{b_i-b_{i+1}}\mu^k+\norm{C_i-C_{i+1}}\mu^{2k}) \\
+            \le & \Sigma^{+\infty}_{i=k}C(\mu^{2+\alpha})^i\le C\mu^{k(2+\alpha)}
+        \end{split}
+    \end{equation}
+    因此, 对于$x \in B_{\mu^k}$, 有 
+    \begin{equation}
+        \abs{u(x)-P(x)} \le \abs{u(x)-P_k(x)}+\abs{P_k(x)-P(x)} \le C\mu^{k(2+\alpha)}
+    \end{equation}
+    $\forall r \in (0, 1)$, 取$k$使得$r \in [\mu^k, \mu^{k+1})$即可知$\abs{u(x)-P(x)} \le Cr^{2+\alpha}$.  因此我们证明断言成立即可.  
+    \par \textit{归纳法}.  $k=0$时, $P_0=P_{-1}$, 没有什么需要证明的.  设$P_k$存在.  为了寻找下一个$P_{k+1}$, 
+\end{proof}
+\begin{corollary}
+    若$\forall x_0 \in B_{\rec{2}}$, $\aij, f$在 $x_0$处都是$L^n-\alpha\Holder$连续的, 且存在$C_0$使得${\semiholder{f}_{C^\alpha_{L^n}(B_\rec{2})}}, {\semiholder{\aij}_{C^\alpha_{L^n}(B_\rec{2})}} \le C_0$, 则$u \in C^{2, \alpha}(B_\rec{2})$, 并且有
+    \begin{equation}
+        \norm{u}_{C^{2, \alpha}(B_\rec{2})} \le 
+    \end{equation}
+\end{corollary}
+\begin{proof}
+    由引理\eqref{holder_c2alpha}.  
+\end{proof}
+\section{习题}
+\begin{enumerate}
+    \item 设$\O$是有界区域, $\O' \subset \O$.  设$u \in C(\O)$是方程$F(D^2u, x)=f(x)$在$\O$中的粘性上解.  设$v \in C(\overline{\O}')$是方程$F(D^2v, x)=g(x)$在$\O'$中的粘性上解.  设在$\P \O'$上, $v \ge u$.  记
+    \begin{equation}
+        w=\left \{
+            \begin{aligned}
+                &u \s  x \in \O - \O'\\
+                &\min(u, v) \s x \in \O'
+            \end{aligned}
+            \right.  
+            \ss
+        h=\left \{
+            \begin{aligned}
+                &f \s x \in \O - \O' \\
+                &\max(f, g) \s x \in \O
+            \end{aligned}
+            \right.  
+    \end{equation}
+    证明:$w$在 $\O$中是方程$F(D^2w, x)=h(x)$的粘性上解.  
+    \item 设$u \in C(\O)$, 证明: 法映射$\chi$将$\O$中的紧集映为$\R^n$中的闭集.  
+    \item 证明凸集中的Alexandroff估计中, 对$\diam(\O)$依赖可以减弱为对$\abs{\O}^\rec{n}$的依赖.  即: 设$\O\subset \R^n$是有界凸集, $u \in C^2(\O) \cap C(\overline{\O})$ .  则有
+    \begin{equation}
+        \sup_\O u \le \sup_{\P \O}u^+ + C(n)\abs{\O}^\rec{n}\norm{\frac{\aij \dij u}{D^*}}_{L^n}
+    \end{equation}
+    \item 设$\aij$可测且满足$(\lambda, \Lambda)$一致椭圆条件.  设$f \in L^n(B_1)$且在$B_1$中, $u \in W^{2, n}(B_1), u \ge 0$并且$ \aij \dij u \le f$.  证明: 存在$C=C(n, \lambda, \Lambda)$使得
+    \begin{equation}
+        \sup_{B_\rec{2}}u \le C(\inf_{B_\rec{2}}u+\norm{f}_{L^n(B_1)})
+    \end{equation}
+    \item 在$\R^n$中, 若$u \in \SS{0}$且$u$有界, 则 $u$是常数.  
+    \item 设$F:\R^{n^2}\times \R^n \to \R$连续且满足$(\lambda, \Lambda)$一致椭圆条件.  设$F(0, x)=0$.  若$u \ge 0$是方程$F(D^2u(x), x)=0$的粘性解且存在$x_0$使得$u(x_0)=0$, 则$u\eq 0$.  
+\end{enumerate}

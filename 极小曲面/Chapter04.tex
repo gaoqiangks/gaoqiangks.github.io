@@ -1,0 +1,466 @@
+\chapter{存在性方法}
+这一章中我们介绍解下面的Dirichlet问题的一些方法. 每一种方法都有它的特点.
+\par 设$\O\subset \R^n$是一个有界区域. 考虑下面的边界值问题
+\begin{equation}
+    \left\{
+        \begin{aligned}
+            &\L u(x) = f(x) \s x \in \O \\
+            &u(x)=g(x) \s x \in \P \O
+        \end{aligned}
+    \right.
+\end{equation}
+在具体的问题中,$\L$是一个给定的偏微分算子,  $g(x)$是在$\P \O$上给定的一个函数, $g(x)$和区域$\O$通常要满足一定的正则性. 比如,连续函数, Lipschitz区域或者$C^k$区域等. 
+\ifdefined \noperron
+\else
+\section{Perron方法}
+\subsection{经典解}
+Perron方法是一种非常"初等"的方法,它的基础是最大值原理, 方程的局部可解性和梯度的内估计. Perron方法的一个特点是它将Dirichlet问题的的两方面分开来看, 即是一方面是函数在内部是满足方程, 另一方面是函数在边界上是否取到相应的边界值. 本节我们以Laplace方程为例, 考虑下面的Dirichlet问题.
+\begin{equation} \label{perron}
+    \left\{
+        \begin{aligned}
+            &\Delta u(x) = 0 \s x \in \O \\
+            &u(x)=\phi(x) \s x \in \P \O
+        \end{aligned}
+    \right.
+\end{equation}
+\begin{definition}
+    函数$u \in C(\O)$被称为下调和的,如果对于任意球$B \subsub \O$以及任意在$\P \O$上满足 $u|_{\P B} \le h|_{\P B}$的调和函数$h$,  在$B$中都有$u \le h$.
+\end{definition}
+上面的定义中的$h$可以由Poission积分给出.
+\begin{theorem}
+    设$\phi$是$\P B_r(0)$上的连续函数. 定义
+    \begin{equation}
+        u(x)=\left\{
+            \begin{aligned}
+                &\frac{r^2-\abs{x}^2}{n\omega_n r}\int_{\P B}\frac{\phi(y)}{\abs{x-y}^n}dS_y \s x \in B \\
+                &\phi(x) \s x \in \P B
+            \end{aligned}
+        \right.
+    \end{equation}
+    那么,  $u\in C^2(B)\cap C(\overline{B})$并且在$B$中满足$\Delta u=0$.
+\end{theorem}
+通过调和函数的均值性质,还可以给出以下的等价定义.
+\begin{definition}
+    称$u \in C(\O)$是下调和函数,如果对于任意球$B_r(x_0) \subsub \O$, 都有
+    \begin{equation}
+        u(x_0) \le \rec{\abs{\P B_r(x_0)}} \int_{\P B_r(x_0)}u(x)dS
+    \end{equation}
+    \begin{equation}
+        (\text{或者 }u(x_0) \le \rec{\abs{B_r(x_0)}} \int_{B_r(x_0)}u(x)dx)
+    \end{equation}
+\end{definition}
+同样的方式,可以定义上调和函数.
+\begin{proposition}
+    设$\O$是连通区域且$u$是$\O$中的下调和函数. 如果$u$在$\O$内部取到局部最大值,那么$u$是常数.
+\end{proposition}
+\begin{corollary}
+    设$u,v$分别是$\O$中的下调和及上调和函数. 若$u|_{\P \O} \le v|_{\P \O}$, 则$u \le v$.
+\end{corollary}
+\begin{definition}
+    设$u$是$\O$中的下调和函数, $B \subsub \O$. 设$\bar{u}(x)$在$B$中是调和函数在$B$的边界上满足$\bar{u}|_{\P B}= u|_{\P B}$. 定义
+    \begin{equation}
+        U(x)=
+        \left \{
+            \begin{aligned}
+                &\bar{u}(x) \s x \in B\\
+                &u(x) \s x \in \O-B
+            \end{aligned}
+        \right.
+    \end{equation}
+    称$U$为函数$u$的调和提升.
+\end{definition}
+\begin{proposition}
+    若$u$是下调和函数, 函数$U$是$u$的调和提升.  则$U$是下调和函数.
+\end{proposition}
+\begin{proof}
+    设$B$为调和提升的定义中的球. 设$B' \subsub \O$且$h$是$B'$中的调和函数且$h|_{\P B'} \ge U|_{\P B'}$.  显然地, 我们只要考虑$B \cap  B' \ne \emptyset$的情况即可. 
+    \par 首先注意到在$\P B'$上, $h \ge U \ge u$. 则在$B'$中, $h > u$.  因此在$B\cap B'$的两部分边界上,均有$h \ge \bar{u}$. 而$h,\bar{u}$都是 $B\cap B'$中的调和函数, 则在$B \cap B'$上,也有$h \ge \bar{u} = U$.
+\end{proof}
+\begin{proposition}
+    若$u,v$是下调和函数, 则$\max(u,v)$是下调和函数.
+\end{proposition}
+现在,设$\O$是有界区域, $\phi$是$\P \O$上的一个连续函数. 定义
+\begin{equation}
+    S_\phi=\{ u \in C(\O)\mid u\text{下调和且 }u|_{\P \O} \le \phi\}
+\end{equation}
+称$S_\phi$中的函数为$\phi$-下调和函数.
+\begin{theorem}
+    函数$u_\phi(x)=\sup_{v\in S_\phi}v(x)$在$\O$中是调和函数.
+\end{theorem}
+\begin{proof}
+    我们首先说明$u_\phi$是良好定义的. 记
+    \begin{equation}
+        m=\min_{\P \O} \phi\s  M=\max_{\P \O} \phi
+    \end{equation}
+    显然地, $m \in S_\phi$.  因此, $S_\phi$非空. 由于是常数函数$M$是调和函数且在$\P \O$上,  $\forall v \in S_\phi$, $v \le \phi(x) \le M$. 因此,则根据最大值原理, 在$\O$中, $v\le M$. 因此, $u_\phi \le M$. 则$u_\phi$是良好定义的.
+    \par 现在, 固定$B=B_r(x_0) \subsub \O$. 我们证明在$B$中$u_\phi$是调和的. 根据定义,存在$v_k\in S_\phi$使得
+    \begin{equation}
+        \lim_{k \to +\infty} v_k(x_0)=u_\phi(x_0).
+    \end{equation}
+    设$V_k$是$v_k$相对于$B$的调和提升. 因为$V_k\in S_\phi$, 显然地, 我们有
+    \begin{equation}
+        v_k(x_0) \le V_k(x_0) \le u_\phi(x_0)
+    \end{equation}
+    于是$V_k(x_0) \to u_\phi(x_0)$.  根据调和函数的内估计,我们有
+    \begin{equation}
+        \sup_{B_{\frac{r}{2}}}\abs{D^\alpha u} \le C(n,r,\alpha)\sup_B u.  
+    \end{equation}
+    则根据Alzera-Ascoli定理, 在$B_{r}$上, $V_k$中包含内闭一致收敛子列.  因此, 我们可以假设存在函数$\tilde{v}(x)$使得, 在$B_r(x_0)$中, $V_k\tto{\text{一致收敛}}\tilde{v}(x_0)$且$\tilde{v}(x_0)=u_\phi(x_0)$.
+    \par 现在,我们证明下面的断言. 显然, 如果下面的断言成立, 就可以说明$u$是调和函数.
+    \begin{claim}
+        在$B_r(x_0)$中,有$\tilde{v}=u_\phi$.
+    \end{claim}
+    \par \textit{反证法.} 设存在$x_1 \in B_r(x_0)$ 使得$\tilde{v}(x_1) < u_\phi(x_0)$. 根据$u_\phi$的定义, 存在$w_k \in S_\phi$且$w_k(x_1) \to u_\phi(x_1)$. 不失一般性,我们可以假令$w_k \ge v_k$. 因为假如我们用$\max(w_k,v_k)$来代替$w_k$, 所得到的仍然是这样的序列.  记$W_k$为$w_k$的调和提升, 同样的,我们可以假设在$B_r(x_0)$中, $W_k$内闭一致收敛到某个函数$\tilde{w}(x)$且$\tilde{w}(x_1)=u_\phi(x_1)$. 现在,我们有
+    \begin{align}
+        &\tilde{v}(x) \le \tilde{w}(x) \le u_\phi(x) \s x \in B_r(x_0)\\
+        &\tilde{v}(x_0)=\tilde{w}(x_0)=u_\phi(x_0) \\
+        &\tilde{v}(x_1) < \tilde{w}(x_1)=u_\phi(x_1)
+    \end{align}
+    于是, $B_r(x_0)$中的调和函数$\tilde{v}-\tilde{w}$在内点$x_0$处取到局部最大值,则$\tilde{v}-\tilde{w}$是常数, 这显然与上面的不等式是矛盾的.
+\end{proof}
+现在, 虽然我们得到了调和函数$u_\phi$, 但是$u_\phi$的边界性质是不确定的. 边界上的连续性一般通过\textit{闸函数}来研究. 通常情况下, $u_\phi$是否能取到边界值$\phi$依赖于边界$\O$的几何性质.
+\begin{definition}
+    设$\O$是有界区域. 设$\zeta \in \P \O$. 称函数$w\in C(\overline{\O})$为Laplace算子$\Delta$相对于$\O$在点$\zeta$处的一个闸函数, 如果$w$满足 
+    \begin{enumerate}
+        \item $w$在$\O$中是上调和的.
+        \item 在 $\overline{\O}-\zeta$中, $w >0$且 $w(\zeta)=0$.
+    \end{enumerate}
+\end{definition}
+如果一个边界点上存在闸函数,就称该点为\textit{正则点}(相对于算子$\Delta$及区域$\O$).
+\begin{lemma} \label{boundary}
+    设$\zeta \in \P \O$是正则点, 则 
+    \begin{equation}
+        \lim_{\O \ni x \to \zeta} u_\phi(x)=\phi(\zeta).
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    不失一般性,可将$\phi$连续延拓到$\O$上. 设$M=\sup \abs{\phi}$. 设$w(x)$是$\zeta$处的闸函数. 由于$\phi(x)$连续,则 $\forall \epsilon >0$, 存在$\delta>0$使得$\abs{x-\zeta} < \delta$时, $\abs{\phi(x)-\phi(\zeta)} < \delta$. 另外,在$B_\delta(\zeta)$外部, $w >0$, 因此必有严格正的最小值.  选择$K$使得 $Kw(x) > 2M$.  显然有
+    \begin{equation}
+        \abs{\phi(x)-\phi(\zeta)} \le \epsilon+Kw(x)
+    \end{equation}
+    则有
+    \begin{equation}
+        \phi(\zeta)-\epsilon-Kw(x) \le \phi(x)
+    \end{equation}
+    而由于$w$是上调和的,则$\phi(\zeta)-\epsilon-Kw(x) \in S_\phi$. 因此,有
+    \begin{equation} \label{perron_sub}
+        u_\phi(x) \ge \phi(\zeta)-\epsilon-Kw(x)
+    \end{equation}
+    另外, $\forall v \in S_\phi$及 $x \in \P \O$,有
+    \begin{equation} 
+        v(x)\le \phi(x) \le \phi(\zeta)+\epsilon+Kw(x)
+    \end{equation}
+    而 $v(x)$是下调和函数, $w$是上调和函数. 因此 $\forall x \in \O$,
+    \begin{equation} \label{perron_sup_v}
+        v(x)\le \phi(\zeta)+\epsilon+Kw(x)
+    \end{equation}
+    \begin{equation} \label{perron_sup}
+        u(x)\le  \phi(\zeta)+\epsilon+Kw(x)
+    \end{equation}
+    不等式\eqref{perron_sub}, \eqref{perron_sup}即为
+    \begin{equation}
+        \abs{u_\phi(x)-\phi(\zeta)} \le \epsilon+Kw(x)
+    \end{equation}
+    令$x \to \zeta, \epsilon\to 0$即可.
+\end{proof}
+\begin{theorem}
+    设$\O$是有界区域. 则Dirichlet问题\eqref{perron}对于任意的连续边界值$\phi \in C(\P \O)$是可解的,当且仅当$\O$的边界点都是正则点.
+\end{theorem}
+\begin{proof}
+    如果每个点都是正则点, 那么由Perron方法得到调和函数$u_\phi$, 再由引理\eqref{boundary}得到$u_\phi|_{\partial \O}=\phi$即可. 
+    \par 反之,设$\zeta \in \P \O$, $\phi(x)=\abs{x-\zeta}$. 由边界值$\phi(x)$解Dirichlet问题\eqref{perron}, 得到调和函数$u$. 显然$u$满足闸函数的定义.
+\end{proof}
+\begin{definition}
+    设$\O$是有界区域. 若对于每一个点$\zeta \in \P \O$, 存在球$B_r(y) \subset \R^n-\O$使得$\overline{B}_r(y) \cap \overline{\O}=\zeta$, 则称区域$\O$满足外部球条件.
+\end{definition}
+\begin{theorem}
+    设$\O$是有界区域且满足外部球条件.  则Dirichlet问题\eqref{perron}对于任意的连续边界值$\phi \in C(\P \O)$是可解的.
+\end{theorem}
+\begin{proof}
+    设$\zeta \in \P \O$且存在球$B=B_r(y)$满足$\overline{B}\cap \overline{\O}=\zeta$. 定义函数
+    \begin{equation}
+        w(x)=r^{2-n}-\abs{x-y}^{2-n} \s n \ge 2
+    \end{equation}
+    可验证$w$是一个闸函数.
+\end{proof}
+其它可解性的例子. 
+\begin{proposition}\label{regular_2d}
+    设$\O \subset \R^2$是平面上的有界区域. 设对于任意一个点$\zeta \in \P \O$, 都存在一条弧$\gamma: [0,1] \to \R^2-\O$使得$\gamma((0,1)) \subset \R^2-\overline{\O}$且$\gamma(0) \in \P \O$, 则Dirichlet问题\eqref{perron}总是可解的.
+\end{proposition}
+\begin{proof}
+    设$\zeta \in \P \O$. 根据假设, 存在一条弧$\gamma$将$\zeta$的足够小的邻域$B_r(\zeta)$沿$\zeta$点切开, 此时函数$-\rec{\log (z-\zeta)}$在$B_r(\zeta)-\gamma$中是良好定义的.取其实部 
+    \begin{equation}
+        w(z)=-\Re\rec{\log (z-\zeta)}=-\frac{\log r}{\log^2r+\theta^2}
+    \end{equation}
+    这里,$r=\abs{(z-\zeta)}, \theta=\arg(z-\zeta)$. 全纯函数的实部都是调和的, 所以$w(z)$是调和函数. 当$r<r_0$取比较小时,上面的函数满足闸函数的定义.
+\end{proof}
+\begin{example*}[非正则点]
+    记$\R^3$中的点为$(x,y,z)$. 设$\rho^2=y^2+z^2$. 对于$(x,y,z) \notin [0,1]\times \{0\} \times \{0\}$, 定义函数
+    \begin{equation}
+        u(x,y,z)=\int^1_0 \frac{t}{\sqrt{(t-x)^2+\rho^2}}dt=v(x,\rho)-2x\ln \rho
+    \end{equation}
+    其中, 
+    \begin{equation}
+        \begin{split}
+            v(x,\rho)= &\sqrt{(1-x)^2+\rho^2}-\sqrt{x^2+\rho^2} \\
+            &+x\ln\abs{(1-x+\sqrt{(1-x)^2+\rho^2})(x+\sqrt{x^2+\rho^2})}
+        \end{split}
+    \end{equation}
+    固定$\epsilon\in (0,1), \delta >1$. 记$\O_\epsilon=\{u(x,y,z) >\epsilon\}$, $\O_\delta=\{u(x,y,z) < 1+\delta\}$. 取$\O=\O_\epsilon\cap \O_\delta$. 易证, $\O_\epsilon$是包含$0$点的开集.
+    \par 直接计算或者根据位势理论, $u$是调和函数. 对于区域$\O$, 显然它有两部分边界, $\P \O_\epsilon$与 $\P\O_\delta$.  在$\P \O_\epsilon$上, $u$是连续的且$u \eq \epsilon$. 而在$\P \O_\delta$上, $u$在除了$0$点的地方连续且等于$1+\delta$.
+    $(u=\epsilon$部分的边界仅仅是为了取$\O$有界,因为$\abs{(x,y,z)} \to \infty$时, $u \to 0$.  重要的是$u=1+\delta$的这一部分边界).
+    \par 我们将说明$0$点是一个非正则点. 先来观察函数$u$在$0$点附近的性质. 简单计算易知
+    \begin{equation}
+        \lim_{x>0, (x,\rho)\to 0} v(x,\rho)=1
+    \end{equation}
+    但是第二项$2x\ln \rho$的极限严重依赖于$(x,y,z)\to 0$的方式.  比如,$\forall k >0$, 如果沿着 $y^2+z^2=\rho^2=x^k$收敛到$0$点,则有$u(x,y,z) \to 1$.  而如果沿着$\rho=\exp(-\frac{c}{2x}), x>0, c>\delta$, 则$u(x,y,z) \to 1+c$.  因此, 当$(x,y,z)$足够小时,如果$y^2+z^2=\rho^2=x^k$, 则$(x,y,z) \in \O$.  如果$\rho=\exp(-\frac{c}{2x})$,则$(x,y,z) \in \O^c$.  这也意味着$(0,0,0) \in \P \O$.  
+    \par 定义$\phi|_{\P \O_\epsilon}=\epsilon,  \phi|_{\P \O_\delta} =1+\delta$. 这时,由Perron方法得到的$u_\phi=u$. 参考[xxxxx]. 然而当$x <0$时, 
+    \begin{equation}
+        u(x,0,0)=\int^1_0\frac{t}{t-x}dt=1+x\log(1-x)-x\log\abs{x}
+    \end{equation}
+    则有$\lim_{x\to 0^-}u(x,0,0)=1 \ne 1+\delta$.
+\end{example*}
+\subsection{粘性解}
+本节中, 我们总假设$\aij, f \in C(\overline{\O})$且$\aij$满足$(\lambda,\Lambda)$一致椭圆条件. 我们考虑下列方程在粘性解意义下的Dirichlet问题
+\begin{equation} \label{vis_d}
+    \left\{
+        \begin{aligned}
+            &\L u=\aij(x) \dij u(x)=f(x) \s x \in \O\\
+            &u(x)=\phi(x) \s x \in \PO
+        \end{aligned}
+    \right.
+\end{equation}
+\par 在本节中,对于粘性上解/下解, 我们只要求它们是上半连续/下半连续的. 我们记$\lsc{\O}, \usc{\O}$分别为$\O$中下半连续/上半连续的函数的集合. 在后文中,我们用$u^*, u_*$分别表示
+\begin{equation}
+    u^*(x)=\limsup_{y\to x}u(y)
+\end{equation}
+\begin{equation}
+    u_*(x)=\liminf_{y\to x}u(y)
+\end{equation}
+\begin{definition} \label{def_viscosity_sup}
+    称$u \in \lsc{\O}$是方程\eqref{vis_d}的粘性上解, 如果$\forall x_0 \in \O$及 $\phi \in C^2(\O)$, 假如$u-\phi$在$x_0$处取到局部最小值, 则$\L \phi(x_0) \le f(x_0)$.  
+\end{definition}
+\begin{definition} \label{def_viscosity_sub}
+    称$u \in \usc{\O}$是方程\eqref{vis_d}的粘性下解, 如果$\forall x_0 \in \O$及 $\phi \in C^2(\O)$, 假如$u-\phi$在$x_0$处取到局部最大值, 则$\L \phi(x_0) \le f(x_0)$.  
+\end{definition}
+\begin{remark}
+    对于粘性下解,由于$u \in \usc{\O}$, 因此谈论``$u-\phi$在$x_0$处取到局部最大值是有意义的''.
+\end{remark}
+\begin{theorem}[粘性解的比较原理] \label{vis_comp}
+    设$u \in \usc{\O}, v \in \lsc{\O}$分别是方程\eqref{vis_d}的粘性下解与粘性上解. 设在$\P \O$上, $u^* \le v_*$. 则在$\O$中, $u \le v$.
+\end{theorem}
+比较原理的证明比较长, 我们直接承认这个结果.
+\begin{theorem} \label{vis_e}
+    设$f \in \usc{\O}, g \in \lsc{\O}$分别是方程\eqref{vis_d}的粘性下解与粘性上解. 设$f \le g$且在$\P \O$, 有$f=g=\phi$. 则方程\eqref{vis_d}存在粘性解$u$且$f \le u \le g$.
+\end{theorem}
+\begin{lemma} \label{vis_l1}
+    设$X \subset \usc{\O}$且$\forall u_i \in X$, $u_i$是方程\eqref{vis_d}的粘性下解. 设
+    \begin{equation}
+        u(x)=\sup_{u_i\in X}u_i(x)
+    \end{equation}
+    若 $\forall x \in \O$, $u^*(x) < +\infty$, 则$u^*$是方程\eqref{vis_d}的粘性下解.
+\end{lemma}
+\begin{proof}
+    $\forall x \in \O$及$x_k \to x$, $u_k \in X$, 显然有
+    \begin{equation}
+        \limsup u_k(x_k) \le \limsup u^*(x_k) \le u^*(x)
+    \end{equation}
+    \par 固定$x_0$, 由定义可知, 存在$\{u_k\} \subset X$及$x_k \to x_0$使得$u_k(x_k) \to u^*(x_0)$.  设$\phi \in C^2(\O)$, 在$B_r(x_0)$中, $\phi(x) \ge u^*(x)$,且在$x_0$处等号成立.  
+    \begin{claim}
+        存在$\O \ni \tilde{x}_k \to x_0$及$\phi_k \in C^2(\O)$使得
+        \begin{enumerate}
+            \item $\phi_k \ge u_k$且在$\tilde{x}_k$处等号成立.
+            \item $D\phi_k(\tilde{x}_k) \to D\phi(x_0)$, $D^2\phi_k(\tilde{x}_k) \to D^2\phi(x_0)$且$u_k(x_0) \to u^*(\tilde{x}_k)$.
+        \end{enumerate}
+    \end{claim}
+    现在我们证明该断言. 显然地, $\phi(x)+\abs{x-x_0}^4 \ge u^*(x)$且在$x_0$处,等号成立. 另外, 在$B_r(x_0)-\{x_0\}$上, $\phi(x)+\abs{x-x_0}^4 >u^*$(严格不等号成立).   因此, 不失一般性, 我们用$\phi+\abs{x-x_0}^4$代替$\phi$. 设在$B_r(x_0)-\{x_0\}$上, 有
+    \begin{equation} \label{strict_in}
+        \phi(x) > u^*(x)
+    \end{equation}
+    \par 选择$\tilde{x}_k \in \overline{B_r(x_0)}$使得$u_k -\phi$在$\tilde{x}_k$处取到最大值. 取$\tilde{x}_k$的子列, 使得$\tilde{x}_k \to \tilde{x}_0 \in \overline{B}_r(x_0)$. 则有
+    \begin{equation}
+        \begin{split}
+            (u^*-\phi)(x_0)=&\limsup (u_k-\phi)(x_k) \\
+            \le & \limsup(u_k-\phi)(\tilde{x}_k) \\
+            \le & u^*(\tilde{x}_0)-\phi(\tilde{x}_0)
+        \end{split}
+    \end{equation}
+    因此, $\tilde{x}_0$也是$u^*-\phi$在$\overline{B}_r(x_0)$中的最大值. 而根据 \eqref{strict_in}, $u^*-\phi$只有唯一的最大值点$x_0$. 因此, $\tilde{x}_0=x_0$. 则当$k$足够大时,  有$x_k \in B_r(x_0)$(而不是在$\P B_r(x_0)$上).
+    \par 记$\phi_k(x)=\phi(x)+\max_{B_r(x_0)}(u_k-\phi)$. 则$u_k(x) \le \phi_k(x)$且在 $\tilde{x}_k$处, 等号成立. 由于$\tilde{x}_k \to x_0$,  显然有
+    \begin{equation}
+        D\phi_k(\tilde{x}_k) \to D\phi(x_0), \s D^2\phi_k(x_k) \to D^2\phi(x_0)
+    \end{equation}
+    又因
+    \begin{equation}
+        u_k(x_k) -\phi(x_k) \le u_k(\tilde{x}_k) - \phi(\tilde{x}_k)
+    \end{equation}
+    两侧取极限, 则有
+    \begin{equation}
+        \begin{split}
+            u^*(x_0)-\phi(x_0) \le& \limsup u_k(\tilde{x}_k)-\phi(x_0) \\
+            \le & u^*(x_0)-\phi(x_0)
+        \end{split}
+    \end{equation}
+    因此, $u_k(\tilde{x}_k) \to \phi(x_0) = u^*(x_0)$. 断言证毕.
+    \par 由于$u_k$是粘性下解且$u_k-\phi_k$在$\tilde{x}_k$处取到局部最大值, 则有
+    \begin{equation}
+        \aij \dij \phi(\tilde{x}_k) \ge f(\tilde{x}_k)
+    \end{equation}
+    令$k \to \infty$即可.
+\end{proof}
+\begin{lemma} \label{vis_l2}
+    设$u$是方程\eqref{vis_d}的粘性下解. 设在$x_0 \in \O$处, $u_*$不是方程\eqref{vis_d}的粘性上解. 则存在函数 $\tilde{u}(x)$及$x_0$的邻域$B_r(x_0)$使得
+    \begin{enumerate}
+        \item $\tilde{u} \in \usc{\O}$用$\tilde{u}$是方程\eqref{vis_d}粘性下解.
+        \item $\tilde{u} \ge u$且在$\O-B_r(x_0)$上, $\tilde{u}\eq u$.
+        \item $\{\tilde{u}>u\}$是非空的.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    不失一般性, 设$x_0=0$. 由于$u_*$在$x_0$处不是粘性上解, 则存在$C^2$函数$\phi$使得 $\phi \le u_*$, 在$x_0$处等号成立且$\L \phi(0)-f(0)>0$. 记
+    \begin{equation}
+        P_\epsilon=\phi(0)+D\phi(0)x+\rec{2}D^2\phi(0)x^2-\frac{\epsilon}{2}\abs{x}^2
+    \end{equation}
+    取$\epsilon$及$r$足够小, 使得在$B_r$中,
+    \begin{equation}
+        \L P_\epsilon(x) -f(x) \ge \L \phi(x) - f(x) - \frac{\epsilon}{2} \lambda >0
+    \end{equation}
+    于是$P_\epsilon$在$B_r(0)$中是方程\eqref{vis_d}的经典下解.  另外, 显然有
+    \begin{equation}
+        P_\epsilon(x) \le \phi(x) \le u_*(x)
+    \end{equation}
+    在$B_r-B_{\frac{r}{2}}$上, 有严格不等式$P_\epsilon(x) < u_*(x)$. 取$\delta >0$使得 在$B_r-B_{\frac{r}{2}}$, 
+    \begin{equation} \label{perron_strict_cc}
+        P_\epsilon(x)+\delta < u_*(x) \le u(x)
+    \end{equation}
+    定义
+    \begin{equation}
+        \tilde{u}(x)=\left\{
+            \begin{aligned}
+                & \max (u, P_\epsilon+\delta) \s x \in B_r(x) \\
+                & u(x) \s x \in \O-B_r
+            \end{aligned}
+        \right.
+    \end{equation}
+    由于$u(x), P_\epsilon+\delta$都是上半连续的且是方程\eqref{vis_d}的粘性下解, 再由不等式\eqref{perron_strict_cc}知, $\tilde{u}(x)$是上半连续的且是方程\eqref{vis_d}的粘性下解. 另外, 
+    \begin{equation}
+        \begin{split}
+            \limsup_{x\to 0} (\tilde{u}(x)-u(x)) = & \tilde{u}(0)-\liminf_{x\to 0} u(x) \\
+            =& \delta + \phi(0)-u_*(0)\\
+            =&\delta >0
+        \end{split}
+    \end{equation}
+\end{proof}
+\begin{proof}[定理\eqref{vis_e}的证明]
+    记
+    \begin{equation}
+        \S_g=\{v \mid v \text{是粘性下解且}v \le g\}
+    \end{equation}
+    定义 $u(x)=\sup_{v \in S_g} v(x)$. 根据引理\eqref{vis_l1}, $f \le u\le u^* \le g$且$u^*$是粘性下解. 则$u^* \in S_g$. 于是有$u=u^*$.
+    另外, 显然有
+    \begin{equation}
+        f_* \le u_* \le u \le u^* \le g^*
+    \end{equation}
+    则在$\partial \O$上, 有 $u \eq \phi$. 现在,只需要说明$u$也是粘性上解即可. 
+    \par 若$u_*$在$x_0 \in \O$处不是粘性下解,则根据引理\eqref{vis_l2}, 存在粘性下解$\tilde{u}$使得在$B_r(x_0)$处, $\tilde{u}=u$且$\{\tilde{u} >u\}$非空. 而由比较定理, $\tilde{u} \le g$. 即有$\tilde{u} \in S_g$. 则$\tilde{u} \le u$, 矛盾.  由比较原理可知, $u_* \ge u^*$. 则$u=u_*=u^*$是粘性解.
+\end{proof}
+\fi%noperron
+\section{连续性方法}
+连续性方法依赖于全局Schauder估计. 
+\begin{theorem}
+    设$\O \subset \R^n$是有界$C^{2,\alpha}$区域. 设$u \in C^{2,\alpha}(\overline{\O})$是下列方程的解
+    \begin{equation}
+        \left\{
+        \begin{aligned}
+            &\L u=\aij \dij u + b^iD_iu+cu=f \s x \in \O \\
+            &u|_{\P \O}=g \s x \in \P \O
+        \end{aligned}
+        \right.
+    \end{equation}
+    设$g \in C^{2,\alpha}(\overline{\O})$. $\aij, b^i, c, f \in C^\alpha(\overline{\O})$. 设$\aij$满足一致椭圆条件. 设$\norm{\aij}_{C^\alpha}+\norm{b^i}_{C^\alpha}+\norm{c}_{C^\alpha} \le \Lambda$ . 则存在常数$C=C(n,\lambda,\Lambda,\alpha,\O)$使得
+    \begin{equation}
+        \norm{u}_{C^{2,\alpha}(\overline{\O})} \le C(\norm{u}_{L^\infty}+ \norm{f}_{C^\alpha(\overline{\O})}+\norm{g}_{C^{2,\alpha}(\overline{\O})})
+    \end{equation}
+\end{theorem}
+\renewcommand{\B}{\mathcal{B}}
+\renewcommand{\V}{\mathcal{V}}
+\begin{theorem}\label{function_a_continuous}
+    设$\B$是Banach空间, $\V$是赋范向量空间. 设$L_0, L_1: \B\to \V$是有界算子. $\forall t \in [0,1]$, 令
+    \begin{equation}
+        L_t=(1-t)L_0+tL_1
+    \end{equation}
+    设存在常数$C$使得$\forall t \in [0,1], x \in \B$, 成立
+    \begin{equation}
+        \norm{x} \le C\norm{L_tx}
+    \end{equation}
+    则$L_1$是满射当且仅当$L_0$是满射.
+\end{theorem}
+\begin{proof}
+    设存在$s \in [0,1]$使得$L_s$是满射. 显然, $L_s$可逆, $L_s^{-1}$连续且$\norm{L_s^{-1}} \le C$.  $L_t$的满射性等价于
+    \begin{equation}
+        \forall y \in \V, \exists x \in \B \text{使得} L_tx=y.
+    \end{equation}
+    $\iff$
+    \begin{equation}
+        L_sx+(L_t-L_s)x=y
+    \end{equation}
+    $\iff$
+    \begin{equation}
+        x=L_s^{-1}y-L_s^{-1}(L_t-L_s)x
+    \end{equation}
+    $\iff$
+    $x$是映射$Tx=L_s^{-1}y-L_s^{-1}(L_t-L_s)x$的不动点. 而对于映射$T$,
+    \begin{equation}
+        \begin{split}
+            \norm{Tx_1-Tx_2} \le& \norm{L_s^{-1}}\norm{L_t-L_s}\norm{x_2-x_1}\\
+            \le & (t-s)C\norm{L_1-L_0}
+        \end{split}
+    \end{equation}
+    因此, 存在$\delta >0$ 使得 当 $s-t\le \delta$时,$T$是压缩映射. 此时$T$有唯一的不动点. 这也就意味着, 当$\abs{t-s} < \delta$时, $L_t$是满射.  通过将$[0,1]$分割 成若干长度为$\delta$的子区间可知, $\forall t \in [0,1]$, $L_t$是满射.
+\end{proof}
+\newcommand{\ctwoa}{{C^{2,\alpha}}}
+\newcommand{\OC}{\overline{\Omega}}
+\begin{theorem}
+    设$\O \subset \R^n$是$\ctwoa$区域. 设$\L u = \aij \dij u + b^iD_iu +cu$是严格椭圆型的且具有$C^\alpha(\OC)$系数. 设$c \le 0$. 如果Poission方程
+    \begin{equation}
+        \left\{
+            \begin{aligned}
+                &\Delta u=f  \s x \in \O\\
+                &u|_{\P \O}= g \s x \in \P \O
+            \end{aligned}
+        \right.
+    \end{equation}
+    对于$\forall f \in C^\alpha(\OC), g \in \ctwoa(\OC)$可解,那么方程
+    \begin{equation}
+        \left\{
+            \begin{aligned}
+                &\L u=f \s x \in \O\\
+                &u|_{\P \O}=g \s x \in \P \O
+            \end{aligned}
+        \right.
+    \end{equation}
+    对于$\forall f \in C^\alpha(\OC), g \in \ctwoa(\OC)$有唯一解.
+\end{theorem}
+\begin{proof}
+    通过考虑函数$u_g=u-g$, 可设$u|_{\P \O}=0$. 设$L_0=\Delta$, $L_1=L$. 记
+    \begin{equation}
+        L_t=(1-t)L_0+tL_1.
+    \end{equation}
+    显然, $L_t$的系数满足一致椭条件. 记
+    \begin{equation}
+        \V= C^\alpha(\OC), \s \B=\{u \mid u \in \ctwoa(\OC), u|_{\P \O}=0\}
+    \end{equation}
+    设$u \in \B$. $L_tu \in \V$. 由最大值原理可知
+    \begin{equation}
+        \norm{u}_{L^\infty} \le C(n,\lambda,\Lambda,\O)\norm{f}_{L^\infty}
+    \end{equation}
+    再由Schauder估计可知,
+    \begin{equation}
+        \norm{u}_{\ctwoa(\OC)} \le C\norm{f}_{C^\alpha(\OC)} = C\norm{L_tu}_{C^\alpha(\OC)}
+    \end{equation}
+    由定理\eqref{function_a_continuous}可知, $L_1$是满射. 
+\end{proof}
+\begin{remark}
+    Poisson方程的可解性可由位势理论得出.参考[xxx].
+\end{remark}
+\section{不动点方法}

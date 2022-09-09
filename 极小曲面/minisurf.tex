@@ -1,0 +1,172 @@
+\documentclass[oneside]{ctexbook}
+\usepackage{amsthm,amssymb,amsmath}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage{biblatex}
+\usepackage{graphicx}
+\usepackage{picinpar}
+%\usepackage[yyyymmdd,hhmmss]{datetime}
+\usepackage{hyperref}
+\setlength{\headheight}{13pt}
+\pagestyle{fancy}
+%\rfoot{编译时间:  \today\  \currenttime}
+%\cfoot{}
+%\lfoot{页码:\thepage}
+\newcommand{\norm}[1]{{\left | \left |  #1  \right | \right |}}
+\newcommand{\inner}[2]{{\left < #1, #2 \right >}}
+\newcommand{\abs}[1]{{\left | #1 \right |}}
+\newcommand{\parallelsum}{{\mathbin{\!/\mkern-5mu/\!}}} %斜的平行线
+\newcommand{\Hn}{{\mathbb{H}^n}}
+\newcommand{\Sn}{{\mathbb{S}^n}}
+\newcommand{\En}[1]{{\mathbb{R}^{#1}}}
+\newcommand{\area}[1]{{\mathcal{A}({#1})}}
+\newcommand{\areap}{{\mathcal{A}_{+}}}
+\newcommand{\arean}{{\mathcal{A}_{-}}}
+\renewcommand{\div}{{\text{div}}}
+\newcommand{\spt}{{\text{spt}}}
+\newcommand{\tr}{{\text{tr}}}
+\newcommand{\sing}{\mathcal{S}}
+\newcommand{\proj}{\text{Proj}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\Tr}{\text{Tr}}
+\newcommand{\XX}{{\vec{X}}}
+\newcommand{\cl}[1]{\overline{#1}}
+\newcommand{\eq}{\equiv}
+%\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\nullset}{\emptyset}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\N}{\mathbb{N}}
+%\newcommand{\G}{\mathcal{G}}
+\renewcommand{\abs}[1]{\left | #1 \right |}
+\newcommand{\subsub}{{\subset \subset}}
+\newcommand{\OR}{{\Omega \times \mathbb{R}}}
+\newcommand{\OL}{{\Omega_L}}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+
+\renewcommand{\l}{{\lambda}}
+\renewcommand{\L}{{\Lambda}}
+\newcommand{\e}{{\epsilon}}
+\newcommand{\E}{{\Epsilon}}
+\renewcommand{\d}{{\delta}}
+\newcommand{\D}{{\Delta}}
+\newcommand{\g}{{\gamma}}
+\newcommand{\G}{{\Gamma}}
+\renewcommand{\a}{{\alpha}}
+\newcommand{\A}{{\Alpha}}
+\renewcommand{\b}{{\beta}}
+\newcommand{\B}{{\Beta}}
+\renewcommand{\u}{{\mu}}
+%\newcommand{\U}{{\Mu}}
+\renewcommand{\v}{{\nu}}
+\newcommand{\V}{{\Vu}}
+\newcommand{\x}{{\times}}
+\newcommand{\s}{{\quad}}
+\renewcommand{\ss}{{\qquad}}
+\newcommand{\sss}{{\qqquad}}
+\renewcommand{\L}{\mathcal{L}}
+\renewcommand{\D}{{D}}
+\newcommand{\aij}{{a^{ij}}}
+\newcommand{\dij}{{D_{ij}}}
+\newcommand{\tto}[1]{{{\xrightarrow{#1}}}}
+\renewcommand{\P}{{\partial}}
+
+\newcommand{\GG}{{\mathfrak{G}}}
+\newcommand{\BR}{{B_r(x)}}
+\newcommand{\GR}{{\GG \times \mathbb{R}}}
+\newcommand{\EG}{{\mathfrak{E}}}
+\newcommand{\HH}{{\tilde{H}}}
+\newcommand{\BVG}{{BV(\GG,\psi)}}
+\newcommand{\BVO}{{BV(\Omega)}}
+\newcommand{\PO}{{\partial \Omega}}
+\newcommand{\overl}[1]{{\overline{#1}}}
+\newcommand{\ol}[1]{{\overline{#1}}}
+\newcommand{\oo}{{\infty}}
+\renewcommand{\O}{\Omega}
+\newcommand{\Poincare}{\text{Poincar\'e}}
+\newcommand{\Holder}{\text{{H\"older}}}
+\newcommand{\reciprocal}[1]{{\frac{1}{#1}}}
+\newcommand{\rec}[1]{{\reciprocal{#1}}}
+\renewcommand{\e}{\text{e}}
+\newcommand{\iin}{\text{ in }}
+\newcommand{\supp}{\text{supp}}
+\newcommand{\osc}{\mathop{\text{osc}}}
+\newcommand{\loc}{\text{loc}}
+\newcommand{\SSP}[1]{{\S^+(\lambda,\Lambda,#1)}}
+\newcommand{\SSN}[1]{{\S^-(\lambda,\Lambda,#1)}}
+\renewcommand{\SS}[1]{{\S(\lambda,\Lambda,#1)}}
+\renewcommand{\S}{\mathcal{S}}
+\newcommand{\Hull}{{\text{Conv}}}
+\newcommand{\MN}[1]{{\mathcal{M}^-(\lambda,\Lambda,#1)}}
+\newcommand{\MP}[1]{{\mathcal{M}^+(\lambda,\Lambda,#1)}}
+%\renewcommand{\iff}{\Leftrightarrow}
+\renewcommand{\iff}{\Longleftrightarrow}
+\newcommand{\semiholder}[1]{{[#1]}}
+\newcommand{\lsc}[1]{{\text{LSC}(#1)}}
+\newcommand{\usc}[1]{{\text{USC}(#1)}}
+\renewcommand{\G}{\text{Graph}}
+\newcommand{\CC}{{C^\infty_0}}
+\newcommand{\ddt}{\frac{d}{dt}}
+\newcommand{\ddr}{\frac{d}{dr}}
+\newcommand{\ppt}{\frac{\partial}{\partial_t}}
+\newcommand{\Area}{\text{Area}}
+
+
+
+
+\newtheorem{theorem}{定理}[chapter]
+\newtheorem{assumptions}{假设}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{question}[theorem]{问题}
+\newtheorem*{question*}{问题}
+\newtheorem{example}[theorem]{例}
+\newtheorem*{example*}{例}
+\newtheorem*{proposition*}{命题}
+\theoremstyle{plain}
+\newtheorem{remark}[theorem]{注}
+\newtheorem{claim}[theorem]{断言}
+\newtheorem*{claim*}{断言}
+
+
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+       \step[fieldset=URL, null]
+       \step[fieldset=DOI, null]
+       \step[fieldset=MRREVIERER, null]
+       \step[fieldset=ISBN, null]
+       \step[fieldset=ISSN, null]
+       \step[fieldset=SERIES, null]
+    }
+  }
+}
+
+\addbibresource{PDE.bib}
+
+%\def \noperron {}
+
+%\defbibheading{bibliography}[参考文献]{\chapter*{#1}}
+\begin{document}
+\title{课程:极小曲面}
+%\author{主讲:高强}
+\author{draft version}
+\date{修改日期: {\today}}
+%\date{2022年秋季学期}
+\maketitle
+\tableofcontents
+\input{Chapter01}
+%\input{Chapter02}
+%\input{Chapter03}
+%\input{Chapter04}
+%\input{appendix}
+\nocite{*}
+%\clearpage
+%\phantomsection
+%\addcontentsline{toc}{section}{参考文献}
+%\tolerance=500
+%\printbibliography[heading=bibintoc, title=参考文献]
+\end{document}

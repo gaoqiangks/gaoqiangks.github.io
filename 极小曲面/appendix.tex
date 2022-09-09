@@ -1,0 +1,134 @@
+%\addcontentsline{toc}{chapter}{附录}
+\appendix
+\newcommand{\BB}{{\overline{B}_1}}
+\chapter{附录}
+\section{\texorpdfstring{$\Holder$}{Holder}空间}
+在这个附录中,我们列举一些常用的判断函数是否{\Holder}连续的一些方法.如无特殊说明,我们总是假设$\alpha \in (0,1)$.
+\begin{proposition}
+    设$\forall B_r(x) \subset \overline{B}_1$, $\osc_{B_r(x)}u \le C_0r^\alpha$. 则 $u \in C^\alpha(\overline{B}_1)$. 且存在$C=C(n,\alpha)$使得$\semiholder{u}_{C^\alpha(\overline{B}_1} \le CC_0$.
+\end{proposition}
+
+\begin{proposition}
+    设$\forall B_{2r}(x) \subset \overline{B}_1$, $\osc_{B_r(x)}u \le C_0r^\alpha$. 则 $u \in C^\alpha(\overline{B}_1)$. 且存在$C=C(n,\alpha)$使得$\semiholder{u}_{C^\alpha(\overline{B}_1} \le CC_0$.
+\end{proposition}
+
+\begin{proposition}
+    设$u_{x,r}=\rec{\abs{B_r}}\int_{B_r}u$. 如果
+    \begin{equation}
+        \norm{u-u_{x,r}}_{L^\infty(B_r(x))} \le C_0r^\alpha \s \forall B_r(x) \subset \overline{B}_1
+    \end{equation}
+    则$u \in C^\alpha(\overline{B}_1)$并且存在$C=C(n,\alpha)$使得$\semiholder{u}_{\BB}\le CC_0$.
+\end{proposition}
+\begin{proposition}
+    设$\alpha \in (0,1)$, $\norm{u}_{L^\infty(B_1)} \le C_0$, 并且
+    \begin{equation}
+        \sup_{h\in B_1, x\in B_{1-\abs{h}}} \frac{u(x+h)+u(x-h)-2u(x)}{\abs{h}^\alpha} \le C_0
+    \end{equation}
+    则$u \in C^\alpha(\BB)$并且存在$C=C(n,\alpha)$使得$\norm{u}_{C^\alpha{\BB}} \le CC_0$.
+\end{proposition}
+
+\begin{proposition}
+    设$\alpha \in (0,1)$, $\norm{u}_{L^\infty(B_1)} \le C_0$, 并且
+    \begin{equation}
+        \sup_{h\in B_1, x\in B_{1-\abs{h}}} \frac{u(x+h)+u(x-h)-2u(x)}{\abs{h}^{1+\alpha}} \le C_0
+    \end{equation}
+    则$u \in C^{1,\alpha}(\BB)$并且存在$C=C(n,\alpha)$使得$\norm{u}_{C^{1+\alpha}{\BB}} \le CC_0$.
+\end{proposition}
+
+\begin{proposition}
+    设$\alpha \in (0,1], \norm{u}_{L^\infty(B_1)} \le C_0$, 并且$\forall h \in B_1$,有
+    \begin{equation}
+        \norm{\frac{u(x+h)-u(x)}{\abs{h}^\alpha}}_{C^\beta(B_{1-\abs{h}})} \le C_0
+    \end{equation}
+    另外,假设$\alpha+\beta$不是整数,则$u \in C^{\alpha+\beta}(\BB)$并且存在$C=C(n,\alpha,\beta)$使得$\norm{u}_{C^{\alpha+\beta}(\BB)} \le CC_0$.
+\end{proposition}
+\begin{proposition}
+    设$\forall x \in B_1$, 存在仿射$L_x$使得
+    \begin{equation}
+        \norm{u-L_x}_{L^\infty(B_r(x))} \le Cr^{1+\alpha} \s \forall B_r(x) \subset B_1
+    \end{equation}
+    则$u \in C^{1,\alpha}$且$\semiholder{Du}_{C^\alpha(B_1)} \le CC_0$.
+    其中,$C_0=C_0(n,\alpha)$.
+\end{proposition}
+\begin{proposition}\label{holder_c2alpha}
+    设$\forall x \in B_1$, 存在二次多项式$P_x$使得
+    \begin{equation}
+        \norm{u-P_x}_{L^\infty(B_r(x))} \le Cr^{2+\alpha} \s \forall B_r(x) \subset B_1
+    \end{equation}
+    则$u \in C^{2,\alpha}$且$\semiholder{D^2u}_{C^\alpha(B_1)} \le CC_0$.
+    其中,$C_0=C_0(n,\alpha)$.
+\end{proposition}
+\newcommand{\bx}{{\bar{x}}}
+\newcommand{\by}{{\bar{y}}}
+\newcommand{\px}[1]{{P_{x,r}(#1)}}
+\newcommand{\py}[1]{{P_{y,r}(#1)}}
+\begin{proof}
+    首先, $\forall x$, 由$\norm{u-P_x} \le Cr^{2+\alpha}$可知, $u(z)-P_x(z)=o(\abs{z-x}^2)$. 因此, $Du(x)$存在.
+    \par 设$x,y \in B_r(x_0)$, $r=\abs{x-y}$.  设$B_{2r}(x_0)\subset B_1$. 设$P_x,P_y$分别是在$x,y$点处得到的二次多项式. 现在将$B_r(x_0)$正规化到单位圆盘. 记 $x=x_0+r\bx, y=x_0+r\by$. 显然, $\abs{\bx-\by}=1$. 设$u_r(z)=u(x_0+rz)$. 同样地设$\px{z}=P_x(x_0+rz)$, $\py{z}=P_y(x_0+rz)$. 则有
+    \begin{equation}
+        \norm{u_r(z)-\px{z}}_{L^\infty(B_1(\bx))} = \norm{u-P_x}_{L^\infty(B_r(x))} \le C_0r^{2+\alpha}
+    \end{equation}
+    \begin{equation}
+        \norm{u_r(z)-\py{z}}_{L^\infty(B_1(\by))} = \norm{u-P_y}_{L^\infty(B_r(y))} \le C_0r^{2+\alpha}
+    \end{equation}
+    设$\bar{w}=\frac{\bx+\by}{2}$ ,则$B_\rec{2}(\bar{w}) \subset B_1(\bar{x}) \cap B_1(\bar{y})$. 并且有
+    \begin{equation}
+        \begin{split}
+            \norm{P_{x,r}-P_{y,r}}_{L^\infty(B_\rec{2}(\bar{w}))} \le& \norm{u_r-P_{x,r}}_{L^\infty(B_1(\bar{x}))}+\norm{u_r-P_{y,r}}_{L^\infty(B_1(\bar{y}))} \\
+            \le& CC_0r^{2+\alpha}
+        \end{split}
+    \end{equation}
+    这意味着二次多项式$P_{x,r}-P_{y,r}$的系数都被$CC_0r^{2+\alpha}$所控制. 即,如果记
+    \begin{equation}
+        P_{x,r}(z)-P_{y,r}(z)=a+\inner{b}{z}+\inner{cz}{z}
+    \end{equation}
+    则存在常数$C=C(n)$使得
+    \begin{equation} \label{holder_coeff}
+        \abs{a} +\abs{b}+\abs{c}\le CC_0r^{2+\alpha}
+    \end{equation}
+    设
+    \begin{equation}
+        P_x(z)=a_x+\inner{b_x}{z-x}+\inner{m_x(z-x)}{z-x}
+    \end{equation}
+    \begin{equation}
+        P_y(z)=a_y+\inner{b_y}{z-y}+\inner{m_y(z-y)}{z-y}
+    \end{equation}
+    这里,$b$表示向量, $m$表示矩阵. 直接计算可知,
+    \begin{equation}
+        \begin{split}
+            P_{x,r}(z)-P_{y,r}(z)=&(a_x-a_y+r\inner{b_x}{\bar{y}-\bar{x}})+r^2\inner{m_x(z-x)}{(\bar{y}-\bar{x})} \\
+            &+r\inner{b_x-b_y+2rm_x(\bar{y}-\bar{x})}{z-\bar{y}} \\
+            &+r^2\inner{(m_x-m_y)(z-\bar{y})}{z-\bar{y}}
+        \end{split}
+    \end{equation}
+    而由不等式\eqref{holder_coeff}, 我们有
+    \begin{equation} \label{holder_hess}
+        \abs{m_x-m_y} \le CC_0r^\alpha
+    \end{equation}
+    \begin{equation}
+        \abs{b_y-b_x+2rm_x(\bar{y}-\bar{x})} \le CC_0r^{1+\alpha}
+    \end{equation}
+    等价于
+    \begin{equation} \label{holde_gradient}
+        \abs{b_y-b_x-2m_x(y-x)} \le CC_0r^{1+\alpha}
+    \end{equation}
+    由于$Du(x), Du(y)$存在且$P_x,P_y$与$u$至少有$C^1$接触, 显然
+    \begin{equation}
+        b_x=Du(x), b_y=Du(y).
+    \end{equation}
+    而在不等式\eqref{holde_gradient}中, 令$y\to x$可知, $D^2u(x)$存在且$D^2u(x)=m_x$. 于是, 不等式\eqref{holder_hess}成为
+    \begin{equation}
+        \abs{D^2u(x)-D^2u(y)} \le CC_0r^\alpha
+    \end{equation}
+    即有, $D^2u \in C^{2,\alpha}$.
+\end{proof}
+\section{最大值原理}
+\begin{theorem}
+    设$F(m,p,z,x):\R^{n^2}\times \R^n \times \R \times \R^n \to \R$是$C^2$函数且$\frac{\P^2F}{\partial m_{ij}}$正定. 设$\O\subset \R^n$有界. 设$u_0, u_1\in C(\overline{\O}) \cap C^2(\O)$. 设
+    \begin{enumerate}
+        \item 在$\P \O$上, $\u_1 \le u_0$.
+        \item 在$\O$中, $F(D^2u_1,Du_1,u_1,x) \ge F(D^2u_0,Du_0,u_0,x)$
+        \item 对于每个$m,p,x$, $F$关于$z$是单调递减的.
+    \end{enumerate}
+    则在$\O$中, $u_1 < u_0$或者$u_1 \eq u_0$.
+\end{theorem}
