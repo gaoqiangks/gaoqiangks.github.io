@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.2.21)  12 SEP 2022 00:32
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2022.2.21)  12 SEP 2022 00:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -835,17 +835,12 @@ File: images/reflection2.png Graphic file (type bmp)
 附录 A
 [16
 
-] [17]
-Overfull \hbox (118.81992pt too wide) detected at line 98
-[]
- []
-
-[18]) [19] (./minisurf.aux)
+] [17] [18]) [19] (./minisurf.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `minisurf.out' has not changed.
-(rerunfilecheck)             Checksum: 2AD60D90923679E590526FF84E72C9C4;1908.
+(rerunfilecheck)             Checksum: 5801EC6829E44A3AC5CE1FF715B46115;2109.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                minisurf
@@ -856,12 +851,12 @@ Package logreq Info: Writing requests to 'minisurf.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 22044 strings out of 476919
- 451105 string characters out of 5825424
+ 22045 strings out of 476919
+ 451118 string characters out of 5825424
  1233334 words of memory out of 5000000
- 41719 multiletter control sequences out of 15000+600000
+ 41720 multiletter control sequences out of 15000+600000
  411538 words of font info for 91 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  101i,18n,104p,1199b,759s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on minisurf.xdv (20 pages, 174844 bytes).
+Output written on minisurf.xdv (20 pages, 177432 bytes).

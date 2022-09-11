@@ -2,7 +2,9 @@
 \appendix
 \appendix
 \chapter{附录}
-
+\section{复分析基础}
+\subsection{等温坐标的存在性}
+\section{黎曼几何基础}
 设$\M\subset \MM^{n+k}$是$n$维嵌入子流形. $\M$上的联络记为$\D$, $\MM$上的联络记为$\DD$. 对于每一个点$p \in \M$, $T_p\MM$可以分解为
 \begin{equation}
     T_p\MM=T_p\M \oplus  (T_p\M)^\T
@@ -36,7 +38,7 @@
     \end{enumerate}
 \end{lemma}
 
-\section{联络}
+\subsection{联络}
 \begin{proposition}
     设$\Sigma \subset M$是子流形.  设$Y \in T_p\Sigma$, $X \in TM$. 则$\nabla_YX$与$X$在$M$中的扩张无关.
 \end{proposition}
@@ -45,7 +47,7 @@
     \item 设$X\in T\Sigma$, $N \in T^\perp\Sigma$, 则$\nabla_X N \perp T\Sigma$.
     \item 设$Y \in T_p \Sigma$, $X \in TM$, 则$(\nabla_XY)^\tangent=\nabla_X{Y^\tangent}$.
 \end{enumerate}
-\section{散度}
+\subsection{散度}
 \begin{equation}
     \div(X)=\rec{\sqrt{g}}\P_i(X^i\sqrt{g})
 \end{equation}
@@ -63,7 +65,7 @@
         %=&e_i(X^i)+X^j\Gamma^i_{ij}
     \end{split}
 \end{equation}
-\section{子流形上的散度}
+\subsection{子流形上的散度}
 设$\Sigma \subset M^n$是$k$维子流形. 设$X \in T_\Sigma M$, 即$X$定义在$\Sigma$中并且$\forall p \in \Sigma$, $X(p) \in T_pM$. 将$X$扩张为$M$上的向量场.  设$e_i$是$\Sigma$上的是标准正交标架. 定义$X$的散度为
 \begin{equation}
     \div_\Sigma X=\tr(\nabla X^\tangent)=\inner{\nabla_{e_i}X}{e_i}
@@ -71,14 +73,14 @@
 \begin{proposition}
     $\div_\Sigma(X)$是良好定义的, 即与$X$的扩张无关, 与$e_i$的选取无关.
 \end{proposition}
-\section{Hessian矩阵}
+\subsection{Hessian矩阵}
 \begin{equation}
     \nabla^2u=(\frac{\P^2u}{\P x^i\P x^j}-\Gamma^k_{ij}\frac{\P u}{\P x_k})dx^i\otimes dx^j
 \end{equation}
 \begin{equation}
     \nabla^2u(X,Y)=X(Y(f))-(\nabla_XY)(f)
 \end{equation}
-\section{Ricci恒等式}
+\subsection{Ricci恒等式}
 \begin{equation}
     \nabla_X(T(Y,Z))=\nabla_XT(Y,Z)+T(\nabla_XY,Z)+T(X,\nabla_XZ)
 \end{equation}
@@ -91,12 +93,13 @@
 \end{equation}
 \begin{equation}
     \begin{split}
-        \nabla^2_{X,Y}(T(Z))&=\nabla_X\nabla_Y(T(Z)) -\nabla_{\nabla_XY}(T(Z))\\
-        &=\nabla_X(\nabla_YT(Z)+T(\nabla_YZ)) -\nabla_{\nabla_XY}(T(Z))\\
-        &=\nabla_X\nabla_YT(Z)+\nabla_YT(\nabla_XZ)+\nabla_XT(\nabla_YZ)+T(\nabla_X\nabla_YZ)-\nabla_{\nabla_XY}T(Z)-T(\nabla_{\nabla_XY}Z)
+        \nabla^2_{X,Y}(T(Z))=&\nabla_X\nabla_Y(T(Z)) -\nabla_{\nabla_XY}(T(Z))\\
+        =&\nabla_X(\nabla_YT(Z)+T(\nabla_YZ)) -\nabla_{\nabla_XY}(T(Z))\\
+        =&\nabla_X\nabla_YT(Z)+\nabla_YT(\nabla_XZ)+\nabla_XT(\nabla_YZ) \\
+        &+T(\nabla_X\nabla_YZ)-\nabla_{\nabla_XY}T(Z)-T(\nabla_{\nabla_XY}Z)
     \end{split}
 \end{equation}
-\section{Laplace算子}
+\subsection{Laplace算子}
 \begin{equation}
     \begin{split}
         \Laplace u &=\div \nabla u \\
@@ -114,7 +117,7 @@
 \begin{equation}
     \Laplace T=\tr \nabla^2 T
 \end{equation}
-\subsection{与Laplace算子有关的公式}
+\subsubsection{与Laplace算子有关的公式}
 \begin{equation}
     \Laplace\inner{X}{Y}=\inner{\Laplace X}{Y}+\inner{X}{\Laplace Y}
 \end{equation}

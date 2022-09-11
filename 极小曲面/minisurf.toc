@@ -22,16 +22,22 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {附录 A\hspace {.3em}}附录}{16}{appendix.A}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}联络}{17}{section.A.1}%
+\contentsline {section}{\numberline {A.1}复分析基础}{16}{section.A.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}散度}{17}{section.A.2}%
+\contentsline {subsection}{\numberline {A.1.1}等温坐标的存在性}{16}{subsection.A.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.3}子流形上的散度}{17}{section.A.3}%
+\contentsline {section}{\numberline {A.2}黎曼几何基础}{16}{section.A.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.4}Hessian矩阵}{18}{section.A.4}%
+\contentsline {subsection}{\numberline {A.2.1}联络}{17}{subsection.A.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.5}Ricci恒等式}{18}{section.A.5}%
+\contentsline {subsection}{\numberline {A.2.2}散度}{17}{subsection.A.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.6}Laplace算子}{18}{section.A.6}%
+\contentsline {subsection}{\numberline {A.2.3}子流形上的散度}{18}{subsection.A.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.6.1}与Laplace算子有关的公式}{19}{subsection.A.6.1}%
+\contentsline {subsection}{\numberline {A.2.4}Hessian矩阵}{18}{subsection.A.2.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.2.5}Ricci恒等式}{18}{subsection.A.2.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.2.6}Laplace算子}{18}{subsection.A.2.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{与Laplace算子有关的公式}{19}{subsubsection*.2}%
