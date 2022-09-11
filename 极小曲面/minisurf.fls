@@ -941,6 +941,17 @@ INPUT images/reflection1.png
 INPUT ./images/reflection2.png
 INPUT ./images/reflection2.png
 INPUT images/reflection2.png
+INPUT ./appendix.tex
+INPUT ./appendix.tex
+INPUT ./appendix.tex
+INPUT ./appendix.tex
+INPUT ./appendix.tex
+INPUT appendix.tex
+INPUT ./appendix.tex
+INPUT ./appendix.tex
+INPUT ./appendix.tex
+INPUT ./appendix.tex
+INPUT appendix.tex
 INPUT minisurf.aux
 INPUT ./minisurf.out
 INPUT ./minisurf.out
