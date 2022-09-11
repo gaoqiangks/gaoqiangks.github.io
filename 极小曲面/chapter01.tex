@@ -100,10 +100,10 @@
     \item $X^T,X^\perp$: 切向量$X \in T_pM$在$T_p\Sigma$上的切向及法向分量.
     \item $T_p^\perp \Sigma$:=$\{X\mid X\in T_pM, X\perp T_p\Sigma\}$. $\Sigma$在$p$点处的法丛.
     \item $\nabla,\nabla_\Sigma$: $M$及$\Sigma$上的Levi-Civita联络. $\nabla_\Sigma=\nabla^{T}$.
-    \item $A/II$: $\Sigma$在$M$中的第二基本形式. $A(X,Y)=\nabla_XY^\perp$.
-    \item $\vec{H}$: $\Sigma$的平均曲率向量. $\vec{H}(p)=\Tr(A)=\Sigma_{i}^{n-1}A(e_i,e_i)$, $\{e_i\}$是$T_p\Sigma$的标准正交基.
+    \item $A/II$: $\Sigma$在$M$中的向量值与标量值第二基本形式. $A(X,Y)=\nabla_XY^\perp$. $II(X,Y)=\inner{A(X,Y)}{\vec{n}}$. $\vec{n}$为给定的单位法向.
+    \item $\vec{H}$: $\Sigma$的平均曲率向量. $\vec{H}(p)=\Tr(A)=\sum_{i}^{n-1}A(e_i,e_i)$, $\{e_i\}$是$T_p\Sigma$的标准正交基.
     \item $\vec{H}$: $\Sigma$的平均曲率. $H=\inner{\vec{H}}{\vec{n}}$, $\vec{n}$为$\Sigma$的单位法向.
-    \item $\div_\Sigma X$: $X \in TM$在$\Sigma$上的散度. $\div_\Sigma X=\Sigma_{i=1}^{n-1}\inner{\nabla_{e_i}X}{e_i}$. $\{e_i\}$是 $T\Sigma$的标准正交基(验证这个定义与基的选取无关). 需要注意 , 这里$X$可以定义在$TM$上, 而不仅仅是$T\Sigma$上. 散度算子满足如下的Lebniez公式:
+    \item $\div_\Sigma X$: $X \in TM$在$\Sigma$上的散度. $\div_\Sigma X=\sum_{i=1}^{n-1}\inner{\nabla_{e_i}X}{e_i}$. $\{e_i\}$是 $T\Sigma$的标准正交基(验证这个定义与基的选取无关). 需要注意 , 这里$X$可以定义在$TM$上, 而不仅仅是$T\Sigma$上. 散度算子满足如下的Lebniez公式:
     \begin{equation}
         \div_\Sigma(fX)=f\div_\Sigma(X)+\inner{\nabla_\Sigma f}{X}
     \end{equation}
@@ -162,7 +162,7 @@
 \end{equation}
 因此,
 \begin{equation}
-    \Tr(g'(0))=\Sigma_i 2\inner{\nabla_{\partial_iF}\partial_tF}{\partial_iF} \mid_{t=0}=2\div_\Sigma \partial_tF\mid_{t=0}
+    \Tr(g'(0))=\sum_i 2\inner{\nabla_{\partial_iF}\partial_tF}{\partial_iF} \mid_{t=0}=2\div_\Sigma \partial_tF\mid_{t=0}
 \end{equation}
 我们有
 \begin{equation}
@@ -174,7 +174,7 @@
 \end{equation}
 以及 
 \begin{equation}
-    \div_\Sigma(X^\perp)=\Sigma_i\inner{\nabla_{\partial_i}X^\perp}{\partial_i}=-\Sigma_i\inner{X^\perp}{\nabla_{\partial_i}\partial_i}=-\inner{X^\perp}{\vec{H}}
+    \div_\Sigma(X^\perp)=\sum_i\inner{\nabla_{\partial_i}X^\perp}{\partial_i}=-\sum_i\inner{X^\perp}{\nabla_{\partial_i}\partial_i}=-\inner{X^\perp}{\vec{H}}
 \end{equation}
 另外由于$\partial_tF|_{\partial \Sigma}=0$, 由散度定理可知
 \begin{equation}
@@ -203,23 +203,23 @@
     \par 对于性质(2), 首先需要注意, 我们是在\textbf{对$\XX$的每个分量分别求导, 而不是求一个张量的Laplace}.  设$(\partial_i)$是$\R^n$的标准正交基. 我们注意到: 对于任意$Y=Y^i\partial_i \in \R^n$, $\nabla_Y\XX=Y^iX^j\nabla_{\partial_i}\partial_j+Y^i\partial_i(X^j)\partial_j=Y$. 取$T\Sigma$上的标准正交基$(e_i)$. 设$X^k$是$\XX$的第$k$个分量. 由于对于任意$Y \in T\Sigma$, $\nabla^\Sigma_Y X^k= \inner{\nabla^\Sigma X^k}{Y} = \inner{\nabla X^k}{Y} = Y(X^k)$, 则有
     \begin{equation}
         \begin{split}
-            \Delta_\Sigma X^k &= \Sigma_i (\nabla^\Sigma_{e_i}\nabla^\Sigma_{e_i} X^k -\nabla^\Sigma_{\nabla^\Sigma_{e_i}e_i} X^k) \\
-            &= \Sigma_i(e_ie_i X^k - (\nabla_{e_i}e_i)^T X^k).
+            \Delta_\Sigma X^k &= \sum_i (\nabla^\Sigma_{e_i}\nabla^\Sigma_{e_i} X^k -\nabla^\Sigma_{\nabla^\Sigma_{e_i}e_i} X^k) \\
+            &= \sum_i(e_ie_i X^k - (\nabla_{e_i}e_i)^T X^k).
             %&= \Tr A = \vec{H}
         \end{split}
     \end{equation}
     因此, 我们有
     \begin{equation}
         \begin{split}
-            \Delta_\Sigma \XX  &= \Sigma_i(e_i(e_i \XX) - (\nabla_{e_i}e_i)^T \XX) \\
-            &= \Sigma_i(\nabla_{e_i}e_i - (\nabla_{e_i}e_i)^T )\\
+            \Delta_\Sigma \XX  &= \sum_i(e_i(e_i \XX) - (\nabla_{e_i}e_i)^T \XX) \\
+            &= \sum_i(\nabla_{e_i}e_i - (\nabla_{e_i}e_i)^T )\\
             &= \Tr A = \vec{H}.
         \end{split}
     \end{equation}
 %    \begin{equation}
 %        \begin{split}
-%            \Delta_\Sigma \XX &= \Sigma_i (\nabla^\Sigma_{e_i}\nabla^\Sigma_{e_i}\XX-\nabla^\Sigma_{\nabla^\Sigma_{e_i}e_i}\XX) \\
-%            &= \Sigma_i(\nabla_{e_i}e_i - (\nabla_{e_i}e_i)^T )\\
+%            \Delta_\Sigma \XX &= \sum_i (\nabla^\Sigma_{e_i}\nabla^\Sigma_{e_i}\XX-\nabla^\Sigma_{\nabla^\Sigma_{e_i}e_i}\XX) \\
+%            &= \sum_i(\nabla_{e_i}e_i - (\nabla_{e_i}e_i)^T )\\
 %            &= \Tr A = \vec{H}
 %        \end{split}
 %    \end{equation}
@@ -229,10 +229,10 @@
     \end{equation}
     分别计算这两项,则有
     \begin{equation}
-        \div_\Sigma(\XX^\perp)=\Sigma_i \inner{\nabla_{e_i}X^\perp}{e_i}=-\Sigma_i\inner{X^\perp}{\nabla_{e_i}e_i}=-\inner{X^\perp}{\vec{H}}%=-\abs{X^\perp}H
+        \div_\Sigma(\XX^\perp)=\sum_i \inner{\nabla_{e_i}X^\perp}{e_i}=-\sum_i\inner{X^\perp}{\nabla_{e_i}e_i}=-\inner{X^\perp}{\vec{H}}%=-\abs{X^\perp}H
     \end{equation}
     \begin{equation}
-        \div_\Sigma(X)=\Sigma_i \inner{\nabla_{e_i}\XX}{e_i}=\Sigma_i\inner{e_i}{e_i}=n-1
+        \div_\Sigma(X)=\sum_i \inner{\nabla_{e_i}\XX}{e_i}=\sum_i\inner{e_i}{e_i}=n-1
     \end{equation}
     综合以上三个等式即可知性质(3).
 \end{proof}
@@ -401,3 +401,111 @@
     \end{equation}
     而这等价于: $\ddt (e^{\frac{\lambda t}{2s}g(t)}) \ge 0$. 证毕.
 \end{proof}
+\section{Gauss映射}
+设$\Sigma \subset \R^3$是光滑曲面. 设$\vec{n}$为其单位法向. 由于在$\R^3$中, $\vec{n}$可以看作$\S^2$上的点, 我们可以得到映射$\N:\Sigma \S^2, \N(p)=\vec{n}(p), p \in \Sigma$. 称$\N$为曲面 $\Sigma$的Gauss映射.
+\begin{proposition}
+    设$p \in \Sigma$, 则$T_{\N(p)}\S^2= T_p\Sigma$.
+\end{proposition}
+\begin{proof}
+    $T_{\N(p)}\S^2=\{x\in \R^n\mid \inner{x}{\N(p)}=\inner{x}{\vec{n}}\}$.
+\end{proof}
+\begin{proposition}
+    $\forall X, Y \in T_p\Sigma$, 有等式: 
+    \begin{equation}
+        \inner{II(X,Y)}{\vec{n}}=-\inner{\nabla_X\vec{n}}{Y}=-\inner{d\N X}{Y}.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    由于$\inner{\vec{n}}{Y}=0$, 则有 $\inner{\nabla_XY}{\vec{n}}=-\inner{Y}{\nabla_X\vec{n}}$. 
+    \par 第二个等式是因为 $\nabla_X\vec{n}=(\nabla \vec{})X=d\N X$, 即是欧氏空间中的方向导数.
+\end{proof}
+\begin{proposition} \label{gauss_anticonformal}
+    设$\Sigma \subset \R^3$是光滑曲面. 则$\Sigma$是极小曲面当且仅当其Gauss映射是反共形的($\S^2$上取由外单位法向所给定的定向). 反共形指的是保持角度大小而不保持方向.
+\end{proposition}
+\begin{proof}
+    固定点$p \in \Sigma$. 由于$II$是对称的, 则存在局部标架$\{e_i\}$, 使得在$p$点处, $II e_1=\lambda_1 e_1$, $II e_2=\lambda_2 e_2$. (这里, $\lambda_i,e_i$分别被称作曲面$\Sigma$的主曲率与主曲率方向). 现在,我们有
+    \begin{equation}
+        \inner{d\N e_i}{d\N e_j}= \inner{\nabla_{e_i}\vec{n}}{\nabla_{e_j}\vec{n}} \lambda_i\lambda_j\inner{e_i}{e_j}
+    \end{equation}
+    显然地,  $dN=diag(\lambda_1,\lambda_2)$是反共形的当且仅当$\lambda_1+\lambda_2=0$, 当且仅当$\Sigma$是极小曲面.
+\end{proof}
+\begin{proposition}
+    设$\Sigma \subset \R^3$是极小曲面. $\N$为其Gauss映射. $d\Sigma, \omega$分别为$\Sigma, \S^2$上的面积形式, 设$N^*\omega$为其拉回. 则有
+    \begin{equation}
+        \abs{II}^2d\Sigma= -2N^*\omega.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    如是同在命题\eqref{gauss_anticonformal}的证明中选择$\{e_i\}$. 设$\{e^{*i}\}$为其对偶标架. 由于$\lambda_1+\lambda_2=0$, 则
+    \begin{equation}
+        \abs{II}^2d\Sigma=(\lambda_1^2+\lambda_2^2)e^{*1}\wedge e^{*2}=-2\lambda_1\lambda_2 e^{*1}\wedge e^{*2}.
+    \end{equation}
+    而由于$d\N=diag(\lambda_1,\lambda_2)$, 则 $\abs{II}^2d\Sigma=-2N^* e^{*1} \wedge e^{*2}$.
+\end{proof}
+\section{Bernstein定理}
+\begin{proposition} \label{caccio}
+    设$u: \Omega \subset \R^2 \to \R$满足MSE. 设$\Sigma=\G(u)$. 设$\phi \in Lip(\Sigma)$且$\phi$具有紧支集, 则
+    \begin{equation}
+        \int_{\Sigma}\abs{II}^2\phi^2 \le C\int_\Sigma \abs{\nabla_{\Sigma}\phi}^2
+    \end{equation}
+    这里,  $C$是万有常数.
+\end{proposition}
+\begin{proof}
+    显然地, $\N(\Sigma) \subset \S^2_+$. 设$\omega$是 $\S^2$上的面积形式. 由于$\S^2_+$是单连通的, 则存在$1-$形式$\alpha$使得  $\Omega=d\alpha$. 于是有 
+    \begin{equation}
+        \abs{II}^2d\Sigma=-2\N^*\omega=-2\N^*d\alpha=-2d(\N*\alpha)
+    \end{equation}
+    由于$\forall 1-$形式$\beta$ , $d(\phi^2\beta)=\phi^2\beta+2\phi d\phi\wedge\beta$, 再由Stokes公式
+    \begin{equation}
+        \begin{split}
+            \int_\Sigma \abs{II}^2\phi^2 = -2 \int_\Sigma \phi^2 d(\N^*\alpha) &=-2\int_\Sigma d(\phi^2\N^*\alpha)+4\int_\Sigma \phi d\phi\wedge N^*\alpha\\
+            &= 4\int_\Sigma  \phi d\phi\wedge N^*\alpha
+        \end{split}
+    \end{equation}
+    在局部标架下, $\phi=\phi_i e^{*i}, N^*=diag(\lambda_1,\lambda_2), \alpha=\alpha_i e^{*i}$. 因此, 若设 $d\phi\wedge \N^*\alpha= f(x)d\Sigma$, 则 $\abs{f} \le C_\alpha \abs{\nabla_\Sigma}\abs{II}$. 于是有
+    \begin{equation}
+        \begin{split}
+            \int_\Sigma \abs{II}^2\phi^2 &\le C_\alpha \abs{A}\abs{\phi} \abs{\nabla_\Sigma \phi} \\
+            & le C_\alpha(\epsilon \int_\Sigma \abs{II}^2\phi^2 + \frac{1}{\epsilon}\int_\Sigma  \abs{\nabla_\Sigma \phi}^2 \\
+        \end{split}
+    \end{equation}
+    取$\epsilon$使得 $\epsilon C_\alpha=\frac{1}{2}$即可.
+\end{proof}
+\begin{theorem}
+    设$u: \R^2 \to \R$在全平面上满足MSE.  记$\Sigma=\G(u)$. 则$u$是仿射函数, 或者等价地, $\Sigma$是平面.
+\end{theorem}
+\begin{proof}
+    我们首先说明, 如果下面的断言成立, 则$u$是仿射.
+    \begin{claim}
+        $\forall k >0$,存在$\phi_k \in Lip(\Sigma)$使得  $\phi_k|_{B_k \cap \Sigma}=1$, $\phi_k$有紧支集 且$ \int_\Sigma \abs{\nabla_\Sigma \phi_k}^2 \to 0$.
+    \end{claim}
+    若断言成立, 那么由不等式\eqref{caccio}可知, $\int_{\Sigma\cap B_k} \abs{II}^2 \le \int_\Sigma \abs{\nabla_\Sigma \phi_k}^2 \to 0$. 则$II\eq 0$. 因此$\Sigma$为平面. 
+    \par 现在我们来证明断言成立. $\forall k>0$, 定义
+    \begin{equation}
+        \phi_k(x)=\left\{
+            \begin{aligned}
+                &1, \abs{x} < k, \\
+                &1-\frac{\log\abs{x}-\log k}{\log k}, k \le \abs{x} \le k^2,\\
+                &0, \abs{x} > k^2
+            \end{aligned}
+        \right.
+    \end{equation}
+    记$R_{s,t}=B_t-B_s$为环域. 将$R_{k,k^2}$分解为若干环域的并 
+    \begin{equation}
+        R_{k,k^2}=\cup_{i=0}^{\log k} R_{2^ik,2^{i+1}k}.
+    \end{equation}
+    直接计算可知, 在环域$R_{2^ik,2^{i+1}k}$上,
+    \begin{equation}
+        \abs{\nabla_\Sigma \phi} \le \abs{\nabla \phi} \le \frac{1}{\log k} \frac{1}{\abs{x}}
+    \end{equation}
+    以及
+    \begin{equation}
+        \abs{R_{2^ik,2^{i+1}k} \cap \Sigma } \le C 2^{2i}k^2. 
+    \end{equation}
+    于是,我们有
+    \begin{equation}
+        \int_\Sigma \abs{\nabla_\Sigma \phi_k}^2 \le C\sum_{i=0}^{\log k} 2^{2i}k^22\frac{1}{(\log k)^2} \frac{1}{2^{2i}k^2} \le C\frac{1}{\log k} \to 0.
+    \end{equation}
+    断言得证.
+\end{proof}
+\section{Weierstrass表示}

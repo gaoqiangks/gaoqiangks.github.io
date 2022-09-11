@@ -8,6 +8,12 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.3}曲面上的坐标函数}{7}{section.1.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.4}Schwartz反射}{8}{section.1.4}%
+\contentsline {section}{\numberline {1.4}Schwartz反射}{9}{section.1.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.5}单调性公式}{10}{section.1.5}%
+\contentsline {section}{\numberline {1.5}单调性公式}{11}{section.1.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.6}Gauss映射}{13}{section.1.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.7}Bernstein定理}{14}{section.1.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.8}Weierstrass表示}{15}{section.1.8}%
