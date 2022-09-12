@@ -12,13 +12,13 @@
 \begin{equation*}
     \Sigma= \G(u)= \{(x,u(x))\mid x \in \Omega\}
 \end{equation*}
-其中, $\Omega$ 是给定的有界区域, $u \in \CC(\Omega)$. 由于$\G(u)$面积最小, 那么对于任意$\phi \in \CC(\Omega)$ 及$t \in \R$,
+其中, $\Omega$ 是给定的有界区域, $u \in \CC(\Omega)$. 若使得$\G(u)$面积最小, 那么对于任意$\phi \in \CC(\Omega)$ 及$t \in \R$,
 \begin{equation}
     \Area(\G(u)) \le \Area(\G(u+t\phi))
 \end{equation}
 于是, 我们有
 \begin{equation}
-    \ddt(\Area(\G(u+t\phi)))\mid {t=0}=0
+    \ddt(\Area(\G(u+t\phi)))\mid_ {t=0}=0
 \end{equation}
 直接计算可知
 \begin{equation}
@@ -86,7 +86,7 @@
 \end{proof}
 命题\eqref{mse_min1}中的证明还可以得到下面的结论:
 \begin{corollary}
-    设$u: \Omega \to \R$满足MSE. 设$B_r \subset \Omega \R$. 则有
+    设$u: \Omega \to \R$满足MSE. 设$B_r \subset \Omega \times \R$. 则有
     \begin{equation}
         \Area(B_r \cap \G(u)) \le \frac{1}{2} \Area(\partial B_r)
     \end{equation}
@@ -100,9 +100,9 @@
     \item $X^T,X^\perp$: 切向量$X \in T_pM$在$T_p\Sigma$上的切向及法向分量.
     \item $T_p^\perp \Sigma$:=$\{X\mid X\in T_pM, X\perp T_p\Sigma\}$. $\Sigma$在$p$点处的法丛.
     \item $\nabla,\nabla_\Sigma$: $M$及$\Sigma$上的Levi-Civita联络. $\nabla_\Sigma=\nabla^{T}$.
-    \item $A/II$: $\Sigma$在$M$中的向量值与标量值第二基本形式. $A(X,Y)=\nabla_XY^\perp$. $II(X,Y)=\inner{A(X,Y)}{\vec{n}}$. $\vec{n}$为给定的单位法向.
+    \item $A/II$: $\Sigma$在$M$中的向量值与标量值第二基本形式. $A(X,Y)=(\nabla_XY)^\perp$. $II(X,Y)=\inner{A(X,Y)}{\vec{n}}$. $\vec{n}$为给定的单位法向.
     \item $\vec{H}$: $\Sigma$的平均曲率向量. $\vec{H}(p)=\Tr(A)=\sum_{i}^{n-1}A(e_i,e_i)$, $\{e_i\}$是$T_p\Sigma$的标准正交基.
-    \item $\vec{H}$: $\Sigma$的平均曲率. $H=\inner{\vec{H}}{\vec{n}}$, $\vec{n}$为$\Sigma$的单位法向.
+    \item ${H}$: $\Sigma$的平均曲率. $H=\inner{\vec{H}}{\vec{n}}$, $\vec{n}$为$\Sigma$的单位法向.
     \item $\div_\Sigma X$: $X \in TM$在$\Sigma$上的散度. $\div_\Sigma X=\sum_{i=1}^{n-1}\inner{\nabla_{e_i}X}{e_i}$. $\{e_i\}$是 $T\Sigma$的标准正交基(验证这个定义与基的选取无关). 需要注意 , 这里$X$可以定义在$TM$上, 而不仅仅是$T\Sigma$上. 散度算子满足如下的Lebniez公式:
     \begin{equation}
         \div_\Sigma(fX)=f\div_\Sigma(X)+\inner{\nabla_\Sigma f}{X}
@@ -132,19 +132,19 @@
 \begin{equation}
     \ddt \Area(\Sigma_t)=\int_\Sigma \ddt \sqrt{\det g(t)}dx
 \end{equation}
-现在我们来求面积的第一变分. 首先来证明一个引理.
+\par 现在我们来求面积的第一变分. 首先证明一个引理.
 \begin{lemma}
     设$A=[a_{ij}]$是 $n \times n$矩阵. 将$\det A$看作$n^2$个变量$(a_{ij})$的函数. 则$d\det A= A^{ij}da_{ij}$. $A^{ij}$是$A$的代数余子式.
 \end{lemma}
 \begin{proof}
-    由行列式的拉普拉斯展开, 我们知道 $\forall j, \det A= \Sigma_{j}A^{ij}a_{ij}$. 注意到$A^{ij}$与${a_{ij}}$无关, 则有$\frac{\partial \det A}{\partial a_{ij}}=A^{ij}$.
+    由行列式的拉普拉斯展开, 我们知道 $\forall i, \det A= \Sigma_{j}A^{ij}a_{ij}$. 注意到$A^{ij}$与${a_{ij}}$无关, 则有$\frac{\partial \det A}{\partial a_{ij}}=A^{ij}$.
 \end{proof}
 \begin{corollary} \label{det_jacobi}
     设$A_t=[a_{ij}(t)]$. 则$\ddt \det A_t=\det A_t \Tr(A_t^{-1}\ddt A_t)$.
 \end{corollary}
-现在, 固定一个点$p \in \Sigma$并选取$p$点处的测地坐标. 所有计算都将在点$p$处进行.
+固定一个点$p \in \Sigma$并选取$p$点处的测地坐标. 以后所有计算都将在点$p$处进行.
 \begin{equation}
-    \ddt \sqrt{\det g(t)}\mid_{t=0}=\Tr(g'(0))
+    2\ddt \sqrt{\det g(t)}\mid_{t=0}=\Tr(g'(0))
 \end{equation}
 现在, 我们只需要计算$g'_{ij}(0)$即可. 根据定义, $g_{ij}(t)=\inner{\partial_iF}{\partial_jF}$. 对$t$求偏导, 则有
 \begin{equation}
@@ -164,7 +164,11 @@
 \begin{equation}
     \Tr(g'(0))=\sum_i 2\inner{\nabla_{\partial_iF}\partial_tF}{\partial_iF} \mid_{t=0}=2\div_\Sigma \partial_tF\mid_{t=0}
 \end{equation}
-我们有
+若记$\omega_t$为$\Sigma_t$上的体积形式, 那么上面的等式可以写为
+\begin{equation}
+    \ddt \omega_t =(\div_\Sigma \partial_t F)\omega_t
+\end{equation}
+积分后便有
 \begin{equation}
     \ddt \Area(\Sigma_t)\mid_{t=0}=\int_\Sigma \div_\Sigma \partial_t F
 \end{equation}
@@ -225,14 +229,14 @@
 %    \end{equation}
     \par 对于性质(3),
     \begin{equation}
-        \Delta_\Sigma\abs{\XX}^2=\div_\Sigma(\nabla_\Sigma\abs{\XX}^2) = 2\div_\Sigma(\XX^T)=2\div_\Sigma(X)-2\div_\Sigma(X^\perp)
+        \Delta_\Sigma\abs{\XX}^2=\div_\Sigma(\nabla_\Sigma\abs{\XX}^2) = 2\div_\Sigma(\XX^T)=2\div_\Sigma(\XX)-2\div_\Sigma(\XX^\perp)
     \end{equation}
     分别计算这两项,则有
     \begin{equation}
-        \div_\Sigma(\XX^\perp)=\sum_i \inner{\nabla_{e_i}X^\perp}{e_i}=-\sum_i\inner{X^\perp}{\nabla_{e_i}e_i}=-\inner{X^\perp}{\vec{H}}%=-\abs{X^\perp}H
+        \div_\Sigma(\XX^\perp)=\sum_i \inner{\nabla_{e_i}\XX^\perp}{e_i}=-\sum_i\inner{\XX^\perp}{\nabla_{e_i}e_i}=-\inner{\XX^\perp}{\vec{H}}%=-\abs{X^\perp}H
     \end{equation}
     \begin{equation}
-        \div_\Sigma(X)=\sum_i \inner{\nabla_{e_i}\XX}{e_i}=\sum_i\inner{e_i}{e_i}=n-1
+        \div_\Sigma(\XX)=\sum_i \inner{\nabla_{e_i}\XX}{e_i}=\sum_i\inner{e_i}{e_i}=n-1
     \end{equation}
     综合以上三个等式即可知性质(3).
 \end{proof}
@@ -248,6 +252,9 @@
 \begin{proof}
     $\forall \vec{v} \subset \mathbb{S}^{n-1}$, 记$P_{\vec{v},a}=\{x\in \R^n\mid \inner{x}{\vec{v}} \le a\}$. 设$u(x)=\inner{x}{\vec{v}}$, 则$u(x)$是$\Sigma$上的调和函数. 因此, $u$的最大值只能在$\partial \Sigma$上取到. 若$\partial \Sigma \subset P_{\vec{v},a} $, 则 $\forall x \in \partial \Sigma$, $u(x) \le a$, 因此, $\forall x \in \Sigma$, $u(x) \le a$. 即, $\Sigma \subset P_{\vec{v},a}$. 证毕.
 \end{proof}
+\begin{exercise}
+    证明: $\R^n$中不存在紧致无边的极小曲面.
+\end{exercise}
 \section{Schwartz反射}
 由于推论\eqref{coordinate_h}, 极小曲面有许多性质跟调和函数非常相似(实际上极小曲面也是调和映射). 非常重要的一个应用便是Schwartz反射原理.
 \begin{proposition} \label{min_reflection}
@@ -300,7 +307,19 @@
 	\label{reflection2}
 \end{figure}
 \begin{proof}[命题\eqref{min_reflection}的证明]
-    取$\Sigma$上的等温坐标, 显然地, $\Sigma$上的等温坐标经反射后得到$\Sigma'$上的等温坐标. 将$z-$轴看作是$\mathbb{C}={w=u+iv}$上的$u-$轴. 将$B_r(p)\cap \Sigma$看作 $\mathbb{D}^+$, 将$B_r(p) \cap \Sigma'$看作$\mathbb{D}^-$. 现在, 利用调和函数的反射性质可知, 在$\Sigma \cap \Sigma'$上, $x,y$坐标都是调和的. 我们只需要说明$z-$坐标也是调和的即可. 由$\Sigma'$的构造可知, $z(u,v)=z(u,-v)$. 设$\vec{n}$是$B_r\cap \Sigma$在$z-$轴上的单位法向, 则$\frac{\partial z}{\vec{n}}= \partial_v{z}=0$. 于是, $z$满足 $\partial_v z(u,v)=-\partial_v z(u,-v)$. 由Schwzrtz 反射可知, $z_v$是调和函数, 则$z$是调和的. 
+    取$\Sigma$上的等温坐标, 显然地, $\Sigma$上的等温坐标经反射后得到$\Sigma'$上的等温坐标. 将$z-$轴看作是$\mathbb{C}=\{w=u+iv\}$上的$u-$轴. 将$B_r(p)\cap \Sigma$看作 $\mathbb{D}^+$, 将$B_r(p) \cap \Sigma'$看作$\mathbb{D}^-$. 根据构造, 
+    \begin{equation}
+        x(w)=-x(\bar{w}), y(w)=-y(\bar{w})
+    \end{equation}
+    现在, 利用调和函数的反射性质可知, 在$\Sigma \cap \Sigma'$上, $x,y$坐标都是调和的. 我们只需要说明$z-$坐标也是调和的即可. 由$\Sigma'$的构造可知, 
+    \begin{equation}
+        z(u,v)=z(u,-v). 
+    \end{equation}
+    设$\vec{n}$是$B_r\cap \Sigma$在$z-$轴上的单位法向, 则$\frac{\partial z}{\vec{n}}= \partial_v{z}=0$. 于是, $z$满足 
+    \begin{equation}
+        \partial_v z(u,v)=-\partial_v z(u,-v). 
+    \end{equation}
+    由Schwzrtz 反射可知, $z_v$是调和函数, 则$z$是调和的. 
 \end{proof}
 \begin{remark}
     由此可见, 极小曲面上包含直线是非常强的条件. Schwartz反射的一类非常重要的应用是当极小曲面的边界上包含两条平行的直线的情况下.  这个时候我们可以做无穷多次反射得到一个周期的极小曲面.
@@ -309,18 +328,26 @@
     设 $X(u,v): \mathbb{D} \to \R^3$是共形浸入. 则$\Sigma = X(\mathbb{D})$是极小曲面当且仅当$X$的每个分量是调和函数.
 \end{proposition}
 \begin{proof}
-    由于$X$是共形浸入, 则在$\Sigma$上的度量在$z=u+iv$坐标下可以表示为$\lambda^2\abs{dz}^2$的形式, 而$\Delta_\Sigma X= \frac{4}{\lambda^2} \Delta X=0$.
+    由于$X$是共形浸入, 则在$\Sigma$上的度量在$z=u+iv$坐标下可以表示为$\lambda^2\abs{dz}^2$的形式, 而$\Delta_\Sigma X= \frac{1}{\lambda^2} \Delta X=0$.
 \end{proof}
 \begin{remark}
     $\Sigma\subset \R^3$是极小曲面当且仅当$\R^3$中的坐标函数在$\Sigma$上的限制是调和的, 这里$\Sigma$上必须是继承自$\R^3$上的度量. 命题 \eqref{conformal_im}中的共形浸入的条件是必不可少的, 比如, 设$X:\mathbb{D}\to \R^3, X(u,v)=(u,v,uv)$. 显然地, $\Delta X=0$. 但是$X(\mathbb{D})$不是极小曲面.
 \end{remark}
+\begin{exercise}
+    设 $\Sigma \subset \R^3$是极小曲面. 设存在平面$P$使得$\Sigma \perp P$. 设$\Sigma$关于平面$P$的反射后的像为$\Sigma'$. 证明: $\Sigma \cup \Sigma'$是极小曲面.
+\end{exercise}
 \section{单调性公式}
 \begin{proposition}[余面积公式]
     设$\Sigma^{n-1}\subset \R^n$是光滑曲面.  设$h: \Sigma \to \R$是Lipschitz, proper(紧集的原像为紧集)映射.  则$\forall f \in L^1_{\loc}(\Sigma)$, 成立
     \begin{equation}
-        \int_{h < t} f \abs{\nabla_\Sigma h}dH^{n-1}=\int^t_{-\infty} \int_{h=r}f dH^{n-2}dr
+        \int_{\{h < t\}} f \abs{\nabla_\Sigma h}dH^{n-1}=\int^t_{-\infty} \int_{\{h=r\}}f dH^{n-2}dr
     \end{equation}
 \end{proposition}
+余面积公式相当于Fubini定理, 可以将多重积分变为累次积分来计算. 例如, 取$\Sigma =\Omega, h(x,y)=x, f(x,y)=\chi_\Omega, t=+\infty$. 那么, 在余面积公式中, 
+\begin{align}
+    &\text{左侧}= \int_{\R^2}\chi_\Omega = \abs{\Omega}\\
+    &\text{右侧}= \int^{+\infty}_{-\infty} \int_{\{x=r\}} \chi_\Omega dydr=\abs{\Omega}
+\end{align}
 \begin{proposition}
 设$\Sigma^{n-1}\subset \R^n$是光滑曲面. 设$t>s$且$B_t(p) \cap \partial \Sigma =\emptyset$. 设$f \in C^1(\Sigma)$, $H$是$\Sigma$的平均曲率.  则有    
 \begin{equation}
@@ -401,8 +428,18 @@
     \end{equation}
     而这等价于: $\ddt (e^{\frac{\lambda t}{2s}g(t)}) \ge 0$. 证毕.
 \end{proof}
+\begin{corollary}
+    设$\Sigma^{n-1} \subset \R^n$是极小曲面. $x_0 \subset \R^n$, 设$f \in C^\infty(\Sigma)$且 $f \ge 0, \Delta_{\Sigma}f \ge 0$, 则
+    \begin{equation}
+        \frac{1}{s^{n-1}} \int_{B_s(x_0)\cap \Sigma}f
+    \end{equation}
+    关于变量$s$是非减函数. 特别地, 如果$x_0 \in \Sigma$, 那么对于任意$s>0$, 成立
+    \begin{equation}
+        f(x_0) \le \frac{\int_{B_s(x_0)\cap \Sigma} f}{ \abs{B_s\subset \R^{n-1}}}
+    \end{equation}
+\end{corollary}
 \section{Gauss映射}
-设$\Sigma \subset \R^3$是光滑曲面. 设$\vec{n}$为其单位法向. 由于在$\R^3$中, $\vec{n}$可以看作$\S^2$上的点, 我们可以得到映射$\N:\Sigma \S^2, \N(p)=\vec{n}(p), p \in \Sigma$. 称$\N$为曲面 $\Sigma$的Gauss映射.
+设$\Sigma \subset \R^3$是光滑曲面. 设$\vec{n}$为其单位法向. 由于在$\R^3$中, $\vec{n}$可以看作$\S^2$上的点, 我们可以得到映射$\N:\Sigma \to  \S^2, \N(p)=\vec{n}(p), p \in \Sigma$. 称$\N$为曲面 $\Sigma$的Gauss映射.
 \begin{proposition}
     设$p \in \Sigma$, 则$T_{\N(p)}\S^2= T_p\Sigma$.
 \end{proposition}
@@ -417,7 +454,7 @@
 \end{proposition}
 \begin{proof}
     由于$\inner{\vec{n}}{Y}=0$, 则有 $\inner{\nabla_XY}{\vec{n}}=-\inner{Y}{\nabla_X\vec{n}}$. 
-    \par 第二个等式是因为 $\nabla_X\vec{n}=(\nabla \vec{})X=d\N X$, 即是欧氏空间中的方向导数.
+    \par 第二个等式是因为 $\nabla_X\vec{n}=(\nabla \vec{n})X=d\N X$, 即是欧氏空间中的方向导数.
 \end{proof}
 \begin{proposition} \label{gauss_anticonformal}
     设$\Sigma \subset \R^3$是光滑曲面. 则$\Sigma$是极小曲面当且仅当其Gauss映射是反共形的($\S^2$上取由外单位法向所给定的定向). 反共形指的是保持角度大小而不保持方向.
@@ -465,8 +502,8 @@
     在局部标架下, $\phi=\phi_i e^{*i}, N^*=diag(\lambda_1,\lambda_2), \alpha=\alpha_i e^{*i}$. 因此, 若设 $d\phi\wedge \N^*\alpha= f(x)d\Sigma$, 则 $\abs{f} \le C_\alpha \abs{\nabla_\Sigma}\abs{II}$. 于是有
     \begin{equation}
         \begin{split}
-            \int_\Sigma \abs{II}^2\phi^2 &\le C_\alpha \abs{A}\abs{\phi} \abs{\nabla_\Sigma \phi} \\
-            & le C_\alpha(\epsilon \int_\Sigma \abs{II}^2\phi^2 + \frac{1}{\epsilon}\int_\Sigma  \abs{\nabla_\Sigma \phi}^2 \\
+            \int_\Sigma \abs{II}^2\phi^2 &\le C_\alpha \int_\Sigma \abs{A}\abs{\phi} \abs{\nabla_\Sigma \phi} \\
+            & \le C_\alpha(\epsilon \int_\Sigma \abs{II}^2\phi^2 + \frac{1}{\epsilon}\int_\Sigma  \abs{\nabla_\Sigma \phi}^2 \\
         \end{split}
     \end{equation}
     取$\epsilon$使得 $\epsilon C_\alpha=\frac{1}{2}$即可.
@@ -476,9 +513,9 @@
 \end{theorem}
 \begin{proof}
     我们首先说明, 如果下面的断言成立, 则$u$是仿射.
-    \begin{claim}
+    \begin{claim*}
         $\forall k >0$,存在$\phi_k \in Lip(\Sigma)$使得  $\phi_k|_{B_k \cap \Sigma}=1$, $\phi_k$有紧支集 且$ \int_\Sigma \abs{\nabla_\Sigma \phi_k}^2 \to 0$.
-    \end{claim}
+    \end{claim*}
     若断言成立, 那么由不等式\eqref{caccio}可知, $\int_{\Sigma\cap B_k} \abs{II}^2 \le \int_\Sigma \abs{\nabla_\Sigma \phi_k}^2 \to 0$. 则$II\eq 0$. 因此$\Sigma$为平面. 
     \par 现在我们来证明断言成立. $\forall k>0$, 定义
     \begin{equation}
@@ -509,4 +546,110 @@
     断言得证.
 \end{proof}
 \section{Weierstrass表示}
-\section{第二变分公式与稳定性}
+\begin{proposition} \label{iff_conformal}
+    设$X: \Omega \to \R^3$光滑. $\Omega$上的坐标记为$(u,v)$. 则$X$是局部嵌入当然且当$dX$非退化. 并且, $X$是共形嵌入当且仅当$\abs{X_u}=\abs{X_v} \ne 0, \inner{X_u}{X_v} =0$.
+\end{proposition}
+\begin{proof}
+    略.
+\end{proof}
+\begin{definition}
+    设$\Omega \subset \R^2$.   $\Omega$上的坐标记为$(u,v)$, 复坐标记为$z=u+iv$. 对于任意$C^1$函数$f: \Omega \to \mathbb{C}$, 定义其形式偏导
+    \begin{equation}
+        \partial f= \frac{1}{2}(f_u- i f_v), \bar{\partial} f= \frac{1}{2}(f_u+i f_v).
+    \end{equation}
+    其它的记号$\partial_{z}f=\frac{\partial f}{\partial z} =\partial f$, $\partial_{\bar{z}}f=\frac{\partial f}{\partial \bar{z}} =\bar{\partial} f$也是常用的.
+\end{definition}
+\begin{exercise}
+    设$f: \Omega \to \mathbb{C}$. 证明:
+    \begin{enumerate}
+        \item $f$全纯当且仅当 $\barpartial f=0$.
+        \item $f$调和当且仅当$\partial \barpartial f=0$.
+    \end{enumerate}
+\end{exercise}
+\begin{proposition} \label{iff_conformal_c}
+    设$X: \Omega \to \R^3$是光滑嵌入. $X=(X_1,X_2,X_3)$. $\forall k$, 定义 $\phi_k= \partial X_k$. 则
+    \begin{enumerate}
+        \item $X$是共形的当且仅当$\sum_k \phi_k^2=0$.
+        \item 若$X$是共形的, 则$X(\Omega)$是极小曲面当且仅当$\forall k, \phi_k$全纯.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    对于性质(1), 直接计算可知
+    \begin{equation}
+        \begin{split}
+            \phi_k^2=(\partial X_k)^2 &= \frac{1}{4}(\frac{X_k}{\partial u} - i \frac{X_k}{\partial v})^2\\
+             &= \frac{1}{4}((\frac{\partial X_k}{\partial u})^2- (\frac{\partial X_k}{\partial v})^2) - i \frac{\partial X_k}{\partial u} \frac{\partial X_k}{\partial v}
+        \end{split}
+    \end{equation}
+    因此,  $\sum_k \phi_k^2= \frac{1}{4}(\abs{X_u}^2- \abs{X_v}^2)-\frac{i}{2} \inner{X_u}{X_v}$. 由命题\eqref{iff_conformal}可知结论成立.
+    \par 对于性质(2), 我们知道$X(\Omega)$是极小的当且仅当$\forall k, X_k$是调和函数. 而
+    \par $X_k$调和 $\iff$ $\barpartial \partial X_k=0$ $\iff$ $\partial X_k$全纯 $\iff$ $\phi_k$全纯.
+\end{proof}
+在单连通域上, 通过取$\Phi_k = \int \phi_k$, 我们可以得到以下定理:
+\begin{theorem}[Weierstrass表示]
+    任意极小曲面 $\Sigma$者可以局部地由三个满足 $\sum_k \Phi_k'^2=0$ 的全纯函数 $\Phi_k$ 确定, 并且$\Sigma$可以表示为 $\Sigma=X(\Omega)$, $X: \Omega \to \R^3$满足 
+    \begin{equation}
+        \begin{split}
+            X &=\Re (\Phi_1,\Phi_2,\Phi_3) \\
+             &=\Re \int^z (\phi_1,\phi_2,\phi_3)
+        \end{split}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    我们已经证明了任意满足这样条件的三个全纯函数都可以确定一个极小曲面. 而等温坐标及调和共轭的存在性则保证了每个极小曲面都可以局部地表示成这样的形式.  $\forall p \in \Sigma$, 取$p$点处的等温坐标. 不失一般性, 可以假设$B_r \cap \Sigma= X(\mathbb{D})$, $X: \mathbb{D} \to \R^3$. 那么, $X$的三个分量都是调和函数. 根据调和函数的性质, 存在三个全纯函数 $\Phi_k$使得  $X=\Re(\Phi_1,\Phi_2,\Phi_3)$.
+\end{proof}
+由该定理可以知道, 要构造一个极小曲面, 我们只需要构造三个全纯函数$\{\Phi_k\}$使得 $\sum \Phi_k'^2=0$即可. 给定全纯函数$f$及亚纯函数$g$, 取
+\begin{equation}
+    \phi_1=\frac{1}{2}f(1-g^2), \phi_2=\frac{i}{2} f(1+g^2), \phi_3=fg
+\end{equation}
+那么, $\sum_k \phi_k^2=0$恒成立. 只要我们先取$f,g$使得$\phi_k$都是全纯函数, 便能得到一个极小曲面. 另一方面, 简单计算可知, 
+\begin{equation}
+    f=\phi_1-i\phi_2, g=\frac{\phi_3}{\phi_1-i\phi_2}= -\frac{\phi_1+i\phi_2}{\phi_3}
+\end{equation}
+因此, 每个极小曲面都可以局部地由 $(g,f)$给出. 称$(g,f)$为极小曲面的Weierstrass表示对. 亚纯函数$g$实际上是Gauss映射, 下面的命题阐述了这件事.
+\begin{proposition}
+    设$\Omega$为单连通区域.  $X: \Omega \to \R^3$为共形嵌入且 $X(\Omega)$为极小曲面. 设$\pi: \S^2 \to \mathbb{C}$是球极投影. $N$为$X(\Omega)$的Gauss映射. 设$(g,f)$为$X$的Weierstrass表示对. 则
+    \begin{equation}
+        g=\pi\circ N  \circ X.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    由全纯函数的性质可知, 
+    \begin{align}
+        &\partial_u \Re \int \phi= \Re \phi \\
+        &\partial_v \Re \int \phi= -\Im \phi
+    \end{align}
+    因此,我们有
+    \begin{equation}
+        \begin{split}
+            X_u \wedge X_v &= -(\Re \phi_1,\Re \phi_2, \Re \phi_3) \wedge (\Im \phi_1, \Im \phi_2, \Im \phi_3) \\
+            &= - \begin{pmatrix}
+                & \Re \phi_1 & \Re \phi_2 &\Re \phi_3 \\
+                & \Im \phi_1 & \Im \phi_2 &\Im \phi_3 \\
+                & \partial_1 & \partial_2 &\partial_3
+            \end{pmatrix} \\
+            &= - (\Re\phi_2 \Im \phi_3- \Im \phi_2 \Re \phi_3, \Re \phi_3 \Im \phi_1- \Im\phi_3 \Re \phi_1, \Re \phi_1 \Im \phi_2 - \Re\phi_2 \Im \phi_3) \\
+            &= (\Im \phi_2 \bar{\phi}_3, \Im \phi_3 \bar{\phi}_1, \Im \phi_1 \bar{\phi}_2) \\
+            &=(\Im \frac{i}{2}\abs{f}^2(1+g^2)\bar{g}, \frac{1}{2}\abs{f}^2(1-\bar{g}^2)g, \Im \frac{i}{4}\abs{f}^2(1-g^2)(1-\bar{g}^2)) \\
+            &= \frac{1}{4}(2\lambda^2\Re g, 2\lambda^2 \Im g, \lambda^2(\abs{g}^2-1))
+        \end{split}
+    \end{equation}
+    这里, $\Re, \Im$分别表示实部与虚部. 于是, 
+    \begin{equation}
+        \abs{X_u \wedge X_v}^2=\frac{1}{4}\abs{f}^2(1+\abs{g}^2)^2
+    \end{equation}
+    \begin{equation}
+        N=\frac{X_u\wedge X_v}{\abs{X_u\wedge X_v}}= \frac{1}{1+\abs{g}^2}(2\Re g, 2 \Im g, \abs{g}^2-1)
+    \end{equation}
+    最终由球极投影的定义可知 $\pi\circ N \circ X=g$.
+\end{proof}
+由上面的命题可知, 亚纯函数$g$的极点的几何含意是明显的, 在$g$的极点处, 极小曲面的单位法向垂直向上.
+\par 另一种表示方法为$(g,dh)$. 这里$g$如上. $dh$为亚纯微分. 我们只需要取$dh=fgdz$即可.这样, Weierstrass表示也可以写为
+\begin{equation}
+    X=\Re \int^z (\frac{1}{2}\frac{1-g^2}{g}, \frac{i}{2}\frac{1+g^2}{g},1)dh
+\end{equation}
+在这种表示下, $dh$被称为高度微分(height differential), 它的几何含意也是明显地, 我们有
+\begin{equation}
+    \Re dh= dX_3.
+\end{equation}
+\subsubsection{极小曲面的例子}

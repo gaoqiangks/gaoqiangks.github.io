@@ -1,0 +1,61 @@
+%\addcontentsline{toc}{chapter}{附录}
+\appendix
+\appendix
+\chapter{附录}
+\section{复分析基础}
+\subsection{等温坐标的存在性}
+\begin{theorem}
+    设$(M^2, g)$是二维黎曼流形, 则存在$M^2$上的一组坐标卡$\{z=x+iy\}$, 使得在这组坐标下, $g=\lambda^2\abs{dz}^2$, 并且这组坐标下的坐标变换是全纯的.
+\end{theorem}
+\begin{proof}
+    固定点$p \in M$. 取$p$点的足够小的邻域 $\Omega$, 在$\Omega$中, 取函数$u$ 使得
+    \begin{equation}
+        \Delta_g u= \Delta u + \Gamma^j_{ii}u_j=0.
+    \end{equation}
+    根据椭圆方程的理论, 这个方程总是局部可解的. 令$\omega= \sqrt{\det g}dx$为$M$上的体积形式. 定义$1-$形式
+    \begin{equation}
+        \alpha= \Tr(\nabla u \otimes \omega)= i^*_{\nabla_u } \omega
+    \end{equation}
+    则 $d\alpha= \div(\nabla u)\omega =0$. 即, $\alpha$是闭的$1-$形式. 由Poincare引理可知, 存在函数$v$使得$\alpha= dv$.  现在,我们证明函数$u,v$具有如下关系:
+    \begin{enumerate}
+        \item $\inner{\nabla u}{\nabla v} =0$.
+        \item $\abs{\nabla u}= \abs{\nabla v}$.
+    \end{enumerate}
+    对于性质(1), 我们有
+    \begin{equation}
+        \inner{\nabla u}{\nabla v} = dv(\nabla u) = \alpha(\nabla u)= (i^*_{\nabla u} w)\nabla u =0
+    \end{equation}
+    对于性质(2), 我们有
+    \begin{equation}
+        \inner{\nabla v}{\nabla v} = \inner{dv}{dv} = \inner{i^*_{\nabla u}\omega }{ i^*_{\nabla u}\omega}= \inner{\nabla u}{\nabla u}.
+    \end{equation}
+    上面的最后一个等式在测地坐标下是容易验证的. 
+    \par 现在, 设$F(x,y)=(u,v)$. 在点$p$处, 由性质(1)可知, $\det dF(p) \ne 0$. 由反函数定理可知, $(u,v)$可以作为一组局部坐标. 在这组坐标下, 度量$g$的局部表示为
+    \begin{equation}
+        g=g_{uu}du^2+2g_{uv}dudv+g_{vv}dv^2
+    \end{equation}
+    由于
+    \begin{align}
+        &g_{uu}= \abs{\nabla u} = \abs{\nabla v}= g_{vv} \\
+        &g_{uv}=\inner{\nabla u}{\nabla v}=0. 
+    \end{align}
+    只需要取$z=u+iv$, $\lambda= \abs{\nabla u}$即可.
+\end{proof}
+\subsection{调和共轭}
+\begin{proposition}
+    设$\Omega$是单连通区域. $u: \Omega \to \R$是调和函数. 则存在全纯函数$F$使得$u=\Re F$.
+\end{proposition}
+\begin{proof}
+    定义
+    \begin{equation}
+        \tilde{v}(x,y)= \int^y_0 u_x(x,t)dt. 
+    \end{equation}
+    那么
+    \begin{equation}
+        \begin{split}
+            \tilde{v}_x  =\int^y_0 u_{xx}(x,t)dt &=- \int^y_0 u_{tt}(x,t)dt \\
+            &= -u_y(x,y)+u_y(x,0)
+        \end{split}
+    \end{equation}
+    取$v(x,y)=\tilde{v}(x,y)- \int^x_0 u_y(t,0)dt$, 则$F(x,y)=u+iv$满足Cauchy-Riemann方程.
+\end{proof}
