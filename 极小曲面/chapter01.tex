@@ -95,12 +95,12 @@
     $\partial B_r \cap \G(u)$将$\partial B_r$分成两部分, 这两部分的面积都比$\Area(B_r\cap \G(u))$要大(与命题\eqref{mse_min1}的证明完全相同).
 \end{proof}
 \section{第一变分公式}
-设$(M^n,g)$是黎曼流形, $\Sigma^{n-1}\subset M$是$n-1$维子流形. 我们采取的记号如下
+设$(\M^n,g)$是黎曼流形, $\Sigma^{n-1}\subset \M$是$n-1$维子流形. 我们采取的记号如下
 \begin{itemize}
     \item $X^T,X^\perp$: 切向量$X \in T_pM$在$T_p\Sigma$上的切向及法向分量.
     \item $T_p^\perp \Sigma$:=$\{X\mid X\in T_pM, X\perp T_p\Sigma\}$. $\Sigma$在$p$点处的法丛.
-    \item $\nabla,\nabla_\Sigma$: $M$及$\Sigma$上的Levi-Civita联络. $\nabla_\Sigma=\nabla^{T}$.
-    \item $A/II$: $\Sigma$在$M$中的向量值与标量值第二基本形式. $A(X,Y)=(\nabla_XY)^\perp$. $II(X,Y)=\inner{A(X,Y)}{\vec{n}}$. $\vec{n}$为给定的单位法向.
+    \item $\nabla,\nabla_\Sigma$: $\M$及$\Sigma$上的Levi-Civita联络. $\nabla_\Sigma=\nabla^{T}$.
+    \item $A/II$: $\Sigma$在$\M$中的向量值与标量值第二基本形式. $A(X,Y)=(\nabla_XY)^\perp$. $II(X,Y)=\inner{A(X,Y)}{\vec{n}}$. $\vec{n}$为给定的单位法向.
     \item $\vec{H}$: $\Sigma$的平均曲率向量. $\vec{H}(p)=\Tr(A)=\sum_{i}^{n-1}A(e_i,e_i)$, $\{e_i\}$是$T_p\Sigma$的标准正交基.
     \item ${H}$: $\Sigma$的平均曲率. $H=\inner{\vec{H}}{\vec{n}}$, $\vec{n}$为$\Sigma$的单位法向.
     \item $\div_\Sigma X$: $X \in TM$在$\Sigma$上的散度. $\div_\Sigma X=\sum_{i=1}^{n-1}\inner{\nabla_{e_i}X}{e_i}$. $\{e_i\}$是 $T\Sigma$的标准正交基(验证这个定义与基的选取无关). 需要注意 , 这里$X$可以定义在$TM$上, 而不仅仅是$T\Sigma$上. 散度算子满足如下的Lebniez公式:
@@ -108,16 +108,16 @@
         \div_\Sigma(fX)=f\div_\Sigma(X)+\inner{\nabla_\Sigma f}{X}
     \end{equation}
 \end{itemize}
-设$F(x,t): \Sigma \times (-\epsilon, \epsilon) \to M$是曲面$\Sigma$的一个变分(连续形变)满足
+设$F(x,t): \Sigma \times (-\epsilon, \epsilon) \to \M$是曲面$\Sigma$的一个变分(连续形变)满足
 \begin{enumerate}
     \item $F(x,0)=x$.
     \item $\forall x \in \partial \Sigma, F(x,t)=x$.
 \end{enumerate}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.5]{images/variation.png}
-	\caption{}
+	\includegraphics[scale=0.8]{images/variation.png}
+	\caption{曲面的变分}
 	\label{variation_p}
 \end{figure}
 
@@ -193,7 +193,7 @@
 \end{equation}
 因此, 若要使得曲面$\Sigma$的任意变分都不减小曲面的面积, 则$\Sigma$的平均曲率必定为0. 现在我们得到以下的定义:
 \begin{definition}
-    称$\Sigma^{n-1} \subset M^n$是极小曲面, 如果$H_\Sigma=0$.
+    称$\Sigma^{n-1} \subset \M^n$是极小曲面, 如果$H_\Sigma=0$.
 \end{definition}
 \section{曲面上的坐标函数}
 设$\Sigma^{n-1} \subset \R^n$是光滑曲面. 设$\XX=(X^1,X^2,\cdots,X^n)$为$\R^n$上的坐标函数在$\Sigma$上的限制. $\XX$的一些性质如下.
@@ -261,10 +261,10 @@
     设$\Sigma \subset \R^3$是极小曲面. 设$\Gamma \subset \partial \Sigma$是一段直线段. 设$\Sigma$有关直线$\Gamma$的对称反射的像为$\Sigma'$. 则$\Sigma \cup \Sigma'$是极小曲面.
 \end{proposition}
    
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
 	\includegraphics[scale=0.5]{images/reflection1.png}
-	\caption{}
+	\caption{Schwartz反射}
 	\label{reflection1}
 \end{figure}
 
@@ -297,13 +297,13 @@
     由于$\forall z \in \partial B_r(x_0), \tilde{u}(z)=-\tilde{u}(\bar{z})$. 则$\forall a\in B_r, v(a)=-v(\bar{a})$. 则在$x-$轴上, $v\eq 0$. 因此, $v|_{\partial{B_r^+}}=\tilde{u}|_{\partial{B_r^+}}$, $v|_{\partial{B_r^-}}=\tilde{u}|_{\partial{B_r^-}}$. 由最大值原理可知在$B_r$上, $\tilde{u}=v$. 因此, $\tilde{u}$是调和的.
 \end{proof}
 \begin{lemma}[等温坐标的存在性]
-    设$(M^2, g)$是二维黎曼流形, 则存在$M^2$上的一组坐标卡$\{z=x+iy\}$, 使得在这组坐标下, $g=\lambda^2\abs{dz}^2$, 并且这组坐标下的坐标变换是全纯的.
+    设$(\M^2, g)$是二维黎曼流形, 则存在$\M^2$上的一组坐标卡$\{z=x+iy\}$, 使得在这组坐标下, $g=\lambda^2\abs{dz}^2$, 并且这组坐标下的坐标变换是全纯的.
 \end{lemma}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.5]{images/reflection2.png}
-	\caption{}
+	\includegraphics[scale=0.8]{images/reflection2.png}
+	\caption{等温坐标}
 	\label{reflection2}
 \end{figure}
 \begin{proof}[命题\eqref{min_reflection}的证明]
@@ -340,7 +340,7 @@
 \begin{proposition}[余面积公式]
     设$\Sigma^{n-1}\subset \R^n$是光滑曲面.  设$h: \Sigma \to \R$是Lipschitz, proper(紧集的原像为紧集)映射.  则$\forall f \in L^1_{\loc}(\Sigma)$, 成立
     \begin{equation}
-        \int_{\{h < t\}} f \abs{\nabla_\Sigma h}dH^{n-1}=\int^t_{-\infty} \int_{\{h=r\}}f dH^{n-2}dr
+        \int_{\{h < t\}} f \abs{\nabla_\Sigma h}d{\Haus}^{n-1}=\int^t_{-\infty} \int_{\{h=r\}}f d{\Haus}^{n-2}dr
     \end{equation}
 \end{proposition}
 余面积公式相当于Fubini定理, 可以将多重积分变为累次积分来计算. 例如, 取$\Sigma =\Omega, h(x,y)=x, f(x,y)=\chi_\Omega, t=+\infty$. 那么, 在余面积公式中, 
@@ -352,9 +352,9 @@
 设$\Sigma^{n-1}\subset \R^n$是光滑曲面. 设$t>s$且$B_t(p) \cap \partial \Sigma =\emptyset$. 设$f \in C^1(\Sigma)$, $H$是$\Sigma$的平均曲率.  则有    
 \begin{equation}
     \begin{split}
-        &\frac{1}{t^{n-1}}\int_{\Sigma\cap B_t} f dH^{n-1}-\frac{1}{s^{n-1}}\int_{\Sigma\cap B_s} f dH^{n-1} \\
+        &\frac{1}{t^{n-1}}\int_{\Sigma\cap B_t} f d{\Haus}^{n-1}-\frac{1}{s^{n-1}}\int_{\Sigma\cap B_s} f d{\Haus}^{n-1} \\
         =& \int_{\Sigma \cap (B_t-B_s)} f \frac{\abs{(x-p)^\perp}^2}{\abs{x-p}^{n+1}} \\
-        &+\frac{1}{2}\int^t_s \frac{1}{r^n}\int_{\Sigma\cap B_r}(r^2-\abs{x-p}^2)\Delta_{\Sigma}f+2f\inner{\vec{H}}{(x-p)^\perp}dH^{n-1}dr
+        &+\frac{1}{2}\int^t_s \frac{1}{r^n}\int_{\Sigma\cap B_r}(r^2-\abs{x-p}^2)\Delta_{\Sigma}f+2f\inner{\vec{H}}{(x-p)^\perp}d{\Haus}^{n-1}dr
     \end{split}
 \end{equation}
 \end{proposition}
@@ -366,7 +366,7 @@
      我们分别计算上式右侧的两项. 首先来计算第二项. 设$f=g\frac{\abs{x^T}}{\abs{x}}=g\abs{\nabla_\Sigma \abs{x}}$. 则由余面积公式(取$h=\abs{x}$),
      \begin{equation}
         \begin{split}
-            \int_{\Sigma \cap B_r} f = \int_{\{\abs{x} < r\}\cap \Sigma }g \abs{\nabla_\Sigma \abs{x}} &= \int^r_{-\infty} \int_{\{\abs{x}=\rho\} \cap \Sigma} g dH^{n-2}d\rho 
+            \int_{\Sigma \cap B_r} f = \int_{\{\abs{x} < r\}\cap \Sigma }g \abs{\nabla_\Sigma \abs{x}} &= \int^r_{-\infty} \int_{\{\abs{x}=\rho\} \cap \Sigma} g d{\Haus}^{n-2}d\rho 
             %&= \int^r_{-\infty}\int_{\partial B_\rho \cap \Sigma} g
         \end{split}
      \end{equation}
@@ -646,10 +646,51 @@
 由上面的命题可知, 亚纯函数$g$的极点的几何含意是明显的, 在$g$的极点处, 极小曲面的单位法向垂直向上.
 \par 另一种表示方法为$(g,dh)$. 这里$g$如上. $dh$为亚纯微分. 我们只需要取$dh=fgdz$即可.这样, Weierstrass表示也可以写为
 \begin{equation}
-    X=\Re \int^z (\frac{1}{2}\frac{1-g^2}{g}, \frac{i}{2}\frac{1+g^2}{g},1)dh
+    X=\Re \int^z (\frac{1-g^2}{2g}, \frac{i(1+g^2)}{2g},1)dh
 \end{equation}
 在这种表示下, $dh$被称为高度微分(height differential), 它的几何含意也是明显地, 我们有
 \begin{equation}
     \Re dh= dX_3.
 \end{equation}
 \subsubsection{极小曲面的例子}
+Catenoid: $g(z)=z, dh=\frac{1}{z}dz, z \in \mathbb{C}-\{0\}$.  
+\par Catenoid是由悬链面旋转而得到的.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.5]{images/catenoid.png}
+	\caption{Catenoid}
+	\label{variation_p}
+\end{figure}
+
+
+\begin{exercise}
+    设$\Sigma$为Catenoid. $\Gamma_a=\Sigma \cap \{z=\pm a\}$. 试比较以下三个以$\Gamma_a$为边界的曲面的面积大小.
+    \begin{enumerate}
+        \item $\Gamma_a$所围的两个圆盘之并. 即 $\{(x,y,z)\mid \sqrt{x^2+y^2} \le \cosh a, z=\pm a\}$.
+        \item $\Gamma_a$的两个分支之间的柱面. 即$\{(x,y,z)\mid \sqrt{x^2+y^2} = \cosh a, \abs{z} \le a\}$.
+        \item $\Gamma_a$之间Catenoid的部分. 即$\{(x,y,z)\mid  \sqrt{x^2+y^2}=\cosh z, \abs{z} \le a \}$.
+    \end{enumerate}
+\end{exercise}
+\begin{exercise}
+    设$\gamma\subset \R^3$是 $xz$平面上的曲线. $\gamma= \{(x,0,z)\mid x=f(z) >0 \}$. 由$\gamma$ 绕$z$轴旋转所得到的曲面记为$\Sigma$. 若$\Sigma$是极小曲面, 试求$f$的表达式.
+\end{exercise}
+Helicold: $g(z)=z, dh= \frac{i}{z}, z \in \mathbb{C}-\{0\}$.
+Helicold是由一条水平直线匀速螺旋上升而得到的. Helicold可以局部地表示为$z=\arctan\frac{y}{x}$的形式.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.5]{images/helicoid.png}
+	\caption{Helicoid}
+	\label{variation_p}
+\end{figure}
+\par Catenoid与Helicold的关系: Helicold可以由Catenoid连续变化而得到. 注意观察它们的Weierstrass表示对分别为$(z,\frac{1}{z}dz)$, $(z,\frac{i}{z}dz)$.
+\begin{align}
+    &\text{Catenoid}= \Re \int (\frac{1-g^2}{2g}, \frac{i(1+g^2)}{2g},1)\frac{1}{z}dz \\
+    &\text{Helicold}= \Re i \int (\frac{1-g^2}{2g}, \frac{i(1+g^2)}{2g},1)\frac{1}{z}dz \\
+\end{align}
+现在, 定义
+\begin{equation}
+    \Sigma_t= \Re e^{\frac{\pi it}{2}} \int (\frac{1-g^2}{2g}, \frac{i(1+g^2)}{2g},1)\frac{1}{z}dz 
+\end{equation}
+那么, 对于每一个$t$, $\Sigma_t$都是极小曲面, 并且$t=0,1$时得到的分别为Catenoid与Helicoid.
