@@ -782,14 +782,76 @@ Helicold是由一条水平直线匀速螺旋上升而得到的. Helicold可以�
 \end{figure}
 \par Catenoid与Helicold的关系: Helicold可以由Catenoid连续变化而得到. 注意观察它们的Weierstrass表示对分别为$(z,\frac{1}{z}dz)$, $(z,\frac{i}{z}dz)$.
 \begin{align}
-    &\text{Catenoid}= \Re \int (\frac{1-g^2}{2g}, \frac{i(1+g^2)}{2g},1)\frac{1}{z}dz \\
-    &\text{Helicold}= \Re i \int (\frac{1-g^2}{2g}, \frac{i(1+g^2)}{2g},1)\frac{1}{z}dz \\
+    &\text{Catenoid}= \Re \int (\frac{1-z^2}{2z}, \frac{i(1+z^2)}{2z},1)\frac{1}{z}dz \\
+    &\text{Helicold}= \Re i \int (\frac{1-z^2}{2z}, \frac{i(1+z^2)}{2z},1)\frac{1}{z}dz \\
 \end{align}
 现在, 定义
 \begin{equation}
     \Sigma_t= \Re e^{\frac{\pi it}{2}} \int (\frac{1-g^2}{2g}, \frac{i(1+g^2)}{2g},1)\frac{1}{z}dz 
 \end{equation}
 那么, 对于每一个$\theta$, $\Sigma_\theta$都是极小曲面, 并且$\theta=0,1$时得到的分别为Catenoid与Helicoid.
+下面的图表示了这个连续变化的过程.
+The singly periodic Scherk surface.
+单周期Scherk surface的Weierstrass表示为
+\begin{equation*}
+    g(z)=z, dh=\frac{iz}{z^4-1}
+\end{equation*}
+\begin{equation*}
+    X(z)=\Re \int^z_0(\frac{1}{2}\frac{1-w^2}{w}, \frac{i}{2}\frac{1+w^2}{w},1)\frac{iw}{w^4-1}dw
+\end{equation*}
+这里, $\int^z_0$表示沿条连接$0$与$z$点的路径的曲线积分. 然而由于被积函数不是全纯的, 这个路径是依赖于路径的选取的.  我们接下来将会说明, 对路径的依赖将会导致\textbf{曲面具有周期性}.
+\par 首先来看$X(z)$的$x$分量. 我们计算一下$x(z)$对路径的依赖是什么样的.  对于$x$坐标, $\{\pm i\}$是积分的奇点. 设$\alpha$, $\beta$为如图所示的两条路径, 那么
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.8]{images/scherk_x.png}
+    %\caption{积分对路径的依赖}
+    \label{scherk_x}
+\end{figure}
+\begin{equation}
+    \begin{split}
+        \int_{\alpha- \beta} \frac{1}{2}\frac{1-w^2}{w} \frac{iw}{w^4-1} &= -\frac{i}{2}\int_{\alpha-\beta} \frac{1}{1+w^2} \\
+        &=-\frac{i}{2}2\pi i \Res(\frac{1}{1+w^2})\mid_{w=i} =-\frac{\pi}{2}i.
+    \end{split}
+\end{equation}
+对于点$-i$处的计算也是如此. 因此, $x-$坐标与积分路径的选择无关. 同样地,对于$y-$坐标, $\{\pm 1\}$是其奇点. 设$\alpha, \beta$如图, 那么直接计算可知
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.8]{images/scherk_y.png}
+    %\caption{}
+    \label{scherk_y}
+\end{figure}
+\begin{equation}
+    \begin{split}
+        \int_{\alpha-\beta} \frac{i}{2}\frac{1+w^2}{w} \frac{iw}{w^4-1} &= \frac{1}{2}\int_{\alpha-\beta \frac{1}{1-w^2}} \\
+        &= \frac{1}{2} 2\pi i \Res(\frac{1}{1-w^2} ) \mid_{w=1}=\frac{\pi}{2}i
+    \end{split}
+\end{equation}
+因此, $y-$坐标也与路径的选择无关.  
+\par 而对于$z-$坐标, 我们只以图\eqref{scherk_x}中的情况为例来说明.
+\begin{equation}
+    \int_{\alpha-\beta} \frac{iw}{w^4-1} = i 2\pi i \Res(\frac{w}{w^4-1}) \mid_{w=i} = \frac{\pi}{2}
+\end{equation}
+因此, $z-$坐标是路径的选择有关的. 令
+\begin{equation}
+    \Omega= \mathbb{C}-\{(x,y)\mid y=0, \abs{x}\ge 1 \text{ 或 } x=0, \abs{y}\ge 1\}
+\end{equation}
+那么, $\Omega$是单连通的. $\forall z \in \Omega$, 选择曲线$\alpha \subset \Omega$使得$\alpha(0)=0, \alpha(1)=z$. 那么我们就可以定义
+\begin{equation}
+    X(z)=\Re \int_{\alpha}(\frac{1}{2}\frac{1-w^2}{w}, \frac{i}{2}\frac{1+w^2}{w},1)\frac{iw}{w^4-1}dw
+\end{equation}
+由于我们选择了$\Omega$单连通, 那么$X$是良好定义的. 这样我们得到了$\Omega \to \R^3$的一个极小曲面.
+\par $\forall z$, 选择$\beta$使得$\beta(0)=0, \beta(1)=z$, 但是比起$\alpha$, 我们要求$\beta$在点$i$处绕了一圈. 如图\eqref{scherk_z}所示.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.8]{images/scherk_3.png}
+    \caption{z-坐标}
+    \label{scherk_z}
+\end{figure}
+定义
+\begin{equation}
+    \tilde{X}(z)=\Re \int_{\beta}(\frac{1}{2}\frac{1-w^2}{w}, \frac{i}{2}\frac{1+w^2}{w},1)\frac{iw}{w^4-1}dw
+\end{equation}
+根据我们之前的计算, $x=\tilde{x}, y=\tilde{y}, z=\tilde{z}-\frac{pi}{2}$. 因此, $\tilde{X}(\Omega)$是$X(\Omega)$向上平移而得到的. 实际上, $X(\Omega)\cup \tilde{X}(\Omega)$可以光滑地拼接在一起. 另外, 假如我们选择$\beta$在点$i$处绕$k$圈时, 将恰好得到由$X(\Omega)$向上平移$\frac{k\pi}{2}$ 而得到的极小曲面. 将无数个这样的曲面拼接在一起就得到了单周期的Scherk surface.
 \section{习题}
 \begin{enumerate}
     \item 证明: $\R^n$中不存在紧致无边的极小曲面.
