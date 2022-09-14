@@ -6,7 +6,7 @@
         \Area(\Sigma) \le \Area(\Sigma')
     \end{equation*}
 \end{question*}
-这个问题现在被称为Plateau问题(虽然它最早由Langrage提出). 1920-30s年代, 这个问题被Rado和Douglas解决(Douglas 也因为在 Plateau 问题上的工作而获得第一届Fields奖).
+这个问题现在被称为Plateau问题(最早由Langrage提出). 1920-30s年代, 这个问题被 Rado 和 Douglas 解决(Douglas 也因为在 Plateau 问题上的工作而获得第一届Fields奖).
 \section{极小曲面方程}
 每个曲面都可以局部地表示为函数的图像的形式, 因此我们首先来研究可以作为函数图像的曲面. 设$\Sigma$是面积最小的曲面, 且
 \begin{equation*}
@@ -729,16 +729,17 @@
     因此,我们有
     \begin{equation}
         \begin{split}
-            X_u \wedge X_v &= -(\Re \phi_1,\Re \phi_2, \Re \phi_3) \wedge (\Im \phi_1, \Im \phi_2, \Im \phi_3) \\
-            &= - \begin{pmatrix}
+            X_u \wedge X_v  \\
+            =& -(\Re \phi_1,\Re \phi_2, \Re \phi_3) \wedge (\Im \phi_1, \Im \phi_2, \Im \phi_3) \\
+            =& - \begin{pmatrix}
                 & \Re \phi_1 & \Re \phi_2 &\Re \phi_3 \\
                 & \Im \phi_1 & \Im \phi_2 &\Im \phi_3 \\
                 & \partial_1 & \partial_2 &\partial_3
             \end{pmatrix} \\
-            &= - (\Re\phi_2 \Im \phi_3- \Im \phi_2 \Re \phi_3, \Re \phi_3 \Im \phi_1- \Im\phi_3 \Re \phi_1, \Re \phi_1 \Im \phi_2 - \Re\phi_2 \Im \phi_3) \\
-            &= (\Im \phi_2 \bar{\phi}_3, \Im \phi_3 \bar{\phi}_1, \Im \phi_1 \bar{\phi}_2) \\
-            &=(\Im \frac{i}{2}\abs{f}^2(1+g^2)\bar{g}, \frac{1}{2}\abs{f}^2(1-\bar{g}^2)g, \Im \frac{i}{4}\abs{f}^2(1-g^2)(1-\bar{g}^2)) \\
-            &= \frac{1}{4}(2\lambda^2\Re g, 2\lambda^2 \Im g, \lambda^2(\abs{g}^2-1))
+            =& - (\Re\phi_2 \Im \phi_3- \Im \phi_2 \Re \phi_3, \Re \phi_3 \Im \phi_1- \Im\phi_3 \Re \phi_1, \Re \phi_1 \Im \phi_2 - \Re\phi_2 \Im \phi_3) \\
+            =& (\Im \phi_2 \bar{\phi}_3, \Im \phi_3 \bar{\phi}_1, \Im \phi_1 \bar{\phi}_2) \\
+            =&(\Im \frac{i}{2}\abs{f}^2(1+g^2)\bar{g}, \frac{1}{2}\abs{f}^2(1-\bar{g}^2)g, \Im \frac{i}{4}\abs{f}^2(1-g^2)(1-\bar{g}^2)) \\
+            =& \frac{1}{4}(2\lambda^2\Re g, 2\lambda^2 \Im g, \lambda^2(\abs{g}^2-1))
         \end{split}
     \end{equation}
     这里, $\Re, \Im$分别表示实部与虚部. 于是, 
@@ -789,10 +790,21 @@ Helicold是由一条水平直线匀速螺旋上升而得到的. Helicold可以�
 \begin{equation}
     \Sigma_t= \Re e^{\frac{\pi it}{2}} \int (\frac{1-g^2}{2g}, \frac{i(1+g^2)}{2g},1)\frac{1}{z}dz 
 \end{equation}
-那么, 对于每一个$\theta$, $\Sigma_\theta$都是极小曲面, 并且$\theta=0,1$时得到的分别为Catenoid与Helicoid.
-下面的图表示了这个连续变化的过程.
-The singly periodic Scherk surface.
-单周期Scherk surface的Weierstrass表示为
+\begin{figure}[ht]
+        \center
+        \scriptsize
+        \begin{tabular}{cc}
+                \includegraphics[scale=0.2]{images/catenoid2helicold0.png} &\includegraphics[scale=0.2]{images/catenoid2helicold1_10.png}\\
+                ($t=0$) & ($t=\frac{1}{10}$) \\
+                \includegraphics[scale=0.2]{images/catenoid2helicold1_3.png}& \includegraphics[scale=0.2]{images/catenoid2helicold1.png}\\
+                ($t=\frac{1}{3}$) & ($t=1$) \\
+        \end{tabular}
+        \caption{Catenoid到Helicoid的连续形变}
+        \label{catenoid2helicoid}
+        %\vspace{-0.5em}
+\end{figure}
+那么, 对于每一个$\theta$, $\Sigma_\theta$都是极小曲面, 并且$\theta=0,1$时得到的分别为Catenoid与Helicoid.  图\eqref{catenoid2helicoid}表示了这个连续变化的过程.
+\par The singly periodic Scherk surface.  单周期Scherk surface的Weierstrass表示为
 \begin{equation*}
     g(z)=z, dh=\frac{iz}{z^4-1}
 \end{equation*}
@@ -804,7 +816,7 @@ The singly periodic Scherk surface.
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.8]{images/scherk_x.png}
-    %\caption{积分对路径的依赖}
+    \caption{x-coordinate}
     \label{scherk_x}
 \end{figure}
 \begin{equation}
@@ -817,7 +829,7 @@ The singly periodic Scherk surface.
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.8]{images/scherk_y.png}
-    %\caption{}
+    \caption{y-coordinate}
     \label{scherk_y}
 \end{figure}
 \begin{equation}
@@ -844,14 +856,14 @@ The singly periodic Scherk surface.
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.8]{images/scherk_3.png}
-    \caption{z-坐标}
+    \caption{z-coordinate}
     \label{scherk_z}
 \end{figure}
 定义
 \begin{equation}
     \tilde{X}(z)=\Re \int_{\beta}(\frac{1}{2}\frac{1-w^2}{w}, \frac{i}{2}\frac{1+w^2}{w},1)\frac{iw}{w^4-1}dw
 \end{equation}
-根据我们之前的计算, $x=\tilde{x}, y=\tilde{y}, z=\tilde{z}-\frac{pi}{2}$. 因此, $\tilde{X}(\Omega)$是$X(\Omega)$向上平移而得到的. 实际上, $X(\Omega)\cup \tilde{X}(\Omega)$可以光滑地拼接在一起. 另外, 假如我们选择$\beta$在点$i$处绕$k$圈时, 将恰好得到由$X(\Omega)$向上平移$\frac{k\pi}{2}$ 而得到的极小曲面. 将无数个这样的曲面拼接在一起就得到了单周期的Scherk surface.
+根据我们之前的计算, $x=\tilde{x}, y=\tilde{y}, z=\tilde{z}-\frac{\pi}{2}$. 因此, $\tilde{X}(\Omega)$是$X(\Omega)$向上平移而得到的. 实际上, $X(\Omega)\cup \tilde{X}(\Omega)$可以光滑地拼接在一起. 另外, 假如我们选择$\beta$在点$i$处绕$k$圈时, 将恰好得到由$X(\Omega)$向上平移$\frac{k\pi}{2}$ 而得到的极小曲面. 将无数个这样的曲面拼接在一起就得到了单周期的Scherk surface.
 \section{习题}
 \begin{enumerate}
     \item 证明: $\R^n$中不存在紧致无边的极小曲面.
