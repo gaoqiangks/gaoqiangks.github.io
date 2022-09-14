@@ -6,7 +6,7 @@
         \Area(\Sigma) \le \Area(\Sigma')
     \end{equation*}
 \end{question*}
-这个问题现在被称为Plateau问题(虽然它最早由Langrage提出). 1920-30s年代, 这个问题被Rado和Douglas解决(Douglas也因为在Plateau上的工作而获得第一届Fields奖).
+这个问题现在被称为Plateau问题(虽然它最早由Langrage提出). 1920-30s年代, 这个问题被Rado和Douglas解决(Douglas 也因为在 Plateau 问题上的工作而获得第一届Fields奖).
 \section{极小曲面方程}
 每个曲面都可以局部地表示为函数的图像的形式, 因此我们首先来研究可以作为函数图像的曲面. 设$\Sigma$是面积最小的曲面, 且
 \begin{equation*}
@@ -92,7 +92,16 @@
     \end{equation}
 \end{corollary}
 \begin{proof}
-    $\partial B_r \cap \G(u)$将$\partial B_r$分成两部分, 这两部分的面积都比$\Area(B_r\cap \G(u))$要大(与命题\eqref{mse_min1}的证明完全相同).
+    设$B_r$在$\Omega$中的投影为$B'$. 显然$B'$是凸集. $\partial B_r \cap \G(u)$将$\partial B_r$分成两部分, 分别记为$S^+, S^-$. 设$\Sigma'= B'\times \R \cap \Sigma$. 由命题\eqref{mse_min2}可知, 
+    \begin{align}
+        &\Area((\Sigma'-B_r \cap \Sigma) \cup S^+) \ge \Area(\Sigma') \\
+        &\Area((\Sigma'-B_r \cap \Sigma) \cup S^-) \ge \Area(\Sigma')
+    \end{align}
+    而这等价于
+    \begin{align}
+        &\Area(S^+) \ge \Area(B_r \cap \Sigma)  \\
+        &\Area(S^-) \ge \Area(B_r \cap \Sigma) 
+    \end{align}
 \end{proof}
 \section{第一变分公式}
 设$(\M^n,g)$是黎曼流形, $\Sigma^{n-1}\subset \M$是$n-1$维子流形. 我们采取的记号如下
@@ -204,7 +213,15 @@
 \end{enumerate}
 \begin{proof}
     性质(1)根据定义直接可以得到.
-    \par 对于性质(2), 首先需要注意, 我们是在\textbf{对$\XX$的每个分量分别求导, 而不是求一个张量的Laplace}.  设$(\partial_i)$是$\R^n$的标准正交基. 我们注意到: 对于任意$Y=Y^i\partial_i \in \R^n$, $\nabla_Y\XX=Y^iX^j\nabla_{\partial_i}\partial_j+Y^i\partial_i(X^j)\partial_j=Y$. 取$T\Sigma$上的标准正交基$(e_i)$. 设$X^k$是$\XX$的第$k$个分量. 由于对于任意$Y \in T\Sigma$, $\nabla^\Sigma_Y X^k= \inner{\nabla^\Sigma X^k}{Y} = \inner{\nabla X^k}{Y} = Y(X^k)$, 则有
+    \par 对于性质(2), 首先需要注意, $\Delta_\Sigma \XX=(\Delta_\Sigma X^1, \Delta_\Sigma X^2, \cdots, \Delta_\Sigma X^n)$, 是在对每个分量求Laplace.  设$(\partial_i)$是$\R^n$的标准正交基. 我们注意到: 对于任意向量$Y=Y^i\partial_i \in \R^n$,
+    \begin{equation}
+        \nabla_Y\XX=Y^iX^j\nabla_{\partial_i}\partial_j+Y^i\partial_i(X^j)\partial_j=Y. 
+    \end{equation}
+    (上面的等式实际上就是$\nabla \XX =d\XX= Id$, 也可记为$Y(\XX)=Y$,  即对函数 $\XX$在$Y$方向求偏导). 取$T\Sigma$上的标准正交基$(e_i)$. 设$X^k$是$\XX$的第$k$个分量. 则$\forall Y \in T\Sigma$, 
+    \begin{equation}
+        \nabla^\Sigma_Y X^k= \inner{\nabla^\Sigma X^k}{Y} = \inner{\nabla X^k}{Y} = Y(X^k). 
+    \end{equation}
+    于是有
     \begin{equation}
         \begin{split}
             \Delta_\Sigma X^k &= \sum_i (\nabla^\Sigma_{e_i}\nabla^\Sigma_{e_i} X^k -\nabla^\Sigma_{\nabla^\Sigma_{e_i}e_i} X^k) \\
@@ -252,9 +269,6 @@
 \begin{proof}
     $\forall \vec{v} \subset \mathbb{S}^{n-1}$, 记$P_{\vec{v},a}=\{x\in \R^n\mid \inner{x}{\vec{v}} \le a\}$. 设$u(x)=\inner{x}{\vec{v}}$, 则$u(x)$是$\Sigma$上的调和函数. 因此, $u$的最大值只能在$\partial \Sigma$上取到. 若$\partial \Sigma \subset P_{\vec{v},a} $, 则 $\forall x \in \partial \Sigma$, $u(x) \le a$, 因此, $\forall x \in \Sigma$, $u(x) \le a$. 即, $\Sigma \subset P_{\vec{v},a}$. 证毕.
 \end{proof}
-\begin{exercise}
-    证明: $\R^n$中不存在紧致无边的极小曲面.
-\end{exercise}
 \section{Schwartz反射}
 由于推论\eqref{coordinate_h}, 极小曲面有许多性质跟调和函数非常相似(实际上极小曲面也是调和映射). 非常重要的一个应用便是Schwartz反射原理.
 \begin{proposition} \label{min_reflection}
@@ -297,9 +311,11 @@
     由于$\forall z \in \partial B_r(x_0), \tilde{u}(z)=-\tilde{u}(\bar{z})$. 则$\forall a\in B_r, v(a)=-v(\bar{a})$. 则在$x-$轴上, $v\eq 0$. 因此, $v|_{\partial{B_r^+}}=\tilde{u}|_{\partial{B_r^+}}$, $v|_{\partial{B_r^-}}=\tilde{u}|_{\partial{B_r^-}}$. 由最大值原理可知在$B_r$上, $\tilde{u}=v$. 因此, $\tilde{u}$是调和的.
 \end{proof}
 \begin{lemma}[等温坐标的存在性]
-    设$(\M^2, g)$是二维黎曼流形, 则存在$\M^2$上的一组坐标卡$\{z=x+iy\}$, 使得在这组坐标下, $g=\lambda^2\abs{dz}^2$, 并且这组坐标下的坐标变换是全纯的.
+    设$(\M^2, g)$是二维黎曼流形, 则存在$\M^2$上的一组坐标卡$\{z=x+iy\}$, 使得在这组坐标下, $g=\lambda^2\abs{dz}^2=\lambda^2(dx^2+dy^2)$, 并且这组坐标下的坐标变换是全纯的.
 \end{lemma}
-
+\begin{proof}
+    见附录.
+\end{proof}
 \begin{figure}[ht]
 	\centering
 	\includegraphics[scale=0.8]{images/reflection2.png}
@@ -333,9 +349,6 @@
 \begin{remark}
     $\Sigma\subset \R^3$是极小曲面当且仅当$\R^3$中的坐标函数在$\Sigma$上的限制是调和的, 这里$\Sigma$上必须是继承自$\R^3$上的度量. 命题 \eqref{conformal_im}中的共形浸入的条件是必不可少的, 比如, 设$X:\mathbb{D}\to \R^3, X(u,v)=(u,v,uv)$. 显然地, $\Delta X=0$. 但是$X(\mathbb{D})$不是极小曲面.
 \end{remark}
-\begin{exercise}
-    设 $\Sigma \subset \R^3$是极小曲面. 设存在平面$P$使得$\Sigma \perp P$. 设$\Sigma$关于平面$P$的反射后的像为$\Sigma'$. 证明: $\Sigma \cup \Sigma'$是极小曲面.
-\end{exercise}
 \section{单调性公式}
 \begin{proposition}[余面积公式]
     设$\Sigma^{n-1}\subset \R^n$是光滑曲面.  设$h: \Sigma \to \R$是Lipschitz, proper(紧集的原像为紧集)映射.  则$\forall f \in L^1_{\loc}(\Sigma)$, 成立
@@ -349,7 +362,7 @@
     &\text{右侧}= \int^{+\infty}_{-\infty} \int_{\{x=r\}} \chi_\Omega dydr=\abs{\Omega}
 \end{align}
 \begin{proposition}
-设$\Sigma^{n-1}\subset \R^n$是光滑曲面. 设$t>s$且$B_t(p) \cap \partial \Sigma =\emptyset$. 设$f \in C^1(\Sigma)$, $H$是$\Sigma$的平均曲率.  则有    
+设$\Sigma^{n-1}\subset \R^n$是光滑曲面. 设$t>s$且$B_t(p) \cap \partial \Sigma =\emptyset$. 设$f \in C^1(\Sigma)$, $\vec{H}$是$\Sigma$的平均曲率向量.  则有    
 \begin{equation}
     \begin{split}
         &\frac{1}{t^{n-1}}\int_{\Sigma\cap B_t} f d{\Haus}^{n-1}-\frac{1}{s^{n-1}}\int_{\Sigma\cap B_s} f d{\Haus}^{n-1} \\
@@ -388,7 +401,7 @@
         II=2\int_{\partial B_r\cap \Sigma}f\abs{x^T}.
      \end{equation}
      \begin{equation}
-        III=-r^2\int_{\partial B_r\cap \Sigma} \inner{\vec{n}}{\nabla_\Sigma} =-r^2\int_{{B_r} \cap \Sigma} \Delta_{\Sigma}f.
+        III=-r^2\int_{\partial B_r\cap \Sigma} \inner{\vec{n}}{\nabla_\Sigma f} =-r^2\int_{{B_r} \cap \Sigma} \Delta_{\Sigma}f.
      \end{equation}
      现在, 将\eqref{ddr1}及\eqref{ddr2}代入到\eqref{ddr}中, 则有
      \begin{equation}\label{ddr_i}
@@ -409,13 +422,13 @@
      在等式$\eqref{ddr_i}$两侧取积分, 并将\eqref{ddr_i2}代入即可得到单调性公式.
 \end{proof}
 \begin{corollary}
-    设$\Sigma^{n-1} \subset \R^n$是极小曲面. $x_0 \subset \Sigma$, $B_s(x_0) \cap \partial \Sigma = \emptyset$. 设$f \in C^\infty(\Sigma)$且 $f \ge 0, \Delta_{\Sigma}f \ge -\lambda s^2 f$, 则有
+    设$\Sigma^{n-1} \subset \R^n$是极小曲面. $x_0 \in \Sigma$, $B_s(x_0) \cap \partial \Sigma = \emptyset$. 设$f \in C^\infty(\Sigma)$且 $f \ge 0, \Delta_{\Sigma}f \ge -\frac{\lambda f}{s^2}$, 则有
     \begin{equation}
         f(x_0) \le e^{\frac{\lambda}{2}}\frac{\int_{B_s\cap \Sigma}f}{\abs{B_s\subset \R^{n-1}}}
     \end{equation}
 \end{corollary}
 \begin{proof}
-    设$g(t)=\frac{1}{t^{n-1}}\int_{B_t\cap \Sigma}f, t\le s$. 则由单调性公式, 
+    设$g(t)=\frac{1}{t^{n-1}}\int_{B_t\cap \Sigma}f, t\le s$.  将单调性公式代入$\frac{g(t+\Delta t)-g(t)}{\Delta t}$中并扔掉非负的部分, 求极限后得到
     \begin{equation}
         \begin{split}
             g'(t) &\ge \frac{1}{2}\frac{1}{t^n}\int_{B_t\cap \Sigma}(t^2-\abs{x}^2)\Delta_\Sigma f \\
@@ -426,10 +439,10 @@
     \begin{equation}
         \frac{g'(t)}{g(t)} \ge - \frac{\lambda}{2s^2}t\ge -\frac{\lambda}{2s}
     \end{equation}
-    而这等价于: $\ddt (e^{\frac{\lambda t}{2s}g(t)}) \ge 0$. 证毕.
+    而这等价于: $\ddt (e^{\frac{\lambda t}{2s}}g(t)) \ge 0$. 因此, $\abs{B_1 \subset \R^{n-1}}f(x_0)=g(0) \le e^{\frac{\lambda}{2}}g(s)$, 证毕.
 \end{proof}
 \begin{corollary}
-    设$\Sigma^{n-1} \subset \R^n$是极小曲面. $x_0 \subset \R^n$, 设$f \in C^\infty(\Sigma)$且 $f \ge 0, \Delta_{\Sigma}f \ge 0$, 则
+    设$\Sigma^{n-1} \subset \R^n$是极小曲面. $x_0 \in \R^n$, 设$f \in C^\infty(\Sigma)$且 $f \ge 0, \Delta_{\Sigma}f \ge 0$, 则
     \begin{equation}
         \frac{1}{s^{n-1}} \int_{B_s(x_0)\cap \Sigma}f
     \end{equation}
@@ -446,6 +459,11 @@
 \begin{proof}
     $T_{\N(p)}\S^2=\{x\in \R^n\mid \inner{x}{\N(p)}=\inner{x}{\vec{n}}\}$.
 \end{proof}
+回忆一下, $II$表示标量值的第二基本形式, $II(X,Y)=\inner{\nabla_XY}{\vec{n}}$, $\vec{n}$表示$\Sigma$的一个给定的单位法向. $\forall p \in \Sigma$, $II$也可以看作是$T_p\Sigma \to T_p \Sigma$的线性映射.  $\forall X \in T_p\Sigma$, 定义$II(X)$为唯一满足下列性质的向量$Z$.
+\begin{equation}
+    \forall Y \in T_p\Sigma, \inner{II(X)}{Y}=\inner{Z}{Y}
+\end{equation}
+根据定义易知, $II= \nabla \vec{n}$.
 \begin{proposition}
     $\forall X, Y \in T_p\Sigma$, 有等式: 
     \begin{equation}
@@ -459,10 +477,13 @@
 \begin{proposition} \label{gauss_anticonformal}
     设$\Sigma \subset \R^3$是光滑曲面. 则$\Sigma$是极小曲面当且仅当其Gauss映射是反共形的($\S^2$上取由外单位法向所给定的定向). 反共形指的是保持角度大小而不保持方向.
 \end{proposition}
+\begin{remark}
+    反向实际上排除了$\Sigma$是$\S^2$的一部分的情况.  
+\end{remark}
 \begin{proof}
     固定点$p \in \Sigma$. 由于$II$是对称的, 则存在局部标架$\{e_i\}$, 使得在$p$点处, $II e_1=\lambda_1 e_1$, $II e_2=\lambda_2 e_2$. (这里, $\lambda_i,e_i$分别被称作曲面$\Sigma$的主曲率与主曲率方向). 现在,我们有
     \begin{equation}
-        \inner{d\N e_i}{d\N e_j}= \inner{\nabla_{e_i}\vec{n}}{\nabla_{e_j}\vec{n}} \lambda_i\lambda_j\inner{e_i}{e_j}
+        \inner{d\N e_i}{d\N e_j}= \inner{\nabla_{e_i}\vec{n}}{\nabla_{e_j}\vec{n}} =\lambda_i\lambda_j\inner{e_i}{e_j}
     \end{equation}
     显然地,  $dN=diag(\lambda_1,\lambda_2)$是反共形的当且仅当$\lambda_1+\lambda_2=0$, 当且仅当$\Sigma$是极小曲面.
 \end{proof}
@@ -488,7 +509,7 @@
     这里,  $C$是万有常数.
 \end{proposition}
 \begin{proof}
-    显然地, $\N(\Sigma) \subset \S^2_+$. 设$\omega$是 $\S^2$上的面积形式. 由于$\S^2_+$是单连通的, 则存在$1-$形式$\alpha$使得  $\Omega=d\alpha$. 于是有 
+    显然地, $\N(\Sigma) \subset \S^2_+$. 设$\omega$是 $\S^2$上的面积形式. 由于$\S^2_+$是单连通的, 则存在$1-$形式$\alpha$使得  $\Omega=d\alpha$. 而拉回与求微分是可交换的, 于是有 
     \begin{equation}
         \abs{II}^2d\Sigma=-2\N^*\omega=-2\N^*d\alpha=-2d(\N*\alpha)
     \end{equation}
@@ -499,10 +520,10 @@
             &= 4\int_\Sigma  \phi d\phi\wedge N^*\alpha
         \end{split}
     \end{equation}
-    在局部标架下, $\phi=\phi_i e^{*i}, N^*=diag(\lambda_1,\lambda_2), \alpha=\alpha_i e^{*i}$. 因此, 若设 $d\phi\wedge \N^*\alpha= f(x)d\Sigma$, 则 $\abs{f} \le C_\alpha \abs{\nabla_\Sigma}\abs{II}$. 于是有
+    在局部标架下, $\phi=\phi_i e^{*i}, N^*=diag(\lambda_1,\lambda_2), \alpha=\alpha_i e^{*i}$. 因此, 若设 $d\phi\wedge \N^*\alpha= f(x)d\Sigma$, 则 $\abs{f} \le C_\alpha \abs{\nabla_\Sigma \phi}\abs{II}$. 于是有
     \begin{equation}
         \begin{split}
-            \int_\Sigma \abs{II}^2\phi^2 &\le C_\alpha \int_\Sigma \abs{A}\abs{\phi} \abs{\nabla_\Sigma \phi} \\
+            \int_\Sigma \abs{II}^2\phi^2 &\le C_\alpha \int_\Sigma \abs{II}\abs{\phi} \abs{\nabla_\Sigma \phi} \\
             & \le C_\alpha(\epsilon \int_\Sigma \abs{II}^2\phi^2 + \frac{1}{\epsilon}\int_\Sigma  \abs{\nabla_\Sigma \phi}^2 \\
         \end{split}
     \end{equation}
@@ -536,14 +557,107 @@
         \abs{\nabla_\Sigma \phi} \le \abs{\nabla \phi} \le \frac{1}{\log k} \frac{1}{\abs{x}}
     \end{equation}
     以及
-    \begin{equation}
+    \begin{equation} \label{logp}
         \abs{R_{2^ik,2^{i+1}k} \cap \Sigma } \le C 2^{2i}k^2. 
     \end{equation}
+    上面的不等式其实
     于是,我们有
     \begin{equation}
         \int_\Sigma \abs{\nabla_\Sigma \phi_k}^2 \le C\sum_{i=0}^{\log k} 2^{2i}k^22\frac{1}{(\log k)^2} \frac{1}{2^{2i}k^2} \le C\frac{1}{\log k} \to 0.
     \end{equation}
     断言得证.
+\end{proof}
+下面我们提供一个Bernstein定理的非常初等的证明. 这个证明没有用到任何极小曲面方程的性质, 只用到了Gauss映射,球极投影和全纯函数的Liouville定理.
+\begin{definition}
+    球极投影$\pi$是指$\S^2 \to \R^2$的的一个映射. 设$p \in \S^2$, 设$l$为经过点$p$与点$(0,0,1)$的直线. 设$l$与$xy$平面交于点$p'$, 定义$\pi(p)=p'$. 如图所示.
+\end{definition}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.5]{images/stereo.png}
+	\caption{球极投影}
+	\label{stereopng}
+\end{figure}
+球极投影最重要的性质是它是共形(反共形,取决于我们选取的定向)映射, 这意味着我们可以将与$\S^2$有关的共形映射变为定义在 $\mathbb{C}$中某个区域上的亚纯函数. $\pi$与其逆的表达式为
+\begin{align}
+    &\pi(x,y,z)=(\frac{x}{1-z}, \frac{y}{1-z}), x^2+y^2+z^2=1. \\
+    &\pi^{-1}(w)= (\frac{2\Re w}{1+\abs{w}^2}, \frac{2\Im w}{1+\abs{w}^2}, \frac{-1+\abs{w}^2}{1+\abs{w}^2}), w \in \mathbb{C} \cup \{\infty\}.
+\end{align}
+\begin{proof}[Bernstein定理证明II]
+    这里我们用设$f$满足极小曲面方程(字母$u$留作它用). 将散度形式展开后得到
+    \begin{equation}
+        (1+f_y^2)f_{xx}-2f_xf_yf_{xy}+(1+f_x^2)f_{yy}=0
+    \end{equation}
+    定义下列三个函数, 
+    \begin{equation}
+        a=\frac{1+f_x^2}{\sqrt{1+\abs{\nabla f}^2}},
+        b=\frac{f_xf_y}{\sqrt{1+\abs{\nabla f}^2}},
+        c=\frac{1+f_y^2}{\sqrt{1+\abs{\nabla f}^2}}
+    \end{equation}
+    由于$f$满足极小曲面方程, 直接计算可知: $a_y=b_x, b_y=c_x$.
+    定义
+    \begin{equation}
+        \phi(x,y)=\int^x_0\int^y_0 b(s,t)dtds+\int^x_0\int^t_0a(s,0)dsdt+\int^y_0\int^t_0h(0,s)dsdt
+    \end{equation}
+    可知, 
+    \begin{equation}
+        \phi_{xx}=a, \phi_{xy}=b, \phi_{yy}=c.
+    \end{equation}
+    首先我们注意到, 
+    \begin{equation}
+        \det \nabla^2 \phi= ac-b^2 =1
+    \end{equation}
+    那么,  $\nabla^2 \phi$正定或者负定. 这里我们假设$\phi$为凸函数, 否则选取$-\phi$.  令
+    \begin{equation}
+        u=x+\phi_x, v=y+\phi_y.
+    \end{equation}
+    \begin{claim}
+        $(u,v)$是 $\G(f)$上的等温坐标.
+    \end{claim}
+    显然地,由$\phi$的凸性可以知道, $(x,y)\to (u,v)$是$\R^2 \to \R^2$的微分同胚.  我们将$x,y$也看作是变量$(u,v)$的函数. 注意到, $\G(f)=\{(x,y,f(x,y))\mid (x,y) \in \R^2\}$. 在$(u,v)$坐标下则可以看作
+    \begin{equation}
+        \G(f)=\{(x(u,v), y(u,v), f(x(u,v), y(u,v)))\mid (u,v) \in \R^2\}.
+    \end{equation}
+    令$X(u,v)= (x(u,v), y(u,v), f(x(u,v), y(u,v)))$. 现在, 只需要证明$X$是共形嵌入即可. 即需要证明 $\inner{X_u}{X_v}=0$以及 $\abs{X_u}=\abs{X_v}$.
+    \par 后面为了记号方便是, 记$p=f_x, q=f_y, w=\sqrt{1+f_x^2+f_y^2}$. 直接计算可知
+    \begin{equation}
+        \begin{pmatrix}
+            &u_x &u_y \\
+            &v_x &v_y
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            &1+\frac{1+p^2}{w} & \frac{pq}{w} \\
+            &\frac{pq}{w} & 1+\frac{1+q^2}{w}
+        \end{pmatrix}
+    \end{equation}
+    那么, 
+    \begin{equation}
+        \begin{pmatrix}
+            &x_u &x_v \\
+            &y_u &y_v\\
+        \end{pmatrix}
+        =
+        \frac{w}{(1+w)^2} 
+        \begin{pmatrix}
+            &1+\frac{1+q^2}{w} & -\frac{pq}{w} \\
+            &-\frac{pq}{w} & 1+\frac{1+p^2}{w}
+        \end{pmatrix}
+    \end{equation}
+    因此, 
+    \begin{equation}
+        \begin{split}
+            X_u &=(x_u,y_u, f_xx_u+f_yy_u) \\
+            &=\frac{w}{(1+w)^2}(1+w+q^2, -pq, p(1+w)).
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            X_v &=(x_v,y_r, f_xx_v+f_yy_v) \\
+            &=\frac{w}{(1+w)^2}(-pq, 1+w+p^2, q(1+w)).
+        \end{split}
+    \end{equation}
+    这样, 断言得证. 现在, 我们知道当$\G(f)$赋予等温坐标后, 可以将$\G(f)$看作$\mathbb{C}$. 考虑Gauss映射$N$.  设$\pi$为球极投影. 我们知道$g=\pi\circ N \circ X$是共形的. 显然地, $N\circ X(\mathbb{C}) \subset \S^2_+$. 这样由球极投影的性质易知, $\abs{g} \ge 1$. 那么 $\abs{\frac{1}{g}} \le 1$. 而由于$\frac{1}{g}$是定义在$\mathbb{C}$上的全纯函数, 由Liouville定理可知, $g$常数. 即, $\G(f)$的Gauss映射为常值映射, 那么$\G(f)$必定为平面.
 \end{proof}
 \section{Weierstrass表示}
 \begin{proposition} \label{iff_conformal}
@@ -559,13 +673,6 @@
     \end{equation}
     其它的记号$\partial_{z}f=\frac{\partial f}{\partial z} =\partial f$, $\partial_{\bar{z}}f=\frac{\partial f}{\partial \bar{z}} =\bar{\partial} f$也是常用的.
 \end{definition}
-\begin{exercise}
-    设$f: \Omega \to \mathbb{C}$. 证明:
-    \begin{enumerate}
-        \item $f$全纯当且仅当 $\barpartial f=0$.
-        \item $f$调和当且仅当$\partial \barpartial f=0$.
-    \end{enumerate}
-\end{exercise}
 \begin{proposition} \label{iff_conformal_c}
     设$X: \Omega \to \R^3$是光滑嵌入. $X=(X_1,X_2,X_3)$. $\forall k$, 定义 $\phi_k= \partial X_k$. 则
     \begin{enumerate}
@@ -660,21 +767,10 @@ Catenoid: $g(z)=z, dh=\frac{1}{z}dz, z \in \mathbb{C}-\{0\}$.
 	\centering
 	\includegraphics[scale=0.5]{images/catenoid.png}
 	\caption{Catenoid}
-	\label{variation_p}
+	\label{catenoidp}
 \end{figure}
 
 
-\begin{exercise}
-    设$\Sigma$为Catenoid. $\Gamma_a=\Sigma \cap \{z=\pm a\}$. 试比较以下三个以$\Gamma_a$为边界的曲面的面积大小.
-    \begin{enumerate}
-        \item $\Gamma_a$所围的两个圆盘之并. 即 $\{(x,y,z)\mid \sqrt{x^2+y^2} \le \cosh a, z=\pm a\}$.
-        \item $\Gamma_a$的两个分支之间的柱面. 即$\{(x,y,z)\mid \sqrt{x^2+y^2} = \cosh a, \abs{z} \le a\}$.
-        \item $\Gamma_a$之间Catenoid的部分. 即$\{(x,y,z)\mid  \sqrt{x^2+y^2}=\cosh z, \abs{z} \le a \}$.
-    \end{enumerate}
-\end{exercise}
-\begin{exercise}
-    设$\gamma\subset \R^3$是 $xz$平面上的曲线. $\gamma= \{(x,0,z)\mid x=f(z) >0 \}$. 由$\gamma$ 绕$z$轴旋转所得到的曲面记为$\Sigma$. 若$\Sigma$是极小曲面, 试求$f$的表达式.
-\end{exercise}
 Helicold: $g(z)=z, dh= \frac{i}{z}, z \in \mathbb{C}-\{0\}$.
 Helicold是由一条水平直线匀速螺旋上升而得到的. Helicold可以局部地表示为$z=\arctan\frac{y}{x}$的形式.
 
@@ -682,7 +778,7 @@ Helicold是由一条水平直线匀速螺旋上升而得到的. Helicold可以�
 	\centering
 	\includegraphics[scale=0.5]{images/helicoid.png}
 	\caption{Helicoid}
-	\label{variation_p}
+	\label{helicoidp}
 \end{figure}
 \par Catenoid与Helicold的关系: Helicold可以由Catenoid连续变化而得到. 注意观察它们的Weierstrass表示对分别为$(z,\frac{1}{z}dz)$, $(z,\frac{i}{z}dz)$.
 \begin{align}
@@ -693,4 +789,30 @@ Helicold是由一条水平直线匀速螺旋上升而得到的. Helicold可以�
 \begin{equation}
     \Sigma_t= \Re e^{\frac{\pi it}{2}} \int (\frac{1-g^2}{2g}, \frac{i(1+g^2)}{2g},1)\frac{1}{z}dz 
 \end{equation}
-那么, 对于每一个$t$, $\Sigma_t$都是极小曲面, 并且$t=0,1$时得到的分别为Catenoid与Helicoid.
+那么, 对于每一个$\theta$, $\Sigma_\theta$都是极小曲面, 并且$\theta=0,1$时得到的分别为Catenoid与Helicoid.
+\section{习题}
+\begin{enumerate}
+    \item 证明: $\R^n$中不存在紧致无边的极小曲面.
+    \item 设 $\Sigma \subset \R^3$是极小曲面. 设存在平面$P$使得$\Sigma \perp P$. 设$\Sigma$关于平面$P$的反射后的像为$\Sigma'$. 证明: $\Sigma \cup \Sigma'$是极小曲面.
+    \item 设$f: \Omega \to \mathbb{C}$. 证明:
+    \begin{enumerate}
+        \item $f$全纯当且仅当 $\barpartial f=0$.
+        \item $f$调和当且仅当$\partial \barpartial f=0$.
+    \end{enumerate}
+    \item 设$\Sigma$为Catenoid. $\Gamma_a=\Sigma \cap \{z=\pm a\}$. 试比较以下三个以$\Gamma_a$为边界的曲面的面积大小.
+    \begin{enumerate}
+        \item $\Gamma_a$所围的两个圆盘之并.  
+        \begin{equation*}
+            \Sigma_1=\{(x,y,z)\mid \sqrt{x^2+y^2} \le \cosh a, z=\pm a\}.
+        \end{equation*}
+        \item $\Gamma_a$的两个分支之间的柱面. 
+        \begin{equation*}
+            \Sigma_2=\{(x,y,z)\mid \sqrt{x^2+y^2} = \cosh a, \abs{z} \le a\}.
+        \end{equation*}
+        \item $\Gamma_a$之间Catenoid的部分. 
+        \begin{equation*}
+            \Sigma_3=\{(x,y,z)\mid  \sqrt{x^2+y^2}=\cosh z, \abs{z} \le a \}.
+        \end{equation*}
+    \end{enumerate}
+    \item 设$\gamma\subset \R^3$是 $xz$平面上的曲线. $\gamma= \{(x,0,z)\mid x=f(z) >0 \}$. 由$\gamma$ 绕$z$轴旋转所得到的曲面记为$\Sigma$. 若$\Sigma$是极小曲面, 试求$f$的表达式.
+\end{enumerate}
