@@ -762,7 +762,7 @@
 \end{equation}
 \subsubsection{极小曲面的例子}
 Catenoid: $g(z)=z, dh=\frac{1}{z}dz, z \in \mathbb{C}-\{0\}$.  
-\par Catenoid是由悬链面旋转而得到的.
+\par Catenoid是由悬链线($xz$平面上的曲线$x=\cosh z$)旋转而得到的.
 
 \begin{figure}[ht]
 	\centering
@@ -863,12 +863,19 @@ Helicold是由一条水平直线匀速螺旋上升而得到的. Helicold可以�
 \begin{equation}
     \tilde{X}(z)=\Re \int_{\beta}(\frac{1}{2}\frac{1-w^2}{w}, \frac{i}{2}\frac{1+w^2}{w},1)\frac{iw}{w^4-1}dw
 \end{equation}
-根据我们之前的计算, $x=\tilde{x}, y=\tilde{y}, z=\tilde{z}-\frac{\pi}{2}$. 因此, $\tilde{X}(\Omega)$是$X(\Omega)$向上平移而得到的. 实际上, $X(\Omega)\cup \tilde{X}(\Omega)$可以光滑地拼接在一起. 另外, 假如我们选择$\beta$在点$i$处绕$k$圈时, 将恰好得到由$X(\Omega)$向上平移$\frac{k\pi}{2}$ 而得到的极小曲面. 将无数个这样的曲面拼接在一起就得到了单周期的Scherk surface.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.8]{images/scherkI.png}
+    \caption{单周期Scherk曲面}
+    \label{scherkI}
+\end{figure}
+根据我们之前的计算, $x=\tilde{x}, y=\tilde{y}, z=\tilde{z}-\frac{\pi}{2}$. 因此, $\tilde{X}(\Omega)$是$X(\Omega)$向上平移而得到的. 实际上, $X(\Omega)\cup \tilde{X}(\Omega)$可以光滑地拼接在一起. 另外, 假如我们选择$\beta$在点$i$处绕$k$圈时, 将恰好得到由$X(\Omega)$向上平移$\frac{k\pi}{2}$ 而得到的极小曲面. 将无数个这样的曲面拼接在一起就得到了单周期的Scherk surface. 图\eqref{scherkI}显示了Scherk曲面在一个周期内的图像(Helicoid也是同样的, 在$z-$方向上是周期的, 只是Helicoid时的周期性很容易得到).
 \section{习题}
 \begin{enumerate}
+    \item 设$\Omega\subset \R^n$是有界区域. 设$u \in W^{1,1}(\Omega)$.  设$\Area(u)=\int_\Omega \sqrt{1+\abs{Du}^2}$. 证明: $\Area(u)$在$W^{1,1}(\Omega)$上是严格凸的.
     \item 证明: $\R^n$中不存在紧致无边的极小曲面.
     \item 设 $\Sigma \subset \R^3$是极小曲面. 设存在平面$P$使得$\Sigma \perp P$. 设$\Sigma$关于平面$P$的反射后的像为$\Sigma'$. 证明: $\Sigma \cup \Sigma'$是极小曲面.
-    \item 设$f: \Omega \to \mathbb{C}$. 证明:
+    \item 设$f: \Omega \to \mathbb{C}$是光滑函数. 证明:
     \begin{enumerate}
         \item $f$全纯当且仅当 $\barpartial f=0$.
         \item $f$调和当且仅当$\partial \barpartial f=0$.
