@@ -1,1267 +1,231 @@
-\chapter{De Giorgi-Moser理论}
-\section{希尔伯特第19问题}
-设$L:\R^n \to \R$是光滑函数且是一致凸的. $\Omega \subset \R^n$是有界区域.  固定函数$g \in C(\overline{\O})$.  设
+\chapter{曲率估计}
+\section{Choi-Schoen的结果}
+设$\Sigma^{n-1} \subset \M^n$是光滑子流形. $\vec{n}$是 $\Sigma$的单位法向. 设$T$是$(0,2)$型张量, $T=T_{ij}dx^idx^j$. 记号约定如下.
 \begin{equation}
-    \G=\{u \in H^1\mid u|_{\P \O} =g\}
+    (\nabla^2_{XY}T)(Z,W)=\nabla^2T(Z,W,Y,X).
 \end{equation}
-$\forall u \in \G$, 考虑下面的泛函
+在局部坐标下,
 \begin{equation}
-    \e(u)=\int_\O L(Du)dx
+    \nabla^2_{lk}T_{ij}=(\nabla^2_{\partial l,\partial k}T)(\PI,\PJ)=\nabla^2T(\PI,\PJ, \partial k,\partial l)=T_{ijkl}.
 \end{equation}
-\begin{question}
-    若泛函$\e$在$u_0$处取到最小值,$u_0$是否是光滑的?
-\end{question}
-\begin{example}
-    \s 
-    \begin{enumerate}
-        \item $L(x)=\abs{x}^2$,则$\e(u)=\int_\O \abs{Du}^2$,称为Dirichlet能量,是研究调和函数的基础工具.
-        \item $L(x)=\sqrt{1+\abs{x}^2}$,则 $\e(u)=\int_\O\sqrt{1+\abs{Du}^2}$,称为面积泛函.因此此时$\e(u)$恰好是函数$u$的图像的面积.
-    \end{enumerate}
-\end{example}
-一些简单的计算可以将上面的变分问题转化为PDE问题.
+Codazzi方程.
+\begin{equation}
+    R^\M(X,Y,W,\vec{n}) = \nabla \II(W,Y,X) - \nabla \II (W,X,Y).
+\end{equation}
+Gauss方程
+\begin{equation}
+    R^\M(X,Y,Z,W) = R^\Sigma(X,Y,Z,W)-\II(X,W)\II(Y,Z)+\II(X,Z)\II(Y,W).
+\end{equation}
+求导交换次序.
+\begin{equation}
+    \nabla^2_{X,Y}T(Z,W) = \nabla^2_{Y,X}T(Z,W)-T(R(X,Y)Z,W)-T(Z,R(X,Y)W).
+\end{equation}
+在局部坐标下,
+\begin{equation}
+    T_{ijkl}=T_{ijlk}-R_{lki}^pT_{pj}-R_{lkj}^pT_{ip}.
+\end{equation}
 \begin{proposition}
-    若泛函$\e$在函数$u$处取到最小值,则$u$是下列方程的弱解
-    \begin{equation}
-        \div(DL(Du))=0.
+    设$\Sigma^{n-1} \subset \R^n$是光滑曲面. $\nabla, \Delta$为$\Sigma$上的算子. $\II$为其第二基本型, $H$是平均曲率. 则
+    \begin{equation} \label{simon1}
+        \Delta \II_{ij}=\nabla^2_{ij}H + Hg^{kl}\II_{ik}\II_{jl}-\abs{\II}^2\II_{ij}.
     \end{equation}
 \end{proposition}
 \begin{proof}
-    $\forall \phi \in C^\infty_0(\Omega)$,考虑$u$的变分$e_t=e(u+t\phi)$. 由于$\e$在$t=0$处取到最小值 ,则$\frac{d}{dt}e_t|_{t=0}=0$.而
+    固定点$p$, 选取$p$点附近的测地坐标, 则有
     \begin{equation}
-        e_t=\int_\O L(Du+tD\phi)=\int_\O L(Du)+t\int_\O DL(Du)D\phi+o(t)
+        \Delta \II_{ij}=\II_{ij;kk}=\II_{ik;jk}=\II_{ik;kj}-R_{kji}^p\II_{pk}-R_{kjk}^p\II_{ip}.
     \end{equation}
-    因此$\frac{d}{dt}e_t|_{t=0}=\int_\O DL(Du)D\phi=0 \s \forall \phi\in C^\infty_0(\O)$成立.证毕.
+    而
+    \begin{equation}
+        \II_{ik;kj}=\II_{kk;ij}=H_{ij}.
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            R_{kji}^p\II_{pk}+R_{kjk}^p\II_{ip} &= R_{kjip}\II_{pk}+R_{kjkp}\II_{ip}\\
+            &=\II_{kp}\II_{ji}\II_{kp}-\II_{ki}\II_{jp}\II_{pk}+\II_{kp}\II_{jk}\II_{ip}-\II_{kk}\II_{jp}\II_{ip} \\
+            &=\abs{\II}^2\II_{ij}-Hg^{pq}\II_{jp}\II_{iq}
+        \end{split}
+    \end{equation}
 \end{proof}
-\begin{remark}
-    泛函的一阶变分为0所要满足的方程称为Euler-Lagrange方程.显然,这是泛函取到局部最小值的必要非充分条件.
-\end{remark}
-现在, 们取定$\vec{n} \in \mathbb{S}^{n-1}$,并对$\div(DL(Du))=0$求偏导$D_{\vec{n}}$.
-\begin{equation}
-    \begin{split}
-        D_{\vec{n}}(DL(Du))
-        &=D_{\vec{n}}(\frac{\partial L}{\partial x_1}(Du),\cdots,\frac{\partial L}{\partial x_n}(Du))\\
-        &=(\frac{\partial^2 L}{\partial x_1 \partial x_i} D_{\vec{n}}D_iu,\cdots,\frac{\partial^2 L}{\partial x_n \partial x_i} D_{\vec{n}}D_iu)
-    \end{split}
-\end{equation}
-因此,$D_{\vec{n}}\div(DL(Du))=\div(D^2L(Du)DD_{\vec{n}}u)$. 记$\aij=\frac{\partial^2L}{\partial x_i \partial x_j}(Du)$, $v=D_{\vec{n}}u$,则上面的方程成为 
-\begin{equation}
-    D_i(\aij D_j v)=0
-\end{equation}
-\subsection{齐次方程弱解的\texorpdfstring{\Holder}{Holder}正则性}
-我们考虑齐次方程
-\begin{equation} \label{heq}
-    \L u= D_i(\aij D_j u)=0
-\end{equation}
-\begin{theorem} \label{hholder}
-    设$\aij$可测且满足一致椭圆条件.设$u \in H^1(\O)$是方程\eqref{heq}的弱解.则存在$\alpha \in (0,1)$使得$u \in C^\alpha(\O)$,且$\forall \O' \subsub \O$ ,有
+\begin{proposition} \label{simon_equation}
+    设$\Sigma^{n-1}$是极小曲面, 则有
     \begin{equation}
-        \norm{u}_{C^\alpha(\O')} \le C\norm{u}_{L^2(\O)}
+        \Delta\abs{\II}^2 = 2(\abs{\nabla \II}^2-\abs{\II}^4).
     \end{equation}
-    其中,$\alpha=\alpha(n,\lambda,\Lambda)$, $C=C(n,\lambda,\Lambda,\O',\O)$.
+\end{proposition}
+\begin{proof}
+    将等式\eqref{simon1}写成坐标无关的形式, 又因$\Sigma$是极小曲面, 则有
+    \begin{equation}
+        \Delta \II = -\abs{\II}^2 \II
+    \end{equation}
+    由于$\Tr$与联络导数可交换, 则
+    \begin{equation}
+        \begin{split}
+            \Delta \abs{\II}^2 = \Delta (\Tr^2(\II\otimes\II)) &= \Tr^2(\Delta \II \otimes\II + \II \otimes \Delta \II + 2 \Tr(\nabla \II, \nabla \II)) \\
+            &=\Tr^2(-2\abs{\II}^2 \II\otimes\II+2\Tr(\nabla \II \otimes \nabla \II)) \\
+            &=-2\abs{\II}^4+2\abs{\nabla \II}^2.
+        \end{split}
+    \end{equation}
+\end{proof}
+\begin{proposition}
+    设$\Sigma^{n-1}$是极小曲面, $\nabla,\Delta$为$\Sigma$上的算子. 则
+    \begin{equation} \label{simon_inequality}
+        \Delta \abs{\II}^2 \ge -2\abs{\II}^4+2(1+\frac{2}{n-1})\abs{\nabla \abs{\II}}^2.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    证明与命题\eqref{kato}类似. 我们首先来计算 $\abs{\nabla \abs{\II}}^2$. 固定点$p$, 取$p$点处的测地坐标使得$\II=diag(\lambda_i)$.
+    \begin{equation} \label{s11}
+        \begin{split}
+            \abs{\nabla \abs{\II}}^2 = \frac{\abs{\inner{\nabla \II}{\II}}^2}{\abs{\II}} &= \frac{\sum_j(\sum_i\II_{iij})^2}{\sum_i\lambda_i^2} \\
+            &\le \sum_{ji}\II_{iij}^2
+        \end{split}
+    \end{equation}
+    而
+    \begin{equation} \label{s12}
+        \begin{split}
+            \sum_{ji}\II_{iij}^2 &= \sum_{j\ne i}\II_{iij}^2+ \sum_{i}\II_{iii}^2 \\
+            &= \sum_{j\ne i}\II_{iij}^2+ \sum_{i}(-\sum^{n-1}_{j \ne i}\II_{jji})^2\\
+            &\le \sum_{j\ne i}\II_{iij}^2+ \sum_{i}(n-2)\sum_{j\ne i}\II_{jji}^2\\
+            &= \frac{n-1}{2}(\sum_{j\ne i}\II_{iji}^2 +\sum_{j\ne i}\II_{jii}^2)
+        \end{split}
+    \end{equation}
+    \eqref{s12}两页同乘以$\frac{2}{n-1}$后与\eqref{s11}相加可得,
+    \begin{equation}
+        \begin{split}
+            \abs{\nabla \abs{\II}}^2+\frac{2}{n-1} \abs{\nabla \abs{\II}}^2 &\le \sum_{ji}\II_{iij}^2 + \sum_{j\ne i}\II_{iji}^2 +\sum_{j\ne i}\II_{jii}^2 \\
+            &\le \sum_{ijk}\II^2_{ijk}
+        \end{split}
+    \end{equation}
+\end{proof}
+\begin{theorem}\label{choi_schoen}
+    设$\Sigma^2 \subset \R^3$是极小曲面.  则存在常数$\epsilon, \rho>0$, 使得 $\forall p \in \Sigma, r_0 < \rho$, 如果
+    \begin{enumerate}
+        \item $\partial \Sigma \cap B_{r_0}(p)=\emptyset$.
+        \item $\int_{\Sigma \cap B_{r_0}} \abs{\II}^2\le \epsilon$.
+    \end{enumerate}
+    那么$\forall  0 < \sigma \le r_0$及$y \in B_{r_0-\sigma}$, 成立
+    \begin{equation}
+        \sigma^2 \abs{\II}^2(y) \le \delta, \text{ here }\delta= \frac{\epsilon}{\int_{\Sigma \cap B_{r_0}}\abs{\II}^2}.
+    \end{equation}
 \end{theorem}
-\begin{definition}
-    若$\forall \phi \ge 0$, $\phi \in H^1_0$, 成立$\int \aij D_iu D_j \phi \le 0$,则称$u$是方程\eqref{heq}的弱下解. \\
-    若$\forall \phi \le 0$, $\phi \in H^1_0$, 成立$\int \aij D_iu D_j \phi \ge 0$,则称$u$是方程\eqref{heq}的弱上解.
-\end{definition}
-\begin{lemma}[Caccioppoli不等式]\label{caccioppoli}
-    设$u \ge 0$是方程\eqref{heq}在$B_1$中的弱下解,则$\forall \phi \in C^\infty_0(B_1)$,成立
+\begin{proof}
+    将$B_{r_0}$简写为$B$. 只需要证明$F(x)=d^2(x,\P B)\abs{\II}^2(x) \le \delta$即可. 我们用反证法. 设$F(q)=\max_{x \in B}F(x)$. 注意到在$\partial B$上, $F(x) \eq 0$. 则$q$是内点.  设$F(q) > \delta$, 我们将证明当$\epsilon$足够小时, 会推出一个矛盾. 取 $\sigma$使得
     \begin{equation}
-        \int_{B_1}\abs{D(u\phi)}^2 \le C\norm{D\phi}^2_{L^\infty}\int_{B_1 \cap \text{supp}\phi}u^2
+        \sigma^2\abs{\II}^2(q)=\frac{\delta}{4}.
     \end{equation}
-    其中,$C=C(n,\lambda,\Lambda)$.
-\end{lemma}
-\begin{proof}
-    证明过程与不等式\eqref{eq_caccio}相同,略.
-\end{proof}
-\begin{lemma}
-    设$u$是方程\eqref{heq}的弱下解.记$u^+=\max(u,0)$.则$u^+$也是方程\eqref{heq}的弱下解.
-\end{lemma}
-\begin{proof}
-    记$f(x)=\max(x,0)$.则$u^+=f(u)$. 显然,$f$是单增,非负的凸函数. 设$f_\epsilon$是$f$的磨光, 则$f_\epsilon$也是单增,非负的凸函数.我们首先证明$f_\epsilon \circ u$是弱下解. 为了记号方便,记$F(x)=f_\epsilon(x)$.则 $\forall \phi \ge 0$,
+    则
+    \begin{equation}
+        \sigma^2\abs{\II}^2(q) \le \frac{4}{1} d^2(q,\P B)\abs{\II}^2(q).
+    \end{equation}
+    因此, 有
+    \begin{equation}
+        \sigma \le \frac{1}{2}d(q,\P B).
+    \end{equation}
+    由三角不等式可知,  $\forall y \in B_\sigma(q)$,
+    \begin{equation}
+        \frac{1}{2} \le \frac{d(y,\P B)}{d(q,\P B)} \le 2.
+    \end{equation}
+    于是
     \begin{equation}
         \begin{split}
-            \int \aij D_i(F\circ u) D_j \phi 
-            &= \int \aij F'(u)D_i(u)D_j\phi\\
-            &=\int \aij D_iu(D_j(F'(u)\phi)-F''(u)D_ju\phi)\\
-            &\le 0
-        \end{split}
-    \end{equation}
-    令$\epsilon \to 0$.则由勒贝格控制收敛定理可知
-    \begin{equation}
-        \int \aij D_i(f\circ u) D_j\phi \le 0 \s \forall \phi \ge 0
-    \end{equation}
-    引理2证毕.
-\end{proof}
-现在我们可以证明弱解的局部有界性.
-\begin{lemma}[局部有界性]
-    设$u$是方程\eqref{heq}的弱下解,则
-    \begin{equation}
-        \norm{u^+}_{L^\infty(B_\rec{2})} \le C\norm{u^+}_{L^2(B_1)}
-    \end{equation}
-    其中,$C=C(n,\lambda,\Lambda)$.
-\end{lemma}
-\begin{proof}
-    由于给$u$乘上任意正常数不会改变不等式.我们证明下面的等价命题:
-    \begin{proposition*}
-        存在$\delta = \delta(n,\lambda,\Lambda)>0$使得若 $\norm{u^+}_{L^2(B_1)} \le \delta$,则$\norm{u^+}_{L^\infty(B_\rec{2})} \le 1$. 
-    \end{proposition*}
-    设$k  \in \mathbb{N}^+$. 记$B_k=\{\abs{x} \le \rec{2}+\rec{2^k}\}$. 取$\eta_k \in C^\infty_0(B_1)$ 使得
-    \begin{equation}
-        \left\{
-            \begin{aligned}
-                &\eta_k\eq 1 \s \iin B_k \\
-                &\eta_k \eq 0 \s \iin B_{k-1}-B_k\\
-                &\abs{D\eta_k} \le {2}\cdot {2^k}
-            \end{aligned}
-        \right.
-    \end{equation}
-    设$u_k=(u-(1-\rec{2^k}))^+$, $a_k=\int_{B_k}u_k^2$.
-    \begin{claim}
-        若$a_1$足够小,则$k \to \infty$时,$a_k \to 0$. 即,$\int_{B_\rec{2}}\abs{(u-1)^+}^2 =0$.
-    \end{claim}
-    显然,若此断言成立,则引理得证. 现在,我们来证明存在$M,\lambda >1$使得$a_k$满足如下的递推不等式
-    \begin{equation} \label{iter_eq}
-        a_k \le M^{k-1}a^\lambda_{k-1}
-    \end{equation}
-    \begin{equation}
-        a_k=\int_{B_k}u^2_k \le (\int_{B_k}u_k^{2^*})^\frac{2}{2^*} \abs{\supp u^2_k \cap B_k}^\frac{2}{n}
-    \end{equation}
-    而由Sobolev不等式及Caccioppoli不等式,有 
-    \begin{equation}
-        \begin{split}
-            (\int_{B_k}u_k^{2^*})^\frac{2}{2^*}
-            &\le (\int_{B_{k-1}}\abs{\eta_k u_k}^{2^*})^\frac{2}{2^*}\\
-            &\le C\int_{B_{k-1}}\abs{D(\eta_k u_k)}^2\\
-            &\le C2^{2k}\int_{B_{k-1}}u_k^2 \\
-            &\le C2^{2k}\int_{B_{k-1}}u_{k-1}^2=C2^{2k}a_{k-1}
-        \end{split}
-    \end{equation}
-    简单计算可知,$u_k>0$当且仅当$u_{k-1}> \rec{2}$. 则由切比雪夫不等式可知
-    \begin{equation}
-        \begin{split}
-            \abs{\supp u^2_k \cap B_k}&=\abs{\{u_k>0\}\cap B_k} \\
-            &\le \abs{\{u_{k-1}> \rec{2}\} \cap B_{k-1}} \\
-            &\le 2^{2k}\int_{B_{k-1}}u^2_{k-1} =2^{2k}a_{k-1}
+            \sup_{y\in B_\sigma(q)} d^2(q,\P B) \abs{\II}^2(y) \le &4\sup_{y\in B_\sigma(q)}d^2(y,\P B)\abs{\II}^2(y) \\
+            =& 4d^2(q,\P B) \abs{\II}^2(q).
         \end{split}
     \end{equation}
     因此,
     \begin{equation}
-        a_k \le C2^{2k}a_{k-1}(2^{2k}a_{k-1})^\frac{2}{n} 
+        \sup_{y \in B_\sigma(q)} \abs{\II}^2(y) \le 4\abs{\II}^2(q)=\frac{\delta}{\sigma^2}.
     \end{equation}
-    取$\lambda=1+\frac{2}{n}$, $M=2\max\{C,3^{2+\frac{4}{n}}\}$即可得到不等式\eqref{iter_eq}.  现在,我们有$a_k \le M^{k-1}a_{k-1}^\lambda$,递推可知
+    通过变换$x\to \frac{1}{\sigma}x$, 上面的不等式变为
+    \begin{equation} \label{ii_sup}
+        \sup_{y \in B_1(q)} \abs{\II}^2(y) \le 4\abs{\II}^2(q)=\delta \le 1.
+    \end{equation}
+    由Simons不等式, 我们得到
     \begin{equation}
-        \begin{split}
-            a_{k+1} &\le M^ka_k^\lambda\\
-            &\le M^k(M^{k-1}a_{k-1}^\lambda)^\lambda =M^kM^{(k-1)\lambda}a_{k-1}^{\lambda^2}\\
-            &\le M^k M^{(k-1)\lambda}({{M^{k-2} a_{k-2}^\lambda}})^{\lambda^2}=M^kM^{(k-1)\lambda}M^{(k-2)\lambda^2}a^{\lambda^3}_{k-2}\\
-            &\le M^kM^{(k-1)\lambda}M{(k-2)\lambda^2}\cdots M^{2\lambda^{k-2}}M^{\lambda^{k-1}}a_1^{\lambda^k}\\
-            &=M^{\frac{k-\frac{\lambda-\lambda^k}{1-\lambda}}{1-\lambda}}a_1^{\lambda^k}
-        \end{split}
+        \Delta \abs{\II}^2 \ge -2\abs{\II}^4 \ge -2 \abs{\II}^2.
     \end{equation}
-    因此,只要取$a_1$足够小,则$a_k \to 0$.
+    由命题\label{sub_harmonic}可知,
+    \begin{equation}
+        \frac{\delta}{4}=\abs{\II}^2(q) \le C \int_{B_1} \abs{\II}^2 \le C\delta\epsilon.
+    \end{equation}
+    则当$\epsilon$足够小时, 显然是不可能的.
 \end{proof}
-\begin{lemma}[振荡衰减]
-    设$u$是方程\eqref{heq}在$B_2$中的弱解. 记
+\begin{lemma}[一致图像引理] \label{uniform_graph}
+    设$\Omega \subset \R^3$是具有光滑边界的开集. 设$\Sigma^2 \subset \Omega$是嵌入的光滑曲面, 并且$\Sigma$在$\Omega$中是闭的. 设$\abs{\II} \le C$. 则$\Sigma$可以局部一致地表示成函数图像的形式. 确切地说, $\forall p \in \Sigma$, $R\in (0,R_0)$. 这里, 
     \begin{equation}
-        \osc_{B_r} u=\sup_{B_r} u - \inf_{B_r} u. 
+        R_0=\min\{\frac{1}{4C}, \frac{1}{2}d(p,\partial \Omega)\}.
     \end{equation}
-    则存在$\theta \in (0,1)$使得 
-    \begin{equation}
-        \osc_{B_\rec{2}} u \le \theta \osc_{B_2}u. 
-    \end{equation}
-    其中,$\theta=\theta(n,\lambda,\Lambda)$.
-\end{lemma}
-\begin{proposition}\label{p1}
-    设$w \in H^1(B_1)$. 记$A=\{w \le 0\}\cap B_1$. $D=\{w\ge \rec{w}\} \cap B_1$. $E=\{0<w<\rec{2}\} \cap B_1$. 则存在常数$C=C(n)$使得
-    \begin{equation}
-        \abs{A}^2\abs{D}^2 \le C\abs{E}\int_{B_1}\abs{Dw}^2
-    \end{equation}
-\end{proposition}
-\begin{proof}
-    记$\tilde{w}(x)=\left\{
-        \begin{aligned}
-            &0 \s x \in A \\
-            &w(x) \s x \in E \\
-            &\rec{2} \s x\in D
-        \end{aligned}
-    \right.$. $\tilde{w}_{B_1}=\frac{1}{\abs{B_1}}\int_{B_1}\tilde{w}$. 则有
-    \begin{equation}
-        \begin{split}
-            \abs{A}\abs{D} &\le 2\int_A\int_D\abs{\tilde{w}(x)-\tilde{w}(y)}dxdy\\
-            &\le 2\int_{B_1}\int_{B_1}\abs{\tilde{w}(x)-\tilde{w}_{B_1}} +\abs{\tilde{w}(y)-\tilde{w}_{B_1}} \\
-            &=4\int_{B_1}\abs{\tilde{w}(x)-\tilde{w}_{B_1}} dx \\
-            &\le C\int_{B_1}\abs{D\tilde{w}}dx \\
-            &=C\int_E\abs{Dw}dx \le C(\int_E\abs{Dw}^2)^\rec{2}\abs{E}^\rec{2}
-        \end{split}
-    \end{equation}
-\end{proof}
-\begin{proposition}
-    设$u$是方程\eqref{heq}在$B_2$中的弱下解且$u \le 1$. 设$u$满足
-    \begin{equation}
-        \abs{\{u \le 0\}\cap B_1} \ge \mu >0
-    \end{equation}
-    则$\sup_{B_\rec{2}}u \le 1-\gamma$. 其中,$\gamma=\gamma(n,\lambda,\Lambda,\mu) \in (0,1)$.
-\end{proposition}
-\begin{proof}
-    记$w_k=w^k(u-(1-\rec{2}))^+$.则
-    \begin{equation}
-        \abs{\{w_k \le 0\} \cap B_1} =\abs{\{u \le 1-\rec{2^k}\}\cap B_1} \ge \abs{\{u \le 0\}\cap B_1} \ge \mu
-    \end{equation}
-    现在,假设存在$\delta >0$ 使得$\forall k$, 成立$\int_{B_1}w_k^2 \ge \delta >0$,则有
-    \begin{equation}
-        \abs{\{w_k \ge \rec{2}\}\cap B_1} = \abs{\{w_{k+1}\ge 0\} \cap B_1} \ge \int_{B_1}w^2_{k+1} \ge \delta >0
-    \end{equation}
-    应用命题\eqref{p1},可知
-    \begin{equation}
-        \abs{\{0<w_k <\rec{2}\}} \ge C(n)\rec{\norm{Dw_k}_{L^2}}\mu^2\delta^2
-    \end{equation}
-    而由Caccioppoli不等式,
-    \begin{equation}
-        \int_{B_1}\abs{Dw_k}^2 \le C\int_{B_2}w_k^2 \le C
-    \end{equation}
-    因此, $\abs{\{0<w_k<\rec{2}\}}$ 关于$k$有一致下界.然而简单计算可知,$\{0<w_k < \rec{w}\}$是互不相交的,因此假设不成立. 即,$\forall \delta >0$, $\exists k_0$使得$\int_{B_1}w_{k_0}^2 \le \delta$. 由于$w_k$也是方程\eqref{heq}的弱下解,则由局部有界性估计,可知
-    \begin{equation}
-        \norm{w_{k_0}}_{L^\infty(B_\rec{2})} \le C\int_{B_1}w_{k_0}^2 \le C\delta
-    \end{equation}
-    取$\delta$足够小使得$C\delta \le \rec{2}$,则有 $\norm{w_{k_0}}_{L^\infty(B_\rec{2})} \le \rec{2}$.即
-    \begin{equation}
-        2^{k_0}(u-(1-\rec{2^{k_0}}))^+ \le \rec{2}
-    \end{equation}
-    则$u \le 1-\rec{2^{k_0+1}}$.
-\end{proof}
-\begin{proof}[振荡衰减的证明]
-    显然地,通过$u \to \frac{u-N}{\sup_{B_2}-N} (N < \sup_{B_2}u)$的代换可知,若$\abs{\{u \le N\}\cap B_1} \ge \mu >0$,则$\sup_{B_\rec{2}} \le (1-\gamma)(\sup u-N)+N$. 
-    同样的,由于$-u$也是弱下解,则若$\abs{\{-u \le N\}\cap B_1} \ge \mu >0$, 则$\sup_{B_\rec{2}}(-u) \le (1-\gamma)(\sup(-u)-N)+N$.  现在,取$N=\rec{2}(\sup_{B_2}u+\inf_{B_2}u)$. \\
-    若$\abs{\{u \le N\}\cap B_1} \ge \rec{2}\abs{B_1}$,则
-    \begin{equation}
-        \begin{split}
-            \sup_{B_\rec{2}}-\inf_{B_\rec{2}}u &\le (1-\gamma)(\sup_{B_2}u-\rec{2}(\sup_{B_2}u+\inf_{B_2}u))+\rec{2}(\sup_{B_2}+\inf_{B_2}u)-\inf_{B_2}u\\
-            &=(1-\gamma)\rec{2}\osc_{B_2}u+\rec{2}\osc_{B_2}u =(1-\frac{\gamma}{2})\osc_{B_2}u
-        \end{split}
-    \end{equation}
-    否则,取$\tilde{{N}}=\rec{2}(\sup_{B_2}(-u)+\inf_{B_2}(-u))=-N$即可.
-\end{proof}
-\begin{proof}[定理\eqref{hholder}的证明]
-    记$w(x)=\frac{u(x)}{2\norm{u}_{L^\infty}(B_1)}$. 则$\abs{w} \le \rec{2}$. 设$x,y \in B_{\rec{4}}$.通过两移及两倍伸缩,我们可以假设$y=0$且$\abs{x} \le \rec{2}$. 设$\rec{2^{k-1}} \le \abs{x} < \rec{2^k}$. 则
-    \begin{equation}
-        \abs{w(x)-w(y)} \le \abs{w(x)-w(0)} \le \osc_{B_\rec{2^k}}w\le(1-\theta)^k\osc_{B_1}w\le (1-\theta)^k
-    \end{equation}
-    令$(1-\theta)^k=(\rec{2^\alpha})^k$, 即$\alpha=-\log_2(1-\theta)$,则有
-    \begin{equation}
-        \abs{w(x)-w(y)} \le \rec{2^k}^\alpha \le C\abs{x}^\alpha.
-    \end{equation}
-    证毕.
-\end{proof}
-\subsection{希尔伯特第19问题的可解性}
-\begin{theorem}
-    设$L:\R^n \to \R$是光滑函数,且是一致凸的($D^2L$满足一致椭圆条件).设$ \O \subset \R^n$是有界Lipschitz区域.设$g \in H^1(\O)$.则泛函
-    \begin{equation}
-        \e(u)=\int_\O L(Du)dx
-    \end{equation}
-    在$\{u \in H^1(\O), u|_{\partial \O}=g|_{\partial \O}\}$中有唯一的最小值点$u$,且$u \in C^1(\O)$.
-\end{theorem}
-\begin{lemma}[下半连续性] \label{lower_semi}
-    设$\O \subset \R^n$是有界Lipschitz区域. 设$F(x,z,p): \R^n \times \R \times \R^n \to \R$是光滑的,且满足
-    \begin{enumerate}
-        \item $F \ge 0$.
-        \item $F$关于$p$是凸的.
-        \item $F(x,z,p) \le C(1+\abs{p}^q)$, $q \in [1,+\infty)$, $C>0$.
-    \end{enumerate}
-    对于$u \in w^{1,q}$,定义泛函$e(u)=\int_\O F(x,u,Du)dx$.则泛函$\e$关于$w^{1,q}_\loc$的弱拓扑是下半连续的.即,若$u_k \in w^{1,q}_\loc(\O)$且弱收敛到$u \in w^{1,q}_\loc$,则
-    \begin{equation}
-        e(u) \le \liminf e(u_k).
-    \end{equation}
-\end{lemma}
-\begin{proof}
-    由于$w^{1,q}_\loc \subset w^{1,1}_\loc$, 我们可以假设$q=1$. 通过选取$u_k$的子列,假设$u_k \to u \s a.e.$并且$u_k \to u \iin w^{1,1}_\loc$.\\
-    固定$\O' \subsub \O$及$\epsilon >0$. 则由Egorov定理及Lusin定理,存在紧集$K \subset \O'$使得
-    \begin{enumerate}
-        \item $\abs{\O'-K} \le \epsilon$.
-        \item $u_k \to u$在$K$上是一致的.
-        \item $u|_K$, $Du|_{K}$是连续的.
-        \item $\int_K F(x,u,Du) \ge \int_{\O'}F(x,u,Du) - \epsilon$.
-    \end{enumerate}
-    由$F$关于$p$的凸性,我们有
-    \begin{equation}
-        F(x,z,p) \ge F(x,z,p_0)+D_p F(x,z,p_0)(p-p_0)
-    \end{equation}
-    于是,
-    \begin{equation}
-        \begin{split}
-            \int_KF(x,u_k,Du_k)dx \ge& \int_KF(x,u_k,Du)+\int_K\inner{D_pF(x,u_k,Du)}{Du_k-Du}\\
-            =&\int_KF(x,u_k,Du)+\int_K\inner{D_pF(x,u,Du)}{Du_k-Du}\\ 
-            &+\int_K\inner{D_pF(x,u_k,Du)-D_pF(x,u,Du)}{Du_k-Du}
-        \end{split}
-    \end{equation}
-    \begin{enumerate}
-        \item 由于$u_k\to u \iin w^{1,1}_\loc$且$D_pF(x,u,Du)$在$K$上有界,则右(II)$\to 0$.
-        \item 由于$u_k \to u$一致且$D_pF$连续,而$Du_k-Du$在$L^1$上有界,则右(III)$\to 0$.
-    \end{enumerate}
-    令$k \to \infty$,则有
-    \begin{equation}
-        \liminf \int_K F(x,u_k,Du_k) \ge \lim \int_K F(x,u_k,Du)\ge \int_\O F(x,u,Du)-\epsilon
-    \end{equation}
-    而由于$\epsilon$是任意小的,引理证毕.
-\end{proof}
-\begin{lemma}\label{holderh7}
-    设$\alpha \in (0,1]$, $\norm{u}_{L^\infty(B_1)} \le M$, 且$\forall h \in B_1$,有
-    \begin{equation}
-        \norm{\frac{u(x+h)-u(x)}{\abs{h}^\alpha}}_{C^\beta({B_{1-\abs{h}}})} \le M
-    \end{equation}
-    另外,设$\alpha +\beta$不是整数,则$u \in C^{\alpha+\beta}(B_1)$.
-\end{lemma}
-\begin{proof}
-    解的唯一性由$L$的凸性易证。下面证明最小值点的存在性。由$L$的一致凸性，存在$\lambda, \Lambda>0$使得$\lambda \abs{x}^2 \le \inner{D^2Lx}{x} \le \Lambda \abs{x}^2$.记$h(x)=L(x)-\rec{4}\lambda\abs{x}^2$,显然,$D^2h=D^2L-\rec{2}\lambda I \ge \rec{2}\lambda I$. 于是$h$是一致凸的.因此存在常数$C$使得$L(x)-\rec{4}\lambda\abs{x}^2 \ge C$. 同样地,记$H(x)=\Lambda\abs{x}^2 - L(x)$,则$D^2H=2\Lambda I-D^2L \ge \Lambda I$.于是 $h$是一致凸的,则存在$C_2$使得$\Lambda \abs{x}^2-L(x) \ge C_2$. 即有
-    \begin{equation}
-        \rec{4}\lambda \abs{x}^2 +C_1 \le L(x) \le \Lambda \abs{x}^2+C_2
-    \end{equation}
-    记
-    \begin{equation}
-        e_0=\inf\{ e(w)| w\in H^1(\O), w|_{\partial \O}=g|_{\partial \O} \}
-    \end{equation}
-    显然,$e_0 \in (-\infty,+\infty)$. 设$u_k \in H^1(\O), u_k|_{\partial \O}=g$ 且$e(u_k) \to e_0$.
-    \begin{claim}
-        ${u_k}$在$H^1(\O)$中有界.
-    \end{claim}
-    由于$u_k|_{\partial \O}=g|_{\partial \O}$,则$u_k -g \in H^1_0(\O)$.由Poincare不等式 
-    \begin{equation}
-        \int_\O \abs{u_k-g}^2 \le C\int_\O \abs{Du_k-Dg}^2
-    \end{equation}
-    则有：
-    \begin{equation}
-        \int_\O \abs{u_k}^2 \le C(\int_\O \abs{Du_k}^2+\int_\O \abs{Dg}^2 +\int_O g^2)
-    \end{equation}
-    而由于 $\abs{x}^2 \le C(L(x)+1)$,则有
-    \begin{equation}
-        \int_\O \abs{Du_k}^ \le C(\int_\O L(Du_k)+\abs{\O}) \le C(e_0+1+\abs{\O})
-    \end{equation}
-    于是,$\int_\O \abs{u^k}^2$有界,断言证毕.\\
-    由于Hilbert空间中的有界集是弱紧的,则存在$\{u_k\}$的子列,仍记为$\{u_k\}$使得$u_k \to u$(弱收敛). 由引理\eqref{lower_semi}可知,$e(u) \le \liminf e(u_k)$,于是 $u$就是所要求的最小值点. 而我们已知$u$一定是方程
-    \begin{equation}
-        \int_\O DL(Du)D\phi=0 \s \forall \phi \in H^1_0(\O)
-    \end{equation}
-    记$\O_h=\{x\mid x\in\O, d(x,\partial \O) >h\}$.显然,$\forall x \in \O_h$, $\forall \phi \in H^1_0(\O)$,
-    \begin{equation}
-        \int_\O \inner{DL(Du(x+h))-Dl(Du(x))}{D\phi}=0
-    \end{equation}
-    另外,由于
-    \begin{equation}
-        f(x)-f(y)=\int^1_0 \inner{Df(tx+(1-t)y)}{x-y}dt
-    \end{equation}
-    则有：
-    \begin{equation}
-        \begin{split}
-            &DL(Du(x+h))-DL(Du(x)) \\
-           =& \int^1_0 D^2l(tDu(x+h)+(1-t)Du(x))(Du(x+h)-Du(x))dt
-        \end{split}
-    \end{equation}
-    记$A(x)=[\aij]=\int^1_0 D^2L(tDu(x+h)-(1-t)Du(x))(Du(x+h)-Du(x))dt$, 则
-    \begin{equation}
-        \int \aij(Du(x+h)-Du)_iD_j\phi=0 \s \forall \phi \in H^1_0(\O_h)
-    \end{equation}
-    令$v_h(x)=\frac{u(x+h)-u(x)}{h}$,则$v_h$满足方程
-    \begin{equation}
-        \int \aij D_i v_h D_j\phi=0
-    \end{equation}
-    由De Giorgi估计可知
-    \begin{equation}
-        \norm{v_h}_{C^\alpha(\O')} \le C\norm{Du}_{L^2(\O)}
-    \end{equation}
-    由引理\eqref{holderh7}可知,$ u \in C^{1,\alpha}$.
-\end{proof}
-\section{局部有界性}
-从现在开始,我们考虑方程
-\begin{equation} \label{eq2}
-    \int_{B_1} \aij D_iu D_j \phi + cu\phi = \int_{B_1}f\phi
-\end{equation}
-\begin{theorem}\label{local_boundedness}
-    设$u$是方程\eqref{eq2}的弱下解,即$\forall \phi \in H^1_0(B_1), \phi \ge 0$成立
-    \begin{equation}
-        \int_{B_1} \aij D_i D_j \phi + cu\phi \le \int_{B_1}f\phi
-    \end{equation}
-    这里,$\aij$满足$(\lambda,\Lambda)$一致椭圆条件, $c,f\in L^1(B_1)$且$q > \frac{n}{2}, \norm{c}_{L^q(B_1)} \le \Lambda$. 则 $u^+ \in L^\infty_{loc}$且 $\forall \theta \in (0,1), p >0$,成立
-    \begin{equation}
-        \sup_{B_\theta}u^+ \le c(n,\lambda,\Lambda,p,q)\{(\rec{1-\theta})^{\frac{n }{p}}\norm{u^+}_{L^p(B_1)}+\norm{f}_{L^q(B_1)}\}
-    \end{equation}
-\end{theorem}
-\subsection{De Giorgi方法}
-\begin{proof}[局部有界性的De Giorgi迭代证明]
-    首先假设$\theta=\rec{2},p=2$. 一般情况将通过一个绅缩变换来得到. 记$u_k=(u-k)^+$.则
-    \begin{equation}
-        Du_k=\left\{
-            \begin{aligned}
-                &Du \s u>k \\
-                &0 \s u \le k
-            \end{aligned}
-        \right.
-    \end{equation}
-    取$\eta \in C^\infty_0(B_1)$. 取$\phi=u_k\eta^2$代入到方程中,则有
-    \begin{equation} \label{minequa1}
-        \int \aij D_iu(D_ju_k)\eta^2 \le -2 \int \aij D_iuD_j\eta u_k \eta - \int cuu_k\eta^2+\int fu_k\eta^2
-    \end{equation}
-    根据一致椭圆性质及{\Holder}不等式,我们分别有
-    \begin{equation} \label{m1}
-        \text{左} = \int \aij D_i u_k D_j u_k \eta^2 \ge \lambda\int \abs{Du_k}^2\eta^2
-    \end{equation}
-    \begin{equation}\label{m2}
-        \begin{split}
-            \rec{2}\text{右(I)} \le & \int \abs{\aij D_i u_k D_j \eta u_k \eta} \\
-            \le & \Lambda \int\abs{Du_k}\abs{\eta} \abs{D\eta} u_k \\
-            \le & \Lambda (\epsilon \int \abs{Du_k}^2\eta^2 + \rec{\epsilon}\int \abs{D\eta}^2u_k^2)
-        \end{split}
-    \end{equation}
-    \begin{equation} \label{m3}
-        \begin{split}
-            \abs{\text{右(II)}}  \le & \int \abs{c}(u_k+k)u_k\eta^k \\
-            \le  & C(\int\abs{c}u^2_k \eta^2+k^2\int \abs{c}\eta^2)
-        \end{split}
-    \end{equation}
-    在\eqref{m2}中取$\epsilon$使得 $2\Lambda \epsilon \le \rec{2}\lambda$,并将\eqref{m1},\eqref{m2},\eqref{m3}代入到不等式\eqref{minequa1}中,则有
-    \begin{equation}
-        \int \abs{Du_k}^2\eta^2 \le C(\int \abs{D\eta}^2u_k^2+\int \abs{c}u_k^2 \eta^2 + k^2 \int \abs{c}\eta^2+\int \abs{f}u_k\eta^2)
-    \end{equation}
-    再由
-    \begin{equation}
-        \int \abs{D(u_k\eta)}^2 \le 2(\int\abs{Du_k}^2\eta^2+\int u_k^2\abs{D\eta}^2)
-    \end{equation}
-    可得到Caccioppoli不等式,
-    \begin{equation} \label{cacc}
-        \int \abs{D(u_k\eta)}^2 \le C(\int \abs{D\eta}^2u_k^2+\int \abs{c}u_k^2\eta^2 + k^2\int \abs{c}\eta^2+ \int \abs{f}u_k\eta^2)
-    \end{equation}
-    由于$k \to \infty$时,$\abs{\{u_k\eta \ne 0\}} \to 0$. 从现在开始,我们总是假设$k$足够大,也就是$\abs{\{u_k\eta \ne 0\}}$足够小. 现在,分别估计不等式\eqref{cacc}中的右侧各项.   由{\Holder}不等式及Sobolev不等式可知:
-    \begin{equation}
-        \begin{split}
-            \text{右(II)} =& \int \abs{c}{u_k^2}\eta^2 \\
-            \le & (\int \abs{c}^q)^\rec{q}( \int \abs{u_k\eta}^{2^*})^\frac{2}{2^*} \abs{\{ u_k \eta \ne 0\}}^{1-\frac{2 }{2^*}-\rec{q}} \\
-            \le & (\int \abs{c}^q)^\rec{q} \int  \abs{D(u_k\eta)}^2 \abs{\{ u_k \eta \ne 0\}}^{\frac{2}{n}-\rec{q}}
-        \end{split}
-    \end{equation}
-    \begin{equation}
-        \text{右(III)}= k^2 \int \abs{c}\eta^2 \le k^2(\int \abs{c}^q)^\rec{q}\abs{\{u_k\eta \ne 0\}}^{1-\rec{q}}
-    \end{equation}
-    \begin{equation}
-        \begin{split}
-            \text{右(IV)} = \int \abs{f}u_k\eta^2 \le & \int \abs{f}u_k\eta \\
-            \le & (\int \abs{f}^q)^\rec{q} (\int \abs{u_k\eta}^{2^*})^\rec{2^*} \abs{\{u_k\eta \ne 0\}}^{1-\rec{2^*}  -\rec{q}} \\
-            \le & c(\int \abs{f}^q)^\rec{q}( \int \abs{D(u_k\eta)}^2)^\rec{2}\abs{\{u_k\eta \ne 0\}}^{1-\rec{2^*}-\rec{q}} \\
-            \le &\delta \int \abs{D(u_k\eta)}^2+ \frac{C}{\delta}(\int \abs{f}^q)^\rec{q}\abs{\{u_k\eta \ne 0\}}^{1+\frac{2}{n}-\frac{2}{q}}
-        \end{split}
-    \end{equation}
-    缩合以上估计,我们有
-    \begin{equation} \label{t263}
-        \begin{split}
-            &\int \abs{D(u_k\eta)}^2  \\
-            \le & C(\int u_k^2\abs{D\eta}^2 + \norm{c}_{L^q} \int \abs{D(u_k\eta)}^2 \abs{\{u_k\eta \ne 0\}}^{\frac{2 }{n}-\rec{q}} \\
-            &+k^2\norm{c}_{L^q}\abs{\{u_k\eta\ne 0\}}^{1-\rec{q}} + \delta \int \abs{D(u_k\eta)}^2 + C(n,\delta)\norm{f}_{L^q}^2\abs{\{u_k\eta \ne 0\}}^{1+\frac{2 }{n}-\frac{2 }{q}})
-        \end{split}
-    \end{equation}
-    现在, 可以选取 $k$足够大及$\delta$足够小, 使得不等式\eqref{t263}右侧含有$\int\abs{D(u_k\eta)}^2$的项可以被左侧约去.  而由于
-    \begin{equation}
-        \abs{\{u>k\}} \le \rec{k} \int (u-k)^+ \le C\rec{k}(\int \abs{u_k}^2)^\rec{2}
-    \end{equation}
-    可设$k>k_0=C\abs{u^+}_{L^2}$.于是,取$\delta$足够及$k>k_0$,则有
-    \begin{equation} \label{meq5}
-        \begin{split}
-            &\int \abs{D(u_k\eta)}^2  \\
-            \le &C(\int u_k^2 \abs{D\eta}^2+k^2\norm{c}_{L^q}\abs{u_k\eta\ne 0}^{q-\rec{q}}+\norm{f}^2_{L^q}\abs{u_k\eta\ne 0}^{1+\frac{2}{n}-\frac{2 }{q}}) \\
-            \le & C(\int u_k^2\abs{D\eta}^2+(k^2+\norm{f}^2_{L^q})\abs{u_k\eta \ne 0}^{1-\rec{q}})
-        \end{split}
-    \end{equation}
-    现在,我们利用不等式\eqref{meq5}来估计 $\int \abs{u_k \eta}^2$. 由Holder不等式及Sobolev不等式可知
-    \begin{equation} \label{meq6}
-        \begin{split}
-            \int\abs{u_k \eta}^2 \le & (\int \abs{u_k\eta}^{2^*})^{\frac{2}{2^*}}\abs{\{u_k \eta \ne 0\}}^{1-\frac{2 }{2^*}} \\
-            \le & C \int \abs{D(u_k\eta)}^2 \abs{\{u_k \eta \ne 0 \}}^{1-\frac{2 }{2^*}} \\
-            \le & C(\int u_k^2 \abs{D\eta}^2 \abs{u_k\eta \ne 0}^\frac{2}{n} + (k+\norm{f}_{L^q})^2 \abs{u_k \eta \ne 0}^{1-\rec{q}+\frac{2 }{n}}) \\
-            \le & C(\int \abs{u_k D\eta}^2\abs{u_k\eta\ne 0}^\epsilon + (k+\norm{f}_{L^q})^2\abs{\{u_k \eta \ne 0\}}^{1+\epsilon})
-        \end{split}
-    \end{equation} 
-    这里, $ \abs{u_k\eta \ne 0}, \epsilon$都取足够小.  $\forall  0 < r < R < 1$, 取$ \eta \in C^\infty_0(B_R)$使得 
-    \begin{equation}
-        \left\{
-        \begin{aligned}
-            & \eta(x) \eq 1, x \in B_r \\
-            & \eta(x) \eq 0, x \in B_R^c\\
-            & \abs{D\eta} \le \frac{2}{R-r}
-        \end{aligned}
-        \right.
-    \end{equation}
-    记$A(k,r)=\{u>k\} \cap B_r$. 显然, $\supp u_k \cap B_r = A(k,r)$. 由不等式\eqref{meq6}可知, 当$k>k_0$时,有
-    \begin{equation}\label{ss}
-        \begin{split}
-            &\int_{A(k,r)} (u-k)^2 \\
-            \le & C( \rec{\abs{R-r}^2} \abs{A(k,R)}^\epsilon\int_{A(k,R)}(u-k)^2 + (k+\norm{f}_{L^q})^2\abs{A(k,R)}^{1+\epsilon})
-        \end{split}
-    \end{equation}
-    为了证明$u^+$在$B_{\rec{2}}$上的有界性,只需证明存在$k$使得 $\int_{A(k,\rec{2})} (u-k)^2=0$即可.  $\forall h > k > k_0$及$ 0 < r < 1$,显然有
-    \begin{equation}
-        \int_{A(h,r)} (u-h)^2 \le \int_{A(k,r)}(u-k)^2
-    \end{equation}
-    以及
-    \begin{equation}
-        \begin{split}
-            \abs{A(h,r)} = &\abs{B_r \cap \{u-h>0\}} \\
-            = &\abs{B_r \cap \{u-k > h-k\}} \\
-            \le  & \abs{B_r \cap \{(u-k)^2 > (h-k)^2\}}\\
-            \le & \rec{(h-k)^2}\int_{A(k,r)}(u-k)^2
-        \end{split}
-    \end{equation}
-    于是, $\forall \rec{2} < r < R <1$,有
-    \begin{equation} \label{s1}
-        \begin{split}
-            \abs{A(h,R)}^\epsilon \int_{A(h,R)}(u-h)^2 \le & (\rec{(h-k)^2}\int_{A(k,R)}(u-k)^2)^\epsilon\int_{A(k,R)} (u-k)^2\\
-            = &\rec{(h-k)^{2\epsilon}} (\int_{A(k,R)}(u-k)^2)^{1+\epsilon}
-        \end{split}
-    \end{equation}
-    \begin{equation} \label{s2}
-        \abs{A(h,R)}^{1+\epsilon} \le (\rec{(h-k)^2})\int_{A(k,R)}(u-k)^2)^{1+\epsilon}
-    \end{equation}
-    将不等式$\eqref{s1},\eqref{s2}$代入到  \eqref{ss}中,则$\forall h > k > k_0$, 有
-    \begin{equation}
-        \begin{split}
-            &\int_{A(h,r)}(u-h)^2\\
-            \le & C(\rec{(R-r)^2}\rec{(h-k)^{2\epsilon}}(\int_{A(k,R)}(u-k)^2)^{1+\epsilon}+(k+\norm{f}_{L^q})^2 \\
-            +&(\rec{(h-k)^2}\int_{A(k,R)}(u-k)^2)^{1+\epsilon}) \\
-            =& C(\int_{A(k,R)}(u-k)^2)^{1+\epsilon}\rec{(h-k)^{2\epsilon}}(\rec{(R-r)^2}+(k+\norm{f}_{L^q})^2\rec{(h-k)^2})
-        \end{split}
-    \end{equation}
-    %记 $\phi(h,r)=(\int_{B_r}u_h^2)^\rec{2}$.则
-    记 $\phi(h,r)=(\int_{A(h,r)}(u-h)^2)^\rec{2}$.则
-    \begin{equation}\label{msharp}
-        \phi(h,r) \le C\phi(k,R)^{1+\epsilon}\rec{(h-k)^\epsilon}(\rec{R-r}+(k+\norm{f}_{L^q})\rec{h-k})
-    \end{equation}
-    现在,设$L$是待定常数.记
-    \begin{equation}
-        k_i=k_0+L(1-\rec{2^i}), r_i=\rec{2}+\rec{2^i}
-    \end{equation}
-    取$h-k_i,k=k_{i-1}, r=r_i,R=r_{i-1}$,代入到\eqref{msharp}中,则有
-    \begin{equation}\label{mssharp}
-        \begin{split}
-            \phi(k_i,r_i) \le & C\phi(k_{i-1},r_{i-1})^{1+\epsilon}(\frac{2^i}{L})^\epsilon(2^i+(k_{i-1}+\norm{f}_{L^q})\frac{2^i}{L}) \\
-            \le & C\phi(k_{i-1},r_{i-1})^{1+\epsilon}(2^i)^{1+\epsilon}\rec{L^{1+\epsilon}}(k_0+L+\norm{f}_{L^q})
-        \end{split}
-    \end{equation}
-    \begin{claim*}
-        当$L$足够大时,存在$A>1$使得$\phi(k_i,r_i) \le \rec{A^i}\phi(k_0,r_0)$.
-    \end{claim*}
-    我们用数学归纳法. $i=0$时断言是平凡的.设断言对$i-1$成立.则
-    \begin{equation}
-        \begin{split}
-            \phi(k_i,r_i) \le & C(\rec{A^{i-1}}\phi(k_0,r_0))^{1+\epsilon}(2^i)^{1+\epsilon}\rec{L^{1+\epsilon}}(k_0+L+\norm{f}_{L^q}) \\
-            =&C\rec{A^i}\phi(k_0,r_0)(\frac{2^{1+\epsilon}}{A^\epsilon})^i(A^{1+\epsilon}\frac{\phi^\epsilon(k_0,r_0)}{L^{1+\epsilon}}(k_0+L+\norm{f}_{L^q}))
-        \end{split}
-    \end{equation}
-    为了使得归纳法成立, 取$A$使得$A^\epsilon=2^{1+\epsilon}$. 显然,$A>1$. 同时选取$L$使得
-    \begin{equation}
-        CA^{1+\epsilon}\frac{\phi^{\epsilon}(k_0,r_0)}{L^{1+\epsilon}}(k_0+L+\norm{f}_{L^q}) \le 1
-    \end{equation}
-    这里,可以取$L=C(k_0+\norm{f}_{L^q})\approx C(\norm{u^+}_{L^2}+\norm{f}_{L^q})$.于是,断言证毕.
-    \par 令$i \to \infty$,则有$\phi(k_i,r_i) \to 0$.即,$\phi(k_0+L,\rec{2})=0$. 证毕.
-\end{proof}
-\subsection{Moser方法}
-\begin{proof}[局部有界性的Moser迭代证明]
-\newcommand{\um}{{\bar{u}_m}}
-\newcommand{\ub}{{\bar{u}}}
-    设
-    \begin{equation}
-        \bar{u}=u^++k(\text{其中, }k=\norm{f}_{L^q}), \s \bar{u}_m=\min\{\bar{u},k+m\}. 
-    \end{equation}
-    即
-    \begin{equation}
-        \um=\left\{
-            \begin{aligned}
-                & k \s u \le 0 \\
-                &u+k \s 0 < u < m \\
-                &k+m \s u\ge m
-            \end{aligned}
-        \right.
-    \end{equation}
-    显然,$u \le 0$或$u \ge m$时,$D\um =0$. $0<u<m$时,$D\um=Du$. $u>0$时, $D\ub=Du$. $D\um \ne 0$时, $\ub =\um $且$Du=D\um$. 
-    取$\phi=\eta^2(\um^\beta\ub-k^{\beta+1})$. 显然, $\phi \in H^1_0$,  $\phi \ge 0$且$\supp\phi \subset\{u>0\}$. 则
-    \begin{equation}
-        \begin{split}
-            D\phi= & \eta^2(\um^\beta D\ub + \beta \um^{\beta-1}\ub D\um)+2\eta(\um^\beta\ub-k^{\beta+1})D\eta \\
-            =& \eta^2\um^\beta(D\ub+\beta D\um)+2\eta(\um^\beta\ub-k^{\beta+1})D\eta
-        \end{split}
-    \end{equation}
-    取$\phi$作为测试函数,则有
-    \begin{equation}
-        \begin{split}
-            &\int \aij D_iu D_j \phi \\
-            =& \int \aij D_iu(D_j\ub +\beta D_j\um)\eta^2\um^\beta + \aij D_iu D_j \eta 2\eta(\um^\beta\ub -k^{\beta+1}) \\
-            =& \int \aij D_i\ub D_j\ub \eta^2 \um^\beta+ \aij D_i\um D_j\um \beta \eta^2 \um^\beta + \aij \D_i\ub D_j\eta 2\eta(\um^\beta\ub -k^{\beta+1}) \\
-            \ge & \lambda\int \abs{D\ub}^2\eta^2 \um^\beta+\lambda\beta \int \abs{D\um}^2\eta^2\um^\beta-\Lambda \int \abs{D\ub}\abs{D\eta}2\eta\um^\beta\ub\\
-            \ge & \lambda \int \eta^2 \um^\beta(\abs{D\ub}+\beta\abs{D\um}^2)-2\Lambda\int(\epsilon\abs{D\ub}^2\eta^2 \um^\beta+\rec{\epsilon}\abs{D\eta}\um^\beta\ub^2) \\
-            & \s\s\s (\text{取$\epsilon$使得$2\Lambda\epsilon=\rec{2}\lambda$}) \\
-            \ge & \frac{\lambda}{2}\int \eta^2 \um^\beta(\abs{D\ub}^2+\beta\abs{D\um}^2)-C(\lambda,\Lambda)\int\abs{D\eta}^2\um^\beta\ub^2
-        \end{split}
-    \end{equation}
-    另一方面,我们有
-    \begin{equation}
-        \begin{split}
-            &-\int cu\phi + f \phi \\
-            \le & \int \abs{c}\abs{u}\eta^2(\um^\beta\ub -k^{\beta+1})+\abs{f}\eta^2(\um^\beta\ub - k^{\beta+1}) \\
-            \le & \int \abs{c}\eta^2 \um^\beta \ub^2 + \frac{\abs{f}}{k}\eta^2 \um^\beta \ub ^2 \\
-            &\s \s (\text{记$c_0=\abs{c}+\frac{\abs{f}}{k}$, 显然,$\norm{c_0}_{L^q}\le 1+\Lambda$}) \\
-            =&\int c_0\eta^2\um^\beta \ub^2
-        \end{split}
-    \end{equation}
-    则由$\int \aij D_iuD_j\phi \le -\int cu\phi + f\phi$可知
-    \begin{equation} \label{mosers}
-        \int \eta^2 \um^\beta (\abs{D\ub}^2+\beta \abs{D\um}^2) \le C(\int \abs{D\eta}^2\um^\beta\ub^2+\int c_0\eta^2\um^\beta\ub^2)
-    \end{equation}
-\newcommand{\umb}{{\bar{u}_m^{\frac{\beta}{2}}}}
-    记 $w=\ub_m^{\frac{\beta}{2}}\ub$,则
-    \begin{equation}
-        Dw=\umb D\ub+\frac{\beta}{2}\ub_m^{\frac{\beta}{2}-1}\ub D\um 
-    \end{equation}
-    \begin{equation}
-        \begin{split}
-            \abs{Dw}^2 \le & C(\um^\beta\abs{D\ub}^2+ \beta^2 \um^\beta \abs{D\um}^2) \\
-            \le & C(1+\beta)\um^\beta(\abs{D\ub}^2+\beta\abs{D\um}^2)
-        \end{split}
-    \end{equation}
-    再由不等式 \eqref{mosers}可知
-    \begin{equation}
-        \begin{split}
-            \int \abs{Dw}^2\eta^2 \le  &C(1+\beta)\int \eta^2 \um^\beta(\abs{D\ub}^2+\beta\abs{D\um}^2) \\
-            \le & C(1+\beta)(\int \abs{D\eta}^2w^2+c_0\eta^2w^2)
-        \end{split}
-    \end{equation}
-    又因为 $\int \abs{D(\eta w)}^2 \le 2(\int \abs{Dw}^2\eta^2 + w^2\abs{D\eta}^2)$,则
-    \begin{equation}\label{mosersharp}
-        \int\abs{D(\eta w)}^2 \le C(1+\beta)(\int \abs{D\eta}^2 w^2 + c_0\eta^2 w^2)
-    \end{equation}
-    而由$\Holder$不等式可知
-    \begin{equation}
-        \begin{split}
-            \int c_0\eta^2 w^2 \le & (\int \abs{c_0}^q)^\rec{q}(\int (\eta w)^{2q'})^\rec{q'} \\
-            \le & (1+\Lambda)(\int (\eta w)^{2q'})^\rec{q'}
-        \end{split}
-    \end{equation}
-    根据定理中的假设, $q > \frac{n}{2}$,则有$2< 2q' = \frac{2q}{q-1} < \frac{2n }{n-2} =2^*$. 设$\theta$满足
-    \begin{equation}
-        \frac{2q}{q-1}=(1-\theta)2+\theta\frac{2n}{n-2}
-    \end{equation}
-    即,$\theta=\frac{n-2}{2(q-1)}$. 则有
-    \begin{equation}
-        \begin{split}
-            \int (\eta w)^{\frac{2q}{q-1}} =  & \int (\eta w)^{(1-\theta)2} (\eta w)^{\theta \frac{2n}{n-2}} \\
-            \le & (\int (\eta w)^2)^{1-\theta}(\int (\eta w)^{2^*})^\theta
-        \end{split}
-    \end{equation}
-    即有
-    \begin{equation}
-        \begin{split}
-            {(\int (\eta w)^{\frac{2q }{q-1}})}^\frac{q-1}{q} \le & {(\int (\eta w))}^\frac{2q-n}{2q} {(\int (\eta w)^{2^*})}^\frac{n-2}{2q} \\
-            \le & C(\int (\eta w)^2)^\frac{2q-n}{2q}{(\int \abs{D(\eta w)}^2)}^\frac{n }{2q} \\
-            \le & C(\epsilon\int \abs{D(\eta w)}^2+ (\rec{\epsilon})^\frac{n }{2q-n}\int (\eta w)^2)
-        \end{split}
-    \end{equation}
-    选取$\epsilon$足够小, $ \epsilon \le \frac{\epsilon_0}{1+\beta}$,代入到\eqref{mosersharp}中, 取$\alpha=1+\frac{n}{2q-n}$. 则有
-    \begin{equation}
-        \begin{split}
-            \int \abs{D(\eta w)}^2 \le & C((1+\beta)(\int \abs{D\eta}^2w^2) + (1+\beta)^{\frac{n }{2q-n}} \int w^2 \eta^2) \\
-            \le & C(1+\beta)^\alpha ( \int w^2(\abs{D\eta}^2+\eta^2))
-        \end{split}
-    \end{equation}
-    记$\chi = \frac{2^*}{2}>1$, 由Sobolev不等式
-    \begin{equation}
-        (\int (\eta w)^{2\chi })^\rec{\chi} \le C \int \abs{D(\eta w)}^2 \le C(1+\beta)^\alpha\int w^2(\eta^2 +\abs{D\eta}^2)
-    \end{equation}
-    $\forall 0< r < R <1$, 取$B_r, B_R$上的截断函数$\eta$,则有 
-    \begin{equation}
-        (\int _{B_r}w^{2\chi})^\rec{\chi} \le C\frac{(1+\beta)^\alpha}{(R-r)^2} \int _{B_R}w^2
-    \end{equation}
-    而$w=\umb \ub$,则
-    \begin{equation}
-        (\int _{B_r}\ub^{2\chi}\um^{\beta \chi })^\rec{\chi} \le C \frac{(1+\beta)^\alpha}{(R-r)^2}\int_{B_R} \ub^2\um^\beta
-    \end{equation}
-    令$m \to \infty$,则有 
-    \begin{equation}
-        (\int_{B_r}\ub^{(2+\beta)\chi})^\rec{\chi} \le C \frac{(1+\beta)^\alpha}{(R-r)^2}\int_{B_R}\ub^{\beta+2}
-    \end{equation}
-    记$A_0=2, A_{i+1}=\chi A_i$, 令$r=r_{i+1}=1+\rec{2^{i+1}}, R=r_i=1+\rec{2^i}$.则有
-    \begin{equation}
-        \begin{split}
-            \norm{\ub}_{L^{A_{i+1}}(B_{r_{i+1}})} \le & (C(A_i-1)^\alpha 2^{2i})^{\rec{A_i}}\norm{\ub}_{L^{A_i}(B_{r_i})} \\
-            \le &(C\chi^{i\alpha}2^{2i})^\rec{A_i} \norm{\ub}_{L^{A_i}(B_{r_i})}
-        \end{split}
-    \end{equation}
-    将上面的不等式迭代,则有
-    \begin{equation}
-        \begin{split}
-            \norm{\ub}_{L^{A_{i+1}}(B_{r_{i+1}})}\le & \Pi_{j=1}^i(C\chi^{j\alpha}2^{2j})^\rec{\chi^j} \norm{\ub}_{L^2(B_1)} \\
-            =&\Pi_{j=1}^iC^\rec{\chi^j}\chi^{\Sigma^i_{j=1}\frac{i\alpha}{\chi^i}}2^{\Sigma_{j=1}^i\frac{2j}{\chi^j}} \norm{\ub}_{L^2(B_1)}
-        \end{split}
-    \end{equation}
-    显然,$i \to \infty$时收敛. 令$i \to \infty$即可.
-\end{proof}
-\begin{proof}[局部有界性$p,\theta$任意时的证明]
-    前面已经完成了定理\eqref{local_boundedness}在$p=2,\theta=\rec{2}$时的证明. 一般情况可以由一个伸缩变换来得到. $\forall R \le 1$,设$u$是方程\eqref{meq}在$B_R$中的弱下解.定义$\tilde{u}(x)= u(Rx)$ . 显然, $D_i \tilde{u}(x) = RD_iu(Rx)$.根据弱解的定义 
-    \begin{equation}
-        \int_{B_R} \aij D_iu D_j\phi + cu\phi \le \int_{B_R}f\phi \forall \phi \in H^1_0{B_R}, \phi \ge 0
-    \end{equation}
-    作变量代换$x\to Rx$后,则变为
-    \begin{equation}
-        \int_{B_1} \aij(Rx) D_i(Rx)D_j\phi(Rx) + c(Rx)u(Rx)\phi(Rx) \le \int_{B_1}f(Rx)\phi(Rx)
-    \end{equation}
-    记$\tilde{a}^{ij}=\aij(Rx), \tilde{c}(x)=c(Rx), \tilde{f}(x)=f(Rx),\tilde{\phi}(x)\phi(Rx)$. 则
-    \begin{equation}
-        \rec{R^2}\int_{B_1}\tilde{a}^{ij}D_i\tilde{u}D_j\tilde{\phi}+\int_{B_1}\tilde{c}\tilde{u}\tilde{\phi} \le R^2\int_{B_1}\tilde{f}\tilde{\phi}
-    \end{equation}
-    显然,$\tilde{a}^{ij}$满足 $\lambda,\Lambda$一致椭圆条件.$\norm{R^2\tilde{c}}_{L^q} \le \Lambda$. 于是有 
-    \begin{equation}
-        \sup_{B_\rec{2}}\tilde{u}^+ \le C(\norm{\tilde{u}^+}_{L^2(B_1)}+R^2\norm{\tilde{f}}_{L^q(B_1)})
-    \end{equation}
-    即有
-    \begin{equation}
-        \sup_{B_\rec{2}}{u}^+ \le C(R^{-\frac{n}{2}}\norm{{u}^+}_{L^2(B_R)}+R^{2-\frac{n}{q}}\norm{\tilde{f}}_{L^q(B_R)})
-    \end{equation}
-    若$p \ge 2$,则由Holder不等式,
-    \begin{equation} \label{local_boundedness_s}
-        \sup_{B_\rec{2}}{u}^+ \le C(R^{-\frac{n}{p}}\norm{{u}^+}_{L^p(B_R)}+R^{2-\frac{n}{q}}\norm{\tilde{f}}_{L^q(B_R)})
-    \end{equation}
-    $\forall \theta \in (0,1)$,可设$\theta \in (\rec{4},1)$.因为$\theta \in (0,\frac{3}{4})$时,用$\sup_{B_\theta}u^+ \le \sup_{B_\rec{2}}u^+$即可. 现在,固定$y \in B_\theta$.则$B_{1-\theta}(y) \subset B_1$. 在$B_{1-\theta}(y)$上应用不等式\eqref{local_boundedness_s},则得到
-    \begin{equation}
-        \sup_{B_{1-\theta}}{u}^+ \le C(\rec{{(1-\theta)}}^{\frac{n}{p}}\norm{{u}^+}_{L^p(B_1)}+\norm{\tilde{f}})
-    \end{equation}
-    取有限个$u\in B_{\theta}$使得$\cup B_{1-\theta}(y_i)$覆盖$B_\theta$即可.  这样就完成了定理\eqref{local_boundedness}在$p \ge 2, \theta \in (0,1)$时的证明.
-    显然,$p \in (0,2)$时无法使用Holder不等式.
-    \begin{equation}
-        \norm{u^+}^2_{L^2(B_R)} \le \norm{u^+}^{2-p}_{L^\infty(B_R)} \norm{u^+}^p_{L^p(B_R)}
-    \end{equation}
-    而
-    \begin{equation}
-        \begin{split}
-            &\sup_{B_{\theta R}}u^+  \\
-            \le & C(\rec{((1-\theta)R)^\frac{n}{2}} \norm{u^+}^{1-\frac{p}{2}}_{L_p(B_R)}\norm{u}_{L^p(B_R)}^\frac{p}{2}+\norm{f}_{L^q}) \\
-            \le & C(\epsilon\rec{((1-\theta)R)^\frac{n}{2}} \norm{u^+}^{1-\frac{p}{2}}_{L_p(B_R)}+\rec{\epsilon}^\frac{2-p}{p}\norm{u}_{L^p(B_R)}+\norm{f}_{L^q}) 
-        \end{split}
-    \end{equation}
-    在上面的不等式中,取$\epsilon$使得$C\epsilon\rec{((1-\theta)R)^\frac{n}{2}}=\rec{2}$. 则有
-    \begin{equation}
-        \sup_{B_{\theta R}}u^+ \le \rec{2}\norm{u^+}_{L^\infty(B_R)}+ C(\rec{((1-\theta)R)^\frac{n}{2}} \norm{u^+}^{1-\frac{p}{2}}_{L_p(B_R)}+\norm{f}_{L^q}) 
-    \end{equation}
-    定义$f(t)=\norm{u^+}_{L^\infty(B_t)}$, 则$\forall r < R <1$,有(取$\theta=\frac{r}{R})$,
-    \begin{equation}
-        f(r) \le \rec{2}f(R)+C\rec{(R-r)^\frac{n}{p}}\norm{u^+}_{L^p}+C\norm{f}_{L^q}
-    \end{equation}
-    应用引理\eqref{lb_iter}即可.
-\end{proof}
-\begin{lemma} \label{lb_iter}
-    设$f(t) \ge 0$在$[\tau_0,\tau_1]$上有界. $\tau_0 \ge 0$. 设存在$\theta \in (0,1)$及 $\alpha >0$使得$\forall \tau_0 \le t < s \le \tau_1$, $f$满足
-    \begin{equation}
-        f(t) \le \theta f(s) + \frac{A}{(s-t)^\alpha}+B
-    \end{equation}
-    则
-    \begin{equation}
-        f(t) \le C(\theta,\alpha)(\frac{A}{(s-t)^\alpha}+B).
-    \end{equation}
-\end{lemma}
-\begin{proof}
-    将区间$[t,s]$等比分割. 固定$\tau \in (0,1)$,取$t_i$使得 $t_{i+1}-t_i=\tau(t_i-t_{i-1})$. 由于$\Sigma(t_{i+1}-t_i)=s-t$,则$t_{i+1}-t_i=(1-\tau)\tau^i(s-t)$.
-    \begin{equation}
-        \begin{split}
-            f(t) \le & \theta f(t_1) + \frac{A}{(t_1-t)^\alpha}+B \\
-            \le & \theta^2 f(t_2)+\frac{A }{(t_1-t)^\alpha}+B+\theta(\frac{A}{(t_2-t_1)^\alpha}+B)\cdots \\
-            \le & \theta^{N+1}f(t_{N+1})+\Sigma \frac{A\theta^{i-1}}{(t_i-t_{i-1})^\alpha} + \Sigma B \theta^{i-1}\\
-            \le & \theta^{N+1}f(t_{N+1})+A\rec{(s-t)^\alpha}\rec{(1-\tau)^\alpha}\frac{\frac{\theta}{\tau^\alpha}}{1-(\frac{\theta}{\tau^\alpha})^N}+B\frac{1-\theta}{1-\theta^N}
-        \end{split}
-    \end{equation}
-    取$\tau$使得 $\frac{\theta}{\tau^\alpha} < 1$.  令$N \to \infty$即可.
-\end{proof}
-当非齐次项$f$满足较低的可积性条件时,不一定有$u \in L^\infty_\loc$. 但是用Moser迭代的技巧,我们仍然可以得到$u$的某些可积性信息.
-\begin{theorem}
-    设 $c \in L^{\frac{n }{2}}(B_1), f \in L^q(B_1), q \in [\frac{2n}{n+2},\frac{n}{2})$. $\aij$满足$(\lambda,\Lambda)$一致椭圆条件. 设$u \in H^1(B_1)$是方程\eqref{eq}
-    \begin{equation}
-        \aij D_iu D_j\phi + cu\phi \le \int f\phi \forall \phi \in H^1_0(\O), \phi \ge 0
-    \end{equation}
-    则$u^+\in L^{q'}_{\loc}. \rec{q'}=\rec{q}-\frac{2}{n}$. 且有
-    \begin{equation}
-        \norm{u^+}_{L^\rec{q'}-\rec{n}}(B_\rec{2}) \le C(\norm{u^+}_{L^2(B_1)}+\norm{f}_{L^q}(B_1))
-    \end{equation}
-    其中, $C=C(n,\lambda,\Lambda,q,\epsilon(k))$. $\epsilon(k)=(\int_{\abs{c}>k}\abs{c}^\frac{n}{2})^\frac{n}{2}$(这里指的是依赖于$k\to \infty$时, $\epsilon(k) \to 0$的速度)
-\end{theorem}
-\begin{proof}
-\newcommand{\um}{{\bar{u}_m}}
-\newcommand{\ub}{{\bar{u}}}
-    设$m >0$,记 $\ub=u^+$, $\um=\min\{\ub,m\}$. 记$\phi=\eta^2 \um^\beta \ub \in H^1_0(B)$. $\supp \phi \subset \{u >0\}$. $D\um\ne 0$时,$\um=\ub$且$D\um = D\ub = Du$.
-    \begin{equation}
-        \begin{split}
-            D\phi= &\eta^2 \beta \um^{\beta-1}\ub D\um+\eta^2\um^\beta D\ub + 2\um^\beta \ub \eta D\eta\\
-            =& \eta^2 D\um^\beta(\beta D\um+D\ub)+2\um^\beta\ub \eta D\eta
-        \end{split}
-    \end{equation}
-    则有
-    \begin{equation}
-        \begin{split}
-            &\int \aij D_iuD_j\phi  \\
-            =& \int \eta^2 \um^\beta (\beta\aij D_iuD_j\um+\aij D_iuD_j\ub)+2\um\ub\eta\aij D_iuD_j\eta \\
-            \le & \int \eta^2 \um^\beta(\lambda\beta\abs{D\um}^2+\lambda\abs{D{\ub}}^2)-2\Lambda\um^\beta\ub\eta\abs{D\ub}D\eta\\
-            \le & \int \eta^2 \um^\beta(\lambda\beta\abs{D\um}^2+\lambda\abs{D{\ub}}^2)-2\Lambda(\epsilon\eta^2\um^\beta \abs{D\ub}^2+\rec{\epsilon}\um^\beta\ub^2\abs{D\eta}^2)\\
-            \le & C(\int \eta^2\um^\beta(\beta\abs{D\um}^2+\abs{D\ub}^2)-\um^\beta\ub^2\abs{D\eta}^2)
-        \end{split}
-    \end{equation}
-    于是,有
-    \begin{equation} \label{llllstar}
-        \begin{split}
-            \int \eta^2 \um^\beta(\beta\abs{\um}^2+\abs{Du}^2) \le  C(\int\um^\beta\ub^2\abs{D\eta}^2+\abs{cu\phi}+\abs{f\phi}) 
-        \end{split}
-    \end{equation}
-    令$w=\um^{\frac{\beta}{2}}\ub$. 则$Dw=\frac{\beta}{2}\um^{\frac{\beta}{2}-1}\ub D\um+\ub^{\frac{\beta}{2}}D\ub$.
-    在$u >0$上,有
-    \begin{equation}
-        \abs{Dw}^2 \le C(1+\beta)(\beta\um^\beta\abs{\um}^2+\ub^\beta\abs{D\ub}^2).
-    \end{equation}
-    由\eqref{llllstar},有
-    \begin{equation}
-        \int \eta^2\abs{Dw}^2 \le C(1+\beta)(\int \um^\beta\ub^2\abs{D\eta}^2+\abs{cu\phi}+\abs{f\phi})
-    \end{equation}
-    又因 $\abs{D(\eta w)}^2 \le 2(\eta^2\abs{Dw}^2+\abs{D\eta}^2w^2)$, $\abs{D\eta}^2w^2=\um^2\ub^2\abs{D\eta}^2$,则有
-    \begin{equation}
-        \int \abs{D(\eta w)}^2 \le C(1+\beta)(\int \abs{D\eta}^2w^2+\abs{cu\phi}+\abs{f\phi})
-    \end{equation}
-    由Soboleb不等式,
-    \begin{equation}\label{llllsharp}
-        (\int (\eta w)^{2\chi})^\rec{\chi} \le \int \abs{D\eta w}^2 \le C(1+\beta)(\int \abs{D\eta}^2w^2+\abs{cu\phi}+\abs{f\phi})
-    \end{equation}
-    而
-    \begin{equation}
-        \begin{split}
-            \int \abs{cu\phi} = & \int \abs{c}\eta^2\um^\beta \ub^2 \\
-            \le & k \int_{\abs{c}\le k}\eta^2 \um^\beta \ub^2 + \int_{\abs{c}>k}\abs{c}\eta^2\um\ub^2 \\
-            \le& k \int_{\abs{c}\le k} \eta^2 \um^\beta \ub^2+(\int_{\abs{c}>k}\abs{c}^\frac{n}{2})^\frac{2}{n}(\int (\eta^2\um\ub^2)^\chi)^\rec{\chi} \\
-            =& k \int (\eta w)^2 + \epsilon(k)(\int (\eta w)^{2\chi})^\rec{\chi}
-        \end{split}
-    \end{equation}
-    而$\epsilon(k) \to 0$. 因此当$k$足够大时,由不等式\eqref{llllsharp}可知
-    \begin{equation}\label{llllplus}
-        (\int (\eta w)^{2\chi})^\rec{\chi} \le C(1+\beta)(\int w^2(\eta^2+\abs{D\eta}^2)+\abs{f\phi})
-    \end{equation}
-    而$f\phi=f\eta\um^\beta\ub$. 现在其它项都是$\um^\beta u^2$的形式,我们需要比较$\um^\beta \um$与$\um^\beta\ub^2$这两项.显然有
-    \begin{equation}
-        \um^\beta \ub \le \um^{\beta-\epsilon}\ub^{1+\epsilon}
-    \end{equation}
-    取$\epsilon$使得$\frac{\beta-\epsilon}{1+\epsilon}=\frac{\beta}{2}$,即$\epsilon=\frac{\beta}{\beta+2}$. 则有
-    \begin{equation}
-        \um^\beta\ub \le (\um^\beta \ub^2)^{\rec{\beta}(\beta-\epsilon)}=(\um^\beta \ub^2)^\frac{\beta+1}{\beta+2}
-    \end{equation}
-    则由Holder不等式
-    \begin{equation}
-        \begin{split}
-            \int \abs{f}\eta^2 \um^\beta \ub \le & \int \abs{f}(\eta^2 \um^\beta \ub^2)^\frac{\beta+1}{\beta+2}(\eta^2)^\rec{\beta+2} \\
-            \le & (\int\abs{f}^q)^\rec{q}(\int (\eta^2 \um^\beta \ub^2)\chi)^{\rec{\chi}\frac{\beta+1}{\beta+2}} \abs{\supp\eta}^{1-\rec{q}-\frac{\beta+1}{(\beta+2)\chi}} \\
-            & \s \s (\text{如果有}1-\rec{q}-\frac{\beta+1}{(\beta+2)\chi}\ge 0, \text{即}\beta+2 \le \frac{q(n-2)}{n-2q}) \\
-            \le &\epsilon (\int (\eta^2 \um^\beta \ub^2)^\chi)^\rec{\chi}+C(\epsilon\beta)\norm{f}^{\beta+2}_{L^q}
-        \end{split}
-    \end{equation}
-    上面的不等式要求$\abs{\supp\eta}^{1-\rec{q}-\frac{\beta+1}{(\beta+2)\chi}}$有界,但由于$\abs{\supp\eta}$很小,因此$\beta+2 \le \frac{q(n-2)}{n-2q}$的条件不能少.(后面总是假设$\beta$满足这个条件). 现在,由不等式\eqref{llllplus},有
-    \begin{equation}
-        (\int (\eta w)^{2\chi})^\rec{\chi} \le C(\int w^2(\eta^2+\abs{D\eta}^2)+\norm{f}^{\beta+2}_{L^q})
-    \end{equation}
-    记$\chi=\beta+2$, 则
-    \begin{equation}
-        2 \le \lambda \le \frac{q(n-2)}{n-2q} = \frac{q'}{\chi}
-    \end{equation}
-    选取$B_r,B_R$上的截断函数$\eta$,则
-    \begin{equation}
-        (\int_{B_r}w^{2\chi})^\rec{\chi} \le C(\rec{(R-r)^2}\int_{B_R}w^2+\norm{f}_{L^q}^\lambda)
-    \end{equation}
-    而$w=\um^\frac{\beta}{2}\ub$,令$m \to \infty$,则有 
-    \begin{equation} \label{llllx}
-        (\int_{B_r}\ub^{\chi\lambda})\rec{\chi\lambda} \le C(\rec{(R-r)^\frac{2}{\lambda}}(\int_{B_R}\ub^\lambda)^\rec{\lambda}+\norm{f}_{L^q})
-    \end{equation}
-    由于$q \in [\frac{2n}{n+2},\frac{n}{2})$,存在$k$使得$2\chi^{k-1}\le \frac{q(n-2)}{n-2q} < 2\chi^k$. 从$\beta=0$,即$\lambda=2$开始,经过$k$次迭代后,则有
-    \begin{equation}
-        \norm{\ub}_{L^{2\chi^k}(B_{\frac{3}{4}})}\le C(\norm{\ub}_{L^2}+\norm{f}_{L^q})
-    \end{equation}
-    而$\frac{q'}{\chi} < 2\chi^k$,则
-    \begin{equation}
-        \norm{\ub}_{L^\frac{q'}{\chi}(B_\frac{3}{4})}\le C(\norm{\ub}_{L^2}+\norm{f}_{L^q})
-    \end{equation}
-    再由不等式\eqref{llllx},代入$\lambda=q',R=\frac{3}{4}, r=\rec{2}$,则有
-    \begin{equation}
-        \norm{\ub}_{L^{q'}(B_\rec{2})} \le C(\norm{\ub}_{L^{\frac{q'}{\chi}}}+\norm{f}_{L^q}) \le C(\norm{\ub}_{L^2}+\norm{f}_{L^q})
-    \end{equation}
-\end{proof}
-\section{\texorpdfstring{\Holder}{Holder}连续性}
-$c=f=0$的情况在定理\eqref{hholder}中已经证明过.现在利用齐次方程的结论来证明方程\eqref{eq}弱解的Holder连续性.
-\begin{theorem}\label{holder}
-    设$\aij$满足一致椭圆条件. $c \in L^n(B_1), f\in L^q(B_1)(q > \frac{n}{2})$. 设$u$是方程\eqref{eq}的弱解
-    \begin{equation}
-        \int \aij D_iu D_j\phi + cu\phi = \int f \phi \forall  H^1_0(B_1)
-    \end{equation}
-    则存在$\alpha \in (0,1)$使得$u \in C^\alpha(B_1)$. $\alpha=(n,q,\lambda,\Lambda,\norm{c}_{L^n}$. 且存在 $R_0=R_0(q,\lambda,\Lambda,\norm{c}_{L^n})$使得$\forall  x\in B_\rec{2}, r \le R_0$,成立 
-    \begin{equation}
-        \int_{B_r(x)}\abs{Du}^2 \le Cr^{n-2+2\alpha}(\norm{f}^2_{L^q}+\norm{f}^2_{H^1})
-    \end{equation}
-    其中,$C=C(n,\lambda,\Lambda,\norm{c}_{L^n})$.
-\end{theorem}
-\begin{lemma} \lemma{hccc}
-    设$u \in H^1(B_R)$是方程$D_i(\aij D_j u)=0$的弱解.则存在$\alpha \in (0,1)$使得$\forall r < R$, 
-    \begin{equation}
-        \int_{B_r}\abs{Du}^2 \le C{(\frac{r}{R})}^{n-2+2\alpha}\int_{B_R}\abs{Du}^2
-    \end{equation}
-\end{lemma}
-\begin{proof}
-    不失一般性,可设$r \in (0,\rec{4}R)$. 否则结论是平凡的. 另外,显然$u-u_{B_R}$也是方程$D_i(\aij D_ju)=0$的弱解,因此,可设$\int_{B_R}u=0$. 由齐次方程弱解的正则性,
-    \begin{equation}
-        \norm{u}_{C^\alpha(B_\rec{2})} \le C(n,\lambda,\Lambda) \norm{u}_{L^2(B_1)}
-    \end{equation}
-    作变量代替$x \to Rx$,则有 $\forall x \in B_{\frac{R}{2}}$,
-    \begin{equation}
-        \abs{u(x)-u(0)}^2 \le C\rec{R^{n+2\alpha}}\abs{x}^{2\alpha}\norm{u}_{L^2(B_R)} \le C\rec{R^{n+2\alpha-2}}\abs{x}^{2\alpha} \norm{Du}^2_{L^2(B_R)}
-    \end{equation}
-    现在,$\forall r < \rec{4}R$,取$B_r, B_{2r}$上的截断函数$\eta \in C^\infty_0$,取$\phi=\eta^2(u-u(0))$则 
-    \begin{equation}
-        \int \aij D_iu(2\eta(u-u(0))D\eta-\eta^2 Du)=0
-    \end{equation}
-    \begin{equation}
-        \int_{B_2r}\abs{Du}^2\eta^2 \le\int_{B_2r}\abs{u-u(0)}^2\abs{D\eta}^2
-    \end{equation}
-    \begin{equation}
-        \begin{split}
-            \int_{B_r}\abs{Du}^2 \le & C\rec{r^2} \rec{R^{n-2+2\alpha}} \sup_{B_{2r}}\abs{u(x)-u(0)}\abs{B_{2r}}\norm{Du}_{L^2(B_R)} \\
-            =&C\frac{r}{R}^{n-2+2\alpha}\int_{B_R}\abs{Du}^2
-        \end{split}
-    \end{equation}
-\end{proof}
-\begin{proof}[定理\eqref{holder}的证明]
-    设$w$是方程
-    \begin{equation}
-        \left\{
-            \begin{aligned}
-                & D_j(\aij D_iw)=0  \s x \in B_R&
-                & w=u \s x \in \P B_R
-            \end{aligned}
-        \right.
-    \end{equation}
-    在$B_R \subset B_1$上的弱解.  由引理\eqref{hccc}得
-    \begin{equation}\label{hhhstar}
-        \begin{split}
-            \int_{B_r}\abs{Du}^2 \le& C(\int_{B_r}\abs{Du-Dw}2+\int_{B_r}\abs{Dw}^2 \\
-            \le &(\int_{B_R}\abs{Du-Dw}^2+(\frac{r}{R})^{n-2+2\alpha'}\int_{B_R}\abs{Dw}^2 \\
-            \le & C(\int_{B_R}\abs{Du-Dw}+(\frac{r}{R})^{n-2+2\alpha'}(\int_{B_R}\abs{Du}^2+\abs{D(u-w)}^2))\\
-            \le & C(\int_{B_R}\abs{Du-Dw}^2+(\frac{r}{R})^{n-2+2\alpha'}\int_{B_R}\abs{Du}^2)
-        \end{split}
-    \end{equation}
-    根据$u,w$的定义,有
-    \begin{equation}
-        \int \aij D_i(u-w)D_j\phi + cu\phi = \int f\phi
-    \end{equation}
-    记$v=u-w \in H^1_0(B_R)$,并取$v$作为测试函数,则
-    \begin{equation} \label{hsharp}
-        \int \abs{Dv}^2 \int \abs{cuv}+\abs{fv}
-    \end{equation}
-    而由Holder不等式及 由Sobolev不等式,
-    \begin{equation}
-        \begin{split}
-            \int cuv \le & \norm{c}_{L^n} \norm{v}_{L^{2^*}} \norm{{u}}_{L^2} \\
-            \le & C\norm{c}_{L^n}\norm{Dv}_{L^2}\norm{u}_{L^2}
-        \end{split}
-    \end{equation}
-    \begin{equation}
-        \begin{split}
-            \int fv \le & \norm{f}_{L^{\frac{n+2}{2n}}}\norm{v}_{L^{2^*}} \\
-            \le & CR^{\frac{n+2}{2}-\frac{n}{q}}\norm{f}_{L^q}\norm{Dv}_{L^2}
-        \end{split}
-    \end{equation}
-    因此,不等式\eqref{hsharp}变为
-    \begin{equation}
-        \int\abs{Dv}^2 \le C(\norm{c}_{L^n}^2\norm{u}_{L^2(B_R)}^2+\norm{f}^2_{L^q}R^{n+2-\frac{2n}{q}})
-    \end{equation}
-    由不等式\eqref{hhhstar}可知(记$\alpha''=2-\frac{n}{q}>0$)
-    \begin{equation} \label{hstarp}
-        \begin{split}
-            &\int_{B_r}\abs{Du}^2  \\
-            \le & C((\frac{r}{R})^{n-2+2\alpha'}\int_{B_R}\abs{Du}^2 +\norm{c}^2_{L^n}\norm{u}^2_{L^2(B_R)}+\norm{f}^2_{L^q}R^{n-2+2\alpha''})
-        \end{split}
-    \end{equation}
-    由于$R <1$, 我们可以缩小 $\alpha''$使得$\alpha'' < \alpha'$. 而 $\int_{B_R}\abs{Du}^2 \le \norm{u}^2_{H^1}$. 由引理xxx
-    \begin{equation}
-        \int_{B_R}u^2 \le C\norm{u}^2_{H^1}R^2
-    \end{equation}
-    将上面的结果代回到\label{hstarp}中,则有 
-    \begin{equation} 
-        \begin{split}
-            &\int_{B_r}\abs{Du}^2  \\
-            \le & C((\frac{r}{R})^{n-2+2\alpha'}\int_{B_R}\abs{Du}^2 +\norm{u}^2_{H^1}R^2+\norm{f}^2_{L^q}R^{n-2+2\alpha''})
-        \end{split}
-    \end{equation}
-    由迭代引理(3.4)可知
-    \begin{equation} 
-        \begin{split}
-            &\int_{B_r}\abs{Du}^2  \\
-            \le & C((\frac{r}{R})^{n-2+2\alpha}\int_{B_R}\abs{Du}^2 +(\norm{u}^2_{H^1}+\norm{f}^2_{L^q})r^2)
-        \end{split}
-    \end{equation}
-    再由引理3.3,
-    \begin{equation}
-        \int_{B_r} \le C(\norm{u}^2_{H^1}+\norm{f}^2_{L^q})r^4\cdots
-    \end{equation}
-    再代回到\eqref{hstarp}中,由引理3.4知$\cdots$. 一直进行下去,直到应用完引理 3.3后,得到的是恰好比$n-2+2\alpha''$小的偶数(这个数或者是$n-2$,或者是$n-3$). 无论如何,再次应用一次引理3.4,引理3.3以后,都有
-    \begin{equation}
-        \int_{B_r}u^2 \le C(\norm{u}^2_{H^1}+\norm{f}^2_{L^q})r^{n-1}
-    \end{equation}
-    代入到\eqref{hstarp}中,则当$R$足够小时,
-    \begin{equation}
-        \int_{B_r}\abs{Du}^2 \le C((\frac{r}{R})^{n-2+2\alpha'}\int_{B_R}\abs{Du}^2 + (\norm{u}^2_{H^1}+\norm{f}^2_{L^q}R^{n-1}))
-    \end{equation}
-    显然,这意叶着存在$\alpha < \alpha'$使得
-    \begin{equation}
-        \int_{B_r}\abs{Du}^2 \le C((\frac{r}{R})^{n-2+2\alpha'}\int_{B_R}\abs{Du}^2 + (\norm{u}^2_{H^1}+\norm{f}^2_{L^q}R^{n-2+2\alpha}))
-    \end{equation}
-    由引理3.4可知当$r$足够小时,
-    \begin{equation}
-        \int_{B_r}\abs{Du}^2 \le C(\norm{u}^2_{H^1} + \norm{f}^2_{L^q})r^{n-2+2\alpha'}
-    \end{equation}
-    由此可知,$u \in C^\alpha$.
-\end{proof}
-\section{Harnack不等式}
-\begin{theorem}[弱Harnack不等式] \label{weak_harnack}
-    设$u \in H^1(B_1)$是方程\eqref{eq}的非负上解,即有
-    \begin{equation}
-        \int \aij D_iuD_j\phi \ge \int f \phi \forall \phi \in H^1_0, \phi \ge 0
-    \end{equation}
-    设$f \in L^q, q > \frac{n}{2}$,则$0<p < \frac{n}{n-2}$及$0 < r < R <1$,有
-    \begin{equation}
-        \inf_{B_r}u + \norm{f}_{L^q(B_1)} \ge C(\int_{B_R}\abs{u}^p)^\rec{p}
-    \end{equation}
-    其中, $C=C(n,p,q,\lambda,r,R)$.
-\end{theorem}
-\begin{proof}
-\newcommand{\ub}{{\bar{u}}}
-    首先证明存在$p_0$使得定理中的结论成立. 记$\ub=u+k,(k=\norm{f}_{L^q})$.选取$\ub^{-2}\eta$为测试函数($\eta \in H^1_0,\eta \ge 0$,上解的Moser迭代通常选取$u^\beta \eta, \beta <0$为测试函数).
-    \begin{equation}
-        D(\ub^{-2}\eta)=\ub^{-2}D\eta-2\eta \ub^{-3}D\ub
-    \end{equation}
-    则有
-    \begin{equation}
-        \int \aij D_iu \ub D_j\eta \ub^{-2}-\aij D_i\ub D_j\ub 2 \eta \ub^{-3} -f\ub^{-2}\eta \ge 0
-    \end{equation}
-    记$u=\ub^{-1}, \tilde{f}=f\ub^{-1}$,则$Dv=-\ub^{-2}D\ub$. 于是有
-    \begin{equation}
-        \int \aij D_iv D_j\eta + \tilde{f}v\eta \le 0
-    \end{equation}
-    即,$v$是齐次方程$D_j(\aij D_iv)+\tilde{f}v=0$的下解,且$\norm{\tilde{f}}_{L^q} \le 1$. 则有弱下解的局部有界性(定理\eqref{local_boundedness}),有
-    \begin{equation}
-        \sup_{B_r}v \le C\rec{(R-r)^\frac{p}{n}}\norm{v}_{L^p(B_R)}, C=C(n,\lambda,\Lambda,p,q)
-    \end{equation}
-    则有
-    \begin{equation}
-        \sup_{B_r}\ub^{-p} \le C\int_{B_R}\ub^{-p}, C=C(n,\lambda,\Lambda,p,q,r,R)
-    \end{equation}
-    如果存在$p_0$使得$\forall B\subset B_R$,成立
-    \begin{equation}\label{tobeproved}
-        \int_B \ub^{-p_0}\int_B \ub^{p_0} \le C
-    \end{equation}
-    那么就有
-    \begin{equation}
-        \sup_{B_r} \ub^{-p_0} \le C \int_{B_R}\ub^{-p_0} \le C\rec{\int_{B_R}\ub^{p_0}}
-    \end{equation}
-    即有,
-    \begin{equation}
-        \int_{B_r} \ub \ge C(\int_{B_R}\ub^{p_0})^\rec{p_0}
-    \end{equation}
-    现在,我们需要证明\eqref{tobeproved}. 而
-    \begin{equation}
-        \begin{split}
-            &\int_B{\ub^{p_0}}\int_B\ub^{-p_0}  \\
-            = & \int_B\exp(p_0(\log\ub-(\log\ub)_B))\exp(p_0(\log\ub)_B)\int_B\exp(-p_0)(-p_0\log\ub) \\
-            =& \int_B \exp(p_0(\log\ub -(\log \ub )_B))\int_B \exp(-p_0(\log\ub-(\log\ub)_B)) \\
-            \le & (\int_B \exp\abs{p_0(\log\ub-(\log\ub)_T)})^2
-        \end{split}
-    \end{equation}
-    记$w=\log\ub-(\log\ub)_{B_r}$. 现在证明 $\int_{B_r}\exp(p_0\abs{w}) \le C(n,q,\lambda,\Lambda,r)$. 取$\phi=\ub^{-q}\eta$作为测试函数. $D\eta=\ub^{-1}D\eta-\ub^{-2}\eta D\ub$,则有
-    \begin{equation}
-        \aij D_i D_j\eta \ub^{-1}-\aij D_iuD_j\ub \ub^{-2}\eta \ge \int f\eta \ub^{-1}
-    \end{equation}
-    而 $Dw=\ub^{-1}D\ub$.记$\tilde{f}=f\ub^{-1}$,则有
-    \begin{equation}
-        \int \aij D_iwD_jw \eta \le \int \aij D_iw D_j\eta + \int \tilde{f}\eta
-    \end{equation}
-    用$\eta^2$替换$\eta$,则有
-    \begin{equation}
-        \begin{split}
-            \int \abs{Dw}^2\eta^2 \le &C(\int \abs{Dw}\abs{D\eta}\eta+ \int \tilde{f}\eta^2) \\
-            \le & C(\int \epsilon\abs{Dw}^2\eta^2 +\rec{\epsilon}\abs{D\eta}^2+\int \tilde{f}\eta^2)
-        \end{split}
-    \end{equation}
-    又因为
-    \begin{equation}
-        \int \tilde{f}\eta^2 \le (\int \abs{\tilde{f}}^\frac{{n}}{2})\frac{2}{n}(\int \eta^{2^*})^\frac{2}{2^*} \le C\norm{\tilde{f}}_{L^q}\norm{D\eta}^2_{L^2}
-    \end{equation}
-    则有 
-    \begin{equation}
-        \int \abs{Dw}^2\eta^2 \le C\int \abs{D\eta}^2 \forall \eta \in C^\infty_0, \eta \ge 0
-    \end{equation}
-    $\forall B_{2r} \subset B_1$,选取$B_{r},B_{2r}$上的截断函数$\eta$,则有
-    \begin{equation}
-        \begin{split}
-            \rec{\abs{B_r}} \int_{B_r}\abs{w-w_{B_r}} \le & \rec{\abs{B_r}^\rec{2}}(\int_{B_r}\abs{w-w_{B_r}})^\rec{2} \\
-            \le & Cr^{-\frac{n}{2}}r(\int_{B_r}\abs{Dw}^2)^\rec{2} \\
-            \le C
-        \end{split}
-    \end{equation}
-    因此,$w \in BMO$. 由John-Nirenberg定理,存在$p_0$使得
-    \begin{equation}
-        \int_B \exp(p_0\abs{w}) \le C
-    \end{equation}
-    因此,存在$p_0$使得弱Harnack不等式成立.对于$p < p_0$,显然用Holder不等式即可.
-    \begin{equation}
-        \int_{B_r}\ub \ge C(\int_{B_R}\ub^{p_0})^\rec{p_0} \ge C(\int_{B_R}\ub^p)^\rec{p}
-    \end{equation}
-    而对于$p>p_0$,我们需要反向的Holder不等式,在这正是Moser迭代所能提供的. 现在选取$\ub^{-\beta}\eta^2$作为测试函数,$\beta \in (0,1)$.
-    \begin{equation}
-        D\eta = -\beta\ub^{-(\beta+1)}\eta^2D\ub+2\ub^{-\beta}\eta D\eta
-    \end{equation}
-    \begin{equation}
-        \int \aij D_iu D_j\eta 2\ub^{-\beta}\eta - \aij D_iuD_j\ub \beta \ub^{-(\beta+1)}\eta^2 \ge \int f\ub^{-\beta}\eta^2
-    \end{equation}
-    则有
-    \begin{equation}
-        \begin{split}
-            &\beta \int \abs{D\ub}^2\ub^{-(\beta+1)}\eta^2 \\
-            \le & C(\epsilon\int\abs{D\ub}^2\ub^{-(\beta+1)}+\rec{\epsilon}\int\ub^{1-\beta}\abs{D\eta}^2+\int \frac{\abs{f }}{k}\ub^{1-\beta}\eta^2)
-        \end{split}
-    \end{equation}
-    取$\epsilon$使得$C\epsilon=\rec{2}\beta$.记 $\tilde{f}=\frac{f }{k}$,则有
-    \begin{equation}
-        \int \abs{D\ub}^2\ub^{-(\beta+1)}\eta^2 \le C(\rec{\beta^2}\int \ub^{1-\beta}\abs{D\eta}^2 +\rec{\beta}\int\tilde{f}\ub^{1-\beta}\eta^2)
-    \end{equation}
-    记$w=\ub^{\frac{1-\beta }{2}}$,则$\abs{Dw}^2 =\frac{(1-\beta)^2}{2}\ub^{-(\beta+1)}\abs{D\ub}^2$.于是有
-    \begin{equation} \label{wsharp}
-        \rec{(1-\beta)^2}\int \abs{Dw}^2\eta^2 \le C(\rec{\beta}^2\int w^2 \abs{D\eta}^2 +\rec{\beta}\int \tilde{f}w^2\eta^2)
-    \end{equation}
-    而
-    \begin{equation}
-        \int \tilde{f}\eta^2 w^2 \le (\int \tilde{f}^q)^\rec{q} (\int (\eta w)^{2q'})^\rec{q'}(q'=\frac{q}{q-1})
-    \end{equation}
-    而由于$q> \frac{n}{2}$,则$2< 2q' < 2^* = \frac{2n}{n-2}$. 类似于定理\eqref{local_boundedness},有
-    \begin{equation}
-        \begin{split}
-            (\int (\eta w)^{2q'})^\rec{q} \le & \epsilon\norm{\eta w}_{L^{2^*}}+C(\rec{\epsilon})^\frac{n}{2q-n}\norm{\eta w}_{L^2} \\
-            \le & \epsilon\norm{D(\eta w)}_{L^2}+C(\rec{\epsilon})^\frac{n }{2q-n}\norm{\eta w}_{L^2}
-        \end{split}
-    \end{equation}
-    代入到\eqref{wsharp}中,则存在$\alpha >0$使得
-    \begin{equation}
-        \int \abs{Dw}^2\eta^2 \le C \rec{\beta^\alpha}(\int w^2\abs{D\eta}^2+\int \eta^2 w^2)
-    \end{equation}
-    进而有
-    \begin{equation}
-        \int \abs{D(\eta w)}^2 \le C\rec{\beta^\alpha}(\int w^2(\eta^2+\abs{D\eta}^2))
-    \end{equation}
-    记$\chi=\frac{2^*}{2}$,由Sobolev不等式,
-    \begin{equation}
-        (\int(\eta w)^{2\chi})^\rec{\chi} \le C \rec{\beta^\alpha}\int w^2(\eta^2 \abs{D\eta}^2)
-    \end{equation}
-    选取$B_r,B_R$上的截断函数$\eta$,则有
-    \begin{equation}
-        (\int_{B_r}w^{2\chi})\rec{\chi} \le C\rec{\beta^\alpha}\rec{(R-r)^2}\int_{B_R}w^2
-    \end{equation}
-    将$w=\ub^{\frac{1-\beta}{2}}$入,记$\lambda=1-\beta$,则有
-    \begin{equation}
-        (\int_{B_r}\ub^{\chi \lambda})^\rec{\lambda\chi} \le C\rec{(1-\lambda)^\frac{\alpha}{\lambda}}\rec{(R-r)^\frac{2}{\lambda}}(\int_{B_R}\ub^\lambda)^\rec{\lambda}
-    \end{equation}
-    需要注意的是,这里不等式成立的条件是$\lambda=1-\beta \in (0,1)$,因此不能无限迭代.对于任意 $p_0< p < \frac{n}{n-2}$,选取$\beta \le p_0$.则经过有限次迭代后,有 
-    \begin{equation}
-        \begin{split}
-            (\int_{B_r}\ub^p)^\rec{p} \le & C(\int_{B_r}\ub^{N\chi})^\rec{\chi^N\lambda}  \\
-            \le & C(n,p,q,\lambda,r,R)(\int_{B_R}\ub^\beta)\rec{\beta} \\
-            \le & C(\int_{B_R}\ub^{p_0})^\rec{p_0}
-        \end{split}
-    \end{equation}
-\end{proof}
-\begin{theorem}[Harnack不等式]
-    设$u \in H^1(\O)$是方程\eqref{meq}的非负弱解,即有
-    \begin{equation}
-        \int \aij D_iuD_j\phi=\int f\phi \forall \phi \in H^1_0(\O)
-    \end{equation}
-    其中, $f \in L^q(\O), q > \frac{n}{2}$. 则对于任意满足$B_{2R}\subset \O$的$B_R$,成立
-    \begin{equation}
-        \max_{\frac{R}{2}}u \le C(\min_{B_{\frac{R }{2}}}u+R^{2-\frac{n}{q}}\norm{f}_{L^q(B_R)})
-    \end{equation}
-\end{theorem}
-\begin{proof}
-    应用局部有界性和弱Harnack不等式即可.
-\end{proof}
-\begin{corollary}
-    设$u \in H^1(\O)$是方程\eqref{meq}的弱解.设$f \in L^q, q>\frac{n}{2}$.
-    \begin{equation}
-        \int\aij D_iuD_j\phi = \int f\phi \forall \phi \in H^1_0(\O)
-    \end{equation}
-    则存在$\alpha \in (0,1)$使得$u \in C^\alpha$,且 $\forall B_R\subset \O$及 $x,y \in B_{\frac{R}{2}}$,有 
-    \begin{equation}
-        \abs{u(x)-u(y)} \le C\abs{\frac{x-y}{R}}^\alpha(\rec{R^{\frac{n}{2}}}\norm{u}_{L^2(B_R)}+R^{n-\frac{q}{2}}_{L^q{B_R}})
-    \end{equation}
-    其中,$C=C(n,\lambda,\Lambda,q)$.
-\end{corollary}
-\begin{proof}
-    只需证明$R=1$时即可,一般情况下做一个伸缩变换即可. 记$M_r=\sup_{B_r}u, m_r=\inf_{B_r}u, w(r)=M_r-m_r=\osc_{B_r}u$. 显然,只需证明$\forall r \le \rec{2}, w(r) \le Cr^\alpha(\norm{u}_{L^2}(B_1)+\norm{f}_{L^q}(B_1))$即可. 将Harnack不等式分别应用在$M_r-u \ge 0$及$u-m_r \ge 0$上,则有
+    设$D(p,R)$为$T_p\Sigma$上以$p$为中心, 半径为$R$ 圆盘, $W(p,R)=D(p,R)\times \R$. 
     \begin{align}
-        &M_r-m_{\frac{r}{2}} \le C(M_r-M_{\frac{r}{2}}+r^{2-\frac{n}{q}\norm{f}_{L^q(B_r)}}) \\
-        &M_{\frac{r}{2}} - m_r \le C(m_{\frac{r}{2}}-m_r+r^{2-\frac{n}{q}\norm{f}_{L^q(B_r)}})
+        &D(p,R)= \{p+\vec{v}\mid v \in T_p\Sigma, \abs{v} < R\}. 
+        %&W(p,R)= \{q+t\vec{n}(p)\mid q \in D(p,R), t \in \R\}.
     \end{align}
-    两式相加,则有
-    \begin{equation}
-        w(r)+w(\frac{r}{2}) \le C(w(r)-w(\frac{r}{2})+r^{2-\frac{n}{q}}\norm{f}_{L^q(B_r)})
-    \end{equation}
-    则有$w(\frac{r}{2}) \le \lambda w(r)+cr^{2-\frac{n}{q}}\norm{f}_{L^q(B_r)} \s \lambda \in (0,1)$. 在引理\eqref{lemma419}中,选择$\tau=\rec{2}, \sigma(r)=Cr^{r-\frac{n}{q}},R=\rec{2}$, 选择$\mu$使得$\alpha=(1-\mu)\frac{\ln \lambda}{\lambda 2} < \mu(2-\frac{q}{n})$,则有
-    \begin{equation}
-        w(r)\le Cr^\alpha(w(\rec{2})+\norm{f}_{L^q(B_1)})
-    \end{equation}
-    在由弱解的局部有界性
-    \begin{equation}
-        w(\rec{2}) \le \norm{u}_{L^2}+\norm{f}_{L^q}
-    \end{equation}
-    证毕.
-\end{proof}
-\begin{lemma}\label{lemma419}
-    设$w(r), \sigma(r)$是定义在$[0,R]$上的非减函数.且存在$\tau,\lambda <1$使得
-    \begin{equation}
-        w(\tau r) \lambda \lambda w(r)+\sigma(r)
-    \end{equation}
-    则$\forall \mu \in (0,1)$,存在 $C=C(\lambda,\tau)$及$\alpha=\alpha(\lambda,\tau,\mu)$使得
-    \begin{equation}
-        w(r)\le C((\frac{r}{R})^\alpha w(R)+\sigma(r^\mu R^{1-\mu}))
-    \end{equation}
+    则存在函数$u: D(p,R)\to \R$ 使得$u(p)=0$, 并且$\Sigma$可以写成$u$的在$D(p,R)$上的图像的形式. 并且, 给定$q \in D(p,R)$,
+    \begin{enumerate}
+        \item $\abs{u(p)-u(q)} \le 8C\abs{p-q}$.
+        \item $\abs{\nabla u}(q) \le 8C\abs{p-q}$.
+        \item $\abs{\nabla^2 u}(q) \le 16C$.
+    \end{enumerate}
 \end{lemma}
+\begin{remark}
+    一致图像引理不要求曲面是极小的.
+\end{remark}
 \begin{proof}
-    因定$r_1 < R$. $\forall r < r_1$,由于$\sigma$非减,则
+    设$\Sigma_{p,r}$是$\Sigma \cap W(p,r)$的包含$p$点的连通分支.  经过旋转平移之后, 设$p =0, T_p\Sigma = \{z=0\}$. 设$R \in \R$满足以下条件, 并且取上界: $\Sigma_{p,R}$可以表示为某个函数$u \in C^\infty(D(p,R))$的图像, $u(0)=0, \nabla u(p)=0$ 且 $\abs{\nabla u} \le 1$. 注意, $\abs{\nabla u} \le 1$等价于$N_3=\inner{\vec{n}}{e_3}=\frac{1}{\sqrt{1+\abs{Du}^2}} \ge \frac{1}{2}$. 现在, 当$R$变得更大一点时, 有两种情况可能发生:
+    \begin{enumerate}
+        \item 函数$u$可以光滑地延拓到$D(p,R)$的邻域内, 但是会导致$N_3< \frac{1}{2}$. \label{case1}
+        \item 函数$u$不能继续延拓, 这表明$\G(u)$碰到了$\Omega$的边界. \label{case2}
+    \end{enumerate}
+    直接计算可知, 我们有如下的比较关系
     \begin{equation}
-        w(\tau r) \le \lambda w(r)+\sigma(r_1)
+        \frac{\abs{\nabla^2 u}^2}{(1+\abs{\nabla u}^2)^3} \le \abs{\II}^2 \le 2 \frac{\abs{\nabla^2 u}^2}{1+\abs{\nabla u}^2}.
     \end{equation}
-    迭代上面的少地式,则有
+    在$D(p,R)$上, 由于$\abs{Du} \le 1$, 则
     \begin{equation}
-        \begin{split}
-            w(\tau^k r) \le& \lambda w(\tau^{k-1}r) +\sigma(r_1) \\
-            \le & \lambda^2 w(\tau^{k-2}r)+\lambda\sigma(r_1)+\sigma(r_1)\\
-            &\s\cdots\\
-            \le & \lambda^kw(r)+\frac{1-\lambda^k}{1-\lambda}\sigma(r_1)\\
-            \le &\lambda^kw(R)+\rec{1-\lambda}\sigma(r_1)
-        \end{split}
+        C^2 \ge \abs{\nabla^2 u} \le 8C^2.
     \end{equation}
-    $\forall r \le r_1$,选择$k$使得$\tau^{k+1}r_1< r \le \tau^kr_1$,则有
+    现在, 设情况\eqref{case1}发生, 设$q \in \partial D(p,R)$使得$\abs{\nabla u(q)}=\frac{1}{2}$. 则
     \begin{equation}
-        w(r) \le w(\tau^k r) \le \lambda^kw(R)+\rec{1-\lambda}\sigma(r_1)
+        1=\abs{\nabla u(0)-\nabla u(q)} \le \abs{\nabla^2 u}\abs{q}\le 4CR.
     \end{equation}
-    而$k \le \frac{\ln(\frac{r}{r_1})}{\ln \tau} < k+1$,则 $\lambda^k \le \lambda ^{\frac{\ln \frac{r}{r_1}}{\ln \tau}}$. 于是有
+    因此, $R \ge \frac{1}{4C}$.
+    若情况\eqref{case2}发生,  设$Q=(q,u(q))\in \partial \Omega, q \in \partial D(p,R)$. 设$\alpha$是连接 $p,q$的线段, 则
     \begin{equation}
-        w(r) \le \lambda^{\frac{\ln \frac{r}{r_1}}{\ln \tau}} +\rec{1-\lambda}\sigma(r_1)
+        d(p,Q) \le \sup \sqrt{1+\abs{\nabla u}}l_\alpha \le 2R.
     \end{equation}
-    取$r_1=r^\mu R^{1-\mu}$,则
-    \begin{equation}
-        \lambda ^\frac{\ln \frac{r}{r_1}}{\ln \tau}=\lambda^(\ln(\frac{r}{R})^{1-\mu})^\rec{\ln \tau}=(\frac{r}{R})^{(1-\mu)\frac{\ln \lambda}{\tau}}
-    \end{equation}
-    \begin{equation}
-        w(r) \le (\frac{r}{R})^{(1-\mu)\frac{\ln \lambda}{\ln \tau}}w(R)+\rec{1-\lambda}\sigma(r^\mu R^{1-\mu})
-    \end{equation}
+    即有$R \ge \frac{1}{2}{d(p,\partial \Omega)}$.  其余性质均可由中值定理得到.
 \end{proof}
-\begin{corollary}[Liouville定理]
-    设$u$是方程$\int_{\R^n}\aij D_iuD_j\phi=0$在$\R^n$中的弱解.$\aij$满足一致椭圆条件.若$u$有界,则$u$是常数.
+\begin{corollary} \label{choi_schoen_intrinsic}
+    定理\eqref{choi_schoen}中的$B_r$可以换成$B^\Sigma_r$.
 \end{corollary}
 \begin{proof}
-    记$w(r)=\sup_{B_r}u-\inf_{B_r}u$. 则存在$\lambda \in (0,1)$使得$w(r) \le \lambda w(2r)$.于是$w(r) \le \lambda^kw(2^kr)$. 令$k \to \infty$即可.
+    在定理\eqref{choi_schoen}的证明中, 有了不等式\eqref{ii_sup}(欧氏度量换成内蕴度量后, 直到这里的推导都是正确的), 我们就可以用应用一致图像引理, 然后在$B_\frac{1}{4}$(引理\eqref{uniform_graph}中, $C=1$)上应用命题\eqref{sub_harmonic}.
+\end{proof}
+\begin{theorem}
+    设$\Sigma^2 \subset \R^3$是定向的稳定极小曲面. 则存在常数$C>0$使得
+    \begin{equation}
+        \abs{\II}^2(x) \le \frac{C}{d^2_\Sigma(x,\partial \Omega)}.
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    记$r_0=d(x,\partial \Sigma)$. 由命题\eqref{mc_area}可知, $\forall 0<r < r_0$, 
+    \begin{equation}
+        \Area(B^\Sigma_r) \le Cr^2.
+    \end{equation}
+    (这里如果$B^\Sigma_r$不是嵌入圆盘, 我们就在万有覆盖中来做). 固定$x$, 设$r=d(y,x)$, 定义截断函数
+    \begin{equation}
+        \eta(y)=\left\{
+            \begin{aligned}
+                & 1, r\le e^{-N}r_0, \\
+                & \frac{\log r_0-\log r}{N}, e^{-N}r_0 < r < r_0, \\
+                & 0, r>r_0.
+            \end{aligned}
+        \right.
+    \end{equation}
+    由于$\abs{\nabla r}=1$, 则$\abs{\nabla \eta} \le \frac{1}{Nr}$. 将$\eta$代入到稳定性不等式中, 得到
+    \begin{equation}
+        \int_{B^\Sigma_{e^-Nr_0}}\abs{\II}^2 \le \int_\Sigma \eta^2 \abs{\II}^2 \le \int_\Sigma \abs{\nabla \eta}^2 \le \frac{4\pi e^2}{3N}.
+    \end{equation}
+    $N$取足够大时就可以应用定理\eqref{choi_schoen}(推论\eqref{choi_schoen_intrinsic}).
 \end{proof}

@@ -7,11 +7,13 @@
 \usepackage{graphicx}
 \usepackage{picinpar}
 \usepackage{subfig}
-\usepackage{epstopdf}
+%\usepackage{epstopdf}
 \usepackage{epsfig}
-
+\usepackage{etoolbox}
+\usepackage{showidx}
+\usepackage{imakeidx}
+\usepackage[colorlinks=true]{hyperref}
 %\usepackage[yyyymmdd,hhmmss]{datetime}
-\usepackage{hyperref}
 \setlength{\headheight}{13pt}
 \pagestyle{fancy}
 %\rfoot{编译时间:  \today\  \currenttime}
@@ -51,7 +53,7 @@
 \renewcommand{\phi}{\varphi}
 
 \renewcommand{\l}{{\lambda}}
-\renewcommand{\L}{{\Lambda}}
+%\renewcommand{\L}{{\Lambda}}
 \newcommand{\e}{{\epsilon}}
 \newcommand{\E}{{\Epsilon}}
 \renewcommand{\d}{{\delta}}
@@ -76,6 +78,14 @@
 \newcommand{\dij}{{D_{ij}}}
 \newcommand{\tto}[1]{{{\xrightarrow{#1}}}}
 \renewcommand{\P}{{\partial}}
+\newcommand{\PT}{{\partial_t}}
+\newcommand{\PTF}{{\partial_t F}}
+\newcommand{\PI}{{\partial_i}}
+\newcommand{\PJ}{{\partial_j}}
+\newcommand{\PIF}{{\partial_i F}}
+\newcommand{\PJF}{{\partial_j F}}
+\newcommand{\vt}{{d\mu_t}}
+\newcommand{\vv}{{d\mu}}
 
 \newcommand{\GG}{{\mathfrak{G}}}
 \newcommand{\BR}{{B_r(x)}}
@@ -114,6 +124,7 @@
 \renewcommand{\G}{\text{Graph}}
 \newcommand{\CC}{{C^\infty_0}}
 \newcommand{\ddt}{\frac{d}{dt}}
+\newcommand{\ddtt}{\frac{d^2}{dt^2}}
 \newcommand{\ddr}{\frac{d}{dr}}
 \newcommand{\ppt}{\frac{\partial}{\partial_t}}
 \newcommand{\Area}{\text{Area}}
@@ -127,6 +138,15 @@
 \newcommand{\barpartial}{{\bar{\partial}}}
 \newcommand{\Haus}{{\mathcal{H}}}
 \newcommand{\Res}{{\text{Res}}}
+\renewcommand{\Re}{{\mathfrak{Re}}}
+\renewcommand{\Im}{{\mathfrak{Im}}}
+\newcommand{\II}{{\Pi}}
+\newcommand{\HLaplace}{{\Delta}}
+\newcommand{\CLaplace}{{\underline{\Delta}}}
+\newcommand{\TS}{{\tilde{\Sigma}}}
+\newcommand{\CV}{{C^\infty_0}}
+\renewcommand{\CC}{{C^\infty_c}}
+\newcommand{\NT}{{\nabla}}
 
 
 
@@ -161,7 +181,18 @@
   }
 }
 
-\addbibresource{PDE.bib}
+%\renewcommand\appendix{\par
+%    \setcounter{section}{0}
+%    \setcounter{subsection}{0}
+%    \gdef\thesection{附录 \Alph{section}}}
+%
+\addbibresource{minisurf.bib}
+
+\newif\ifshow
+%\showtrue % comment out to hide answers
+
+\newif\ifsee
+\seetrue
 
 %\def \noperron {}
 
@@ -175,16 +206,19 @@
 \maketitle
 \tableofcontents
 \input{Chapter01}
-%\input{Chapter02}
+\input{Chapter02}
 %\input{Chapter03}
 %\input{Chapter04}
+\appendix
 \input{appendix1}
 %\input{appendix1}
 %\input{appendix3}
-\nocite{*}
+%\appendix
+\input{exercise}
+%\nocite{*}
 %\clearpage
 %\phantomsection
 %\addcontentsline{toc}{section}{参考文献}
-%\tolerance=500
-%\printbibliography[heading=bibintoc, title=参考文献]
+\tolerance=500
+\printbibliography[heading=bibintoc, title=参考文献]
 \end{document}

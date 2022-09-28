@@ -1,0 +1,32 @@
+%\appendix
+\chapter{习题}
+\begin{enumerate}
+    \item 设$\Omega\subset \R^n$是有界区域. 设$u \in W^{1,1}(\Omega)$.  设$\Area(u)=\int_\Omega \sqrt{1+\abs{Du}^2}$. 证明: $\Area(u)$在$W^{1,1}(\Omega)$上是严格凸的.
+    \item 证明: $\R^n$中不存在紧致无边的极小曲面.
+    \item 设 $\Sigma \subset \R^3$是极小曲面. 设存在平面$P$使得$\Sigma \perp P$. 设$\Sigma$关于平面$P$的反射后的像为$\Sigma'$. 证明: $\Sigma \cup \Sigma'$是极小曲面.
+    \item 设$f: \Omega \to \mathbb{C}$是光滑函数. 证明:
+    \begin{enumerate}
+        \item $f$全纯当且仅当 $\barpartial f=0$.
+        \item $f$调和当且仅当$\partial \barpartial f=0$.
+    \end{enumerate}
+    \item 设$\Sigma$为Catenoid. $\Gamma_a=\Sigma \cap \{z=\pm a\}$. 试比较以下三个以$\Gamma_a$为边界的曲面的面积大小.
+    \begin{enumerate}
+        \item $\Gamma_a$所围的两个圆盘之并.  
+        \begin{equation*}
+            \Sigma_1=\{(x,y,z)\mid \sqrt{x^2+y^2} \le \cosh a, z=\pm a\}.
+        \end{equation*}
+        \item $\Gamma_a$的两个分支之间的柱面. 
+        \begin{equation*}
+            \Sigma_2=\{(x,y,z)\mid \sqrt{x^2+y^2} = \cosh a, \abs{z} \le a\}.
+        \end{equation*}
+        \item $\Gamma_a$之间Catenoid的部分. 
+        \begin{equation*}
+            \Sigma_3=\{(x,y,z)\mid  \sqrt{x^2+y^2}=\cosh z, \abs{z} \le a \}.
+        \end{equation*}
+    \end{enumerate}
+    \item 设$\gamma\subset \R^3$是 $xz$平面上的曲线. $\gamma= \{(x,0,z)\mid x=f(z) >0 \}$. 由$\gamma$ 绕$z$轴旋转所得到的曲面记为$\Sigma$. 若$\Sigma$是极小曲面, 试求$f$的表达式.
+    \item 设$\Sigma^{n-1} \subset \M^n$是极小曲面. $F(x,t): \Sigma \times (-\epsilon, \epsilon)\to \M$是固定边界的变分. 设$H_t$为 $\Sigma_t$的平均曲率. 计算 $\ddt H_t \mid _{t=0}$.
+    \item 设$u$是Catenoid上的有界调和函数, 证明$u$是常数.
+    \item 设$\M^3$可定向且$\Sigma^2 \subset \M^3$是定向的稳定极小曲面. 设$\tilde{\Sigma}$是$\Sigma$的覆盖空间. 则覆盖映射$f:\tilde{\Sigma}\to \Sigma \hookrightarrow \M$是稳定极小曲面.
+    \item 设$\Sigma^{n-1} \subset \M^n$是极小曲面. 证明: $\forall p \in \Sigma$, 存在$p$点的足够小的邻域$\Omega$使得$\Omega \cap \Sigma$是稳定的.
+\end{enumerate}
