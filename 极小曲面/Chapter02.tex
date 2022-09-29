@@ -24,6 +24,7 @@ Gauss方程
 \begin{equation}
     T_{ijkl}=T_{ijlk}-R_{lki}^pT_{pj}-R_{lkj}^pT_{ip}.
 \end{equation}
+求导交换次序的结果可以参考\cite[定理7.14]{lee}. 需要注意, $T_{ijkl}=(\nabla^2_{lk}T)(\PI,\PJ)$.  
 \begin{proposition}
     设$\Sigma^{n-1} \subset \R^n$是光滑曲面. $\nabla, \Delta$为$\Sigma$上的算子. $\II$为其第二基本型, $H$是平均曲率. 则
     \begin{equation} \label{simon1}
@@ -47,7 +48,7 @@ Gauss方程
         \end{split}
     \end{equation}
 \end{proof}
-\begin{proposition} \label{simon_equation}
+\begin{proposition}[Simons等式] \label{simon_equation}
     设$\Sigma^{n-1}$是极小曲面, 则有
     \begin{equation}
         \Delta\abs{\II}^2 = 2(\abs{\nabla \II}^2-\abs{\II}^4).
@@ -67,7 +68,7 @@ Gauss方程
         \end{split}
     \end{equation}
 \end{proof}
-\begin{proposition}
+\begin{proposition}[Simons不等式]
     设$\Sigma^{n-1}$是极小曲面, $\nabla,\Delta$为$\Sigma$上的算子. 则
     \begin{equation} \label{simon_inequality}
         \Delta \abs{\II}^2 \ge -2\abs{\II}^4+2(1+\frac{2}{n-1})\abs{\nabla \abs{\II}}^2.
@@ -77,7 +78,7 @@ Gauss方程
     证明与命题\eqref{kato}类似. 我们首先来计算 $\abs{\nabla \abs{\II}}^2$. 固定点$p$, 取$p$点处的测地坐标使得$\II=diag(\lambda_i)$.
     \begin{equation} \label{s11}
         \begin{split}
-            \abs{\nabla \abs{\II}}^2 = \frac{\abs{\inner{\nabla \II}{\II}}^2}{\abs{\II}} &= \frac{\sum_j(\sum_i\II_{iij})^2}{\sum_i\lambda_i^2} \\
+            \abs{\nabla \abs{\II}}^2 = \frac{\abs{\inner{\nabla \II}{\II}}^2}{\abs{\II}} &= \frac{\sum_j(\sum_i\lambda_i\II_{iij})^2}{\sum_i\lambda_i^2} \\
             &\le \sum_{ji}\II_{iij}^2
         \end{split}
     \end{equation}
@@ -87,16 +88,18 @@ Gauss方程
             \sum_{ji}\II_{iij}^2 &= \sum_{j\ne i}\II_{iij}^2+ \sum_{i}\II_{iii}^2 \\
             &= \sum_{j\ne i}\II_{iij}^2+ \sum_{i}(-\sum^{n-1}_{j \ne i}\II_{jji})^2\\
             &\le \sum_{j\ne i}\II_{iij}^2+ \sum_{i}(n-2)\sum_{j\ne i}\II_{jji}^2\\
+            &\le (n-1)\sum_{j\ne i}\II_{iij}^2\\
             &= \frac{n-1}{2}(\sum_{j\ne i}\II_{iji}^2 +\sum_{j\ne i}\II_{jii}^2)
         \end{split}
     \end{equation}
-    \eqref{s12}两页同乘以$\frac{2}{n-1}$后与\eqref{s11}相加可得,
+    \eqref{s12}两侧同乘以$\frac{2}{n-1}$后与\eqref{s11}相加可得,
     \begin{equation}
         \begin{split}
             \abs{\nabla \abs{\II}}^2+\frac{2}{n-1} \abs{\nabla \abs{\II}}^2 &\le \sum_{ji}\II_{iij}^2 + \sum_{j\ne i}\II_{iji}^2 +\sum_{j\ne i}\II_{jii}^2 \\
             &\le \sum_{ijk}\II^2_{ijk}
         \end{split}
     \end{equation}
+    再由Simon等式\eqref{simon_equation}即可得到不等式\eqref{simon_inequality}.
 \end{proof}
 \begin{theorem}\label{choi_schoen}
     设$\Sigma^2 \subset \R^3$是极小曲面.  则存在常数$\epsilon, \rho>0$, 使得 $\forall p \in \Sigma, r_0 < \rho$, 如果
@@ -106,17 +109,13 @@ Gauss方程
     \end{enumerate}
     那么$\forall  0 < \sigma \le r_0$及$y \in B_{r_0-\sigma}$, 成立
     \begin{equation}
-        \sigma^2 \abs{\II}^2(y) \le \delta, \text{ here }\delta= \frac{\epsilon}{\int_{\Sigma \cap B_{r_0}}\abs{\II}^2}.
+        \sigma^2 \abs{\II}^2(y) \le \delta, \text{ here }\delta= \frac{\int_{\Sigma \cap B_{r_0}}\abs{\II}^2}{\epsilon}.
     \end{equation}
 \end{theorem}
 \begin{proof}
     将$B_{r_0}$简写为$B$. 只需要证明$F(x)=d^2(x,\P B)\abs{\II}^2(x) \le \delta$即可. 我们用反证法. 设$F(q)=\max_{x \in B}F(x)$. 注意到在$\partial B$上, $F(x) \eq 0$. 则$q$是内点.  设$F(q) > \delta$, 我们将证明当$\epsilon$足够小时, 会推出一个矛盾. 取 $\sigma$使得
     \begin{equation}
-        \sigma^2\abs{\II}^2(q)=\frac{\delta}{4}.
-    \end{equation}
-    则
-    \begin{equation}
-        \sigma^2\abs{\II}^2(q) \le \frac{4}{1} d^2(q,\P B)\abs{\II}^2(q).
+        \sigma^2\abs{\II}^2(q)=\frac{\delta}{4} \le \frac{1}{4} d^2(q,\P B)\abs{\II}^2(q).
     \end{equation}
     因此, 有
     \begin{equation}
@@ -137,7 +136,7 @@ Gauss方程
     \begin{equation}
         \sup_{y \in B_\sigma(q)} \abs{\II}^2(y) \le 4\abs{\II}^2(q)=\frac{\delta}{\sigma^2}.
     \end{equation}
-    通过变换$x\to \frac{1}{\sigma}x$, 上面的不等式变为
+    通过变换$x\to \sigma x$, 上面的不等式变为
     \begin{equation} \label{ii_sup}
         \sup_{y \in B_1(q)} \abs{\II}^2(y) \le 4\abs{\II}^2(q)=\delta \le 1.
     \end{equation}
@@ -145,7 +144,7 @@ Gauss方程
     \begin{equation}
         \Delta \abs{\II}^2 \ge -2\abs{\II}^4 \ge -2 \abs{\II}^2.
     \end{equation}
-    由命题\label{sub_harmonic}可知,
+    由推论\eqref{sub_harmonic}(取$s=1,\lambda=2$)可知,
     \begin{equation}
         \frac{\delta}{4}=\abs{\II}^2(q) \le C \int_{B_1} \abs{\II}^2 \le C\delta\epsilon.
     \end{equation}
@@ -159,7 +158,7 @@ Gauss方程
     设$D(p,R)$为$T_p\Sigma$上以$p$为中心, 半径为$R$ 圆盘, $W(p,R)=D(p,R)\times \R$. 
     \begin{align}
         &D(p,R)= \{p+\vec{v}\mid v \in T_p\Sigma, \abs{v} < R\}. 
-        %&W(p,R)= \{q+t\vec{n}(p)\mid q \in D(p,R), t \in \R\}.
+        &W(p,R)= \{q+t\vec{n}(p)\mid q \in D(p,R), t \in \R\}.
     \end{align}
     则存在函数$u: D(p,R)\to \R$ 使得$u(p)=0$, 并且$\Sigma$可以写成$u$的在$D(p,R)$上的图像的形式. 并且, 给定$q \in D(p,R)$,
     \begin{enumerate}
@@ -200,7 +199,7 @@ Gauss方程
     定理\eqref{choi_schoen}中的$B_r$可以换成$B^\Sigma_r$.
 \end{corollary}
 \begin{proof}
-    在定理\eqref{choi_schoen}的证明中, 有了不等式\eqref{ii_sup}(欧氏度量换成内蕴度量后, 直到这里的推导都是正确的), 我们就可以用应用一致图像引理, 然后在$B_\frac{1}{4}$(引理\eqref{uniform_graph}中, $C=1$)上应用命题\eqref{sub_harmonic}.
+    在定理\eqref{choi_schoen}的证明中, 有了不等式\eqref{ii_sup}(欧氏度量换成内蕴度量后, 直到这里的推导都是正确的), 我们就可以用应用一致图像引理. 由于此时$\abs{\nabla u}$一致有界, 那么$\Sigma$上的内蕴度量与外蕴度量实际上是局部可比较的. 最后在$B_\frac{1}{4}$(引理\eqref{uniform_graph}中, $C=1$)上应用推论\eqref{sub_harmonic}.
 \end{proof}
 \begin{theorem}
     设$\Sigma^2 \subset \R^3$是定向的稳定极小曲面. 则存在常数$C>0$使得
@@ -225,7 +224,11 @@ Gauss方程
     \end{equation}
     由于$\abs{\nabla r}=1$, 则$\abs{\nabla \eta} \le \frac{1}{Nr}$. 将$\eta$代入到稳定性不等式中, 得到
     \begin{equation}
-        \int_{B^\Sigma_{e^-Nr_0}}\abs{\II}^2 \le \int_\Sigma \eta^2 \abs{\II}^2 \le \int_\Sigma \abs{\nabla \eta}^2 \le \frac{4\pi e^2}{3N}.
+        \begin{split}
+            \int_{B^\Sigma_{e^-Nr_0}}\abs{\II}^2 \le \int_\Sigma \eta^2 \abs{\II}^2 &\le \int_\Sigma \abs{\nabla \eta}^2  \\
+            &\le \frac{1}{N^2}\sum_{i=-n}^{-1}\int_{B_{e^{i+1}r_0}^\Sigma-B_{e^ir_0}^\Sigma}\frac{1}{r^2} \\
+            &\le \frac{4\pi e^2}{3N}.
+        \end{split}
     \end{equation}
     $N$取足够大时就可以应用定理\eqref{choi_schoen}(推论\eqref{choi_schoen_intrinsic}).
 \end{proof}
