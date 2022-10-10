@@ -1,4 +1,0 @@
--reuse-instance
--forward-search
-%TEX%
-%LINE%

@@ -4,7 +4,7 @@
 \usepackage{fancyhdr}
 \usepackage{enumerate}
 %\usepackage{biblatex}
-\usepackage[backend=bibtex]{biblatex}
+\usepackage{biblatex}
 \usepackage{graphicx}
 \usepackage{picinpar}
 \usepackage{subfig}
@@ -165,8 +165,42 @@
 \newtheorem*{proposition*}{命题}
 \theoremstyle{plain}
 \newtheorem{remark}[theorem]{注}
-\newtheorem{claim}[theorem]{断言}
+%\newtheorem{claim}[theorem]{断言}
 \newtheorem*{claim*}{断言}
+
+\newenvironment{subproof}[1][\proofname]{%
+  \renewcommand{\qedsymbol}{$\diamond$}%
+  \begin{proof}[#1]%
+}{%
+  \end{proof}%
+}
+
+
+
+\usepackage{enumitem,xparse}
+\newlist{Claim}{description}{2}
+\setlist[Claim]{labelindent=2em,leftmargin=*}
+\newif\ifInsideClaim
+\newcounter{claim}[theorem]
+\newcounter{cclaim}[claim]
+\renewcommand\theclaim{\arabic{claim}}
+\renewcommand\thecclaim{\arabic{claim}.\arabic{cclaim}}
+\let\originalqedsymbol\qedsymbol
+\newenvironment{claim}{%
+	% disable qed symbol if there is no star
+	%\let\qedsymbol\relax%
+	%\let\qedsymbol$\diamond$
+	\ifInsideClaim% we have a nested environment
+	\refstepcounter{cclaim}%
+	\let\theclaimcounter\thecclaim%
+	\else%
+	\refstepcounter{claim}%
+	\let\theclaimcounter\theclaim%
+	\InsideClaimtrue%
+	\fi%
+	\Claim\item[\textbf{断言 \theclaimcounter:}]%
+}{\endClaim\InsideClaimfalse\let\qedsymbol\originalqedsymbol}
+
 
 
 \DeclareSourcemap{

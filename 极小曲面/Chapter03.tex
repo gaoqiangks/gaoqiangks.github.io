@@ -4,16 +4,35 @@
 \renewcommand{\EG}{{\mathbb{E}_\gamma}}
 \renewcommand{\E}{{E}}
 \renewcommand{\D}{{\mathbb{D}}}
-设$\gamma \subset \R^3$是简单闭曲线. 记$\FG$是满足下列条件的函数的集合:
+\newtheorem*{plateauproblem*}{Plateau问题}
+本章中, 我们回到最开始的问题:
+极小曲面起源于下面的问题:
+\begin{plateauproblem*}\label{plateau}
+    给定简单闭曲线$\gamma \subset \R^3$, 是否存在以$\gamma$为边界的面积最小的曲面? 即, 寻找曲面$\Sigma, \partial \Sigma = \gamma$, 使得对于任意满足$\partial \Sigma' = \gamma$的曲面$\Sigma'$, 都有
+    \begin{equation*}
+        \Area(\Sigma) \le \Area(\Sigma')
+    \end{equation*}
+\end{plateauproblem*}
+在本章, 按照Douglas和Rado的方法, 我们将给出Plateau问题的肯定的回答. 关于Douglas在Plateau问题上的工作的简介, 可以参考\cite{WorkofDouglas}.
+\par 设$\gamma \subset \R^3$是简单闭曲线. 记$\FG$是满足下列条件的函数的集合:
 \begin{enumerate}
-    \item $u: \overline{D} \to \R^3, u\in C(\overline{D})\cap W_{loc}^{1,2}(D)$.
-    \item $u\mid_{\P D}$是到其像的同胚.
+    \item $u: \overline{\D} \to \R^3, u\in C(\overline{\D})\cap W_{loc}^{1,2}(\D,\R^3)$.
+    \item $u\mid_{\P \D}$是到$\gamma$的单调映射.
     %\item $\abs{u_x}^2=\abs{u_y}^2, \inner{u_x}{u_y}=0$.
 \end{enumerate}
-\begin{theorem}
-    设$\gamma \subset \R^3$是可求长的Jordan曲线. 则存在映射$u \in D_\gamma$使得 $\forall v \in \FG$, 
+\begin{remark}
+    称$u$是单调映射, 是指我们将$\gamma$沿任意点剪断看作实轴上的一段线段,  $u$是通常意义下的单调映射.  这里之所以没有要求$u$是同胚, 是因为同胚在求极限后(一致收敛拓扑)不会被保持,  而单调性总是会被保持的. 
+\end{remark}
+解决Plateau问题的第一选择是:取$u_k \in \FG$使得$\Area(u_k(\D)) \to \AG$, 并证明$\{u_k\}$存在收敛子列. 然而这种思路有两个问题需要解决:
+\begin{enumerate}
+    \item 我们可以改变$u_k$在任意点$p$附近的值, 得到$\tilde{u}_k$, 使得$\tilde{u}_k$与$\tilde{u}_k(\mathbb{D})$与 $u_k(\D)$相差"细长"的管状区域, 如图. 这样得到的$\tilde{u}_k$仍然是面积最小的列. 但是这样的列无法在通常的意义下收敛. 
+    \item 第二个问题是面积泛函是与参数选取无关的, 这意味着选取$\{u_k\}$后, 对于任意的微分同胚$\phi_k: \D \to \D$, $\Area(u_k\circ \phi_k(\D))= \Area(u_k(\D))$. 这种情况下, 我们也很难得到收敛子列.
+\end{enumerate}
+为了解决上面的问题, 我们将使用能量泛函而不是面积泛函. 当然, 首先我们需要说明的是, 对能量泛函求最小值和对面积泛函求最小值这两个问题是等价的(虽然对于能量泛函, 上述两个问题仍然存在, 但是我们较好的解决该问题的方法).
+\begin{theorem} \label{plateau_problem}
+    设$\gamma \subset \R^3$是可求长的Jordan曲线. 则存在映射$u \in \FG$使得 $\forall v \in \FG$, 
     \begin{equation}
-        \Area(u(D))\le \Area(v(D)).
+        \Area(u(\D))\le \Area(v(\D)).
     \end{equation}
 \end{theorem}
 对于任意$u \in \FG$, 其面积与能量分别定义为
@@ -31,8 +50,11 @@
     &\AG=\inf\{\Area(v)\mid v \in \FG\}.\\
     &\EG=\inf \{\E(v)\mid v \in \FG\}.
 \end{align}
+\begin{definition}
+    如果$u \in W^{1,2}(\mathbb{D},\R^3)$几乎处处满足$\inner{u_x}{u_y}=0$并且$\abs{u_x} = \abs{u_y}$, 则称$u$是几乎共形的.
+\end{definition}
 \begin{lemma}
-    $\AG=\EG$.
+    $\AG=\EG$, 并且如果$u \in \FG$取到$\EG$, 则$u$是几乎共形的.
 \end{lemma}
 \begin{proof}
     由不等式\eqref{AleE}可知, $\AG \le \EG$.
@@ -49,6 +71,46 @@
     \end{equation}
     因此, 当$s$足够小时, 我们有
     \begin{equation}
-        \Area(u) \le \Area(u^s\circ \phi) = \E(u^s\circ \phi) =\E(u\circ \phi) +s^2\E(\phi) \le \E(u)-\frac{1}{2}\epsilon
+        \begin{split}
+            \Area(u) \le \Area(u^s\circ \phi) &= \E(u^s\circ \phi) =\E(u\circ \phi) +s^2\E(\phi) \\
+            &\le \E(u)-\frac{1}{2}\epsilon
+        \end{split}
     \end{equation}
+\end{proof}
+\begin{lemma}
+    设$f \in W^{1,2}(\D,\R^3)$, $E(f) \le K$. 设$0 < \delta < 1$, $p \in \mathbb{D}$. 则存在$\rho \in (\delta, \sqrt{\delta})$ 使得$f\mid_{\P B(p,\rho) \cap \D}$是绝对连续的, 且$\forall z_1,z_2 \in \P B(p,\rho) \cap \D$, 成立 
+    \begin{equation}
+        \abs{f(z_1)- f(z_2)} \le (8\pi)^{\frac{1}{2}}(\log \frac{1}{\delta})^{-\frac{1}{2}}.
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    在$p$点处引理极坐标$(r,\theta)$. 由于$f \in W^{1,2}$, 则几乎对于所有的$r$, $f$关于$\theta$是绝对连续的.  则Cauchy不等式, 
+    \begin{equation}
+        \begin{split}
+            \abs{f(z_1)-f(z_2)} &\le \int_{\P B \cap \D} \abs{f_\theta(re^{i\theta})}d\theta \\
+            & \le \sqrt{2\pi} (\int_{\P B\cap \D} f^2_\theta d\theta)^{\frac{1}{2}}.
+        \end{split}
+    \end{equation}
+    而由于在极坐标下, $Df=f_r \P_r + \frac{1}{r^2}f_\theta \P_\theta$, 则
+    \begin{equation}
+        \int_{B \cap \D} (f_r^2 + \frac{1}{r^2}f_\theta^2)r drd\theta \le 2K.
+    \end{equation}
+    取$\rho$使得$\int_{\P B \cap \D} f^2_\theta(\rho e^{i\theta})$取到(几乎)最小, 则有
+    \begin{equation}
+        \int^{\sqrt{\delta}}_\delta \int_{\P B \cap \D}\frac{1}{r^2}f^2_\theta(\rho e^{i\theta}) rd\theta dr \le 2K.
+    \end{equation}
+    因此, 
+    \begin{equation}
+        \abs{f(z_1)-f(z_2)} \le \sqrt{2\pi} \frac{2K}{ \int^{\sqrt{\delta}}_\delta \frac{1}{r}} = \sqrt{8K\pi}(\log \frac{1}{\delta})^{-\frac{1}{2}}.
+    \end{equation}
+\end{proof}
+\begin{lemma} \label{boundary_compactness}
+    一致连续.
+\end{lemma}
+\begin{proof}%[定理\eqref{plateau}的证明]
+    取$u_k \in \FG$ 且$E(u_k) \to \EG$. 用与$u_k$具有相同边界的调和函数替换$u_k$, 仍然记为$u_k$, 由于调和函数是能量最小的, 我们仍然有$E(u_k) \to \EG$. 固定$q_1,q_2,q_3 \in \gamma$及 $p_1,p_2,p_3 \in \P \D$, 取$\phi_k \in Aut(\D)$使得$u_k\circ \phi_k(p_i)=q_i$. 仍将$u_k \circ \phi_k$记作$u_k$. 由于$u_k$是调和的, 则
+    \begin{equation}
+        \max_{\D}\abs{u_k - u_l} = \max_{\P \D} \abs{u_k-u_l}.
+    \end{equation}
+    而根据引理\eqref{boundary_compactness}, $u_k\mid_{\P \D}$ 包含一致收敛子列, 则$u_k$包含一致收敛子列. 设$u_k \to u$.
 \end{proof}

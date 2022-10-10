@@ -44,8 +44,7 @@
   <internal package="biblatex" priority="9" active="0">
     <generic>latex</generic>
     <provides type="dynamic">
-      <file>minisurf.aux</file>
-      <file>minisurf-blx.bib</file>
+      <file>minisurf.bcf</file>
     </provides>
     <requires type="dynamic">
       <file>minisurf.bbl</file>
@@ -54,7 +53,6 @@
       <file>blx-dm.def</file>
       <file>blx-unicode.def</file>
       <file>blx-compat.def</file>
-      <file>blx-bibtex.def</file>
       <file>biblatex.def</file>
       <file>standard.bbx</file>
       <file>numeric.bbx</file>
@@ -64,14 +62,13 @@
     </requires>
   </internal>
   <external package="biblatex" priority="5" active="0">
-    <generic>bibtex</generic>
+    <generic>biber</generic>
     <cmdline>
-      <binary>bibtex</binary>
-      <option>-min-crossrefs 2</option>
+      <binary>biber</binary>
       <infile>minisurf</infile>
     </cmdline>
     <input>
-      <file>minisurf.aux</file>
+      <file>minisurf.bcf</file>
     </input>
     <output>
       <file>minisurf.bbl</file>
@@ -80,14 +77,10 @@
       <file>minisurf.bbl</file>
     </provides>
     <requires type="dynamic">
-      <file>minisurf.aux</file>
-      <file>minisurf-blx.bib</file>
+      <file>minisurf.bcf</file>
     </requires>
     <requires type="editable">
       <file>minisurf.bib</file>
-    </requires>
-    <requires type="static">
-      <file>biblatex.bst</file>
     </requires>
   </external>
 </requests>

@@ -1,5 +1,5 @@
 \chapter{曲率估计}
-\section{Choi-Schoen的结果}
+\section{逐点估计}
 设$\Sigma^{n-1} \subset \M^n$是光滑子流形. $\vec{n}$是 $\Sigma$的单位法向. 设$T$是$(0,2)$型张量, $T=T_{ij}dx^idx^j$. 记号约定如下.
 \begin{equation}
     (\nabla^2_{XY}T)(Z,W)=\nabla^2T(Z,W,Y,X).
@@ -157,7 +157,7 @@ Gauss方程
     \end{equation}
     设$D(p,R)$为$T_p\Sigma$上以$p$为中心, 半径为$R$ 圆盘, $W(p,R)=D(p,R)\times \R$. 
     \begin{align}
-        &D(p,R)= \{p+\vec{v}\mid v \in T_p\Sigma, \abs{v} < R\}. 
+        &D(p,R)= \{p+\vec{v}\mid v \in T_p\Sigma, \abs{v} < R\}.  \\
         &W(p,R)= \{q+t\vec{n}(p)\mid q \in D(p,R), t \in \R\}.
     \end{align}
     则存在函数$u: D(p,R)\to \R$ 使得$u(p)=0$, 并且$\Sigma$可以写成$u$的在$D(p,R)$上的图像的形式. 并且, 给定$q \in D(p,R)$,
@@ -239,18 +239,23 @@ Gauss方程
     \end{equation}
     则$\forall p \in \Sigma$,
     \begin{equation}
-        d(p,\P \Sigma) \le C_0.
+        d(p,\P \Sigma)\II(p) \le C_0.
     \end{equation}
 \end{theorem}
-\begin{theorem}
-    设$\Sigma \subset \R^3$是完备,定向的极小曲面, 且
+定理\eqref{curvature_estimate_4pi}的证明需要下面的定理\eqref{total_curvature}与定理\eqref{compactness}.
+\begin{theorem}\label{total_curvature}
+    设$\Sigma^2$是非紧, 可定向, 完备的2维黎曼流形, 并且
     \begin{equation}
         \int_\Sigma K^- < +\infty. 
     \end{equation}
     这里, $K^-=-\min(K,0)$, $K$是Gauss曲率. 则有
     \begin{enumerate}
+        \item $\int_\Sigma K dv_g < +\infty$.
         \item 存在闭黎曼面$\mathcal{S}$及$\{p_1,p_2\cdots p_k\} \subset \mathcal{S}$使得$\Sigma$共形同构于$\mathcal{S}-\{p_i\}$.
-        \item 存在整数$m$使得$\int_\Sigma Kdv_g = 4m\pi$.
+    \end{enumerate}
+    如果$\Sigma \subset \R^3$是极小曲面, 则
+    \begin{enumerate}
+        \item[3.] 存在$m \in \mathbb{N}^-$使得 $\int_\Sigma K dv_g = 4m\pi$.
     \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -272,7 +277,7 @@ Gauss方程
     由于$\mathop{\limsup} l'(r) \ge 0$(若$ \mathop{\limsup l'(r)} \le \alpha <0$, 则存在$r$足够大使得$l(r) < 0$, 这是不可能的), 则有
     \begin{equation} \label{basic_inequality}
         \begin{split}
-            0 \le \limsup_{r\to \infty} l'(r) &\le \limsup(2\pi \chi(D_r) - \int_{D_r}Kdv_g) \\
+            0 &\le \limsup_{r\to \infty} l'(r) \le \limsup(2\pi \chi(D_r) - \int_{D_r}Kdv_g) \\
             & \le \limsup (2\pi(2-2g(D_r)-(\P D_r)^\#)-\int_{D_r}K^+dv_g+\int_{D_r}K^-dv_g)
         \end{split}
     \end{equation}
@@ -284,8 +289,10 @@ Gauss方程
     结论\eqref{finite}由\eqref{basic_inequality}取极限直接得到. 结论\eqref{finite}是因为$g(D_r)$是有上界的, 且$g(D_r)$只取整数值且关于$r$是非减的. 现在, 对于$\Sigma - D_r$,我们证明
     \begin{claim}
         设$r > r_0$, 则$\Sigma - D_r$的每一个紧的连通分支都是单连通的.
+        \begin{subproof}
+            设$\Omega$是$\Sigma - D_r$的一个连通分支. 若$\P \Omega$至少包含两个边界, 由于$\P \Omega \subset \P D_r$, 则$g(D_r \cup \Omega) > g(D_r)$, 这与结论\eqref{genus}矛盾. 断言证毕.
+        \end{subproof}
     \end{claim}
-    设$\Omega$是$\Sigma - D_r$的一个连通分支. 若$\P \Omega$至少包含两个边界, 由于$\P \Omega \subset \P D_r$, 则$g(D_r \cup \Omega) > g(D_r)$, 这与结论\eqref{genus}矛盾. 断言证毕.
     \par 现在, 记$A_r=D_r\cup \{\Sigma - D_r\text{的所有紧连通分支}\}$. 同时取$r_i$使得
     \begin{equation}
         (\P D_{r_i})^\# = (\P D_{r_{i+1}})^\#=c.
@@ -302,33 +309,93 @@ Gauss方程
     \par 设$E$为$\Sigma$的一个末端 (end, 即$\Sigma-D_{r_0}$的一个连通分支, $r_0$取足够大). 则$E$是annulus. 
     \begin{claim}
         $E$共形同构于$\{1 < \abs{z} < +\infty\}$.
+        \begin{subproof}
+            记$\Gamma_r=\P D_r \cap E$. 设$\phi: E \to \{ 1 < \abs{z} < R\}$是共形等价. 我们需要证明$R=+\infty$. 设$\Gamma_r(s)$是其弧长参数化. 则
+            \begin{equation}
+                2\pi = l_{\S^1} \le l_{\phi\circ \Gamma_r} = \int_{\Gamma_r} \abs{d \phi(\Gamma_r)\Gamma'_r}ds.
+            \end{equation}
+            由Cauchy不等式, 则有
+            \begin{equation}
+                \begin{split}
+                    4\pi^2 \le (\int_{\Gamma_r} \abs{d\phi(\Gamma_r)\Gamma'_r}ds)^2 & \le l_{\Gamma_r}\int_{\Gamma_r}\abs{D\phi(\Gamma_r)}^2ds \\
+                    & =l(\Gamma_r)\int_{\Gamma_r}\det \phi ds.
+                \end{split}
+            \end{equation}
+            (最后一个等式中, 我们用到了对于全纯函数$\phi$, $\abs{d\phi}^2 = \abs{\phi'}^2= \det \phi$). 由于
+            \begin{equation}
+                l'(r) \le 2\pi\chi(D_r) - \int_{D_r}Kdv_g \to 2\pi\chi(\Sigma) - \int_\Sigma K dv_g,
+            \end{equation}
+            则存在常数$C$使得 
+            \begin{equation}
+                l(r) \le Cr.
+            \end{equation}
+            综合以上几个不等式, 我们得到
+            \begin{equation}
+                \frac{4\pi^2}{Cr} \le \frac{4\pi^2}{l(r)} \le \frac{4\pi^2}{l_{\Gamma_r}} \le \int_{\Gamma_r}\det\phi ds.
+            \end{equation}
+            对$r$积分, 则有
+            \begin{equation}
+                +\infty = \int^\infty_{r_0} \frac{4\pi^2}{Cr} \le \int^\infty_{r_0}\int_{\Gamma_r} \det\phi dsdr = \Area(\{1<\abs{z}< R\}).
+            \end{equation}
+            因此, $R=+\infty$. 
+        \end{subproof}
     \end{claim}
-    记$\Gamma_r=\P D_r \cap E$. 设$\phi: E \to \{ 1 < \abs{z} < R\}$是共形等价. 我们需要证明$R=+\infty$. 设$\Gamma_r(s)$是其弧长参数化. 则
+    由命题\eqref{pullback_gauss}可知,
     \begin{equation}
-        2\pi = l_{\S^1} \le l_{\phi\circ \Gamma_r} = \int_{\Gamma_r \abs{d \phi(\Gamma_r)\Gamma'_r}}ds.
+        \int_\Sigma K dv_g = - \Area(N(\Sigma)).
     \end{equation}
-    由Cauchy不等式, 则有
+    $N$为Gauss映射. 等式右侧面积的计算需要计重数. 现在, 我们需要说明存在一个整数重数. 
+    \begin{claim}
+        设$\Sigma$共形等价于$\mathcal{S}-\{p_i\}$.  Gauss映射$g: \Sigma\to \overline{\mathbb{C}}$可以延拓为$\mathcal{S}$上的亚纯函数.
+        \begin{subproof}
+            取$p \in \{p_i\}$, 并取$p$点的邻域, 设这个领域共形等价于$\D^*=\D - \{0\}$. 现在, 可以将$g$看作$g: \D^* \to \overline{\mathbb{C}}$. 设$\gamma_\rho=\{\abs{z}=\rho\}$, 并取$\gamma_\rho$的弧长参数化. 则有
+            \begin{equation}
+                \abs{l_{g(\gamma_\rho)}}^2 = (\int_{\gamma_\rho} \abs{dg(\gamma_\rho) \gamma'_\rho(s) ds})^2 \le 2\pi\rho \int_{\gamma_\rho}\abs{dg(\gamma_\rho)}^2ds.
+            \end{equation}
+            两侧同时除以$\frac{1}{2\pi\rho}$并对$\rho$积分, 则有
+            \begin{equation}
+                \begin{split}
+                    \int^1_0 \frac{l^2(g(\gamma_\rho))}{2\pi\rho} d\rho \le \int^1_0 \int_{\gamma_\rho} \abs{dg(\gamma_\rho)}^2dsd\rho &= 2\Area(g(\D^*))  \\
+                    &\le -2\int_\Sigma Kdv_g<\infty.
+                \end{split}
+            \end{equation}
+            由于$\frac{1}{\rho}$不可积, 则存在$\rho_i \to 0$使得  $l(g(\rho_i)) \to 0$. 这意味着$g$在0点的邻域内有界. 因此, $g$查以延拓为$\mathbb{D}$上的亚纯函数. 断言得证.
+        \end{subproof}
+    \end{claim}
+    \par  由于黎曼面之间的共形映射是覆盖映射(除去有限个分歧点), 则
     \begin{equation}
-        \begin{split}
-            4\pi^2 \le (\int_{\Gamma_r} \abs{d\phi(\Gamma_r)\Gamma'_r}ds)^2 & \le l_{\Gamma_r}\int_{\Gamma_r}\abs{D\phi(\Gamma_r)}^2ds \\
-            & =l(\Gamma_r)\int_{\Gamma_r}\det \phi ds.
-        \end{split}
+        \int_\Sigma Kdv_g = - \text{deg}(g) \Area(\S^2) = -\text{deg}(g)4\pi.
     \end{equation}
-    (最后一个等式中, 我们用到了对于全纯函数$\phi$, $\abs{d\phi}^2 = \abs{\phi'}^2= \det \phi$). 由于
+\end{proof}
+\begin{corollary}\label{flatness_4pi}
+    设$\Sigma$是完备的定向极小曲面, 且$-4\pi < \int_\Sigma K dv_g \le 0$, 则$\Sigma$是平面.
+\end{corollary}
+\begin{theorem} \label{compactness}
+    设$\{\Sigma_i \} \subset \R^3$是极小曲面. 设$p_i \in \Sigma_i$且$p_i \to p$.  设存在常数$C$使得$\forall i$,
     \begin{equation}
-        l'(r) \le 2\pi\chi(D_r) - \int_{D_r}Kdv_g \to 2\pi\chi(\Sigma) - \int_\Sigma K dv_g,
+        \abs{\II_{\Sigma_i}} \le C.
     \end{equation}
-    则存在常数$C$使得 
+    则存在子列$\Sigma_{i_k}$及极小曲面$\Sigma$使得$\Sigma_{i_k} \overset{C^\infty}{\longrightarrow} \Sigma$.
+\end{theorem}
+\begin{proof}
+    局部应用一致图像引理, 并将所得到的极小曲面拼起来即可.
+\end{proof}
+\begin{proof}[定理\eqref{curvature_estimate_4pi}的证明]
+    所有的计算都是在曲面的内蕴度量下进行的. 假设结论不成立. 设$\forall k$, 存在$\Sigma_k$使得$\int_\Sigma \abs{\II_k}^2dv_g \le C$并且存在$p_k \subset \Sigma_k$使得$d(p_k,\P \Sigma_k)\abs{\II_k(p_k)} \to +\infty$. 不失一般性, 我们选择$p_k$使得
     \begin{equation}
-        l(r) \le Cr.
+        d(p_k, \P \Sigma_k)\abs{\II(p_k)} \ge d(x,\P \Sigma_k)\abs{\II(x)} \s \forall x \in \Sigma_k.
     \end{equation}
-    综合以上几个不等式, 我们得到
+    将$p_k$平移到0点处, 将作伸缩$x \to \II_k(p_k)x$, 得到的新的曲面仍记为$\Sigma_k$. 在绅缩变换下,  $\int_{\Sigma_k}\abs{\II}^2dv_g, d(p_k,\P \Sigma)\abs{\II}(p_k)$都是不变的.  因此,这些新的曲面满足
+    \begin{equation} \label{iikk0}
+        \int_{\Sigma_k} \abs{\II_k}^2 \le C, \s \II_k(0) =1.
+    \end{equation}
+    特别地, 有$d(0,\P \Sigma_k) \to \infty$以及$d(x,\P \Sigma_k) \abs{\II(x)} \le d(0,\P \Sigma_k)$. 设$x \in B(0,r)$, 则有
     \begin{equation}
-        \frac{4\pi^2}{Cr} \le \frac{4\pi^2}{l(r)} \le \frac{4\pi^2}{l_{\Gamma_r}} \le \int_{\Gamma_r}\det\phi ds.
+        \abs{\II_k(x)} \le \frac{d(0,\P \Sigma_k)}{d(x,\P \Sigma_k)} \le \frac{d(0,\P \Sigma_k)}{d(0,\P \Sigma_k) - d(0,x)} \to 1.
     \end{equation}
-    对$r$积分, 则有
+    因此, $\abs{\II_k}$一致有界. 由定理\eqref{compactness}, 存在子列, 仍记为$\Sigma_k$及极小曲面$\Sigma$, 使得$\Sigma_k \to \Sigma$. 显然地, $\Sigma$是完备的. 则有
     \begin{equation}
-        +\infty = \int^\infty_{r_0} \frac{4\pi^2}{Cr} \le \int^\infty_{r_0}\int_{\Gamma_r} \det\phi dsdr = \Area(\{1<\abs{z}< R\}).
+        \int_\Sigma \abs{\II}^2dv_g \le \liminf \int_{\Sigma_k} \abs{\II_k}^2dv_g \le C < 8\pi.
     \end{equation}
-    因此, $R=+\infty$.
+    这等价于$-\int_\Sigma K dv_g < 4\pi$. 由推论\eqref{flatness_4pi}可知, $\Sigma$是平面, 而这与\eqref{iikk0}矛盾.
 \end{proof}
