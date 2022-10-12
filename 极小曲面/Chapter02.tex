@@ -113,7 +113,7 @@ Gauss方程
     \end{equation}
 \end{theorem}
 \begin{proof}
-    将$B_{r_0}$简写为$B$. 只需要证明$F(x)=d^2(x,\P B)\abs{\II}^2(x) \le \delta$即可. 我们用反证法. 设$F(q)=\max_{x \in B}F(x)$. 注意到在$\partial B$上, $F(x) \eq 0$. 则$q$是内点.  设$F(q) > \delta$, 我们将证明当$\epsilon$足够小时, 会推出一个矛盾. 取 $\sigma$使得
+    将$B_{r_0}$简写为$B$. 只需要证明$F(x)=d^2(x,\P B)\abs{\II}^2(x) \le \delta$即可. 我们用反证法. 设$F$在$q$点处取到最大值$\max_{x \in B}F(x)$. 注意到在$\partial B$上, $F(x) \eq 0$. 则$q$是内点.  设$F(q) > \delta$, 我们将证明当$\epsilon$足够小时, 会推出一个矛盾. 取 $\sigma$使得
     \begin{equation}
         \sigma^2\abs{\II}^2(q)=\frac{\delta}{4} \le \frac{1}{4} d^2(q,\P B)\abs{\II}^2(q).
     \end{equation}
@@ -150,6 +150,19 @@ Gauss方程
     \end{equation}
     则当$\epsilon$足够小时, 显然是不可能的.
 \end{proof}
+把定理\eqref{choi_schoen}写成下面形式往往是方便的.
+\begin{theorem*}\label{choi_schoen_cor}
+    设$\Sigma^2 \subset \R^3$是极小曲面.  则存在常数$\epsilon, \rho>0$, 使得 $\forall r_0 < \rho$, 如果
+    \begin{enumerate}
+        \item $\partial \Sigma \cap B_{r_0}(p)=\emptyset$.
+        \item $\int_{\Sigma \cap B_{r_0}} \abs{\II}^2\le \epsilon$.
+    \end{enumerate}
+    那么
+    \begin{equation}
+        \mathop{\sup}_{B_{\frac{r_0}{2}}}\abs{\II(x)} \le \frac{C}{r_0}.
+    \end{equation}
+\end{theorem*}
+
 \begin{lemma}[一致图像引理] \label{uniform_graph}
     设$\Omega \subset \R^3$是具有光滑边界的开集. 设$\Sigma^2 \subset \Omega$是嵌入的光滑曲面, 并且$\Sigma$在$\Omega$中是闭的. 设$\abs{\II} \le C$. 则$\Sigma$可以局部一致地表示成函数图像的形式. 确切地说, $\forall p \in \Sigma$, $R\in (0,R_0)$. 这里, 
     \begin{equation}
@@ -182,7 +195,7 @@ Gauss方程
     \end{equation}
     在$D(p,R)$上, 由于$\abs{Du} \le 1$, 则
     \begin{equation}
-        C^2 \ge \abs{\nabla^2 u} \le 8C^2.
+        C^2 \le \abs{\nabla^2 u} \le 8C^2.
     \end{equation}
     现在, 设情况\eqref{case1}发生, 设$q \in \partial D(p,R)$使得$\abs{\nabla u(q)}=\frac{1}{2}$. 则
     \begin{equation}
@@ -201,48 +214,83 @@ Gauss方程
 \begin{proof}
     在定理\eqref{choi_schoen}的证明中, 有了不等式\eqref{ii_sup}(欧氏度量换成内蕴度量后, 直到这里的推导都是正确的), 我们就可以用应用一致图像引理. 由于此时$\abs{\nabla u}$一致有界, 那么$\Sigma$上的内蕴度量与外蕴度量实际上是局部可比较的. 最后在$B_\frac{1}{4}$(引理\eqref{uniform_graph}中, $C=1$)上应用推论\eqref{sub_harmonic}.
 \end{proof}
-\begin{theorem}
-    设$\Sigma^2 \subset \R^3$是定向的稳定极小曲面. 则存在常数$C>0$使得
+
+\begin{theorem} \label{compactness}
+    设$\{\Sigma_i \} \subset \R^3$是完备极小曲面. 设$p_i \in \Sigma_i$且$p_i \to p$.  设存在常数$C$使得$\forall i$,
     \begin{equation}
-        \abs{\II}^2(x) \le \frac{C}{d^2_\Sigma(x,\partial \Omega)}.
+        \abs{\II_{\Sigma_i}} \le C.
+    \end{equation}
+    则存在子列$\Sigma_{i_k}$及极小曲面$\Sigma$使得$\Sigma_{i_k} \overset{C^\infty}{\longrightarrow} \Sigma$.
+\end{theorem}
+\begin{proof}
+    在$p$点处, (选取子列)设$T_{p_k}\Sigma_k \to \{z=0\}$.  设$B_\delta(0)=\{(x,y,z)\mid z=0, x^2+y^2 \le \delta^2\}$. 由一致图像引理, 存在$\delta=\delta(C)>0$使得$\Sigma_k$可以表示成为$B_\delta(0)$上的函数$u_k$的图像, 且在$B_\delta$上, $Du_k$一致有界. 则存在函数$u$使得 $u_k \to u$. 由Schauder估计可知, $u_k \overset{C^\infty}{\longrightarrow} u$.  
+    \par 取$p \in \P B_\delta(0)$, 则在$p$点的$\delta$邻域中,  重复上面的过程. 我们可以得到在更大区域上的收敛子列.  此过程可以一直继续下去, 直到我们得到完备的极小曲面.
+\end{proof}
+在后面的曲率估计中, 下面的引理将会被频繁用到.
+\begin{lemma}
+    设$\Sigma \subset \R^3$是嵌入的光滑曲面. 则
+    \begin{equation}
+        d(x,\P \Sigma)\abs{\II(x)},\s  \int_\Sigma \abs{\II}^2dv_g
+    \end{equation}
+    是在伸缩变换下的不变量.
+\end{lemma}
+\begin{theorem}
+    存在常数$C>0$使得对于任意定向的稳定极小曲面$\Sigma^2 \subset \R^3$, 成立
+    \begin{equation}
+        d_\Sigma(x,\P \Sigma)\abs{\II}(x)  \le C.
     \end{equation}
 \end{theorem}
 \begin{proof}
-    记$r_0=d(x,\partial \Sigma)$. 由命题\eqref{mc_area}可知, $\forall 0<r < r_0$, 
+    反证法. 设存在稳定极小曲面$\Sigma_k$及$p_k \in \Sigma_k$使得
     \begin{equation}
-        \Area(B^\Sigma_r) \le Cr^2.
+        d(p_k, \P \Sigma_k)\abs{\II_k(p_k)}  \to \infty.
     \end{equation}
-    (这里如果$B^\Sigma_r$不是嵌入圆盘, 我们就在万有覆盖中来做). 固定$x$, 设$r=d(y,x)$, 定义截断函数
+    如果$\Sigma_k$是无界的, 则截断$\Sigma_k$使其是带有光滑边界的紧集. 不失一般性, 设$p_k$取到$d(x,\P \Sigma_k)\abs{\II_k(x)}$的最大值. 经过平移旋转后, 设 $p_k$在0点处. 对$\Sigma_k$做伸缩变换$ x \to \abs{\II_k(p_k)}x$, 得到新的极小曲面列, 仍记为 $\Sigma_k$. 这些新的极小曲面仍然满足: $\Sigma_k$是稳定的, 并且$d(0, \P \Sigma_k)\abs{\II_k(0)} \to \infty$. 另外,  $\abs{\II_k(0)}=1$. 因此, $d(0, \P \Sigma_k) \to \infty$. 根据$p_k$的选取, $\forall x \in \Sigma_k$,
     \begin{equation}
-        \eta(y)=\left\{
-            \begin{aligned}
-                & 1, r\le e^{-N}r_0, \\
-                & \frac{\log r_0-\log r}{N}, e^{-N}r_0 < r < r_0, \\
-                & 0, r>r_0.
-            \end{aligned}
-        \right.
+        d(x,\P \Sigma_k)\abs{\II_k(x)} \le d(0,\P \Sigma_k).
     \end{equation}
-    由于$\abs{\nabla r}=1$, 则$\abs{\nabla \eta} \le \frac{1}{Nr}$. 将$\eta$代入到稳定性不等式中, 得到
+    设$x \in B_r$. 则
     \begin{equation}
-        \begin{split}
-            \int_{B^\Sigma_{e^-Nr_0}}\abs{\II}^2 \le \int_\Sigma \eta^2 \abs{\II}^2 &\le \int_\Sigma \abs{\nabla \eta}^2  \\
-            &\le \frac{1}{N^2}\sum_{i=-n}^{-1}\int_{B_{e^{i+1}r_0}^\Sigma-B_{e^ir_0}^\Sigma}\frac{1}{r^2} \\
-            &\le \frac{4\pi e^2}{3N}.
-        \end{split}
+        \abs{\II_k(x)} \le \frac{d(0,\P \Sigma_k)}{d(x,\P \Sigma_k)} \to 1.
     \end{equation}
-    $N$取足够大时就可以应用定理\eqref{choi_schoen}(推论\eqref{choi_schoen_intrinsic}).
+    因此, $\abs{\II_k}$局部一致有界. 根据定理\eqref{compactness}, 存在极小曲面$\Sigma$使得$\Sigma_k \overset{C^\infty}{\longrightarrow} \Sigma$. 显然$\Sigma$是完备的, 且$\abs{\II(0)}=1$. 下面我们说明$\Sigma$是稳定的.  否则的话, 存在$\Omega \subsub \Sigma$使得$\lambda_1(\L_\Sigma,\Omega) < 0$. 而由于$\Sigma_k \overset{C^\infty}{\longrightarrow} \Sigma$, $\L_{\Sigma_k} \to \L_\Sigma$, 则$\Sigma$是稳定的. 而由定理\eqref{stable_flat}可知, $\Sigma$是平面, 而这与$\abs{\II(0)}=1$矛盾.
 \end{proof}
+%\begin{proof}
+%    记$r_0=d(x,\partial \Sigma)$. 由命题\eqref{mc_area}可知, $\forall 0<r < r_0$, 
+%    \begin{equation}
+%        \Area(B^\Sigma_r) \le Cr^2.
+%    \end{equation}
+%    (这里如果$B^\Sigma_r$不是嵌入圆盘, 我们就在万有覆盖中来做). 固定$x$, 设$r=d(y,x)$, 定义截断函数
+%    \begin{equation}
+%        \eta(y)=\left\{
+%            \begin{aligned}
+%                & 1, r\le e^{-N}r_0, \\
+%                & \frac{\log r_0-\log r}{N}, e^{-N}r_0 < r < r_0, \\
+%                & 0, r>r_0.
+%            \end{aligned}
+%        \right.
+%    \end{equation}
+%    由于$\abs{\nabla r}=1$, 则$\abs{\nabla \eta} \le \frac{1}{Nr}$. 将$\eta$代入到稳定性不等式中, 得到
+%    \begin{equation}
+%        \begin{split}
+%            \int_{B^\Sigma_{e^-Nr_0}}\abs{\II}^2 \le \int_\Sigma \eta^2 \abs{\II}^2 &\le \int_\Sigma \abs{\nabla \eta}^2  \\
+%            &\le \frac{1}{N^2}\sum_{i=-n}^{-1}\int_{B_{e^{i+1}r_0}^\Sigma-B_{e^ir_0}^\Sigma}\frac{1}{r^2} \\
+%            &\le \frac{4\pi e^2}{3N}.
+%        \end{split}
+%    \end{equation}
+%    $N$取足够大时就可以应用定理\eqref{choi_schoen}(推论\eqref{choi_schoen_intrinsic}).
+%\end{proof}
 \begin{theorem} \label{curvature_estimate_4pi}
     设$C \in (0,8\pi)$. 则存在常数$C_0=C_0(C)$使得: 如果$\Sigma \subset \R^3$是定向极小曲面, 并且
     \begin{equation}
         \int_\Sigma \abs{\II}^2 dv_g \le C.
     \end{equation}
-    则$\forall p \in \Sigma$,
+    则$\forall x \in \Sigma$,
     \begin{equation}
-        d(p,\P \Sigma)\II(p) \le C_0.
+        d(x,\P \Sigma)\abs{\II(x)} \le C_0.
     \end{equation}
 \end{theorem}
-定理\eqref{curvature_estimate_4pi}的证明需要下面的定理\eqref{total_curvature}与定理\eqref{compactness}.
+定理\eqref{curvature_estimate_4pi}的证明需要下面的定理\eqref{total_curvature}.
 \begin{theorem}\label{total_curvature}
     设$\Sigma^2$是非紧, 可定向, 完备的2维黎曼流形, 并且
     \begin{equation}
@@ -250,12 +298,12 @@ Gauss方程
     \end{equation}
     这里, $K^-=-\min(K,0)$, $K$是Gauss曲率. 则有
     \begin{enumerate}
-        \item $\int_\Sigma K dv_g < +\infty$.
+        \item $\int_\Sigma \abs{K} dv_g < +\infty$.
         \item 存在闭黎曼面$\mathcal{S}$及$\{p_1,p_2\cdots p_k\} \subset \mathcal{S}$使得$\Sigma$共形同构于$\mathcal{S}-\{p_i\}$.
     \end{enumerate}
     如果$\Sigma \subset \R^3$是极小曲面, 则
     \begin{enumerate}
-        \item[3.] 存在$m \in \mathbb{N}^-$使得 $\int_\Sigma K dv_g = 4m\pi$.
+        \item[3.] 存在$m \le 0$使得 $\int_\Sigma K dv_g = 4m\pi$.
     \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -278,34 +326,38 @@ Gauss方程
     \begin{equation} \label{basic_inequality}
         \begin{split}
             0 &\le \limsup_{r\to \infty} l'(r) \le \limsup(2\pi \chi(D_r) - \int_{D_r}Kdv_g) \\
-            & \le \limsup (2\pi(2-2g(D_r)-(\P D_r)^\#)-\int_{D_r}K^+dv_g+\int_{D_r}K^-dv_g)
+            & \le \limsup (2\pi(2-2p(D_r)-(\P D_r)^\#)-\int_{D_r}K^+dv_g+\int_{D_r}K^-dv_g)
         \end{split}
     \end{equation}
-    其中, $g$为$D_r$的亏格, $(\P D_r)^\#$为$D_r$的边界的数目. 上述不等式意味着, 存在常数$C$使得
+    其中, $p$为$D_r$的亏格, $(\P D_r)^\#$为$D_r$的边界的连通分支数. 上述不等式意味着, 存在常数$C$使得
     \begin{enumerate}
-        \item $g(D_r), (\P D_r)^\#, \int_{D_r}K^+dv_g \le \int_\Sigma K^-dv_g +C$. \label{finite}
-        \item 存在$r_0>0$使得$\forall r > r_0$, $g(D_r) = g(D_{r_0})$. \label{genus}
+        \item $p(D_r), (\P D_r)^\#, \int_{D_r}K^+dv_g \le C(\int_\Sigma K^-dv_g +1)$. \label{finite}
+        \item 存在$r_0>0$使得$\forall r > r_0$, $p(D_r) = p(D_{r_0})$. \label{genus}
     \end{enumerate}
-    结论\eqref{finite}由\eqref{basic_inequality}取极限直接得到. 结论\eqref{finite}是因为$g(D_r)$是有上界的, 且$g(D_r)$只取整数值且关于$r$是非减的. 现在, 对于$\Sigma - D_r$,我们证明
+    结论\eqref{finite}由\eqref{basic_inequality}取极限直接得到. 结论\eqref{genus}是因为$p(D_r)$是有上界的, 且$p(D_r)$只取整数值且关于$r$是非减的. 现在, 对于$\Sigma - D_r$,我们证明
     \begin{claim}
         设$r > r_0$, 则$\Sigma - D_r$的每一个紧的连通分支都是单连通的.
         \begin{subproof}
-            设$\Omega$是$\Sigma - D_r$的一个连通分支. 若$\P \Omega$至少包含两个边界, 由于$\P \Omega \subset \P D_r$, 则$g(D_r \cup \Omega) > g(D_r)$, 这与结论\eqref{genus}矛盾. 断言证毕.
+            设$\Omega$是$\Sigma - D_r$的一个连通分支. 若$\P \Omega$至少包含两个边界, 由于$\P \Omega \subset \P D_r$, 则$p(D_r \cup \Omega) > p(D_r)$, 这与结论\eqref{genus}矛盾. 断言证毕.
         \end{subproof}
     \end{claim}
-    \par 现在, 记$A_r=D_r\cup \{\Sigma - D_r\text{的所有紧连通分支}\}$. 同时取$r_i$使得
-    \begin{equation}
+    \par 现在, 记$A_r=D_r\cup \{\Sigma - D_r\text{的所有紧连通分支}\}$. 同时取$r_i$使得\eqref{basic_inequality}成立并且
+    \begin{equation} \label{boundary_constant}
         (\P D_{r_i})^\# = (\P D_{r_{i+1}})^\#=c.
     \end{equation}
-    $\P D_{r}$总是取整数值并且有上界, 这总是可以取到的. 由于$(\P A_{r_i})^\# \le (\P D_r)^\#$, 可设
+    $(\P D_{r})^\#$总是取整数值并且有上界, \eqref{boundary_constant}是可以取到的. 由于$(\P A_{r_i})^\# \le (\P D_{r_i})^\#$, 可设
     \begin{equation}
-        (\P A_{r_i})^\# = (\P A_{r_{i+1}})^\#=c.
+        (\P A_{r_i})^\# = (\P A_{r_{i+1}})^\#=c'.
     \end{equation}
-    此时, $A_{r_i} \subset A_{r_{i+1}}$并且 $A_{r_i}$与$A_{r_{i+1}}$同胚, 则$A_{r_{i+1}}$是由$A_{r_i}$在边界处添加annulus而得到. 在不等式\eqref{basic_inequality}中取极限, 则有
+    此时, $A_{r_i} \subset A_{r_{i+1}}$并且 $A_{r_i}$与$A_{r_{i+1}}$同胚, 则$A_{r_{i+1}}$是由$A_{r_i}$在边界处添加annulus而得到. 由于$\Sigma = \cup A_{r_i}$, 则$\Sigma$与 $A_{r_i}$具有相同的拓扑型. 现在可以在不等式\eqref{basic_inequality}可以得到,
     \begin{equation}
-        0 \le 2\pi \chi(\Sigma) - \int_\Sigma K dv_g.
+        \begin{split}
+            0 & \le \limsup (2\pi(2-2p(D_r)-(\P D_r)^\#)-\int_{D_r}K^+dv_g+\int_{D_r}K^-dv_g) \\
+            &\le  \limsup (2\pi(2-2p(A_r)-(\P A_r)^\#)-\int_{A_r}Kdv_g) \\
+            & \to  2\pi \chi(\Sigma) - \int_\Sigma K dv_g.
+        \end{split}
     \end{equation}
-    到现在为止, 我们已经证明了$\Sigma$是有限型曲面, 即同胚于闭区曲面去掉有限个点.
+    至此, 我们已经证明了$\Sigma$是有限型曲面, 即同胚于闭区曲面去掉有限个点.
     \par 设$E$为$\Sigma$的一个末端 (end, 即$\Sigma-D_{r_0}$的一个连通分支, $r_0$取足够大). 则$E$是annulus. 
     \begin{claim}
         $E$共形同构于$\{1 < \abs{z} < +\infty\}$.
@@ -335,18 +387,22 @@ Gauss方程
             \end{equation}
             对$r$积分, 则有
             \begin{equation}
-                +\infty = \int^\infty_{r_0} \frac{4\pi^2}{Cr} \le \int^\infty_{r_0}\int_{\Gamma_r} \det\phi dsdr = \Area(\{1<\abs{z}< R\}).
+                \begin{split}
+                    +\infty = \int^\infty_{r_0} \frac{4\pi^2}{Cr} &\le \int^\infty_{r_0}\int_{\Gamma_r} \det\phi dsdr  \\
+                    &=\Area(\phi(E)) \\
+                    &= \Area(\{1<\abs{z}< R\}) 
+                \end{split}
             \end{equation}
-            因此, $R=+\infty$. 
+            因此, $R=+\infty$, 断言证毕.
         \end{subproof}
     \end{claim}
-    由命题\eqref{pullback_gauss}可知,
+    现在设$\Sigma$是极小曲面, 我们计算$\Sigma$的全曲率.  由命题\eqref{pullback_gauss}可知,
     \begin{equation}
         \int_\Sigma K dv_g = - \Area(N(\Sigma)).
     \end{equation}
-    $N$为Gauss映射. 等式右侧面积的计算需要计重数. 现在, 我们需要说明存在一个整数重数. 
+    $N$为Gauss映射. 等式右侧面积的计算需要计象集中每个点的重数. 现在, 我们需要说明存在一个整数重数. 
     \begin{claim}
-        设$\Sigma$共形等价于$\mathcal{S}-\{p_i\}$.  Gauss映射$g: \Sigma\to \overline{\mathbb{C}}$可以延拓为$\mathcal{S}$上的亚纯函数.
+        设$\Sigma$共形等价于$\mathcal{S}-\{p_i\}$, $\mathcal{S}$是闭黎曼曲面.  则其Gauss映射$g: \Sigma\to \overline{\mathbb{C}}$可以延拓为$\mathcal{S}$上的亚纯函数.
         \begin{subproof}
             取$p \in \{p_i\}$, 并取$p$点的邻域, 设这个领域共形等价于$\D^*=\D - \{0\}$. 现在, 可以将$g$看作$g: \D^* \to \overline{\mathbb{C}}$. 设$\gamma_\rho=\{\abs{z}=\rho\}$, 并取$\gamma_\rho$的弧长参数化. 则有
             \begin{equation}
@@ -359,27 +415,20 @@ Gauss方程
                     &\le -2\int_\Sigma Kdv_g<\infty.
                 \end{split}
             \end{equation}
-            由于$\frac{1}{\rho}$不可积, 则存在$\rho_i \to 0$使得  $l(g(\rho_i)) \to 0$. 这意味着$g$在0点的邻域内有界. 因此, $g$查以延拓为$\mathbb{D}$上的亚纯函数. 断言得证.
+            最后一个不等式是因为命题\eqref{pullback_gauss}. 由于$\frac{1}{\rho}$不可积, 则存在$\rho_i \to 0$使得  $l(g(\rho_i)) \to 0$. 这意味着$g$在0点的邻域内有界. 因此, $g$可以延拓为$\mathbb{D}$上的亚纯函数. 断言得证.
         \end{subproof}
     \end{claim}
     \par  由于黎曼面之间的共形映射是覆盖映射(除去有限个分歧点), 则
-    \begin{equation}
+    \begin{equation}\label{total_curvature_degree}
         \int_\Sigma Kdv_g = - \text{deg}(g) \Area(\S^2) = -\text{deg}(g)4\pi.
     \end{equation}
 \end{proof}
+\begin{remark}
+    上面等式\eqref{total_curvature_degree}实际上提供了一种计算完备极小曲面全曲率的方法: 只需要知道Gauss映射下$\S^2$上任意一个点的原像的个数, 乘以$4\pi$即可.
+\end{remark}
 \begin{corollary}\label{flatness_4pi}
     设$\Sigma$是完备的定向极小曲面, 且$-4\pi < \int_\Sigma K dv_g \le 0$, 则$\Sigma$是平面.
 \end{corollary}
-\begin{theorem} \label{compactness}
-    设$\{\Sigma_i \} \subset \R^3$是极小曲面. 设$p_i \in \Sigma_i$且$p_i \to p$.  设存在常数$C$使得$\forall i$,
-    \begin{equation}
-        \abs{\II_{\Sigma_i}} \le C.
-    \end{equation}
-    则存在子列$\Sigma_{i_k}$及极小曲面$\Sigma$使得$\Sigma_{i_k} \overset{C^\infty}{\longrightarrow} \Sigma$.
-\end{theorem}
-\begin{proof}
-    局部应用一致图像引理, 并将所得到的极小曲面拼起来即可.
-\end{proof}
 \begin{proof}[定理\eqref{curvature_estimate_4pi}的证明]
     所有的计算都是在曲面的内蕴度量下进行的. 假设结论不成立. 设$\forall k$, 存在$\Sigma_k$使得$\int_\Sigma \abs{\II_k}^2dv_g \le C$并且存在$p_k \subset \Sigma_k$使得$d(p_k,\P \Sigma_k)\abs{\II_k(p_k)} \to +\infty$. 不失一般性, 我们选择$p_k$使得
     \begin{equation}
@@ -393,9 +442,126 @@ Gauss方程
     \begin{equation}
         \abs{\II_k(x)} \le \frac{d(0,\P \Sigma_k)}{d(x,\P \Sigma_k)} \le \frac{d(0,\P \Sigma_k)}{d(0,\P \Sigma_k) - d(0,x)} \to 1.
     \end{equation}
-    因此, $\abs{\II_k}$一致有界. 由定理\eqref{compactness}, 存在子列, 仍记为$\Sigma_k$及极小曲面$\Sigma$, 使得$\Sigma_k \to \Sigma$. 显然地, $\Sigma$是完备的. 则有
-    \begin{equation}
-        \int_\Sigma \abs{\II}^2dv_g \le \liminf \int_{\Sigma_k} \abs{\II_k}^2dv_g \le C < 8\pi.
+    因此, $\abs{\II_k}$局部一致有界. 由定理\eqref{compactness}, 存在极小曲面$\Sigma$, 使得$\Sigma_k \to \Sigma$. 显然地, $\Sigma$是完备的.  并且
+    \begin{equation} \label{II01}
+        \abs{\II_\Sigma(0)}=1.
     \end{equation}
-    这等价于$-\int_\Sigma K dv_g < 4\pi$. 由推论\eqref{flatness_4pi}可知, $\Sigma$是平面, 而这与\eqref{iikk0}矛盾.
+    另外, 有
+    \begin{equation}
+        \int_\Sigma \abs{\II_\Sigma}^2dv_g \le \liminf \int_{\Sigma_k} \abs{\II_k}^2dv_g \le C < 8\pi.
+    \end{equation}
+    这等价于$-\int_\Sigma K dv_g < 4\pi$. 由推论\eqref{flatness_4pi}可知, $\Sigma$是平面, 而这与\eqref{II01}矛盾.
+\end{proof}
+对于极小曲面$\Sigma^{n-1} \subset \R^n$, 记$\theta(\Sigma,p,R)=\frac{\Area(B(p,R))\cap \Sigma}{\pi R^2}$. 由单调性公式可知, $\theta$关于$R$单调递增且$\mathop{\lim}_{R\to 0} \theta=1$.
+\begin{lemma}\label{theta_flat}
+    设$\Sigma^{2}\subset \R^3$是极小曲面. 则$\theta \eq 1$当且仅当$\Sigma$是平面.
+\end{lemma}
+\begin{theorem}
+    存在$\lambda >1, \epsilon>0$及$C< \infty$使得如果$\Sigma^2\subset \R^3$是极小曲面, $p\in \Sigma$, $B(p,R) \cap \P \Sigma = \emptyset$且$\theta(\Sigma, p, R) \le \lambda$, 则$\forall x\in  B(p, \epsilon R)$,
+    \begin{equation}
+        \abs{\II(x)}d(x,\P B(p,\epsilon R)) \le C.
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    设论不成立. 取$\lambda_k \to 1, \epsilon_k \to 0$, 则$\forall k$, 存在$\Sigma_k$及$p_k \subset \Sigma_k$, $R_k >0$使得
+    \begin{equation}
+        \mathop{\sup}_{x \in B(p_k,\epsilon_k R_k)}\abs{\II_k(x)} d(x, \P B(p_k,\epsilon_k R_k)) \to \infty.
+    \end{equation}
+    设$\abs{\II_k(x)}d(x, \P B(p_k,\epsilon_k R_k))$在$q_k$处取到最大, 则$q_k$是$B(p_k, \epsilon_k R_k)$的内点. 将$q_k$平移到原点处, 并做绅缩$x \to \abs{\II_k(q_k)}d(q_k,\P B(p_k, \epsilon_k R_k))x$. 绅缩变换后得到的极小曲面仍记为$\Sigma_k$. 则
+    \begin{equation}
+        \abs{\II_k(0)}=1,\s d(0, \P B(p_k, \epsilon_k R_k)) \to \infty.
+    \end{equation}
+    特别地, 有$R_k \to \infty$.  而$\abs{\II_k(x)} \le \frac{d(0, \P B(p_k, \epsilon_k R_k))}{d(x, \P B(p_k, \epsilon_k R_k))} \to 1$, 则$\abs{\II_k}$局部一致有界. 因此, 存在子列, 仍记为$\Sigma_k$及完备极小曲面$\Sigma$使得$\Sigma_k \to \Sigma$. 而对于任意$R>0$, 由单调性公式,
+    \begin{equation}\label{II011}
+        \theta(\Sigma,0, R)= \lim_{k \to \infty} \theta(\Sigma_k,0,R) \le \lim_{k\to \infty} \theta(\Sigma_k,0,\frac{1}{1+\epsilon_k}R_k).
+    \end{equation}
+    另外, 由于$p_k \in B(0, \epsilon_k R_k)$,
+    \begin{equation}
+        \begin{split}
+            \theta(\Sigma_k,0,\frac{1}{1+\epsilon_k}R_k) &=\frac{(1+\epsilon_k)^2}{\pi R_k^2}\Area(B(0,\frac{1}{1+\epsilon_k}R_k)\cap \Sigma_k) \\
+            &\le \frac{(1+\epsilon_k)^2}{\pi R_k^2}\Area(B(p_k,R_k)\cap \Sigma_k) \\
+            &\le (1+\epsilon_k)^2\lambda_k \to 1.
+        \end{split}
+    \end{equation}
+    则$\theta(\Sigma,0, R) =1$. 由引理 \eqref{theta_flat}可知, $\Sigma$是平面,这与 \eqref{II011}矛盾.
+\end{proof}
+\section{$L^p$估计}
+\begin{theorem} \label{ssy}
+    设$\Sigma^{n-1}\subset \R^n$是定向的稳定极小曲面. 则$\forall p \in [2, 2+\sqrt{\frac{2}{n-1}})$, 存在$C=C(n,p)$使得$\forall \phi \in C^1_0(\Sigma), \phi \ge 0$, 成立 
+    \begin{equation}
+        \int_\Sigma \abs{\II}^{2p}\phi^{2p}dv_g \le C(n,p) \int_\Sigma \abs{\nabla_\Sigma \phi}^{2p}dv_g.
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    $\forall f \in C^1_0(\Sigma)$, 取$\eta=\abs{\II}^{1+q}f$代入到稳定性不等式中, 则有
+    \begin{equation} \label{ssy1}
+        \begin{split}
+            \int \abs{\II}^{4+2q}f^2  \le& \int \abs{\nabla_\Sigma (\abs{\II}^{1+q}f)}^2 \\
+            =& \int \abs{\II}^{2+2q} \abs{\nabla_\Sigma f} + (1+q)^2 \abs{\II}^{2q}f^2 \abs{\nabla \abs{\II}}^2  \\
+            &+ 2(1+q)\abs{\II}^{2q+1}f\inner{\nabla_\Sigma \abs{\II}}{\nabla_\Sigma f}.
+        \end{split}
+    \end{equation}
+    由Simons不等式,
+    \begin{equation}
+        \abs{\II}\Delta_\Sigma\abs{\II} + \abs{\II}^4 \ge \frac{2}{n-1}\abs{\nabla_\Sigma \abs{\II}}^2.
+    \end{equation}
+    两侧同时乘以$\abs{\II}^{2q}f^2$并积分后应用散度定理, 则有
+    \begin{equation} \label{ssy2}
+        \begin{split}
+            \frac{2}{n-1}\int \abs{\nabla_\Sigma \abs{\II}}^2 \abs{\II}^{2q}f^2 \le&  \int \abs{\II}^{2q+4}f^2 + \Delta_\Sigma \abs{\II} \abs{\II}^{2q+1}f^2 \\
+            =&\int \abs{\II}^{2q+4}f^2-\inner{\nabla_\Sigma \abs{\II}}{\nabla_\Sigma}\\
+            =&\int \abs{\II}^{2q+4}f^2-2f\abs{\II}^{2q+1}\inner{\nabla_\Sigma \abs{\II}}{\nabla_\Sigma f}\\
+            &-(2q+1)f^2\abs{\II}^{2q} \abs{\nabla_\Sigma\abs{\II}}^2.
+        \end{split}
+    \end{equation}
+    将不等式\eqref{ssy1}与\eqref{ssy2}相加后, 得到
+    \begin{equation}
+        \begin{split}
+            &(\frac{2}{n-1}-q^2)\int\abs{\nabla_\Sigma \abs{\II}}^{2q} \abs{\II}^2 f^2 \\
+            \le & \int \abs{\II}^{2+2q}+2q\abs{\II}^{2q+1}f\inner{\nabla_\Sigma \abs{\II}}{\nabla_\Sigma f} \\
+            \le& \int \abs{\II}^{2+2q}\abs{\nabla_\Sigma f}^2 + 2q(\frac{1}{\epsilon}q^2 \abs{\nabla_\Sigma f}^2 + \epsilon f^2 \abs{\nabla_\Sigma \abs{\II}})\abs{\II}^{2q}. 
+        \end{split}
+    \end{equation}
+    因此, 我们有
+    \begin{equation} \label{ssy3}
+        (\frac{2}{n-1}-q^2-2q\epsilon) \int \abs{\nabla \abs{\II}}^{2q} \abs{\II}^2 f^2 \le (1+2q\epsilon)\int \abs{\II}^{2+2q}\abs{\nabla_\Sigma}^2.
+    \end{equation}
+    这里, 要求
+    \begin{equation}
+        \frac{2}{n-1}-q^2 >0.
+    \end{equation}
+    将不等式\eqref{ssy3}代入到\eqref{ssy1}中, 则有
+    \begin{equation}
+        \begin{split}
+            \int \abs{\II}^{4+2q}f^2 &\le 2(\int \abs{\II}^{2+2q}\abs{\nabla f}^2 + (1+q)^2f^2\abs{\II}^{2q}\abs{\nabla_\Sigma \abs{\II}}^2) \\
+            & \le 2(1+\frac{1+2q\epsilon}{\frac{2}{n-1}-q^2-2q\epsilon}(1+q)^2)\int \abs{\II}^{2+2q}\abs{\nabla_\Sigma f}^2.
+        \end{split}
+    \end{equation}
+    取$q=p-2, f=\phi^p$, 应用H\"older不等式, 则有
+    \begin{equation}
+        \begin{split}
+            \int \abs{\II}^{2p} \phi^{2p} &\le C(n,p)\int \abs{\II}^{2p-2}\phi^{2p-2}\abs{\nabla_{\Sigma}\phi}^2 \\
+            & \le C(n,p)(\int\abs{\II}^{2p}\phi^{2p})^\frac{p-1}{p}(\int\abs{\II}^{2p})^{\frac{1}{p}}.
+        \end{split}
+    \end{equation}
+\end{proof}
+\begin{theorem}
+    设$\Sigma^{n-1} \subset \R^n$是完备, 定向, 稳定的极小曲面. 设$n \le 6$且存在$C>0$ 使得
+    \begin{equation}
+        \Area(B_r\cap \Sigma) \le Cr^{n-1}.
+    \end{equation}
+    则$\Sigma$是平坦的.
+\end{theorem}
+\begin{proof}
+    设$\rho>0$. 设$\phi$是$B_{2\rho}, B_\rho$上的截断函数, 且$\abs{\nabla \phi}\le \frac{2}{\rho}$. 取$p$满足
+    \begin{equation}
+        \frac{n-1}{2} < p \s \text{且}\s 2\le p < 2+\sqrt{\frac{2}{n-1}}.
+    \end{equation}
+    $n\le 6$时这样的$p$是存在的. 代入到定理\eqref{ssy}中, 则有
+    \begin{equation}
+        \begin{split}
+            \int_{B_\rho\cap \Sigma} \abs{\II}^{2p} &\le C(n,p)\frac{1}{\rho^{2p}}\Area(B_{2\rho})\\
+            &\le C(n,p)\rho^{n-1-2p} \overset{\rho \to \infty}{\longrightarrow} 0.
+        \end{split}
+    \end{equation}
 \end{proof}
