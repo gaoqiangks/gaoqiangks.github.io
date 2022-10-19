@@ -2354,9 +2354,19 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">minisurf.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">WorkofDouglas</bcf:citekey>
-    <bcf:citekey order="2">Morgan</bcf:citekey>
-    <bcf:citekey order="3">Morgan</bcf:citekey>
+    <bcf:citekey order="1">Nit1</bcf:citekey>
+    <bcf:citekey order="2">Giu84</bcf:citekey>
+    <bcf:citekey order="3">Meg</bcf:citekey>
+    <bcf:citekey order="4">Kra</bcf:citekey>
+    <bcf:citekey order="5">lee</bcf:citekey>
+    <bcf:citekey order="6">White</bcf:citekey>
+    <bcf:citekey order="7">Perez</bcf:citekey>
+    <bcf:citekey order="8">lee</bcf:citekey>
+    <bcf:citekey order="9">Perez</bcf:citekey>
+    <bcf:citekey order="10">WorkofDouglas</bcf:citekey>
+    <bcf:citekey order="11">Morgan</bcf:citekey>
+    <bcf:citekey order="12">Morgan</bcf:citekey>
+    <bcf:citekey order="13">munkres</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
@@ -2388,4 +2398,13 @@
     </bcf:sort>
   </bcf:sortingtemplate>
   <!-- DATALISTS -->
+  <bcf:datalist section="0"
+                name="nty/global//global/global"
+                type="entry"
+                sortingtemplatename="nty"
+                sortingnamekeytemplatename="global"
+                labelprefix=""
+                uniquenametemplatename="global"
+                labelalphanametemplatename="global">
+  </bcf:datalist>
 </bcf:controlfile>
