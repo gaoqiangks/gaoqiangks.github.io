@@ -113,30 +113,30 @@ Gauss方程
     \end{equation}
 \end{theorem}
 \begin{proof}
-    将$B_{r_0}$简写为$B$. 只需要证明$F(x)=d^2(x,\P B)\abs{\II}^2(x) \le \delta$即可. 我们用反证法. 设$F$在$q$点处取到最大值$\max_{x \in B}F(x)$. 注意到在$\partial B$上, $F(x) \eq 0$. 则$q$是内点.  设$F(q) > \delta$, 我们将证明当$\epsilon$足够小时, 会推出一个矛盾. 取 $\sigma$使得
+    将$B_{r_0}$简写为$B$. 只需要证明$F(x)=d^2(x,\P B)\abs{\II}^2(x) \le \delta$即可. 我们用反证法. 设$F$在$q$点处取到最大值$\max_{x \in B}F(x)$. 注意到在$\partial B$上, $F(x) \eq 0$. 则$q$是内点.  设$F(q) > \delta$, 我们将证明当$\epsilon$足够小时, 会推出一个矛盾. 取 $\lambda$使得
     \begin{equation}
-        \sigma^2\abs{\II}^2(q)=\frac{\delta}{4} \le \frac{1}{4} d^2(q,\P B)\abs{\II}^2(q).
+        \lambda^2\abs{\II}^2(q)=\frac{\delta}{4} \le \frac{1}{4} d^2(q,\P B)\abs{\II}^2(q).
     \end{equation}
     因此, 有
     \begin{equation}
-        \sigma \le \frac{1}{2}d(q,\P B).
+        \lambda \le \frac{1}{2}d(q,\P B).
     \end{equation}
-    由三角不等式可知,  $\forall y \in B_\sigma(q)$,
+    由三角不等式可知,  $\forall y \in B_\lambda(q)$,
     \begin{equation}
         \frac{1}{2} \le \frac{d(y,\P B)}{d(q,\P B)} \le 2.
     \end{equation}
     于是
     \begin{equation}
         \begin{split}
-            \sup_{y\in B_\sigma(q)} d^2(q,\P B) \abs{\II}^2(y) \le &4\sup_{y\in B_\sigma(q)}d^2(y,\P B)\abs{\II}^2(y) \\
+            \sup_{y\in B_\lambda(q)} d^2(q,\P B) \abs{\II}^2(y) \le &4\sup_{y\in B_\lambda(q)}d^2(y,\P B)\abs{\II}^2(y) \\
             =& 4d^2(q,\P B) \abs{\II}^2(q).
         \end{split}
     \end{equation}
     因此,
     \begin{equation}
-        \sup_{y \in B_\sigma(q)} \abs{\II}^2(y) \le 4\abs{\II}^2(q)=\frac{\delta}{\sigma^2}.
+        \sup_{y \in B_\lambda(q)} \abs{\II}^2(y) \le 4\abs{\II}^2(q)=\frac{\delta}{\lambda^2}.
     \end{equation}
-    通过变换$x\to \sigma x$, 上面的不等式变为
+    通过变换$x\to \lambda x$, 上面的不等式变为
     \begin{equation} \label{ii_sup}
         \sup_{y \in B_1(q)} \abs{\II}^2(y) \le 4\abs{\II}^2(q)=\delta \le 1.
     \end{equation}
@@ -150,6 +150,9 @@ Gauss方程
     \end{equation}
     则当$\epsilon$足够小时, 显然是不可能的.
 \end{proof}
+\begin{remark}
+    上面的证明在黎曼流形上也成立.  在$\R^3$中, 由于$d(x,\P B)\abs{\II(x)}$的伸缩不变性, 实际上$r \le \rho$的条件并不需要.
+\end{remark}
 把定理\eqref{choi_schoen}写成下面形式往往是方便的.
 \begin{theorem*}\label{choi_schoen_cor}
     设$\Sigma^2 \subset \R^3$是极小曲面.  则存在常数$\epsilon, \rho>0$, 使得 $\forall r_0 < \rho$, 如果
@@ -337,9 +340,9 @@ Gauss方程
     结论\eqref{finite}由\eqref{basic_inequality}取极限直接得到. 结论\eqref{genus}是因为$p(D_r)$是有上界的, 且$p(D_r)$只取整数值且关于$r$是非减的. 现在, 对于$\Sigma - D_r$,我们证明
     \begin{claim}
         设$r > r_0$, 则$\Sigma - D_r$的每一个紧的连通分支都是单连通的.
-        \begin{subproof}
+        \begin{proof}
             设$\Omega$是$\Sigma - D_r$的一个连通分支. 若$\P \Omega$至少包含两个边界, 由于$\P \Omega \subset \P D_r$, 则$p(D_r \cup \Omega) > p(D_r)$, 这与结论\eqref{genus}矛盾. 断言证毕.
-        \end{subproof}
+        \end{proof}
     \end{claim}
     \par 现在, 记$A_r=D_r\cup \{\Sigma - D_r\text{的所有紧连通分支}\}$. 同时取$r_i$使得\eqref{basic_inequality}成立并且
     \begin{equation} \label{boundary_constant}
@@ -434,7 +437,7 @@ Gauss方程
     \begin{equation}
         d(p_k, \P \Sigma_k)\abs{\II(p_k)} \ge d(x,\P \Sigma_k)\abs{\II(x)} \s \forall x \in \Sigma_k.
     \end{equation}
-    将$p_k$平移到0点处, 将作伸缩$x \to \II_k(p_k)x$, 得到的新的曲面仍记为$\Sigma_k$. 在绅缩变换下,  $\int_{\Sigma_k}\abs{\II}^2dv_g, d(p_k,\P \Sigma)\abs{\II}(p_k)$都是不变的.  因此,这些新的曲面满足
+    将$p_k$平移到0点处, 将作伸缩$x \to \II_k(p_k)x$, 得到的新的曲面仍记为$\Sigma_k$. 在伸缩变换下,  $\int_{\Sigma_k}\abs{\II}^2dv_g, d(p_k,\P \Sigma)\abs{\II}(p_k)$都是不变的.  因此,这些新的曲面满足
     \begin{equation} \label{iikk0}
         \int_{\Sigma_k} \abs{\II_k}^2 \le C, \s \II_k(0) =1.
     \end{equation}
@@ -463,37 +466,42 @@ Gauss方程
     \end{equation}
 \end{theorem}
 \begin{proof}
-    设论不成立. 取$\lambda_k \to 1, \epsilon_k \to 0$, 则$\forall k$, 存在$\Sigma_k$及$p_k \subset \Sigma_k$, $R_k >0$使得
-    \begin{equation}
-        \mathop{\sup}_{x \in B(p_k,\epsilon_k R_k)}\abs{\II_k(x)} d(x, \P B(p_k,\epsilon_k R_k)) \to \infty.
-    \end{equation}
-    设$\abs{\II_k(x)}d(x, \P B(p_k,\epsilon_k R_k))$在$q_k$处取到最大, 则$q_k$是$B(p_k, \epsilon_k R_k)$的内点. 将$q_k$平移到原点处, 并做绅缩$x \to \abs{\II_k(q_k)}d(q_k,\P B(p_k, \epsilon_k R_k))x$. 绅缩变换后得到的极小曲面仍记为$\Sigma_k$. 则
+    设结论不成立. 取$\lambda_k \to 1, \epsilon_k \to 0$, 则$\forall k$, 存在$\Sigma_k$及$p_k \subset \Sigma_k$, $R_k >0$使得
+    \begin{align}
+        \theta(\Sigma_k, p_k, R_k) & \le \lambda_k \text{  且 } \\
+        \mathop{\sup}_{x \in B(p_k,\epsilon_k R_k)} \abs{\II_k(x)} & d(x, \P B(p_k,\epsilon_k R_k)) \to \infty.
+    \end{align}
+    设$\abs{\II_k(x)}d(x, \P B(p_k,\epsilon_k R_k))$在$q_k$处取到最大, 则$q_k$是$B(p_k, \epsilon_k R_k)$的内点. 将$q_k$平移到原点处, 并做伸缩$x \to \abs{\II_k(q_k)}d(q_k,\P B(p_k, \epsilon_k R_k))x$. 伸缩变换后得到的极小曲面仍记为$\Sigma_k$. 则
     \begin{equation}
         \abs{\II_k(0)}=1,\s d(0, \P B(p_k, \epsilon_k R_k)) \to \infty.
     \end{equation}
-    特别地, 有$R_k \to \infty$.  而$\abs{\II_k(x)} \le \frac{d(0, \P B(p_k, \epsilon_k R_k))}{d(x, \P B(p_k, \epsilon_k R_k))} \to 1$, 则$\abs{\II_k}$局部一致有界. 因此, 存在子列, 仍记为$\Sigma_k$及完备极小曲面$\Sigma$使得$\Sigma_k \to \Sigma$. 而对于任意$R>0$, 由单调性公式,
+    特别地, 有$R_k \to \infty$.  而$\abs{\II_k(x)} \le \frac{d(0, \P B(p_k, \epsilon_k R_k))}{d(x, \P B(p_k, \epsilon_k R_k))} \to 1$, 则$\abs{\II_k}$局部一致有界. 因此, 存在子列, 仍记为$\Sigma_k$及完备极小曲面$\Sigma$使得$\Sigma_k \to \Sigma$. 显然地, 
     \begin{equation}\label{II011}
-        \theta(\Sigma,0, R)= \lim_{k \to \infty} \theta(\Sigma_k,0,R) \le \lim_{k\to \infty} \theta(\Sigma_k,0,\frac{1}{1+\epsilon_k}R_k).
+        \abs{\II_{\Sigma}(0)} =1.
+    \end{equation}
+    而对于任意$R>0$, 由单调性公式,
+    \begin{equation}
+        \theta(\Sigma,0, R)= \lim_{k \to \infty} \theta(\Sigma_k,0,R) \le \lim_{k\to \infty} \theta(\Sigma_k,0,{1-\epsilon_k}R_k).
     \end{equation}
     另外, 由于$p_k \in B(0, \epsilon_k R_k)$,
     \begin{equation}
         \begin{split}
-            \theta(\Sigma_k,0,\frac{1}{1+\epsilon_k}R_k) &=\frac{(1+\epsilon_k)^2}{\pi R_k^2}\Area(B(0,\frac{1}{1+\epsilon_k}R_k)\cap \Sigma_k) \\
-            &\le \frac{(1+\epsilon_k)^2}{\pi R_k^2}\Area(B(p_k,R_k)\cap \Sigma_k) \\
-            &\le (1+\epsilon_k)^2\lambda_k \to 1.
+            \theta(\Sigma_k,0,(1-\epsilon_k)R_k) &=\frac{1}{\pi ((1-\epsilon_k)R_k)^2}\Area(B(0,(1-\epsilon_k)R_k)\cap \Sigma_k) \\
+            &\le \frac{1}{\pi ((1-\epsilon_k)R_k)^2}\Area(B(p_k,R_k)\cap \Sigma_k) \\
+            &\le \frac{\lambda_k}{(1-\epsilon_k)^2} \to 1.
         \end{split}
     \end{equation}
     则$\theta(\Sigma,0, R) =1$. 由引理 \eqref{theta_flat}可知, $\Sigma$是平面,这与 \eqref{II011}矛盾.
 \end{proof}
-\section{$L^p$估计}
+\section{\texorpdfstring{$L^p$}{Lp}估计}
 \begin{theorem} \label{ssy}
     设$\Sigma^{n-1}\subset \R^n$是定向的稳定极小曲面. 则$\forall p \in [2, 2+\sqrt{\frac{2}{n-1}})$, 存在$C=C(n,p)$使得$\forall \phi \in C^1_0(\Sigma), \phi \ge 0$, 成立 
-    \begin{equation}
+    \begin{equation}\label{ssye}
         \int_\Sigma \abs{\II}^{2p}\phi^{2p}dv_g \le C(n,p) \int_\Sigma \abs{\nabla_\Sigma \phi}^{2p}dv_g.
     \end{equation}
 \end{theorem}
 \begin{proof}
-    $\forall f \in C^1_0(\Sigma)$, 取$\eta=\abs{\II}^{1+q}f$代入到稳定性不等式中, 则有
+    $\forall f \in C^1_0(\Sigma)$, 取$\eta=\abs{\II}^{1+q}f$代入到稳定性不等式$\int\abs{\II}^2 \eta^2\le \int \abs{\nabla_\Sigma \eta}^2$中, 则有
     \begin{equation} \label{ssy1}
         \begin{split}
             \int \abs{\II}^{4+2q}f^2  \le& \int \abs{\nabla_\Sigma (\abs{\II}^{1+q}f)}^2 \\
@@ -517,14 +525,15 @@ Gauss方程
     将不等式\eqref{ssy1}与\eqref{ssy2}相加后, 得到
     \begin{equation}
         \begin{split}
-            &(\frac{2}{n-1}-q^2)\int\abs{\nabla_\Sigma \abs{\II}}^{2q} \abs{\II}^2 f^2 \\
-            \le & \int \abs{\II}^{2+2q}+2q\abs{\II}^{2q+1}f\inner{\nabla_\Sigma \abs{\II}}{\nabla_\Sigma f} \\
-            \le& \int \abs{\II}^{2+2q}\abs{\nabla_\Sigma f}^2 + 2q(\frac{1}{\epsilon}q^2 \abs{\nabla_\Sigma f}^2 + \epsilon f^2 \abs{\nabla_\Sigma \abs{\II}})\abs{\II}^{2q}. 
+            &(\frac{2}{n-1}-q^2)\int\abs{\nabla_\Sigma \abs{\II}}^{2} \abs{\II}^{2q} f^2 \\
+            \le & \int \abs{\II}^{2+2q}\abs{\nabla_\Sigma f}^2+2q\abs{\II}^{2q+1}f\inner{\nabla_\Sigma \abs{\II}}{\nabla_\Sigma f} \\
+            \le & \int \abs{\II}^{2+2q}\abs{\nabla_\Sigma f}^2+2q\abs{\II}^{2q}\inner{f\nabla_\Sigma \abs{\II}}{\abs{\II}\nabla_\Sigma f} \\
+            \le& \int \abs{\II}^{2+2q}\abs{\nabla_\Sigma f}^2 + q(\frac{1}{\epsilon} \abs{\nabla_\Sigma f}^2\abs{\II}^2 + \epsilon f^2 \abs{\nabla_\Sigma \abs{\II}}^2)\abs{\II}^{2q}. 
         \end{split}
     \end{equation}
     因此, 我们有
     \begin{equation} \label{ssy3}
-        (\frac{2}{n-1}-q^2-2q\epsilon) \int \abs{\nabla \abs{\II}}^{2q} \abs{\II}^2 f^2 \le (1+2q\epsilon)\int \abs{\II}^{2+2q}\abs{\nabla_\Sigma}^2.
+        (\frac{2}{n-1}-q^2-q\epsilon) \int \abs{\nabla \abs{\II}}^{2q} \abs{\II}^2 f^2 \le (1+\frac{q}{\epsilon})\int \abs{\II}^{2+2q}\abs{\nabla_\Sigma f}^2.
     \end{equation}
     这里, 要求
     \begin{equation}
@@ -534,7 +543,7 @@ Gauss方程
     \begin{equation}
         \begin{split}
             \int \abs{\II}^{4+2q}f^2 &\le 2(\int \abs{\II}^{2+2q}\abs{\nabla f}^2 + (1+q)^2f^2\abs{\II}^{2q}\abs{\nabla_\Sigma \abs{\II}}^2) \\
-            & \le 2(1+\frac{1+2q\epsilon}{\frac{2}{n-1}-q^2-2q\epsilon}(1+q)^2)\int \abs{\II}^{2+2q}\abs{\nabla_\Sigma f}^2.
+            & \le 2(1+\frac{1+\frac{q}{\epsilon}}{\frac{2}{n-1}-q^2-q\epsilon}(1+q)^2)\int \abs{\II}^{2+2q}\abs{\nabla_\Sigma f}^2.
         \end{split}
     \end{equation}
     取$q=p-2, f=\phi^p$, 应用H\"older不等式, 则有
@@ -565,3 +574,93 @@ Gauss方程
         \end{split}
     \end{equation}
 \end{proof}
+\begin{theorem}\label{ssy_curvature_estimate}
+    设$n \le 6$. 设$\Sigma^{n-1} \subset \R^n$是定向的稳定极小曲面. 设存在常数$C_1$使得$\forall B_r \cap \P \Sigma=\emptyset$, 都有
+    \begin{equation}
+        \Area(\Sigma \cap B_r(x)) \le C_1r^{n-1}.
+    \end{equation}
+    则存在常数$C_2=C_2(n,C_1)$使得若$\P \Sigma \cap B_{r_0}(p) =\emptyset$, 则
+    \begin{equation}
+        \mathop{\sup}_{\Sigma \cap B_{\frac{r_0}{2}}(p)} \abs{\II} \le \frac{C_2}{r_0}.
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    设$y \in B_{\frac{r_0}{2}}(p)$. 定义截断函数$\eta$,
+    \begin{equation}
+       \rho(r)=\left\{
+           \begin{aligned}
+               & 1, r\le \frac{r_0}{2}e^{-N}, \\
+               & 1-\frac{\log \frac{r_0}{2}-\log r}{N}, \frac{r_0}{2}e^{-N} < r < \frac{r_0}{2}, \\
+               & 0, r>\frac{r_0}{2}.
+           \end{aligned}
+       \right.
+   \end{equation}
+   在$B_{\frac{r_0}{2}}(y)$上定义$\eta$, 令$\eta(x)=\rho(\abs{x-y})$. 由于$\abs{\nabla r}=1$, 则$\abs{\nabla_\Sigma \eta} \le \frac{1}{Nr}$. 将$\eta$代入到不等式\eqref{ssye}中(取$p=\frac{n-1}{2}$), 则有
+   \begin{equation} \label{tmpaa}
+        \begin{split}
+            \int_{B_{e^{-N}\frac{r_0}{2}}} \abs{\II}^{n-1} & \le \int \eta^{n-1} \abs{\II}^{n-1} \\
+            &\le C(n)\int \abs{\nabla_\Sigma \eta}^{n-1}\\
+            &\le C(n,C_1) \sum_{i=-N}^{-1} \int_{\{\frac{r_0}{2}e^{i}\le \abs{x-y} \le \frac{r_0}{2}e^{i+1}\} \cap \Sigma} \frac{1}{(Nr_0 e^{i})^{n-1}} \\
+            &\le C(n,C_1)N(\frac{e}{N})^{n-1}
+        \end{split}
+   \end{equation}
+   现在, 我们用与\eqref{choi_schoen}中的证明相同的方法.
+   \begin{claim}
+       存在常数$\epsilon(n), C_3(n)>0$, 使得如果
+        \begin{enumerate}
+           \item $\partial \Sigma \cap B_{r}(p)=\emptyset$.
+           \item $\int_{\Sigma \cap B_{r}} \abs{\II}^{n-1}\le \epsilon$.
+       \end{enumerate}
+       那么
+       \begin{equation}
+           \mathop{\sup}_{B_{\frac{r}{2}}}\abs{\II(x)} \le \frac{C_3}{r}.
+       \end{equation}
+       \begin{subproof}
+            将$B_{r}$简写为$B$. 只需要证明$F(x)=d(x,\P B)\abs{\II}(x) \le 1$即可. 我们用反证法. 设$F$在$q$点处取到最大值$\max_{x \in B}F(x)$. 注意到在$\partial B$上, $F(x) \eq 0$. 则$q$是内点.  设$F(q) > 1$, 我们将证明当$\epsilon$足够小时, 会推出一个矛盾. 取 $\lambda$使得
+            \begin{equation}
+                \lambda\abs{\II}(q)=\frac{1}{2} \le \frac{1}{2} d(q,\P B)\abs{\II}(q).
+            \end{equation}
+            因此, 有
+            \begin{equation}
+                \lambda \le \frac{1}{2}d(q,\P B).
+            \end{equation}
+            由三角不等式可知,  $\forall y \in B_\lambda(q)$,
+            \begin{equation}
+                \frac{1}{2} \le \frac{d(y,\P B)}{d(q,\P B)} \le 2.
+            \end{equation}
+            于是
+            \begin{equation}
+                \begin{split}
+                    \sup_{y\in B_\lambda(q)} d(q,\P B) \abs{\II}(y) \le &2\sup_{y\in B_\lambda(q)}d(y,\P B)\abs{\II}(y) \\
+                    =& 2d(q,\P B) \abs{\II}(q).
+                \end{split}
+            \end{equation}
+            因此,
+            \begin{equation}
+                \sup_{y \in B_\lambda(q)} \abs{\II}(y) \le 2\abs{\II}(q)=\frac{1}{\lambda}.
+            \end{equation}
+            不失一般性, 设$q$在原点处.  通过变换$x\to \lambda x$, 上面的不等式变为
+            \begin{equation} \label{iii_sup}
+                \sup_{y \in B_1(q)} \abs{\II}(y) \le 2\abs{\II}(q)=1.
+            \end{equation}
+
+            由于$\Delta \abs{\II}^{n-1}=(n-1)\abs{\II}^{n-2}\Delta \abs{\II}+(n-1)(n-2)\abs{\nabla_\Sigma \abs{\II}}^2$, 则由Simons不等式可知
+            \begin{equation}
+                 \Delta \abs{\II}^{n-1} \ge -C\abs{\II}^{n+1} \ge -C\abs{\II}^{n-1}.
+            \end{equation}
+            由推论\eqref{sub_harmonic}可知,
+            \begin{equation}
+                (\frac{1}{2})^{n-1}=\abs{\II}^{n-1}(q) \le C \int_{B_1} \abs{\II}^{n-1} \le C\epsilon.
+            \end{equation}
+            则当$\epsilon$足够小时, 显然是不可能的, 断言得证.
+       \end{subproof}
+   \end{claim}
+   在不等式\eqref{tmpaa}中, 选取$N$充分大并应用断言中的结论即可.
+\end{proof}
+\subsubsection*{小结}
+\noindent 极小曲面曲率的点态估计要重要性在于引理\eqref{uniform_graph}. 本章中关于点态估计的结论可以概括为以下两个原则:
+\begin{enumerate}
+    \item 如果$L^p$范数充分小, 则可以得到逐点估计. \label{lp_small}
+    \item 如果Bernstein定理成立, 则可以得到逐点估计.\label{bernstein_blowup}
+\end{enumerate}
+其中, \eqref{lp_small}中的$L^p$范数估计经常可以由极小曲面的面积增长性质, 加上log-cut off技巧来得到. \eqref{bernstein_blowup}使用的方法为blow up的方法.  实际上, 欧氏空间中Bernstein定理成立, 意味着黎曼流形中的曲率的点态估计. 具体可以参考\cite[p.111 定理 19.3]{Perez}.

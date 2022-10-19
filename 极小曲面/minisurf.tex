@@ -14,6 +14,9 @@
 \usepackage{showidx}
 \usepackage{imakeidx}
 \usepackage[colorlinks=true]{hyperref}
+%tipa包用于arc命令
+\usepackage{tipa}
+\usepackage{listings}%排版代码的包
 %\usepackage[yyyymmdd,hhmmss]{datetime}
 \setlength{\headheight}{13pt}
 \pagestyle{fancy}
@@ -33,25 +36,24 @@
 \renewcommand{\div}{{\text{div}}}
 \newcommand{\spt}{{\text{spt}}}
 \newcommand{\tr}{{\text{tr}}}
-\newcommand{\sing}{\mathcal{S}}
-\newcommand{\proj}{\text{Proj}}
-\newcommand{\diam}{\text{diam}}
-\newcommand{\Tr}{\text{Tr}}
+\newcommand{\sing}{{\mathcal{S}}}
+\newcommand{\proj}{{\text{Proj}}}
+\newcommand{\diam}{{\text{diam}}}
+\newcommand{\Tr}{{\text{Tr}}}
 \newcommand{\XX}{{\vec{X}}}
 \newcommand{\cl}[1]{\overline{#1}}
-\newcommand{\eq}{\equiv}
+\newcommand{\eq}{{\equiv}}
 %\newcommand{\C}{\mathbb{C}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\nullset}{\emptyset}
-\renewcommand{\H}{\mathbb{H}}
-\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\nullset}{{\emptyset}}
+\renewcommand{\H}{{\mathbb{H}}}
+\newcommand{\N}{{\mathbb{N}}}
 %\newcommand{\G}{\mathcal{G}}
-\renewcommand{\abs}[1]{\left | #1 \right |}
 \newcommand{\subsub}{{\subset \subset}}
 \newcommand{\OR}{{\Omega \times \mathbb{R}}}
 \newcommand{\OL}{{\Omega_L}}
 \renewcommand{\epsilon}{\varepsilon}
-\renewcommand{\phi}{\varphi}
+\renewcommand{\phi}{{\varphi}}
 
 \renewcommand{\l}{{\lambda}}
 %\renewcommand{\L}{{\Lambda}}
@@ -69,9 +71,9 @@
 \renewcommand{\v}{{\nu}}
 \newcommand{\V}{{\Vu}}
 \newcommand{\x}{{\times}}
-\newcommand{\s}{{\quad}}
-\renewcommand{\ss}{{\qquad}}
-\newcommand{\sss}{{\qqquad}}
+\renewcommand{\s}{{\quad}}
+\renewcommand{\ss}{{\quad \quad}}
+\newcommand{\sss}{{\quad \quad \quad}}
 \renewcommand{\L}{\mathcal{L}}
 \newcommand{\aij}{{a^{ij}}}
 \newcommand{\dij}{{D_{ij}}}
@@ -146,8 +148,10 @@
 \newcommand{\CV}{{C^\infty_0}}
 \renewcommand{\CC}{{C^\infty_c}}
 \newcommand{\NT}{{\nabla}}
-
-
+\newcommand{\arc}[1]{{\texttoptiebar{#1}}}
+%\newcommand{\arc}[1]{{
+%  \setbox9=\hbox{#1}%
+%  \ooalign{\resizebox{\wd9}{\height}{\texttoptiebar{\phantom{A}}}\cr#1}}}
 
 \newtheorem{theorem}{定理}[chapter]
 \newtheorem*{theorem*}{定理}
@@ -165,7 +169,12 @@
 \theoremstyle{plain}
 \newtheorem{remark}[theorem]{注}
 %\newtheorem{claim}[theorem]{断言}
-\newtheorem*{claim*}{断言}
+%\newtheorem*{claim*}{断言}
+
+\newif\ifcomment
+\def\comment{}
+\def\begincomment{\ifdef{\comment}\noexpand\begingroup}
+\def\endcomment{\noexpand\endgroup}
 
 \newenvironment{subproof}[1][\proofname]{%
   \renewcommand{\qedsymbol}{$\diamond$}%
@@ -176,25 +185,25 @@
 
 \usepackage{enumitem,xparse}
 \newlist{Claim}{description}{2}
-\setlist[Claim]{labelindent=2em,leftmargin=*}
+\setlist[Claim]{labelindent=2em, leftmargin=*}
 \newif\ifInsideClaim
 \newcounter{claim}[theorem]
-\newcounter{cclaim}[claim]
+%\newcounter{cclaim}[claim]
 \renewcommand\theclaim{\arabic{claim}}
-\renewcommand\thecclaim{\arabic{claim}.\arabic{cclaim}}
+%\renewcommand\thecclaim{\arabic{claim}.\arabic{cclaim}}
 \let\originalqedsymbol\qedsymbol
 \newenvironment{claim}{%
 	% disable qed symbol if there is no star
 	%\let\qedsymbol\relax%
 	%\let\qedsymbol$\diamond$
-	\ifInsideClaim% we have a nested environment
-	\refstepcounter{cclaim}%
-	\let\theclaimcounter\thecclaim%
-	\else%
+	%\ifInsideClaim% we have a nested environment
+	%\refstepcounter{cclaim}%
+	%\let\theclaimcounter\thecclaim%
+	%\else%
 	\refstepcounter{claim}%
 	\let\theclaimcounter\theclaim%
-	\InsideClaimtrue%
-	\fi%
+	%\InsideClaimtrue%
+	%\fi%
 	\Claim\item[\textbf{断言 \theclaimcounter:}]%
 }{\endClaim\InsideClaimfalse\let\qedsymbol\originalqedsymbol}
 
@@ -226,7 +235,8 @@
 \newif\ifsee
 \seetrue
 
-%\def \noperron {}
+\fancyfoot[RO]{\today}
+%\fancyfoot[LE]{\today}
 
 %\defbibheading{bibliography}[参考文献]{\chapter*{#1}}
 \begin{document}
@@ -237,20 +247,19 @@
 %\date{2022年秋季学期}
 \maketitle
 \tableofcontents
-\input{Chapter01}
-\input{Chapter02}
+%\input{Chapter01}
+%\input{Chapter02}
 \input{Chapter03}
 %\input{Chapter04}
-\appendix
-\input{appendix1}
+%\appendix
+%\input{appendix1}
 %\input{appendix1}
 %\input{appendix3}
-%\appendix
-\input{exercise}
+%\input{exercise}
 %\nocite{*}
 %\clearpage
-%\phantomsection
-%\addcontentsline{toc}{section}{参考文献}
-\tolerance=500
-\printbibliography[heading=bibintoc, title=参考文献]
+%%\phantomsection
+%%\addcontentsline{toc}{section}{参考文献}
+%\tolerance=500
+%\printbibliography[heading=bibintoc, title=参考文献]
 \end{document}

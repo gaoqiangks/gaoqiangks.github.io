@@ -529,43 +529,45 @@
     \end{equation}
     取$\epsilon$使得 $\epsilon C_\alpha=\frac{1}{2}$即可.
 \end{proof}
-\begin{theorem}
+\begin{theorem} \label{graph_bernstein}
     设$u: \R^2 \to \R$在全平面上满足MSE.  记$\Sigma=\G(u)$. 则$u$是仿射函数, 或者等价地, $\Sigma$是平面.
 \end{theorem}
 \begin{proof}
     我们首先说明, 如果下面的断言成立, 则$u$是仿射.
-    \begin{claim*}
+    \begin{claim}
         $\forall k >0$,存在$\phi_k \in Lip(\Sigma)$使得  $\phi_k|_{B_k \cap \Sigma}=1$, $\phi_k$有紧支集 且$ \int_\Sigma \abs{\nabla_\Sigma \phi_k}^2 \to 0$.
-    \end{claim*}
-    若断言成立, 那么由不等式\eqref{caccio}可知, $\int_{\Sigma\cap B_k} \abs{\II}^2 \le \int_\Sigma \abs{\nabla_\Sigma \phi_k}^2 \to 0$. 则$\II\eq 0$. 因此$\Sigma$为平面. 
-    \par 现在我们来证明断言成立. $\forall k>0$, 定义
-    \begin{equation}
-        \phi_k(x)=\left\{
-            \begin{aligned}
-                &1, \abs{x} < k, \\
-                &1-\frac{\log\abs{x}-\log k}{\log k}, k \le \abs{x} \le k^2,\\
-                &0, \abs{x} > k^2
-            \end{aligned}
-        \right.
-    \end{equation}
-    记$R_{s,t}=B_t-B_s$为环域. 将$R_{k,k^2}$分解为若干环域的并 
-    \begin{equation}
-        R_{k,k^2}=\cup_{i=0}^{\log k} R_{2^ik,2^{i+1}k}.
-    \end{equation}
-    直接计算可知, 在环域$R_{2^ik,2^{i+1}k}$上,
-    \begin{equation}
-        \abs{\nabla_\Sigma \phi} \le \abs{\nabla \phi} \le \frac{1}{\log k} \frac{1}{\abs{x}}
-    \end{equation}
-    以及
-    \begin{equation} \label{logp}
-        \abs{R_{2^ik,2^{i+1}k} \cap \Sigma } \le C 2^{2i}k^2. 
-    \end{equation}
-    上面的不等式其实
-    于是,我们有
-    \begin{equation}
-        \int_\Sigma \abs{\nabla_\Sigma \phi_k}^2 \le C\sum_{i=0}^{\log k} 2^{2i}k^22\frac{1}{(\log k)^2} \frac{1}{2^{2i}k^2} \le C\frac{1}{\log k} \to 0.
-    \end{equation}
-    断言得证.
+        \begin{subproof}
+            现在我们来证明断言成立. $\forall k>0$, 定义
+            \begin{equation}
+                \phi_k(x)=\left\{
+                    \begin{aligned}
+                        &1, \abs{x} < k, \\
+                        &1-\frac{\log\abs{x}-\log k}{\log k}, k \le \abs{x} \le k^2,\\
+                        &0, \abs{x} > k^2
+                    \end{aligned}
+                \right.
+            \end{equation}
+            记$R_{s,t}=B_t-B_s$为环域. 将$R_{k,k^2}$分解为若干环域的并 
+            \begin{equation}
+                R_{k,k^2}=\cup_{i=0}^{\log k} R_{2^ik,2^{i+1}k}.
+            \end{equation}
+            直接计算可知, 在环域$R_{2^ik,2^{i+1}k}$上,
+            \begin{equation}
+                \abs{\nabla_\Sigma \phi} \le \abs{\nabla \phi} \le \frac{1}{\log k} \frac{1}{\abs{x}}
+            \end{equation}
+            以及
+            \begin{equation} \label{logp}
+                \abs{R_{2^ik,2^{i+1}k} \cap \Sigma } \le C 2^{2i}k^2. 
+            \end{equation}
+            上面的不等式其实
+            于是,我们有
+            \begin{equation}
+                \int_\Sigma \abs{\nabla_\Sigma \phi_k}^2 \le C\sum_{i=0}^{\log k} 2^{2i}k^22\frac{1}{(\log k)^2} \frac{1}{2^{2i}k^2} \le C\frac{1}{\log k} \to 0.
+            \end{equation}
+            断言得证.
+        \end{subproof}
+    \end{claim}
+    不等式\eqref{caccio}可知, $\int_{\Sigma\cap B_k} \abs{\II}^2 \le \int_\Sigma \abs{\nabla_\Sigma \phi_k}^2 \to 0$. 则$\II\eq 0$. 因此$\Sigma$为平面. 
 \end{proof}
 下面我们提供一个Bernstein定理的非常初等的证明. 这个证明没有用到任何极小曲面方程的性质, 只用到了Gauss映射,球极投影和全纯函数的Liouville定理.
 \begin{definition} \label{stereo}
