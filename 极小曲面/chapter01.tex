@@ -103,6 +103,113 @@
         &\Area(S^-) \ge \Area(B_r \cap \Sigma) 
     \end{align}
 \end{proof}
+下面我们介绍几个结论,  它们描述了当两个极小曲面在一个点$p$处相切时, 这两个极小曲面在切点附近的行为.
+\begin{proposition}
+    设$u,v$满足极小曲面方程, 则$w=u-v$满足一个线性椭圆方程
+    \begin{equation}
+        \div(a^{ij}w_i\PJ) =0
+    \end{equation}
+    并且存在常数$C=C(Du,Dv)$ 使得 $\frac{1}{C} \le \lambda_{\min} \le \lambda_{\max} \le C$.
+\end{proposition}
+\begin{proof}
+    设$F: \R^n \to \R^n$, $F(x)=\frac{x}{\sqrt{1+\abs{x}^2}}$. 由微积分基本定理
+    \begin{equation}
+        \begin{split}
+            F(Du)-F(Dv)= & \int^1_0 \ddt f(tDu+(1-t)Dv)dt \\
+            =& \int^1_0 dF(tDu+(1-t)Dv)(Du-Dv)dt\\
+            =& \int^1_0 dF(tDu+(1-t)Dv)dwdt\\
+            =& a^{ij}w_i\PJ
+        \end{split} 
+    \end{equation}
+    其中, $a^{ij}=\int^1_0 \frac{\partial F^i}{\partial x^j}(tDu+(1-t)Dv)dt$. \\
+    由于$\div(F(Du)) = \div(F(Dv))=0$, 则
+    \begin{equation}
+        \div(a^{ij}w_i\PJ)=0.
+    \end{equation}
+    直接计算可知
+    \begin{equation}
+        \left[\frac{\partial F^i}{\partial x^j}\right] = \frac{1}{(1+\abs{x}^2)^\frac{3}{2}}((1+\abs{x}^2)I-xx^T)
+    \end{equation}
+    显然为正定矩阵, 且其特征为为 $\lambda_1=\frac{1}{(1+\abs{x}^2)^{\frac{3}{2}}}, \lambda_2=\cdots\lambda_n=\frac{1}{\sqrt{1+\abs{x}^2}}$. 结论得证.
+\end{proof}
+\begin{corollary}
+    设$u,v$满足MSE, $u(p)=v(p)$且在$p$点的邻域内, $u \ge v$. 则 $u\eq v$.
+\end{corollary}
+\begin{proof}
+    设$w=u-v$. 则在点$p$的邻域内, $w(p)=0$并且 $w \ge 0$. 由强最大值原理可知, $w\eq 0$.
+\end{proof}
+\begin{corollary}
+    设$\Sigma_1,\Sigma_2 \subset \R^n$是极小曲面, 设$p \in \Sigma_1 \cap \Sigma_2$是$\Sigma_1,\Sigma_2$的内点. 若$\Sigma_1$ 完全位于$\Sigma_2$的同一侧, 则$\Sigma_1=\Sigma_2$.
+\end{corollary}
+\begin{proof}
+    由假设条件, $\Sigma_1,\Sigma_2$在 $p$点处相切. 设$p$点的邻域中, $\Sigma_1=\G(u)$, $\Sigma_2=\G(v)$. 由于$\Sigma_1$完全位于$\Sigma_2$的同一侧, 这里不妨设为上方, 则$u \ge v$. 又由于$u(p)=v(p)$, 则由强最大值原理可知  $u \eq v$.
+\end{proof}
+\begin{theorem}
+    设$\Omega \subset \R^2$是严格凸的. $\Gamma =\G(\psi) \subset \partial \Omega \times \R$, 其中, $\psi \subset C(\partial \Omega)$. 设$\Sigma \subset \R^3$是以$\Gamma$为边界的极小曲面, 则存在函数$u$使得 $\Sigma=\G(u)$.
+\end{theorem}
+\begin{proof}
+    首先说明$\Sigma \subset \overline{\Omega} \times \R$. 否则, 取$x \in \Omega$, 取$R>0$使得$\Sigma \subset B_R\times \R$并且 $\Sigma$与$\partial B_R\times \R$相切于点$y \in \partial B_R \times \R$. 设$\tilde{\Sigma}$为$\partial B_R \times \R$ 在点$y$处的切平面, 则$\Sigma$完全位于$\tilde{\Sigma}$的同一侧且它们相切于点$y$. 由最大值原理可知, $\Sigma= \tilde{\Sigma}$, 这样便推出一个矛盾. 因此, $\Sigma \subset \overline{\Omega}\times \R$.
+    \par 设$P_t$为平面$\{x_3=t\}$. 设$P_t$与$\Sigma$相交. 记$\Sigma_t^+$为$\Sigma$在平面$P_t$上侧的部分, $\Sigma_t^-$为$\Sigma$在平面$P_t$下侧的部分. 将$\Sigma_t^+$反射到$P_t$下侧, 记为$\tilde{\Sigma}_t^+$.  现在我们考虑下面两种情况:
+    \begin{enumerate}
+        \item  $\forall t$, $\tilde{\Sigma}_t^+\cap \Sigma_t^-=\emptyset$, 则$\pi:\Sigma\to \Omega$必定为单射. 否则, 若存在$p_1,p_2 \in \Sigma$使得 $\pi(p_1)=\pi(p_2)$, 不妨设$p_1$在上侧. 则取$t=\frac{1}{2}(z(p_1)+z(p_2))$时, 必定有$p_2 \in \tilde{\Sigma}_t^+\cap \Sigma_t^-$,  这样也假设矛盾. 因此, $\Sigma$ 作为某个函数的图像.
+        \item $\exists t$使得 $\tilde{\Sigma}_t^+ \cap \Sigma_t^-\ne \emptyset$.  取这样最大的$t$. 则$\tilde{\Sigma}_t^+$完全位于$\Sigma_t^-$的上侧.  当$t$再减小时, 设$\Lambda=  \tilde{\Sigma}_t^+ \cap \Sigma_t^-$, 则$\Lambda \subset \Omega \times \R$(因为$\partial \Sigma$是边界上的$\G$, 因此$\Lambda$不可能与$\partial \Omega \times \R$相交). 显然地, $\Lambda$ 同时围出$\tilde{\Sigma}_t^+, \Sigma_t^-$上的两个极小曲面. 通过选取$t$足够接近$t_0$, 我们可以假设这两个极小曲面都能(旋转坐标系之后)写成函数的图像的形式, 这样便与最大值原理矛盾.
+    \end{enumerate}
+\end{proof}
+\begin{remark}
+    上面的定理将$\Sigma$写成函数$u$的图像之后, 虽然$\Sigma$是光滑的, 但是到现在为止我们还不能得到$u$的光滑性.
+\end{remark}
+\begin{theorem}
+    设$u$满足MSE, 则$u$是实解析的.
+\end{theorem}
+\begin{proof}
+    $n=2$时, \cite[p.125]{Nit1}中提供了一个非常简单的证明. 一般情况下请参考\cite{Giu84}及其中的参考文献.
+\end{proof}
+\begin{theorem}
+    设$\Sigma_1,\Sigma_2 \subset \R^3$是极小曲面, 且$\Sigma_1,\Sigma_2$在点$p\subset \R^3$处相切. 则在$p$点的某个邻域中, 或者$\Sigma_1=\Sigma_2$, 或者$\Sigma_2 \cap \Sigma_2$包含$2k$条由$p$点发出的曲线$(k\ge 2)$, 且这些曲线中相邻两条之间的夹角是$\frac{\pi}{k}$.
+\end{theorem}
+\begin{proof}
+    设$p=0, \Sigma_1=\G(u), \Sigma_2=\G(v)$, 且$u(0)=v(0)$, $Du(0)=Dv(0)$. 记$w=u-v$. 由于$u,v$均是解析函数, 则
+    \begin{equation}
+        \begin{split}
+            w(x,y)&=\sum_{i=k}^{+\infty} \sum_{j=0}^{i} \frac{1}{j!(k-j)!}\frac{\partial^k w}{\partial x^j \partial y^{k-j}}x^jy^{k-j} \\
+            &=\sum_{i=k}^{+\infty} P_i(x,y), (k\ge 2).
+        \end{split}
+    \end{equation}
+    这里, 每一项$P_i$都是$i-$次齐次的多项式.  由于$w$是解析函数, 我们可以逐项求导, 于是有
+    \begin{equation}
+        \Delta w= \sum_{i=k}^{+\infty} \Delta P_i(x,y).
+    \end{equation}
+    记 $r=\sqrt{x^2+y^2}$. 幂级数的阶由其第一项非零决定, 因此若$\Delta P_k \ne 0$, 则
+    \begin{equation} \label{equiangular1}
+        \Delta w=O(r^{k-2}).
+    \end{equation}
+    由于$u,v$满足MSE, 则
+    \begin{equation}
+        \Delta u= 2u_xu_yu_{xy}-u_x^2u_{yy}-u_y^2u_{xx} 
+    \end{equation}
+    \begin{equation}
+        \Delta v= 2v_xv_yv_{xy}-v_x^2v_{yy}-v_y^2v_{xx} 
+    \end{equation}
+    两式相减后得到
+    \begin{equation}
+        \Delta w= 2u_xu_yu_{xy}-u_x^2u_{yy}-u_y^2u_{xx} -2v_xv_yv_{xy}+v_x^2v_{yy}+v_y^2v_{xx} 
+    \end{equation}
+    现在, 我们需要知道右侧的阶的大小, 因此, 我们希望把右侧变为每一项都包含$w$及其导数的形式. 前三项保持不变. 后三项中, 将每一项中$v$的二阶导数的项用 $v=u-w$代替, 则得到
+    \begin{equation}
+        \begin{split}
+            \Delta w =& u_{xy}(2u_xu_y-2v_xv_y)-u_{yy}(u_x^2-v_x^2)-u_{xx}(u_y^2-v_y^2) \\
+                &-2v_xv_yw_{xy}-v_x^2w_{yy}-v_y^2w_{xx} \\
+                =&2u_{xy}(u_xw_y+v_yw_x)-u_{yy}(u_x+v_x)w_x-u_{xx}(u_v+v_y)w_y\\
+                &-2v_xv_yw_{xy}-v_x^2w_{xy}-v_y^2w_{xx}
+        \end{split}
+    \end{equation}
+    上面右侧的每一项都含有$w$的导数 并且由于$Du(0)=Dv(0)=0$, 则
+    \begin{equation} \label{equiangular2}
+        \Delta w= O(r^{k})
+    \end{equation}
+    综合\eqref{equiangular1},\eqref{equiangular2}以及$\Delta_{P_k}$至多是$k-2$阶多项式的事实, 必有 $\Delta P_k=0$.  那么, 存在全纯函数$h(z)$使得$P_k(z)=\Re(h(z))$. 而由于$P_k=O(r^k)$, 则$h(z)$在零点处的阶为 $k$. $h(z)=\Re(z^k\tilde{h}(z))$. 其中, $\tilde{h}(0) \ne 0$.  记$w=z{\tilde{h}(z)}^\frac{1}{k}$. 则$w(z)$在零点附近是共形变换, 因此我们可以将$w$看成新的坐标系.  在$w=re^{i\theta}$坐标下, $P_k(z(w))=\Re(w^k)=r^k\cos(k\theta)$. 因此, 在$w$坐标下, $P_k=0$由$2k$条曲线组成, 相邻两条之间的夹角是$\frac{\pi}{k}$. 而$w-P_k=o(r^k)$,  而角度只与$C^1$行为有关.
+\end{proof}
+
 \section{第一变分公式} \label{sec_first_variation}
 设$(\M^n,g)$是黎曼流形, $\Sigma^{n-1}\subset \M$是$n-1$维子流形. 我们采取的记号如下
 \begin{itemize}
@@ -529,10 +636,10 @@
     \end{equation}
     取$\epsilon$使得 $\epsilon C_\alpha=\frac{1}{2}$即可.
 \end{proof}
-\begin{theorem} \label{graph_bernstein}
+\begin{theorem}[Bernstein定理] \label{graph_bernstein}
     设$u: \R^2 \to \R$在全平面上满足MSE.  记$\Sigma=\G(u)$. 则$u$是仿射函数, 或者等价地, $\Sigma$是平面.
 \end{theorem}
-\begin{proof}
+\begin{proof}[Bernstein定理证明I]
     我们首先说明, 如果下面的断言成立, 则$u$是仿射.
     \begin{claim}
         $\forall k >0$,存在$\phi_k \in Lip(\Sigma)$使得  $\phi_k|_{B_k \cap \Sigma}=1$, $\phi_k$有紧支集 且$ \int_\Sigma \abs{\nabla_\Sigma \phi_k}^2 \to 0$.
@@ -910,7 +1017,7 @@ Helicold是由一条水平直线匀速螺旋上升而得到的. Helicold可以�
 \begin{proof}
     直接计算可知, 若$q$没有零点, 则$\abs{q}^2\abs{dz}^2$是平坦度量. 如果这个度量是完备的, 那么指数映射将给出$\mathbb{D}\to \mathbb{C}$的共形映射, 这是不可能的.
 \end{proof}
-\begin{theorem}
+\begin{theorem}\label{gauss_image_dense}
     设$\Sigma \subset\R^3$是非平坦的完备极小曲面, 则其Gauss映射的像在$\S^2$中稠密.
 \end{theorem}
 \begin{proof}
@@ -919,111 +1026,8 @@ Helicold是由一条水平直线匀速螺旋上升而得到的. Helicold可以�
 \begin{corollary}
     如果$\Sigma \subset \R^3$是极小曲面, 且其Gauss映射的像不包含$\mathbb{S}^2$中的某个开集. 则$\Sigma$是平坦的.
 \end{corollary}
-\section{MSE revisited}
-\begin{proposition}
-    设$u,v$满足极小曲面方程, 则$w=u-v$满足一个线性椭圆方程
-    \begin{equation}
-        \div(a^{ij}w_i\PJ) =0
-    \end{equation}
-    并且存在常数$C=C(Du,Dv)$ 使得 $\frac{1}{C} \le \lambda_{\min} \le \lambda_{\max} \le C$.
-\end{proposition}
-\begin{proof}
-    设$F: \R^n \to \R^n$, $F(x)=\frac{x}{\sqrt{1+\abs{x}^2}}$. 由微积分基本定理
-    \begin{equation}
-        \begin{split}
-            F(Du)-F(Dv)= & \int^1_0 \ddt f(tDu+(1-t)Dv)dt \\
-            =& \int^1_0 dF(tDu+(1-t)Dv)(Du-Dv)dt\\
-            =& \int^1_0 dF(tDu+(1-t)Dv)dwdt\\
-            =& a^{ij}w_i\PJ
-        \end{split} 
-    \end{equation}
-    其中, $a^{ij}=\int^1_0 \frac{\partial F^i}{\partial x^j}(tDu+(1-t)Dv)dt$. \\
-    由于$\div(F(Du)) = \div(F(Dv))=0$, 则
-    \begin{equation}
-        \div(a^{ij}w_i\PJ)=0.
-    \end{equation}
-    直接计算可知
-    \begin{equation}
-        \left[\frac{\partial F^i}{\partial x^j}\right] = \frac{1}{(1+\abs{x}^2)^\frac{3}{2}}((1+\abs{x}^2)I-xx^T)
-    \end{equation}
-    显然为正定矩阵, 且其特征为为 $\lambda_1=\frac{1}{(1+\abs{x}^2)^{\frac{3}{2}}}, \lambda_2=\cdots\lambda_n=\frac{1}{\sqrt{1+\abs{x}^2}}$. 结论得证.
-\end{proof}
-\begin{corollary}
-    设$u,v$满足MSE, $u(p)=v(p)$且在$p$点的邻域内, $u \ge v$. 则 $u\eq v$.
-\end{corollary}
-\begin{proof}
-    设$w=u-v$. 则在点$p$的邻域内, $w(p)=0$并且 $w \ge 0$. 由强最大值原理可知, $w\eq 0$.
-\end{proof}
-\begin{corollary}
-    设$\Sigma_1,\Sigma_2 \subset \R^n$是极小曲面, 设$p \in \Sigma_1 \cap \Sigma_2$是$\Sigma_1,\Sigma_2$的内点. 若$\Sigma_1$ 完全位于$\Sigma_2$的同一侧, 则$\Sigma_1=\Sigma_2$.
-\end{corollary}
-\begin{proof}
-    由假设条件, $\Sigma_1,\Sigma_2$在 $p$点处相切. 设$p$点的邻域中, $\Sigma_1=\G(u)$, $\Sigma_2=\G(v)$. 由于$\Sigma_1$完全位于$\Sigma_2$的同一侧, 这里不妨设为上方, 则$u \ge v$. 又由于$u(p)=v(p)$, 则由强最大值原理可知  $u \eq v$.
-\end{proof}
-\begin{theorem}
-    设$\Omega \subset \R^2$是严格凸的. $\Gamma =\G(\psi) \subset \partial \Omega \times \R$, 其中, $\psi \subset C(\partial \Omega)$. 设$\Sigma \subset \R^3$是以$\Gamma$为边界的极小曲面, 则存在函数$u$使得 $\Sigma=\G(u)$.
-\end{theorem}
-\begin{proof}
-    首先说明$\Sigma \subset \overline{\Omega} \times \R$. 否则, 取$x \in \Omega$, 取$R>0$使得$\Sigma \subset B_R\times \R$并且 $\Sigma$与$\partial B_R\times \R$相切于点$y \in \partial B_R \times \R$. 设$\tilde{\Sigma}$为$\partial B_R \times \R$ 在点$y$处的切平面, 则$\Sigma$完全位于$\tilde{\Sigma}$的同一侧且它们相切于点$y$. 由最大值原理可知, $\Sigma= \tilde{\Sigma}$, 这样便推出一个矛盾. 因此, $\Sigma \subset \overline{\Omega}\times \R$.
-    \par 设$P_t$为平面$\{x_3=t\}$. 设$P_t$与$\Sigma$相交. 记$\Sigma_t^+$为$\Sigma$在平面$P_t$上侧的部分, $\Sigma_t^-$为$\Sigma$在平面$P_t$下侧的部分. 将$\Sigma_t^+$反射到$P_t$下侧, 记为$\tilde{\Sigma}_t^+$.  现在我们考虑下面两种情况:
-    \begin{enumerate}
-        \item  $\forall t$, $\tilde{\Sigma}_t^+\cap \Sigma_t^-=\emptyset$, 则$\pi:\Sigma\to \Omega$必定为单射. 否则, 若存在$p_1,p_2 \in \Sigma$使得 $\pi(p_1)=\pi(p_2)$, 不妨设$p_1$在上侧. 则取$t=\frac{1}{2}(z(p_1)+z(p_2))$时, 必定有$p_2 \in \tilde{\Sigma}_t^+\cap \Sigma_t^-$,  这样也假设矛盾. 因此, $\Sigma$ 作为某个函数的图像.
-        \item $\exists t$使得 $\tilde{\Sigma}_t^+ \cap \Sigma_t^-\ne \emptyset$.  取这样最大的$t$. 则$\tilde{\Sigma}_t^+$完全位于$\Sigma_t^-$的上侧.  当$t$再减小时, 设$\Lambda=  \tilde{\Sigma}_t^+ \cap \Sigma_t^-$, 则$\Lambda \subset \Omega \times \R$(因为$\partial \Sigma$是边界上的$\G$, 因此$\Lambda$不可能与$\partial \Omega \times \R$相交). 显然地, $\Lambda$ 同时围出$\tilde{\Sigma}_t^+, \Sigma_t^-$上的两个极小曲面. 通过选取$t$足够接近$t_0$, 我们可以假设这两个极小曲面都能(旋转坐标系之后)写成函数的图像的形式, 这样便与最大值原理矛盾.
-    \end{enumerate}
-\end{proof}
-\begin{remark}
-    上面的定理将$\Sigma$写成函数$u$的图像之后, 虽然$\Sigma$是光滑的, 但是到现在为止我们还不能得到$u$的光滑性.
-\end{remark}
-\begin{theorem}
-    设$u$满足MSE, 则$u$是实解析的.
-\end{theorem}
-\begin{proof}
-    $n=2$时, \cite[p.125]{Nit1}中提供了一个非常简单的证明. 一般情况下请参考\cite{Giu84}及其中的参考文献.
-\end{proof}
-\begin{theorem}
-    设$\Sigma_1,\Sigma_2 \subset \R^3$是极小曲面, 且$\Sigma_1,\Sigma_2$在点$p\subset \R^3$处相切. 则在$p$点的某个邻域中, 或者$\Sigma_1=\Sigma_2$, 或者$\Sigma_2 \cap \Sigma_2$包含$2k$条由$p$点发出的曲线$(k\ge 2)$, 且这些曲线中相邻两条之间的夹角是$\frac{\pi}{k}$.
-\end{theorem}
-\begin{proof}
-    设$p=0, \Sigma_1=\G(u), \Sigma_2=\G(v)$, 且$u(0)=v(0)$, $Du(0)=Dv(0)$. 记$w=u-v$. 由于$u,v$均是解析函数, 则
-    \begin{equation}
-        \begin{split}
-            w(x,y)&=\sum_{i=k}^{+\infty} \sum_{j=0}^{i} \frac{1}{j!(k-j)!}\frac{\partial^k w}{\partial x^j \partial y^{k-j}}x^jy^{k-j} \\
-            &=\sum_{i=k}^{+\infty} P_i(x,y), (k\ge 2).
-        \end{split}
-    \end{equation}
-    这里, 每一项$P_i$都是$i-$次齐次的多项式.  由于$w$是解析函数, 我们可以逐项求导, 于是有
-    \begin{equation}
-        \Delta w= \sum_{i=k}^{+\infty} \Delta P_i(x,y).
-    \end{equation}
-    记 $r=\sqrt{x^2+y^2}$. 幂级数的阶由其第一项非零决定, 因此若$\Delta P_k \ne 0$, 则
-    \begin{equation} \label{equiangular1}
-        \Delta w=O(r^{k-2}).
-    \end{equation}
-    由于$u,v$满足MSE, 则
-    \begin{equation}
-        \Delta u= 2u_xu_yu_{xy}-u_x^2u_{yy}-u_y^2u_{xx} 
-    \end{equation}
-    \begin{equation}
-        \Delta v= 2v_xv_yv_{xy}-v_x^2v_{yy}-v_y^2v_{xx} 
-    \end{equation}
-    两式相减后得到
-    \begin{equation}
-        \Delta w= 2u_xu_yu_{xy}-u_x^2u_{yy}-u_y^2u_{xx} -2v_xv_yv_{xy}+v_x^2v_{yy}+v_y^2v_{xx} 
-    \end{equation}
-    现在, 我们需要知道右侧的阶的大小, 因此, 我们希望把右侧变为每一项都包含$w$及其导数的形式. 前三项保持不变. 后三项中, 将每一项中$v$的二阶导数的项用 $v=u-w$代替, 则得到
-    \begin{equation}
-        \begin{split}
-            \Delta w =& u_{xy}(2u_xu_y-2v_xv_y)-u_{yy}(u_x^2-v_x^2)-u_{xx}(u_y^2-v_y^2) \\
-                &-2v_xv_yw_{xy}-v_x^2w_{yy}-v_y^2w_{xx} \\
-                =&2u_{xy}(u_xw_y+v_yw_x)-u_{yy}(u_x+v_x)w_x-u_{xx}(u_v+v_y)w_y\\
-                &-2v_xv_yw_{xy}-v_x^2w_{xy}-v_y^2w_{xx}
-        \end{split}
-    \end{equation}
-    上面右侧的每一项都含有$w$的导数 并且由于$Du(0)=Dv(0)=0$, 则
-    \begin{equation} \label{equiangular2}
-        \Delta w= O(r^{k})
-    \end{equation}
-    综合\eqref{equiangular1},\eqref{equiangular2}以及$\Delta_{P_k}$至多是$k-2$阶多项式的事实, 必有 $\Delta P_k=0$.  那么, 存在全纯函数$h(z)$使得$P_k(z)=\Re(h(z))$. 而由于$P_k=O(r^k)$, 则$h(z)$在零点处的阶为 $k$. $h(z)=\Re(z^k\tilde{h}(z))$. 其中, $\tilde{h}(0) \ne 0$.  记$w=z{\tilde{h}(z)}^\frac{1}{k}$. 则$w(z)$在零点附近是共形变换, 因此我们可以将$w$看成新的坐标系.  在$w=re^{i\theta}$坐标下, $P_k(z(w))=\Re(w^k)=r^k\cos(k\theta)$. 因此, 在$w$坐标下, $P_k=0$由$2k$条曲线组成, 相邻两条之间的夹角是$\frac{\pi}{k}$. 而$w-P_k=o(r^k)$,  而角度只与$C^1$行为有关.
+\begin{proof}[Bernstein定理证明III]
+    定理\eqref{gauss_image_dense}的直接推论.
 \end{proof}
 \section{第二变分与稳定性}
 设$F(x,t): \Sigma \times (-\epsilon, \epsilon) \to \M$是曲面$\Sigma$的一个变分(连续形变)满足
@@ -1701,7 +1705,7 @@ Helicold是由一条水平直线匀速螺旋上升而得到的. Helicold可以�
 \begin{theorem} \label{stable_flat}
     设$\Sigma^2 \subset \R^3$是定向,完备的稳定极小曲面. 则$\Sigma$是平面.
 \end{theorem}
-\begin{proof}
+\begin{proof}[Bernstein定理证明IV]
     根据命题\eqref{conformal_c}, $\tilde{\Sigma}$共形同构于$\mathbb{C}$. 同时由于$\Sigma$是稳定的, 存在$u>0$使得 $\L_\TS u \le 0$. 即有
     \begin{equation}
         \Delta u \le - \abs{\II}^2 u \le 0.

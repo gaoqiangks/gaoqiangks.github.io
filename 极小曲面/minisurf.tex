@@ -1,12 +1,14 @@
 \PassOptionsToPackage{quiet}{fontspec}
 \documentclass[oneside]{ctexbook}
 \usepackage{amsthm,amssymb,amsmath}
+\usepackage{tikz-cd}
 \usepackage{fancyhdr}
 \usepackage{enumerate}
 %\usepackage{biblatex}
 \usepackage{biblatex}
 \usepackage{graphicx}
 \usepackage{picinpar}
+%\usepackage{showkeys}
 \usepackage{subfig}
 %\usepackage{epstopdf}
 \usepackage{epsfig}
@@ -16,6 +18,7 @@
 \usepackage[colorlinks=true]{hyperref}
 %tipa包用于arc命令
 \usepackage{tipa}
+\usepackage{changepage}
 \usepackage{listings}%排版代码的包
 %\usepackage[yyyymmdd,hhmmss]{datetime}
 \setlength{\headheight}{13pt}
@@ -156,6 +159,7 @@
 \newcommand{\arc}[1]{{\texttoptiebar{#1}}}
 \newcommand{\floor}[1]{{\lfloor {#1} \rfloor}}
 \newcommand{\cycgroup}[1]{{\left< {#1} \right>}}
+\newcommand{\ms}{{\,}}
 %\newcommand{\arc}[1]{{
 %  \setbox9=\hbox{#1}%
 %  \ooalign{\resizebox{\wd9}{\height}{\texttoptiebar{\phantom{A}}}\cr#1}}}
@@ -188,6 +192,13 @@
   \begin{proof}[#1]%
 }{%
   \end{proof}%
+}
+
+\newenvironment{emphasize}{
+    \itshape
+    \begin{adjustwidth}{2em}{2em}
+        }{%
+    \end{adjustwidth}
 }
 
 \usepackage{enumitem,xparse}
@@ -257,7 +268,6 @@
 \input{Chapter01}
 \input{Chapter02}
 \input{Chapter0304}
-%\input{Chapter05}
 \appendix
 \input{appendix1}
 %\input{appendix1}

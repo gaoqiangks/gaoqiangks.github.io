@@ -2366,7 +2366,10 @@
     <bcf:citekey order="10">WorkofDouglas</bcf:citekey>
     <bcf:citekey order="11">Morgan</bcf:citekey>
     <bcf:citekey order="12">Morgan</bcf:citekey>
-    <bcf:citekey order="13">munkres</bcf:citekey>
+    <bcf:citekey order="13">JostTwo</bcf:citekey>
+    <bcf:citekey order="14">FomenkoI</bcf:citekey>
+    <bcf:citekey order="15">FomenkoII</bcf:citekey>
+    <bcf:citekey order="16">munkres</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
